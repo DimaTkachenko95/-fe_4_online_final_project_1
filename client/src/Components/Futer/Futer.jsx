@@ -7,9 +7,9 @@ function Futer() {
 
     return(
 
-        <futer>
+        <div>
             <div> Нижняя часть сайта</div>
-        </futer>
+        </div>
 
     )
 }
