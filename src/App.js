@@ -12,8 +12,10 @@ const App = () =>  {
   return(
       <>
         <Header/>
-        <Main/>
+
+         <Main/>
          <Positions/>
+
         <Futer/>
       </>
   )
