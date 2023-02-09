@@ -8,7 +8,7 @@ function Main() {
     return(
 
         <main>
-            <div> Основная инфа  </div>
+            <div> Головна сторінка  </div>
         </main>
 
     )

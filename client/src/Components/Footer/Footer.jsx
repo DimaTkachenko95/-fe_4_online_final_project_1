@@ -1,9 +1,9 @@
 
-import './Futer.scss'
+import './Footer.scss'
 
 
 
-function Futer() {
+function Footer() {
 
     return(
 
@@ -15,4 +15,4 @@ function Futer() {
 }
 
 
-export default Futer
+export default Footer

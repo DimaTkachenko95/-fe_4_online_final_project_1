@@ -6,9 +6,7 @@ function Items ()  {
 
 
     return (
-        <>
-
-        </>
+        <div>Каталог</div>
     )
 }
 

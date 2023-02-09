@@ -1,2 +1,2 @@
-import Positions from "./Positions";
-export default Positions
+import Сatalog from "./Сatalog";
+export default Сatalog
