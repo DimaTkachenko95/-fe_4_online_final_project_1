@@ -7,7 +7,7 @@ import Items from "./Items";
 
 
 
-function Сatalog() {
+function Catalog() {
 
 
 
@@ -20,4 +20,4 @@ function Сatalog() {
 
 
 
-export default Сatalog
+export default Catalog
