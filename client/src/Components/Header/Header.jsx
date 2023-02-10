@@ -9,6 +9,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import './Header.scss';
 import {useState} from "react";
 
+const Header = () => {
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +76,6 @@ function Header() {
                     <button type="submit" className="search-btn" onClick={() => setIsSearchOpen(!isSearchOpen)}>Enter</button>
                 </Box>}
             </header>
-
         </>
     )
 }

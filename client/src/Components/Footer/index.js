@@ -1,2 +1,2 @@
-import Futer from "./Futer";
-export default Futer
+export { default } from "./Footer";
+
