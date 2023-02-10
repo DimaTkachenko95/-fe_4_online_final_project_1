@@ -1,142 +1,262 @@
-.headerUp{
-  position: relative;
-  height: 50px;
-  display: flex;
-  border: white;
-  border-style: double;
-  border-width: 10px;
-  border-radius: 10px;
-  top: 20px;
-
-
+a {
+  text-decoration: none;
+  color: black;
 }
-.icon-favorite{
-  color: #000;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  .basket{
-    position: absolute;
-    right: 39px;
-    top: -4px;
-    font-size: 20px;
-    font-weight: 600;
+body{
+  margin: 0;
+}
+
+.header {
+
+  min-width: 350px;
+
+  position: relative;
+  @media (max-width: 875px) {
+    margin: 25px auto 0;
   }
-   .troll {
-     position: absolute;
-     right: 10px;
-     top: 30%;
-   }
-    .count {
-      position: absolute;
-      top: -5px;
-      right: 0;
-      font-size: 10px;
+
+  &__wrapper {
+    /*display: flex;
+    align-items: center;
+    justify-content: space-between;*/
+    display: grid;
+    grid-template-columns: 9fr 9fr 1fr 1fr;
+
+    align-items: center;
+
+  }
+
+  &__logo-wrapper {
+
+    padding-left: 7vw;
+    cursor: pointer;
+    @media (max-width: 875px) {
+      padding: 0;
+      grid-column-start: 2;
     }
-      &:hover {
-        color: #fff;
-        cursor: pointer;
+  }
+
+  &__logo {
+    color: rgba(0, 0, 0, 1);
+    background-image: url("./icons/logo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 26px;
+    @media (max-width: 875px) {
+      background-image: url("./icons/logoMini.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+    }
+
+    &_colored {
+      background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__menu {
+    margin-right: 10px;
+    @media (max-width: 875px) {
+      display: none;
+      padding: 0;
+      background-color: rgba(245, 245, 245, 1);
+      position: absolute;
+      top: 40px;
+      right: -10px;
+    }
+
+    .menu-list {
+      display: flex;
+      gap: 2vw;
+      @media (max-width: 875px) {
+        flex-direction: column;
+      }
+
+
+      &__item {
+        font-family: 'Ubuntu', sans-serif;
+        text-transform: uppercase;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        padding-bottom: 38px;
+        padding-top: 38px;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+          color: rgba(96, 176, 33, 1);
+          border-color: rgba(96, 176, 33, 1);
+        }
+
+        @media (max-width: 875px) {
+          padding: 5px 25px;
+          //padding: 0;
+          flex: 1;
+
+          &:hover {
+            border-color: transparent;
+            color: rgba(96, 176, 33, 1);
+          }
+        }
       }
     }
-.favorites{
-  color: #000;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  .star {
-    position: absolute;
-    right: 170px;
-    top: 30%;
   }
-  .starBasket{
-    font-weight: 600;
-    position: absolute;
-    right: 200px;
-    top: -4px;
-    font-size: 20px;
+
+
+  &__items-actions {
+    justify-self: baseline;
+    //display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    @media (max-width: 875px) {
+      grid-column-start: 1;
+      grid-row-start: 1;
+
+    }
+    .action {
+
+
+      position: relative;
+      &:last-child{
+        .action__icon{
+          border-right: 1px solid #EFEFEF;
+          @media (max-width: 875px) {
+            border: none;
+          }
+        }
+      }
+      .count {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        border-radius: 50%;
+        width: 1.34vw;
+        height: 1.34vw;
+
+        position: absolute;
+        top: -17px;
+        right: 9px;
+
+        font-family: 'Ubuntu', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+
+        @media (max-width: 875px) {
+          display: none;
+        }
+      }
+
+      .count-cart {
+        background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+        color: white;
+
+        @media (max-width: 875px) {
+          display: none;
+        }
+      }
+
+      &__icon {
+        border-left: 1px solid #EFEFEF;
+        padding: 2vw;
+        border-bottom: 2px solid transparent;
+        @media (max-width: 875px) {
+          border: none;
+        }
+      }
+
+      &__icon:focus {
+
+        color: rgba(96, 176, 33, 1);
+        border-bottom: 2px solid rgba(96, 176, 33, 1);
+
+      }
+    }
   }
-  .counts {
-    position: absolute;
-    top: -5px;
-    right: 165px;
-    font-size: 10px;
+
+  &__user-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    .action {
+      &:first-child{
+        .action__icon{
+          border-right: 1px solid #EFEFEF;
+          @media (max-width: 875px) {
+            border: none;
+          }
+        }
+
+
+      }
+      &__icon {
+        padding: 2vw;
+        border-bottom: 2px solid transparent;
+
+      }
+
+      &__icon:focus {
+
+        color: rgba(96, 176, 33, 1);
+        border-bottom: 2px solid rgba(96, 176, 33, 1);
+
+      }
+    }
   }
-  &:hover {
-    color: #fff;
-    cursor: pointer;
+
+  .burger-menu-btn {
+    justify-self: end;
+    display: none;
+    border-left: 1px solid #EFEFEF;
+    padding: 1.2vw;
+    @media (max-width: 875px) {
+      display: block;
+      border: none;
+    }
   }
-}
-.logo{
-  text-decoration: none;
-  left: 10px;
-  position: absolute;
-  min-width: 25px;
-  font-size: 20px;
-  font-weight:600;
-  top: 13%;
-  color: white;
-
+  &__input-wrapper{
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr;
+    background-color: rgba(247, 247, 247, 1);
+    .input{
+      padding-left: 7vw;
+    }
+    .search-btn{
+      cursor: pointer;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 100px;
+      padding: 10px 46px;
+      border: none;
+      font-family: 'Ubuntu', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
-.button {
-  top: 40%;
-  right: 10px;
-  position: absolute;
-  min-width: 25px;
-  background-color: #8a0303;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  border-radius: 15px;
+
 }
 
-.button2:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+.active{
+  display: block;
 }
-
-
-.presentation{
-  margin: 50px 0;
-  background-image: url(https://st2.depositphotos.com/2389277/5683/i/950/depositphotos_56834629-stock-photo-muscular-man-holding-ancient-sword.jpg);
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-  background-position: center center;
-  background-blend-mode: multiply;
-  background-color: #bcbcbc;
-  position: relative;
-}
-.presentation::after{
-  content: 'Лучшие мечи для вас';
-  position: absolute;
-  top: 100px;
-  left: 50px;
-  width: 300px;
-  font-size: 40px;
-  font-weight:600;
-  color: #fff;
-}
-.presentation::before{
-  content: 'по низким ценам';
-  position: absolute;
-  top: 250px;
-  left: 50px;
-  width: 300px;
-  font-size: 15px;
-  font-weight:300;
-  color: #fff;
-}
-
-
-
-
-
-
 
