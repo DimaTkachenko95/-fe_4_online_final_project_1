@@ -1,9 +1,6 @@
+import './Footer.scss';
 
-import './Footer.scss'
-
-
-
-function Footer() {
+const Footer = () => {
 
     return(
 
@@ -14,5 +11,4 @@ function Footer() {
     )
 }
 
-
-export default Footer
+export default Footer;

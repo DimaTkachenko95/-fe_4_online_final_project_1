@@ -1,19 +1,14 @@
-import "./Basket.scss"
-import {Link} from "react-router-dom";
+import "./Basket.scss";
+import { Link } from "react-router-dom";
 
+const Basket = () => {
 
-
-
-const Basket =() => {
-
-    return(
-
+    return (
         <>
-                    <div>Корзина для НЕ авторизованого користувача</div>
-                    <Link to="/checkOut">Купить</Link>
+            <div>Корзина для НЕ авторизованого користувача</div>
+            <Link to="/checkOut">Купить</Link>
         </>
-
-
     )
 }
-export default Basket
+
+export default Basket;
