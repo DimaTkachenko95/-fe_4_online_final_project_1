@@ -1,13 +1,11 @@
-import "./Favorites.sass"
-
-
+import "./Favorites.scss";
 
 const Favorites = () => {
 
     return(
-
         <div>Избранное</div>
 
     )
 }
-export default Favorites
+
+export default Favorites;
