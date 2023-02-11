@@ -52,7 +52,8 @@
       "jsx-a11y/no-static-element-interactions": 0,
       "react/jsx-filename-extension": 0,
       "react/react-in-jsx-scope": 0,
-      "react/function-component-definition": 0
+      "react/function-component-definition": 0,
+      "jsx-a11y/control-has-associated-label": 0
     }
   },
   "browserslist": {
