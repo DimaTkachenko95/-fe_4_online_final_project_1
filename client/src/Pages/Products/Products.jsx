@@ -1,3 +1,6 @@
+
+import "./Products.scss";
+
 import Items from "./Items";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -6,17 +9,15 @@ import {ReactComponent as Bottom} from "./img/bottom.svg"
 import {ReactComponent as Top} from "./img/top.svg"
 
 
-import "./Catalog.scss";
 
-
-const Catalog = () => {
+const Products = () => {
 
     return (
         <main>
         <Container maxWidth="lg">
             <h5  className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
             <div className="main-filter-block">
-                <div classname="main-filter-block__popular">
+                <div className="main-filter-block__popular">
                     <button className="main-filter-block__popular--btn">By price</button>
                     <button className="main-filter-block__popular--btn">By popular</button>
                 </div>
@@ -48,4 +49,4 @@ const Catalog = () => {
     );
 }
 
-export default Catalog;
+export default Products;
