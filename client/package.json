@@ -32,15 +32,25 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --watchAll=false",
+    "eject": "react-scripts eject",
+    "prepare": "cd .. && husky install client/.husky"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+      "airbnb",
+      "airbnb/hooks"
+    ],
+    "env": {
+      "jest": true,
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "react/jsx-filename-extension": 0
+  }},
   "browserslist": {
     "production": [
       ">0.2%",

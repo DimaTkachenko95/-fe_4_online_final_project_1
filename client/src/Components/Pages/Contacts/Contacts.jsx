@@ -1,10 +1,10 @@
-import "./Contacts.scss";
+import React from 'react';
+import './Contacts.scss';
 
-const Contacts = () => {
-
-    return(
-        <div>Контакти</div>
-    )
+function Contacts() {
+  return (
+    <div>Контакти</div>
+  );
 }
 
 export default Contacts;

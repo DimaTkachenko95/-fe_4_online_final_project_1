@@ -1,13 +1,13 @@
+import React from 'react';
 import './Main.scss';
 
-const Main = () => {
+function Main() {
+  return (
+    <main>
+      <div> Головна сторінка</div>
+    </main>
 
-    return (
-        <main>
-            <div> Головна сторінка</div>
-        </main>
-
-    )
+  );
 }
 
 export default Main;

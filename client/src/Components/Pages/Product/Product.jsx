@@ -1,9 +1,10 @@
-import "./Product.scss";
+import React from 'react';
+import './Product.scss';
 
-const Product = () => {
-    return(
-        <div>Карточка для каждой позиции</div>
-    )
+function Product() {
+  return (
+    <div>Карточка для каждой позиции</div>
+  );
 }
 
 export default Product;

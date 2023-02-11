@@ -1,8 +1,8 @@
-import "./CheckOut.scss"
+import React from 'react';
+import './CheckOut.scss';
 
-const CheckOut = () => {
-
-    return (<div>Оформлення замовлення</div>)
+function CheckOut() {
+  return (<div>Оформлення замовлення</div>);
 }
 
 export default CheckOut;

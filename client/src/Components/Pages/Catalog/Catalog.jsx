@@ -1,13 +1,13 @@
-import "./Catalog.scss";
-import Items from "./Items";
+import React from 'react';
+import './Catalog.scss';
+import Items from './Items';
 
-const Catalog = () => {
-
-    return (
-        <main>
-            <Items/>
-        </main>
-    );
+function Catalog() {
+  return (
+    <main>
+      <Items />
+    </main>
+  );
 }
 
 export default Catalog;

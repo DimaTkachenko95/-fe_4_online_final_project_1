@@ -1,14 +1,14 @@
+import React from 'react';
 import './Footer.scss';
 
-const Footer = () => {
+function Footer() {
+  return (
 
-    return(
+    <div>
+      <div> Нижняя часть сайта</div>
+    </div>
 
-        <div>
-            <div> Нижняя часть сайта</div>
-        </div>
-
-    )
+  );
 }
 
 export default Footer;
