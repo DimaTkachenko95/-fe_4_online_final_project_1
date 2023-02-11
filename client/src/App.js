@@ -1,7 +1,9 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
+import Hero from "./Components/Hero";
 import Footer from "./Components/Footer";
+import Positions from "./Components/Pages/Catalog";
 import Catalog from "./Components/Pages/Catalog";
 import Main from "./Components/Pages/Main";
 import Basket from "./Components/Pages/Backet";
@@ -17,6 +19,7 @@ const App = () =>  {
   return(
       <>
           <Header/>
+          <Hero/>
           <Routes>
               <Route path="/" element={<Main/>} />
               <Route path="/contacts" element={<Contacts/>} />
