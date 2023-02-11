@@ -31,7 +31,7 @@ const Header = () => {
 
                     <nav className={isMenuOpen ? "header__menu active" : "header__menu"}>
                         <Box className="menu-list">
-                            <NavLink to="/Products" className="menu-list__item" activeClassName="menu-list__item active-item">Products</NavLink>
+                            <NavLink to="/products" className="menu-list__item" activeClassName="menu-list__item active-item">Products</NavLink>
                             <NavLink to="/about" className="menu-list__item" activeClassName="menu-list__item active-item">About</NavLink>
                             <NavLink to="/rules" className="menu-list__item" activeClassName="menu-list__item active-item">Rules</NavLink>
                             <NavLink to="/news" className="menu-list__item" activeClassName="menu-list__item active-item">News</NavLink>
@@ -43,7 +43,7 @@ const Header = () => {
                         <InputBase
                             className="header__input"
 
-                            placeholder="Search Product"
+                            placeholder="Search"
                             value={inputValue}
                             onChange={(e) => {
                                 setInputValue(e.target.value);
