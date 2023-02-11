@@ -11,6 +11,8 @@ import Contacts from "./Pages/Contacts";
 import Favorites from "./Pages/Favorites";
 import Product from "./Pages/Product";
 
+import './reset.css'
+
 const App = () =>  {
 
   return(
