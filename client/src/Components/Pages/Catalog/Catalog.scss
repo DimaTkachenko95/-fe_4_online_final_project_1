@@ -1,0 +1,147 @@
+@mixin font-list-items {
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+           
+  }
+
+.list {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    width: fit-content;
+
+
+    &__item {
+        padding: 20px;
+
+
+        &--name {
+            @include font-list-items;
+            color: #000000;
+        }
+
+        &--img {
+            width: 170px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+
+        &--rating {
+            position: absolute;
+            right: 15px;
+            &--line{
+                display: inline-block;
+                width: 4px;
+                height: 10.56px;
+                border: 1px solid #000000;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            &::before{
+                content: '';
+                display: inline-block;
+                width: 4px;
+                height: 14px;
+                border: 1px solid #000000;
+            }
+            &::after{
+                content: '';
+                display: inline-block;
+                width: 4px;
+                height: 18px;
+                border: 1px solid #000000;
+            }
+        }
+
+        &--favorite {
+            position: absolute;
+            right: 15px;
+            top: 58px
+        }
+
+        &--producer {
+            @include font-list-items;
+            color: #75758A;
+        }
+
+        &--price {
+            @include font-list-items;
+            color: #60B021;
+            margin-bottom: 15px;
+        }
+
+        &--information {
+            @include font-list-items;
+            background: #FFFFFF;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+            border-radius: 100px;
+            border: none;
+            padding: 12px 50px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #000000;
+        }
+    }
+}
+
+.count-found-product {
+    @include font-list-items;
+    font-size: 16px;
+    margin-bottom: 26px;
+    color: #000000;
+
+    &__span{
+        @include font-list-items;
+        font-size: 16px;
+        color: #60B021;
+    }
+}
+
+.main-filter-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    &__popular {
+        &--btn {
+            background: #F7F7F7;
+            border: 1px solid #E3E3E3;
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #75758A;
+            padding: 10px 16px;
+
+            &--active {
+                background: #FFFFFF;
+                box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                text-align: center;
+                color: #000000;
+                padding: 10px 16px;
+            }
+        }
+    }
+
+    &__direction {
+        &--btn {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            border: none;
+        }
+
+    }
+
+}
+
