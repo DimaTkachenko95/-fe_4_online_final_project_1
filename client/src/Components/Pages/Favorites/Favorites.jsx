@@ -1,11 +1,7 @@
-import React from 'react';
 import './Favorites.scss';
 
 function Favorites() {
-  return (
-    <div>Избранное</div>
-
-  );
+  return <div>Избранное</div>;
 }
 
 export default Favorites;

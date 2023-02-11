@@ -1,4 +1,3 @@
-import React from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +10,6 @@ function Header() {
       <Link to="/favorites">Избранное</Link>
       <Link to="/basket">Корзина</Link>
     </header>
-
   );
 }
 

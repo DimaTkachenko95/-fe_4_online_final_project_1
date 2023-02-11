@@ -1,4 +1,3 @@
-import React from 'react';
 import './Main.scss';
 
 function Main() {
@@ -6,7 +5,6 @@ function Main() {
     <main>
       <div> Головна сторінка</div>
     </main>
-
   );
 }
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import './Catalog.scss';
 import Items from './Items';
 
