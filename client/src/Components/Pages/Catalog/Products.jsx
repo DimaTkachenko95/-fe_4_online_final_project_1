@@ -1,7 +1,7 @@
-import "./Catalog.scss";
+import "./Products.scss";
 import Items from "./Items";
 
-const Catalog = () => {
+const Products = () => {
 
     return (
         <main>
@@ -10,4 +10,4 @@ const Catalog = () => {
     );
 }
 
-export default Catalog;
+export default Products;
