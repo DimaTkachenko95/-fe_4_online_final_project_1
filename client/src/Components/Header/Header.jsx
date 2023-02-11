@@ -8,9 +8,10 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import './Header.scss';
 import {useState} from "react";
+import { Link } from "react-router-dom";
 
 
-function Header() {
+const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     return (
@@ -25,11 +26,11 @@ function Header() {
 
                     <nav className={isMenuOpen ? "header__menu active" : "header__menu"}>
                         <Box className="menu-list">
-                            <a href="#" className="menu-list__item">Catalog</a>
-                            <a href="#" className="menu-list__item">About</a>
-                            <a href="#" className="menu-list__item">Rules</a>
-                            <a href="#" className="menu-list__item">News</a>
-                            <a href="#" className="menu-list__item">Contacts</a>
+                            <Link to="/catalog" className="menu-list__item">Catalog</Link>
+                            <Link to="/about" className="menu-list__item">About</Link>
+                            <Link to="/rules" className="menu-list__item">Rules</Link>
+                            <Link to="/news" className="menu-list__item">News</Link>
+                            <Link to="/contacts" className="menu-list__item">Contacts</Link>
                         </Box>
                     </nav>
 
@@ -38,19 +39,19 @@ function Header() {
                             <div className="count">
                                 <span>5</span>
                             </div>
-                            <a href="#" className="action__icon icon-favorite"><StarBorderIcon/></a>
+                            <Link to="/favorites" className="action__icon icon-favorite"><StarBorderIcon/></Link>
                         </Box>
                         <Box className="action">
                             <div className="count">
                                 <span>7</span>
                             </div>
-                            <a href="#" className="action__icon icon-compare"><LeaderboardOutlinedIcon/></a>
+                            <Link to="/compare" className="action__icon icon-compare"><LeaderboardOutlinedIcon/></Link>
                         </Box>
                         <Box className="action ">
                             <div className="count count-cart">
                                 <span>2</span>
                             </div>
-                            <a href="#" className="action__icon icon-cart"><ShoppingCartOutlinedIcon/></a>
+                            <Link to="/bascet" className="action__icon icon-cart"><ShoppingCartOutlinedIcon/></Link>
                         </Box>
                     </Box>
 

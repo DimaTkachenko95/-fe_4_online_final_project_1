@@ -1,2 +1,2 @@
-import Futer from "./Futer";
-export default Futer
+import Footer from "./Footer";
+export default Footer

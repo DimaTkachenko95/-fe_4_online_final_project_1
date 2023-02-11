@@ -1,9 +1,6 @@
+import './Footer.scss';
 
-import './Futer.scss'
-
-
-
-function Futer() {
+const Footer = () => {
 
     return(
 
@@ -14,5 +11,4 @@ function Futer() {
     )
 }
 
-
-export default Futer
+export default Footer;

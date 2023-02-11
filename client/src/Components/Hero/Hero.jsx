@@ -1,5 +1,4 @@
 import {Box} from "@mui/material";
-import {ReactComponent as HeroDotSvg} from "./images/heroDot.svg";
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';

@@ -1,15 +1,7 @@
-
-import "./Positions.sass"
+import "./Catalog.scss";
 import Items from "./Items";
 
-
-
-
-
-
-function Positions() {
-
-
+const Catalog = () => {
 
     return (
         <main>
@@ -18,6 +10,4 @@ function Positions() {
     );
 }
 
-
-
-export default Positions
+export default Catalog;
