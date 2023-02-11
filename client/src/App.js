@@ -10,6 +10,8 @@ import Contacts from "./Components/Pages/Contacts";
 import Favorites from "./Components/Pages/Favorites";
 import Product from "./Components/Pages/Product";
 
+import './reset.css'
+
 const App = () =>  {
 
   return(
