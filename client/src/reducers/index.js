@@ -1,6 +1,7 @@
-import appReducer, {actionFetchAllProducts} from "./app.reducer";
+import appReducer, {actionFetchAllProducts, actionPageLoading} from "./app.reducer";
 
 export{
     appReducer,
-    actionFetchAllProducts
+    actionFetchAllProducts,
+    actionPageLoading
 }

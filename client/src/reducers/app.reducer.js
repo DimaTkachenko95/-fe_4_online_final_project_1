@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { sendRequest } from "../helpers";
 
 
-
 const initialState = {
     allProducts: [],
     pageProduct: {},
-    loading: true,
+    pageLoading: true,
 }
+
 
 const appSlice = createSlice({
     name: "app",
@@ -15,31 +15,21 @@ const appSlice = createSlice({
     reducers:{
         actionAllProducts:(state, {payload})=>{
             state.allProducts = payload
+        },
+        actionPageLoading: (state, {payload})=>{
+            state.loading = payload
         }
-
     }
 })
-export const {actionAllProducts} = appSlice.actions
+export const {actionAllProducts, actionPageLoading} = appSlice.actions
 
 
 export const actionFetchAllProducts = () => (dispatch) => {
-    console.log('bbbbbbbbb')
-/*  fetch("http://localhost:5000/api/products", {
-        method: "GET",
-    })
-    .then((result)=>{
-        console.log('ccc')
-        result.json()})
-    .then((data)=>{
-        console.log(data)
-        dispatch(actionAllProducts(data))
-        
-    }) */
-
+    dispatch(actionPageLoading(true))
     return sendRequest("http://localhost:5000/api/products")
-    .then(data=>{
-        console.log(data)
+    .then((data)=>{
         dispatch(actionAllProducts(data))
+        dispatch(actionPageLoading(false))
     })
 }
 
