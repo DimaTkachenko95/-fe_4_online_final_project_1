@@ -3,9 +3,22 @@ import Item from '@mui/material/Grid';
 import Grid from "@mui/material/Grid";
 import { ReactComponent as Favorites } from "./img/favorit.svg"
 import { width } from "@mui/system";
+import { selectorAllProducts } from "../../../selectors";
+import { actionFetchAllProducts } from "../../../reducers";
+import { useEffect } from "react";
+import {useSelector, useDispatch} from 'react-redux'
 
 
 const Items = () => {
+    const allProducts = useSelector(selectorAllProducts)
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(actionFetchAllProducts())
+        console.log(allProducts, "aaaaaaaaa")
+    },[])
+
+    
+
     const productsList = [
         {
           "id": 1,
