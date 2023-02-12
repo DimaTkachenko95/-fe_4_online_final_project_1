@@ -3,6 +3,7 @@ import {ReactComponent as SubscribeSvg} from "./icons/subscribeSvg.svg";
 import {ReactComponent as CallSvg} from "./icons/phone-call.svg";
 import {ReactComponent as VisaSvg} from "./icons/visa.svg";
 import {ReactComponent as MasterCardSvg} from "./icons/mastercard.svg";
+import {ReactComponent as SendSvg} from "./icons/Group.svg";
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -35,7 +36,7 @@ const Footer = () => {
                     </Box>
                     <Box className="subscribe__input-wrapper">
                         <input type="email" className="subscribe__input" placeholder="Write email" value={emailInputValue} onChange={emailInputHandler}/>
-                        <button type="submit" className="subscribe__button">Subscribe</button>
+                        <button type="submit" className="subscribe__button">{window.innerWidth > 996 ? "Subscribe" : <SendSvg/> }</button>
                     </Box>
                     <Box className="subscribe__call-wrapper">
                         <Box className="subscribe__call-logo-wrapper">
@@ -53,6 +54,7 @@ const Footer = () => {
                                 {window.innerWidth > 996 ? "BestLaptops" : "BL"}<span className="colored">24</span>
                             </Link>
                         </Box>
+                        <Box className="footer__desc">© 2015 – 2023 BestLaptops 24</Box>
                         <Box className="social-media">
                             <FacebookOutlinedIcon className="social-media-icon"/>
                             <TwitterIcon className="social-media-icon"/>
