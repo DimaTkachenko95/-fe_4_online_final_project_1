@@ -1,17 +1,23 @@
 .hero__wrapper {
-
-  background-image: url("./images/hero.png");
-  background-position: center;
+  margin-top: 1px;
+  background-image: url("https://images.acer.com/is/image/acer/WK52-2022:Primary-Hero-XL");
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   height: 650px;
-  @media (max-width: 630px) {
+  @media (max-width: 996px) {
     height: 375px;
   }
+  @media (max-width: 630px) {
+    height: 295px;
+  }
+
 
 }
 
 .hero__advantages-wrapper{
+  padding-top: 2vw;
+  padding-bottom: 2vw;
   background-color: rgba(245, 245, 245, 1);
   display: flex;
   justify-content: space-around;
