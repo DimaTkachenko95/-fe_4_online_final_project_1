@@ -26,7 +26,7 @@ const Header = () => {
 
                 <Box className="header__wrapper">
                     <Box className="header__logo-wrapper">
-                        <Link to="/" className="header__logo">{window.innerWidth > 996 ? "BestLaptops" : "BL"}<span className="colored">24</span></Link>
+                        <Link to="/" className="logo">{window.innerWidth > 996 ? "BestLaptops" : "BL"}<span className="colored">24</span></Link>
                     </Box>
 
                     <nav className={isMenuOpen ? "header__menu active" : "header__menu"}>
