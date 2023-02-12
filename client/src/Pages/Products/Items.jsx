@@ -65,7 +65,7 @@ const Items = () => {
               <h5 className="list__item--name">{name}</h5>
               <p className="list__item--producer">{producer}</p>
               <p className="list__item--price">{price}$</p>
-              <button className="list__item--information">Information</button>
+              <button className="list__item--information"><Link to = "/product" >Information</Link></button>
             </div>
           </div>
         </Grid>

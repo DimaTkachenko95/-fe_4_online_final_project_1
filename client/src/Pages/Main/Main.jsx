@@ -1,10 +1,10 @@
 import './Main.scss';
-
+import Hero from '../../Components/Hero'
 const Main = () => {
 
     return (
         <main>
-            <div> Головна сторінка</div>
+           <Hero/>
         </main>
 
     )
