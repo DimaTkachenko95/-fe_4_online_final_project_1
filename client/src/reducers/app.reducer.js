@@ -6,6 +6,7 @@ const initialState = {
     allProducts: [],
     pageProduct: {},
     pageLoading: true,
+    basket: [],
 }
 
 
@@ -14,14 +15,17 @@ const appSlice = createSlice({
     initialState,
     reducers:{
         actionAllProducts:(state, {payload})=>{
-            state.allProducts = payload
+            state.allProducts = [...payload]
+        },
+        actionAddToBasket:(state, {payload})=>{
+            state.basket = [...state.basket, payload]
         },
         actionPageLoading: (state, {payload})=>{
             state.loading = payload
         }
     }
 })
-export const {actionAllProducts, actionPageLoading} = appSlice.actions
+export const {actionAllProducts, actionPageLoading, actionAddToBasket} = appSlice.actions
 
 
 export const actionFetchAllProducts = () => (dispatch) => {

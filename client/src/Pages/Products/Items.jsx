@@ -5,8 +5,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import { ReactComponent as Scales } from "./icons/scales.svg"
 import { width } from "@mui/system";
-import { selectorAllProducts } from "../../selectors";
-import { actionFetchAllProducts } from "../../reducers";
+import { selectorAllProducts} from "../../selectors";
+import { actionFetchAllProducts, actionAddToBasket } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -14,12 +14,21 @@ import { useSelector, useDispatch } from 'react-redux'
 const Items = () => {
   const allProducts = useSelector(selectorAllProducts)
   const dispatch = useDispatch()
+
+
   useEffect(() => {
     dispatch(actionFetchAllProducts())
   }, [])
-  console.log(allProducts[0], "aaaaaaaaa")
 
-  const item = allProducts?.map(({ name, _id, currentPrice, imageUrls, brand, previousPrice }) => (
+
+  const addToBasket = (item) =>{
+    dispatch(actionAddToBasket(item))
+  }
+
+  
+  
+
+  const item = allProducts?.map(({ name, _id, currentPrice, imageUrls, brand, previousPrice }, index) => (
     <Grid className="grid-main-list" item xs="12" sm="6" md="4">
       <div className="list" id={_id} key={_id}>
         <div className="list__item">
@@ -45,8 +54,7 @@ const Items = () => {
           <p className="list__item--price--curent">{currentPrice.toLocaleString()}$</p>
           { previousPrice && <p className="list__item--price--previous">{previousPrice.toLocaleString()}$</p>}
           </div>
-          
-          <button className="list__item--buy"><ShoppingCartOutlinedIcon/><span className="list__item--buy--text">Buy</span></button>
+          <button onClick={()=>addToBasket(allProducts[index])} className="list__item--buy"><ShoppingCartOutlinedIcon/><span className="list__item--buy--text">Buy</span></button>
         </div>
       </div>
     </Grid>

@@ -9,11 +9,15 @@ import {ReactComponent as ScaleSvg} from "./icons/scales-of-justice-svgrepo-com.
 import './Header.scss';
 import {useState} from "react";
 import { Link, NavLink } from "react-router-dom";
+import { selectorBasket } from "../../selectors";
+import { useSelector} from 'react-redux'
 
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const basket = useSelector(selectorBasket)
+    console.log(basket)
     
 
     const handleSearch = () => {
@@ -71,7 +75,7 @@ const Header = () => {
                         </Box>
                         <Box className="action ">
                             <div className="count count-cart">
-                                <span>2</span>
+                                <span>{basket.length}</span>
                             </div>
                             <Link to="/basket" className="action__icon icon-cart"><ShoppingCartOutlinedIcon/></Link>
                         </Box>
