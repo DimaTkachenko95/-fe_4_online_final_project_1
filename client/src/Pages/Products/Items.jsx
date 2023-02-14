@@ -5,7 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import { ReactComponent as Scales } from "./icons/scales.svg"
 import { width } from "@mui/system";
-import { selectorAllProducts} from "../../selectors";
+import { selectorAllProducts, selectorBasket} from "../../selectors";
 import { actionFetchAllProducts, actionAddToBasket } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Items = () => {
   const allProducts = useSelector(selectorAllProducts)
+  const basket = useSelector(selectorBasket)
   const dispatch = useDispatch()
 
 
@@ -22,7 +23,14 @@ const Items = () => {
 
 
   const addToBasket = (item) =>{
-    dispatch(actionAddToBasket(item))
+    let flag = true;
+    basket.forEach(el=>{
+      if(el._id == item._id){
+        flag = false
+      }
+      
+    })
+    flag && dispatch(actionAddToBasket(item)) 
   }
 
   
