@@ -1,10 +1,12 @@
-import "./Basket.scss";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Container } from "@mui/system";
 import BasketItems from "./BasketItem";
-//import BasketEmpty from "./BasketEmpty";
+import Input from "../../components/Input";
+
+import "./Basket.scss";
 
 const Basket = () => {
-
 
     const product = [
         {
@@ -21,17 +23,18 @@ const Basket = () => {
             vendor: "Vendor Example",
             id: 2
         },
-        ]
-      
-const basketItems = product.map((item) => (
+        ];
+        const [promocode, setPromocode] = useState("TestDiscount");
 
-    
-<BasketItems product={item} key={item.id}/>
-))
-console.log(product);
+
+const basketItems = product.map((item) => <BasketItems 
+                                            product={item}
+                                            item={item} 
+                                            key={item.id}
+                                            />)
+
     return (
-        <>
-        <div className="basket__wrapper">
+        <Container>
             <h1 className="basket__title">Shopping cart</h1>
             <div className="basket__box">
                 <div className="basket__item">
@@ -53,12 +56,17 @@ console.log(product);
             </div>
             
             <div className="basket__footer">
-                
-                <div className="total">Total: <span className="total_price">453647 USD</span></div>
-                <div className="checkout"><Link to="/checkOut" className="checkout_btn">checkout</Link></div>
+                <div className="basket__footer_promo-input">
+                    <Input
+                    type={"text"}
+                    nameInput={"promocode"}
+                    placeholder={"Enter your promocode"}
+                    label={"You can use promocode to get a discount"}/>
+                </div>
+                <div className="basket__footer_total">Total: <span className="total_price">453647 USD</span></div>
+                <div className="basket__footer_checkout"><Link to="/checkOut" className="checkout_btn">checkout</Link></div>
             </div>
-        </div>
-        </>
+            </Container>
     )
 }
 
