@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Catalog from "./Components/Pages/Catalog";
 import Main from "./Components/Pages/Main";
-import Basket from "./Components/Pages/Backet";
+import Basket from "./Components/Pages/Basket";
 import CheckOut from "./Components/Pages/CheckOut";
 import Contacts from "./Components/Pages/Contacts";
 import Favorites from "./Components/Pages/Favorites";
