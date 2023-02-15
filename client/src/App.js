@@ -10,6 +10,7 @@ import CheckOut from './pages/CheckOut';
 import Contacts from './pages/Contacts';
 import Favorites from './pages/Favorites';
 import Product from './pages/Product';
+import LogIn from './pages/LogIn';
 
 import './reset.css';
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/check-out" element={<CheckOut />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/log_in" element={<LogIn/>} />
       </Routes>
       <Footer />
     </>

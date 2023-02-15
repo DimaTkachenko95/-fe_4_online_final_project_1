@@ -113,7 +113,7 @@ const Header = () => {
           <Box className="header__user-actions">
             <Box className="action">
               {
-                <a href="#" className="action__icon icon-user">
+                <a href="log_in" className="action__icon icon-user">
                   <Person2OutlinedIcon />
                 </a>
               }
