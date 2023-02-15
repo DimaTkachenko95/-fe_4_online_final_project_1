@@ -1,8 +1,18 @@
-import appReducer, {actionFetchAllProducts, actionPageLoading, actionAddToBasket} from "./app.reducer";
+import appReducer, {actionFetchAllProducts, 
+                   actionPageLoading, 
+                   actionAddToBasket,  
+                   actionAddToFavorites, 
+                   actionDeleteFromFavorites,
+                   actionAddToScales,
+                   actionDeleteFromScales} from "./app.reducer";
 
 export{
     appReducer,
     actionFetchAllProducts,
     actionAddToBasket,
-    actionPageLoading
+    actionPageLoading,
+    actionAddToFavorites, 
+    actionDeleteFromFavorites,
+    actionAddToScales,
+    actionDeleteFromScales
 }

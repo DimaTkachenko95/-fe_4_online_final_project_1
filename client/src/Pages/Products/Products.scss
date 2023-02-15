@@ -65,6 +65,9 @@
         fill: green;
         cursor: pointer;
       }
+      &--curent{
+        fill: green;
+      }
 
     }
 
@@ -77,6 +80,9 @@
       &:hover{
         fill: orange;
         cursor: pointer;
+      }
+      &--curent{
+        fill: orange;
       }
     }
 
