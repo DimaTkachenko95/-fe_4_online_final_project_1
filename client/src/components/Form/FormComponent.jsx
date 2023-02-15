@@ -1,8 +1,31 @@
 import styles from './FormComponent.module.scss';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import CustomInput from './CustomInput';
 
 const FormComponent = () => {
+  // const history = useHistory();
+  //
+  // const handleSubmit = async (values, {resetForm, setFieldError}) => {
+  //   if (values.password === values.repeatPassword) {
+  //     const result = fetch('http://localhost:3001/sign-up', {
+  //       method: 'POST',
+  //       headers: {
+  //         'content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(values)
+  //     }).then(res => res.json())
+  //
+  //     if (result.status === 'success') {
+  //       history.push('/')
+  //     }
+  //     resetForm();
+  //   }
+  //   else {
+  //     setFieldError('repeatPassword', 'Password is not the same');
+  //   }
+  // }
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -19,18 +42,20 @@ const FormComponent = () => {
       .string()
       .min(3, 'Min 3 symbols')
       .max(20, 'Max 20 symbols')
-      .required('First name field is requierd'),
+      .required('First name field is requierd')
+      .matches(/[a-zA-z\s]/g, 'Should contain only characters and space'),
     lastName: yup
       .string()
       .min(2, 'Min 2 symbols')
       .max(20, 'Max 20 symbols')
-      .required('Last name field is requierd'),
+      .required('Last name field is requierd')
+      .matches(/[a-zA-z\s]/g, 'Should contain only characters and space'),
     login: yup
       .string()
       .min(3, 'Min 3 symbols')
       .max(20, 'Max 20 symbols')
       .required('Not valid login'),
-    email: yup.string().email('Not valid email'),
+    email: yup.string().email('Not valid email').required(),
     password: yup
       .string()
       .required('No password provided.')
@@ -55,68 +80,53 @@ const FormComponent = () => {
         resetForm();
       }}
     >
-      {(props) => {
-        console.log(props);
+      {(isValid) => {
+        console.log(isValid);
         return (
           <Form className={styles.form}>
-            <Field
+            <CustomInput
               className={styles.formItem}
               type="text"
               name="firstName"
               placeholder="First Name"
             />
-            <ErrorMessage name="firstName">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field
+            <CustomInput
               className={styles.formItem}
               type="text"
               name="lastName"
               placeholder="Last Name"
             />
-            <ErrorMessage name="lastName">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field className={styles.formItem} type="text" name="login" placeholder="Login" />
-            <ErrorMessage name="login">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field className={styles.formItem} type="text" name="email" placeholder="Email" />
-            <ErrorMessage name="email">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field className={styles.formItem} type="text" name="password" placeholder="Password" />
-            <ErrorMessage name="password">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field
+            <CustomInput className={styles.formItem} type="text" name="login" placeholder="Login" />
+            <CustomInput className={styles.formItem} type="text" name="email" placeholder="Email" />
+            <CustomInput
+              className={styles.formItem}
+              type="text"
+              name="password"
+              placeholder="Password"
+            />
+            <CustomInput
               className={styles.formItem}
               type="text"
               name="telephone"
               placeholder="Telephone"
             />
-            <ErrorMessage name="telephone">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field
+            <CustomInput
               className={styles.formItem}
               type="text"
               name="gender"
               placeholder="male, female, other"
             />
-            <ErrorMessage name="gender">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <Field
+
+            <CustomInput
               className={styles.formItem}
               type="object"
               name="avatarUrl"
               placeholder="Avatar"
             />
-            <ErrorMessage name="avatarUrl">
-              {(msg) => <span className={styles.error}>{msg}</span>}
-            </ErrorMessage>
-            <button type="submit">Register</button>
+
+            <button type="submit" disabled={!isValid}>
+              Submit
+            </button>
           </Form>
         );
       }}

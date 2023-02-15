@@ -1,7 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
 import Footer from './components/Footer';
 import Products from './pages/Products';
 import Main from './pages/Main';
@@ -18,7 +17,6 @@ const App = () => {
   return (
     <>
       <Header />
-      <Hero />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/contacts" element={<Contacts />} />
