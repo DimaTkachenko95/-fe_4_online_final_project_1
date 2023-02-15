@@ -11,26 +11,26 @@ import Contacts from "./Pages/Contacts";
 import Favorites from "./Pages/Favorites";
 import Product from "./Pages/Product";
 
-import './reset.css'
 
-const App = () =>  {
+import './reset.css';
 
-  return(
-      <>
-          <Header/>
-          <Hero/>
-          <Routes>
-              <Route path="/" element={<Main/>} />
-              <Route path="/contacts" element={<Contacts/>} />
-              <Route path="/products" element={<Products/>} />
-              <Route path="/basket" element={<Basket/>} />
-              <Route path="/favorites" element={<Favorites/>} />
-              <Route path="/check-out" element={<CheckOut/>} />
-              <Route path="/product" element={<Product/>} />
-          </Routes>
-          <Footer/>
-      </>
-  )
-}
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/check-out" element={<CheckOut />} />
+        <Route path="/product" element={<Product />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+};
 
 export default App;
