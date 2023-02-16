@@ -1,17 +1,53 @@
 import Modal from "../../components/Modal";
-import styled from "styled-components";
+import InputForm from "./InputForm";
+import { Formik, Form } from "formik";
+import {validationSchema} from "./validation"
 
 import './LogIn.scss'
+import { useState } from "react";
 
 const LogIn = () => {
+    const [cvData, setCvData] = useState({
+        email: '',
+        password: ''
+    })
     return (
-        <Modal>
-            <h1 className="login_title">Log In to your account</h1>
-            <input type="text" className="input" name="contacts" placeholder="Email/Phone"/>
-            <input type="password" className="input" name="password" placeholder="Password"/>
-            <p className="login_reminder" onClick={() => console.log("напоминалка пароля?")}>Forgot password?</p>
-            <button className="logInBtn">LogIn</button>
-            <button className="regInBtn">Register</button>
+        <Modal modalAction={() => console.log("close")}>
+            <Formik
+          initialValues={cvData}
+          onSubmit={(values) => {
+            console.log("Дані користувача", values);
+            setCvData({...values});
+          }}
+          validationSchema={validationSchema}
+        >
+          {({ errors, touched, getFieldProps }) => (
+            <Form>
+              <fieldset className="form-block">
+                <legend className="login_title">Log In to your account</legend>
+                <InputForm
+                
+                  inputName="email"
+                 // label="Email"
+                  placeholder="E-mail/Phone number"
+                  error={errors.name && touched.name}
+                />
+                <InputForm
+                
+                  inputName="password"
+                  type="password"
+                 // label="Password"
+                  placeholder="Password"
+                  error={errors.name && touched.lastName}
+                />
+                <p className="login_reminder" onClick={() => console.log("reminder")}>Forgot your password?</p>
+                <button className="logInBtn" type="submit">LogIn</button>
+                <button className="regInBtn" type="button" onClick={() => console.log("registration")}>Register</button>
+              </fieldset>
+            </Form>
+          )}
+        </Formik>
+
         </Modal>
     )
 }

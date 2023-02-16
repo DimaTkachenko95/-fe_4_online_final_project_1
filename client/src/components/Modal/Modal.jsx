@@ -1,4 +1,4 @@
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import styled from "styled-components";
 
 import {ReactComponent as Close} from './icons/close.svg'
@@ -34,21 +34,22 @@ const ModalBlock = styled(Box) `
     `
 
 const CloseBtn = styled(Close) `
-position: absolute;
-top: -10px;
-right: -10px;
-width: 24px;
-height: 24px;
-`
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    `
 
-const Modal = ({children}) => {
+const Modal = ({children, modalAction}) => {
 return (
     <div className="wrapper">
     <ModalWrapper>
-<ModalBlock>
-<CloseBtn fontSize="large" stroke="white"/>
-{children}
-</ModalBlock>
+        <ModalBlock>
+            <CloseBtn fontSize="large" stroke="white" onClick={modalAction}/>
+            {children}
+        </ModalBlock>
     </ModalWrapper>
     </div>
 )
