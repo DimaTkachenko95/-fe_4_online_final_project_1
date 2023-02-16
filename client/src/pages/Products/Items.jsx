@@ -47,6 +47,7 @@ const Items = () => {
     },
   ];
 
+
   const item = productsList?.map(({ name, id, price, img, producer }) => (
     <Grid item xs="12" sm="6" md="4">
       <div className="list" id={id} key={id}>
