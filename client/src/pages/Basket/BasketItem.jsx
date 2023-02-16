@@ -14,7 +14,6 @@ const [totalProduct, setTotalProduct] = useState(price);
 
 const increase = () => {
 setCount(count + 1);
-console.log(totalProduct);
 setTotalProduct(product.price * (count + 1))
 }
 
@@ -24,9 +23,6 @@ setTotalProduct(product.price * (count - 1))
 if (count === 0) 
 return;
 }
-
-console.log(count, totalProduct);
-
 
 return (
             <tr className="product_item" id={id}>

@@ -97,22 +97,12 @@
     .basket__footer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        gap: 15px;
         @media (max-width: 600px) {
-            grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 2fr 2fr 1fr;
+            //grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 2fr 1fr;
         }
-        .basket__footer_promo-input {
-            grid-column-start: 1;
-            grid-column-end: 4;
-            grid-row-start: 1;
-            grid-row-end: 2;
 
-            display: grid;
-            justify-content: center;
-            padding: 10px 20px;
-            
-    }
     .basket__footer_checkout {
         display: grid;
         align-self: center;
@@ -120,11 +110,11 @@
 
         grid-column-start: 2;
         grid-column-end: 3;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
         @media (max-width: 996px) {
-            grid-row-start: 3;
-            grid-row-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 3;
         }
         .checkout_btn {
             justify-self: flex-end;
@@ -158,17 +148,17 @@
             border-right: 0;
             border-top: 0;
             padding-bottom: 15px;
-            margin-left: 85px;
+            //margin-left: 85px;
             font-size: calc(1rem + 0.8vw);
 
             display: flex;
-            align-self: center;
-            justify-content: space-around;
+            align-self: flex-end;
+            justify-content: space-between;
             
             grid-column-start: 3;
             grid-column-end: 4;
-            grid-row-start: 2;
-            grid-row-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
             @media (max-width: 996px) {
                 grid-column-start: 2;
                 grid-column-end: 3;

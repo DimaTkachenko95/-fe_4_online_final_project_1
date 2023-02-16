@@ -1,10 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "@mui/system";
 import BasketItems from "./BasketItem";
-import Input from "../../components/Input";
+import styled from "styled-components";
 
 import "./Basket.scss";
+
+const ContainerBasket = styled(Container) `
+padding: 25px 0;
+`
 
 const Basket = () => {
 
@@ -24,8 +27,6 @@ const Basket = () => {
             id: 2
         },
         ];
-        const [promocode, setPromocode] = useState("TestDiscount");
-
 
 const basketItems = product.map((item) => <BasketItems 
                                             product={item}
@@ -34,7 +35,7 @@ const basketItems = product.map((item) => <BasketItems
                                             />)
 
     return (
-        <Container>
+        <ContainerBasket>
             <h1 className="basket__title">Shopping cart</h1>
             <div className="basket__box">
                 <div className="basket__item">
@@ -56,17 +57,10 @@ const basketItems = product.map((item) => <BasketItems
             </div>
             
             <div className="basket__footer">
-                <div className="basket__footer_promo-input">
-                    <Input
-                    type={"text"}
-                    nameInput={"promocode"}
-                    placeholder={"Enter your promocode"}
-                    label={"You can use promocode to get a discount"}/>
-                </div>
                 <div className="basket__footer_total">Total: <span className="total_price">453647 USD</span></div>
                 <div className="basket__footer_checkout"><Link to="/checkOut" className="checkout_btn">checkout</Link></div>
             </div>
-            </Container>
+            </ContainerBasket>
     )
 }
 
