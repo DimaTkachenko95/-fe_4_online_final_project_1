@@ -1,15 +1,16 @@
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Footer from './components/Footer';
-import Products from './pages/Products';
-import Main from './pages/Main';
-import Basket from './pages/Basket';
-import CheckOut from './pages/CheckOut';
-import Contacts from './pages/Contacts';
-import Favorites from './pages/Favorites';
-import Product from './pages/Product';
+import './App.scss';
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
+import Products from "./pages/Products";
+import Main from "./pages/Main";
+import Basket from "./pages/Backet";
+import CheckOut from "./pages/CheckOut";
+import Contacts from "./pages/Contacts";
+import Favorites from "./pages/Favorites";
+import Product from "./pages/Product";
+
 
 import './reset.css';
 
