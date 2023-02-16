@@ -1,7 +1,8 @@
 import Modal from "../../components/Modal";
 import InputForm from "./InputForm";
 import { Formik, Form } from "formik";
-import {validationSchema} from "./validation"
+import {validationSchema} from "./validation";
+import { useNavigate } from "react-router-dom";
 
 import './LogIn.scss'
 import { useState } from "react";
@@ -10,13 +11,21 @@ const LogIn = () => {
     const [cvData, setCvData] = useState({
         email: '',
         password: ''
-    })
+    });
+
+const navigation = useNavigate();
+const goBack = () => navigation(-1);
+
     return (
-        <Modal modalAction={() => console.log("close")}>
+        <Modal modalAction={() => {
+            console.log("close")
+            goBack()
+            }}>
             <Formik
           initialValues={cvData}
           onSubmit={(values) => {
             console.log("Дані користувача", values);
+            goBack();
             setCvData({...values});
           }}
           validationSchema={validationSchema}
