@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import { ReactComponent as Scales } from "./icons/scales.svg"
+import { ReactComponent as  CheckMark } from "./icons/check_mark.svg"
 import { width } from "@mui/system";
 import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
 import { actionFetchAllProducts, actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../reducers";
@@ -109,9 +110,9 @@ const Items = () => {
             {previousPrice && <p className="list__item--price--previous">{previousPrice.toLocaleString()}$</p>}
           </div>
           {basketId.includes(_id)?
-           <button onClick={() => addToBasket(allProducts[index])} className="list__item--buy"><span className="list__item--buy--text">In basket</span></button>
+           <Link to="/basket"><button onClick={() => addToBasket(allProducts[index])} className="list__item--inbasket "><CheckMark/><span className="list__item--buy--text">In basket</span></button></Link> 
             :
-          <button onClick={() => addToBasket(allProducts[index])} className="list__item--buy"><ShoppingCartOutlinedIcon /><span className="list__item--buy--text">Buy</span></button>
+            <button onClick={() => addToBasket(allProducts[index])} className="list__item--buy"><ShoppingCartOutlinedIcon /><span className="list__item--buy--text">Buy</span></button>
           }
         </div>
       </div>
