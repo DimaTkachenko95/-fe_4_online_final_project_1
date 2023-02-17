@@ -83,51 +83,69 @@ const FormComponent = () => {
       {(isValid) => {
         console.log(isValid);
         return (
-          <Form className={styles.form}>
-            <CustomInput
-              className={styles.formItem}
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-            />
-            <CustomInput
-              className={styles.formItem}
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-            />
-            <CustomInput className={styles.formItem} type="text" name="login" placeholder="Login" />
-            <CustomInput className={styles.formItem} type="text" name="email" placeholder="Email" />
-            <CustomInput
-              className={styles.formItem}
-              type="text"
-              name="password"
-              placeholder="Password"
-            />
-            <CustomInput
-              className={styles.formItem}
-              type="text"
-              name="telephone"
-              placeholder="Telephone"
-            />
-            <CustomInput
-              className={styles.formItem}
-              type="text"
-              name="gender"
-              placeholder="male, female, other"
-            />
+          <>
+            <Form className={styles.form}>
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+              />
 
-            <CustomInput
-              className={styles.formItem}
-              type="object"
-              name="avatarUrl"
-              placeholder="Avatar"
-            />
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="login"
+                placeholder="Login"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="email"
+                placeholder="Email"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="password"
+                placeholder="Password"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="telephone"
+                placeholder="Telephone"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="text"
+                name="gender"
+                placeholder="male, female, other"
+              />
+
+              <CustomInput
+                className={styles.formItem}
+                type="object"
+                name="avatarUrl"
+                placeholder="Avatar"
+              />
+            </Form>
 
             <button type="submit" disabled={!isValid}>
               Submit
             </button>
-          </Form>
+          </>
         );
       }}
     </Formik>

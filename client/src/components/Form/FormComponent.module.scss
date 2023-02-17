@@ -1,9 +1,22 @@
 .form {
-  background-color: blanchedalmond;
+  max-width: 1110px;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 30px;
 }
 .formItem {
-  background-color: blanchedalmond;
+  border: 1px solid #e3e3e3;
+  height: 75px;
 }
+.formItem::placeholder {
+  color: #75758a;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .error {
   color: red;
 }
