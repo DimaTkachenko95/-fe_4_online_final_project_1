@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Item from '@mui/material/Grid';
 import Grid from "@mui/material/Grid";
@@ -5,6 +6,7 @@ import { ReactComponent as Favorites } from "./img/favorit.svg"
 import { width } from "@mui/system";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 
 
 const Items = () => {
@@ -54,8 +56,8 @@ const Items = () => {
       ]
 
       const item = productsList?.map(({ name, id, price, img, producer }) => (
-        <Grid  item xs="12" sm="6" md="4">
-          <div className="list"  id={id} key={id}>
+        <Grid item xs="12" sm="6" md="4">
+          <div className="list" id={id} key={id}>
             <div className="list__item">
               <img className="list__item--img" src={require(`${img}`)} alt="photo" />
               <span className="list__item--rating" >
@@ -76,9 +78,8 @@ const Items = () => {
         </Grid>
       ))
 
-        const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
+  const responsive = {
+  largeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
     items: 5
   },
@@ -98,9 +99,11 @@ const Items = () => {
 
     return (
         <>
-        <Carousel responsive={responsive}>
+          <Carousel infinite={true} itemClass="carousel-item-padding-40-px" responsive={responsive}>
           {item}
+          
         </Carousel>
+
         
         </>
     )
