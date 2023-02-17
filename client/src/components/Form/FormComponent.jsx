@@ -8,8 +8,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import useStyles from './createStyles';
 
 const FormComponent = () => {
+  const classes = useStyles();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -70,7 +72,8 @@ const FormComponent = () => {
                     type="text"
                     control="input"
                     label="First Name"
-                    className={styles.formItem}
+                    color="success"
+                    className={classes.inputStyle}
                     name="firstName"
                     placeholder="Enter your first name"
                     variant="outlined"
@@ -81,8 +84,9 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="Last Name"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="lastName"
                     placeholder="Enter your last name"
                     variant="outlined"
@@ -93,6 +97,7 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="login"
                     className={styles.formItem}
                     name="login"
@@ -105,6 +110,7 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="email"
                     className={styles.formItem}
                     name="email"
@@ -118,6 +124,7 @@ const FormComponent = () => {
                     label="Password"
                     variant="outlined"
                     control="input"
+                    color="success"
                     className={styles.formItem}
                     name="password"
                     placeholder="Enter your password"
@@ -141,6 +148,7 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="telephone"
                     className={styles.formItem}
                     name="telephone"
@@ -153,6 +161,7 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="gender"
                     className={styles.formItem}
                     name="gender"
@@ -165,6 +174,7 @@ const FormComponent = () => {
                   <FormikControl
                     type="text"
                     control="input"
+                    color="success"
                     label="avatarUrl"
                     className={styles.formItem}
                     name="avatarUrl"
