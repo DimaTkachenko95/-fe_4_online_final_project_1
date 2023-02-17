@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
-// import Hero from "./Components/Hero";
+import Hero from "./Components/Hero";
 import Footer from "./Components/Footer";
 import Products from "./Pages/Products";
 import Main from "./Pages/Main";
@@ -18,7 +18,7 @@ const App = () =>  {
   return(
       <>
           <Header/>
-          {/* <Hero/> */}
+          <Hero/>
           <Routes>
               <Route path="/" element={<Main/>} />
               <Route path="/contacts" element={<Contacts/>} />
