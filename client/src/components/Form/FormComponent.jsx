@@ -1,9 +1,22 @@
 import styles from './FormComponent.module.scss';
 import { Formik, Form } from 'formik';
-import * as yup from 'yup';
-import CustomInput from './CustomInput';
+import validationSchema from './ValidationSchema';
+import FormikControl from './FormikControl';
+import { Grid } from '@mui/material';
+import React from 'react';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const FormComponent = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   // const history = useHistory();
   //
   // const handleSubmit = async (values, {resetForm, setFieldError}) => {
@@ -37,40 +50,6 @@ const FormComponent = () => {
     avatarUrl: '',
   };
 
-  const validationSchema = yup.object().shape({
-    firstName: yup
-      .string()
-      .min(3, 'Min 3 symbols')
-      .max(20, 'Max 20 symbols')
-      .required('First name field is requierd')
-      .matches(/[a-zA-z\s]/g, 'Should contain only characters and space'),
-    lastName: yup
-      .string()
-      .min(2, 'Min 2 symbols')
-      .max(20, 'Max 20 symbols')
-      .required('Last name field is requierd')
-      .matches(/[a-zA-z\s]/g, 'Should contain only characters and space'),
-    login: yup
-      .string()
-      .min(3, 'Min 3 symbols')
-      .max(20, 'Max 20 symbols')
-      .required('Not valid login'),
-    email: yup.string().email('Not valid email').required(),
-    password: yup
-      .string()
-      .required('No password provided.')
-      .min(8, 'Password is too short - should be 8 chars minimum.')
-      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-    telephone: yup
-      .number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
-      .min(8)
-      .required('A phone number is required'),
-    gender: yup.mixed().oneOf(['male', 'female', 'other']).defined(),
-  });
-
   return (
     <Formik
       initialValues={initialValues}
@@ -84,67 +63,121 @@ const FormComponent = () => {
         console.log(isValid);
         return (
           <>
-            <Form className={styles.form}>
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="login"
-                placeholder="Login"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="email"
-                placeholder="Email"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="password"
-                placeholder="Password"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="telephone"
-                placeholder="Telephone"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="text"
-                name="gender"
-                placeholder="male, female, other"
-              />
-
-              <CustomInput
-                className={styles.formItem}
-                type="object"
-                name="avatarUrl"
-                placeholder="Avatar"
-              />
+            <Form className={styles.form} style={{ width: '100%' }}>
+              <Grid container spacing={1} columns={16}>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="First Name"
+                    className={styles.formItem}
+                    name="firstName"
+                    placeholder="Enter your first name"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="Last Name"
+                    className={styles.formItem}
+                    name="lastName"
+                    placeholder="Enter your last name"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="login"
+                    className={styles.formItem}
+                    name="login"
+                    placeholder="Enter your login"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="email"
+                    className={styles.formItem}
+                    name="email"
+                    placeholder="Enter your email"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    label="Password"
+                    variant="outlined"
+                    control="input"
+                    className={styles.formItem}
+                    name="password"
+                    placeholder="Enter your password"
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="telephone"
+                    className={styles.formItem}
+                    name="telephone"
+                    placeholder="Enter your telephone"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="gender"
+                    className={styles.formItem}
+                    name="gender"
+                    placeholder="male, female, other"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+                <Grid item lg={8}>
+                  <FormikControl
+                    type="text"
+                    control="input"
+                    label="avatarUrl"
+                    className={styles.formItem}
+                    name="avatarUrl"
+                    placeholder="enter link to avatar"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                  />
+                </Grid>
+              </Grid>
+              <button type="submit" className={styles.submitButton} disabled={!isValid}>
+                Submit
+              </button>
             </Form>
-
-            <button type="submit" disabled={!isValid}>
-              Submit
-            </button>
           </>
         );
       }}
