@@ -67,7 +67,7 @@ const FormComponent = () => {
           <>
             <Form className={styles.form} style={{ width: '100%' }}>
               <Grid container spacing={1} columns={16}>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
@@ -80,7 +80,7 @@ const FormComponent = () => {
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
@@ -93,39 +93,39 @@ const FormComponent = () => {
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
                     color="success"
                     label="login"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="login"
                     placeholder="Enter your login"
                     variant="outlined"
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
                     color="success"
                     label="email"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="email"
                     placeholder="Enter your email"
                     variant="outlined"
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     label="Password"
                     variant="outlined"
                     control="input"
                     color="success"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="password"
                     placeholder="Enter your password"
                     id="outlined-adornment-password"
@@ -144,39 +144,39 @@ const FormComponent = () => {
                     }
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
                     color="success"
                     label="telephone"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="telephone"
                     placeholder="Enter your telephone"
                     variant="outlined"
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
                     type="text"
                     control="input"
                     color="success"
                     label="gender"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="gender"
                     placeholder="male, female, other"
                     variant="outlined"
                     id="outlined-multiline-flexible"
                   />
                 </Grid>
-                <Grid item lg={8}>
+                <Grid item display="flex" flexDirection="column" lg={8}>
                   <FormikControl
-                    type="text"
+                    type="url"
                     control="input"
                     color="success"
                     label="avatarUrl"
-                    className={styles.formItem}
+                    className={classes.inputStyle}
                     name="avatarUrl"
                     placeholder="enter link to avatar"
                     variant="outlined"

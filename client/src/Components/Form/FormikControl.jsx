@@ -1,6 +1,6 @@
 import CustomInput from './CustomInput';
 import PropTypes from 'prop-types';
-import InputAdornments from './showPassword';
+import InputAdornments from './FormComponent';
 
 const FormikControl = ({ control, ...rest }) => {
   switch (control) {

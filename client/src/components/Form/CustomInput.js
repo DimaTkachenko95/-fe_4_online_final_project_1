@@ -1,18 +1,13 @@
-import { Field, useField, ErrorMessage } from 'formik';
+import { Field, useField } from 'formik';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
-import TextError from './TextError';
-import useStyles from './createStyles';
+import styles from './CustomInput.module.scss';
 
 const CustomInput = (props) => {
-  const classes = useStyles();
-  const [field] = useField(props);
-  //const { type, placeholder, className } = props;
+  const [field, meta] = useField(props);
   const { name, label, type, placeholder, className, id, ...rest } = props;
-
   return (
     <>
-      {/*<FormLabel component="legend">{label}</FormLabel>*/}
       <Field
         type={type}
         placeholder={placeholder}
@@ -24,7 +19,7 @@ const CustomInput = (props) => {
         required
         id={id}
       />
-      <ErrorMessage className="classes.errorMessage" name={name} as={TextError} />
+      {!!meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
     </>
   );
 };
@@ -35,5 +30,3 @@ CustomInput.propTypes = {
 };
 
 export default CustomInput;
-
-//{!!meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
