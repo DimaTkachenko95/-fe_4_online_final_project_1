@@ -1,5 +1,5 @@
 import './Main.scss';
-import Hero from "../../Components/Hero";
+import Hero from "../../components/Hero";
 
 const Main = () => (
   <main>
