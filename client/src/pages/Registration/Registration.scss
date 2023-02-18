@@ -8,7 +8,7 @@
       font-size: 30px;
       font-weight: 700;
       line-height: 34px;
-      text-align: left;
+      text-align: center;
       margin-bottom: 43px;
       margin-top: 78px;
       text-transform: uppercase;
@@ -18,10 +18,33 @@
 
 @media (min-width: 481px) and (max-width: 996px) {
   .registration-container {
-    min-width: 345px;
+    min-width: 481px;
+    margin: 0 auto;
+    vertical-align: center;
 
     &__wrapper {
-      min-width: 300px;
+      min-width: 481px;
+
+      &-title {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 34px;
+        text-align: center;
+        margin-bottom: 43px;
+        margin-top: 78px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+@media (min-width: 996.9px) and (max-width: 1445px) {
+  .registration-container {
+    min-width: 996.9px;
+    margin: 0 auto;
+    vertical-align: center;
+
+    &__wrapper {
+      min-width: 996.9px;
 
       &-title {
         font-size: 30px;

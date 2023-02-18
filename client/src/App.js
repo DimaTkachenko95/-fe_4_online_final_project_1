@@ -12,11 +12,13 @@ import Product from './pages/Product';
 import Registration from './pages/Registration/Registration';
 
 import './reset.css';
+import Hero from './components/Hero';
 
 const App = () => {
   return (
     <>
       <Header />
+      <Hero />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/contacts" element={<Contacts />} />
