@@ -1,9 +1,9 @@
 import './Main.scss';
-import Hero from '../../components/Hero';
+import Hero from "../../components/Hero";
 
 const Main = () => (
   <main>
-    <div> Головна сторінка</div>
+      <Hero />
   </main>
 );
 
