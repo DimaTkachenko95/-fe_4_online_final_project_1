@@ -53,7 +53,7 @@ export const {actionAllProducts,
 
 export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true))
-    return sendRequest("/api/products")
+    return sendRequest("http://localhost:5000/api/products")
     .then((data)=>{
         dispatch(actionAllProducts(data))
         dispatch(actionPageLoading(false))
