@@ -13,7 +13,7 @@ const Products = () => {
 
     return (
         <main>
-        <Container maxWidth="lg">
+        <Container className="main-list" maxWidth="lg">
             <h5  className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
             <div className="main-filter-block">
                 <div className="main-filter-block__popular">
