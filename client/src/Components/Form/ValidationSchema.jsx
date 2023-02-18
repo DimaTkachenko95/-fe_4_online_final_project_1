@@ -28,6 +28,13 @@ const validationSchema = yup.object().shape({
     .min(8)
     .required('A phone number is required'),
   gender: yup.mixed().oneOf(['male', 'female', 'other']).defined(),
+  avatarUrl: yup
+    .string()
+    .matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      'Enter correct url!',
+    )
+    .required('Please enter website'),
 });
 
 export default validationSchema;

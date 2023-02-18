@@ -1,18 +1,15 @@
 .form-registration {
+  justify-content: center;
   min-width: 345px;
-
-  &__grid {
-    justify-content: space-around;
-    &__grid-item {
-      width: 100%;
-      &__input {
-        border: 1px solid #e3e3e3;
-        height: 75px;
-        padding: 0 30px;
-      }
+  &__grid_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+    &__input {
+      padding: 0 30px;
+      display: flex;
     }
   }
-
   &__submit {
     color: white;
     border-radius: 100px;
@@ -30,37 +27,26 @@
     display: block;
     margin-bottom: 150px;
     margin-top: 104px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 996px) {
-  .form-registration {
-    &__grid {
-      justify-content: space-around;
-      grid-template-columns: 1fr 1fr;
-      &__grid-item {
-        &__input {
-        }
-      }
-    }
-
-    &__submit {
+    cursor: pointer;
+    &:hover {
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      color: #8ee902;
     }
   }
 }
 
-@media (min-width: 996.9px) and (max-width: 1200px) {
+@media (min-width: 482px) and (max-width: 996px) {
   .form-registration {
-    &__grid {
-      justify-content: space-between;
+    min-width: 482px;
+  }
+}
+@media (min-width: 996.9px) and (max-width: 1445px) {
+  .form-registration {
+    min-width: 996.9px;
+    &__grid_wrapper {
       grid-template-columns: 1fr 1fr;
-      &__grid-item {
-        &__input {
-        }
-      }
-    }
-
-    &__submit {
+      column-gap: 30px;
     }
   }
 }
