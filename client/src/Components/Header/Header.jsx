@@ -9,10 +9,16 @@ import {ReactComponent as ScaleSvg} from './icons/scales-of-justice-svgrepo-com.
 import './Header.scss';
 import {useEffect, useRef, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
+import { useSelector} from 'react-redux'
+
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const basket = useSelector(selectorBasket)
+    const favorites = useSelector(selectorFavorites)
+    const scales = useSelector(selectorScales)
 
     useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
@@ -102,7 +108,7 @@ const Header = () => {
                     <Box className="header__items-actions">
                         <Box className="action">
                             <div className="count">
-                                <span>5</span>
+                            <span>{favorites.length}</span>
                             </div>
                             <Link to="/favorites" className="action__icon icon-favorite">
                                 <StarBorderIcon/>
@@ -110,7 +116,7 @@ const Header = () => {
                         </Box>
                         <Box className="action">
                             <div className="count">
-                                <span>7</span>
+                            <span>{scales.length}</span>
                             </div>
                             <Link to="/compare" className="action__icon icon-compare">
                                 <ScaleSvg/>
@@ -118,7 +124,7 @@ const Header = () => {
                         </Box>
                         <Box className="action ">
                             <div className="count count-cart">
-                                <span>2</span>
+                            <span>{basket.length}</span>
                             </div>
                             <Link to="/basket" className="action__icon icon-cart">
                                 <ShoppingCartOutlinedIcon/>
