@@ -16,10 +16,7 @@ function Hero() {
           </Box>
           <Box className="advantage__text">
             <p>
-              The largest
-              <br />
-              {' '}
-              selection of equipment
+              The largest selection of equipment
             </p>
           </Box>
         </Box>
@@ -29,10 +26,7 @@ function Hero() {
           </Box>
           <Box className="advantage__text">
             <p>
-              Quick
-              <br />
-              {' '}
-              checkout
+              Quick checkout
             </p>
           </Box>
         </Box>
@@ -42,10 +36,7 @@ function Hero() {
           </Box>
           <Box className="advantage__text">
             <p>
-              Can be ordered from
-              <br />
-              {' '}
-              anywhere in the world
+              Can be ordered from anywhere in the world
             </p>
           </Box>
         </Box>
@@ -55,10 +46,7 @@ function Hero() {
           </Box>
           <Box className="advantage__text">
             <p>
-              Accepts any
-              <br />
-              {' '}
-              cryptocurrency payments
+              Accepts any cryptocurrency payments
             </p>
           </Box>
         </Box>
