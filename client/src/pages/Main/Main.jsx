@@ -1,10 +1,5 @@
 import './Main.scss';
-import Hero from "../../components/Hero";
 
-const Main = () => (
-  <main>
-      <Hero />
-  </main>
-);
+const Main = () => <main></main>;
 
 export default Main;
