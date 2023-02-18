@@ -1,15 +1,15 @@
 import './App.scss';
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";
-import Products from "./pages/Products";
-import Main from "./pages/Main";
-import Basket from "./pages/Backet";
-import CheckOut from "./pages/CheckOut";
-import Contacts from "./pages/Contacts";
-import Favorites from "./pages/Favorites";
-import Product from "./pages/Product";
+import Header from "./comp/Header";
+import Hero from "./comp/Hero";
+import Footer from "./comp/Footer";
+import Products from "./page/Products";
+import Main from "./page/Main";
+import Basket from "./page/Backet";
+import CheckOut from "./page/CheckOut";
+import Contacts from "./page/Contacts";
+import Favorites from "./page/Favorites";
+import Product from "./page/Product";
 
 
 import './reset.css';
