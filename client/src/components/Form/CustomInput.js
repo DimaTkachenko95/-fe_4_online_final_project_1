@@ -1,7 +1,7 @@
 import { Field, useField } from 'formik';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
-import styles from './CustomInput.module.scss';
+import './CustomInput.scss';
 
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
@@ -9,6 +9,7 @@ const CustomInput = (props) => {
   return (
     <>
       <Field
+        style={{ width: 300 }}
         type={type}
         placeholder={placeholder}
         className={className}
@@ -19,7 +20,7 @@ const CustomInput = (props) => {
         required
         id={id}
       />
-      {!!meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
+      {!!meta.error && meta.touched && <span className="error-registration">{meta.error}</span>}
     </>
   );
 };

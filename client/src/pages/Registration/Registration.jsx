@@ -1,13 +1,15 @@
 import { Container } from '@mui/material';
 import FormComponent from '../../components/Form/FormComponent';
-import styles from './Registration.module.scss';
+import './Registration.scss';
 
 const Registration = () => {
   return (
     <main>
-      <Container maxWidth="lg">
-        <h2 className={styles.registrationTitle}>Registration</h2>
-        <FormComponent />
+      <Container className="registration-container" maxWidth="lg">
+        <div className="registration-container__wrapper">
+          <h2 className="registration-container__wrapper-title">Registration</h2>
+          <FormComponent />
+        </div>
       </Container>
     </main>
   );

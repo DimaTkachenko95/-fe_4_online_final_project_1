@@ -1,5 +1,5 @@
-.footer{
-  &__subscribe-wrapper{
+.footer {
+  &__subscribe-wrapper {
     background-color: rgba(81, 86, 104, 1);
     padding-top: 2vh;
     padding-bottom: 2vh;
@@ -9,7 +9,7 @@
       padding-top: 6vh;
       padding-bottom: 6vh;
     }
-    .subscribe__content{
+    .subscribe__content {
       width: fit-content;
       display: flex;
       gap: 0.8vw;
@@ -21,19 +21,19 @@
       }
     }
 
-    .subscribe__text{
+    .subscribe__text {
       font-family: 'Ubuntu', sans-serif;
       font-style: normal;
       font-weight: 700;
       font-size: 16px;
       line-height: 20px;
       color: rgba(255, 255, 255, 1);
-      &--colored{
+      &--colored {
         color: rgba(142, 233, 1, 1);
       }
     }
 
-    .subscribe__input-wrapper{
+    .subscribe__input-wrapper {
       display: flex;
       justify-content: center;
       margin-right: 14vw;
@@ -42,9 +42,8 @@
         width: 90%;
       }
     }
-    .subscribe__input{
+    .subscribe__input {
       border: none;
-
       padding: 1vh 6.5vw 1vh 1.4vw;
       @media (max-width: 996px) {
         padding: 4vh 6.5vw 4vh 1.4vw;
@@ -52,7 +51,7 @@
       }
     }
 
-    .subscribe__button{
+    .subscribe__button {
       padding: 1vh 1.4vw 1vh 1.4vw;
       border: none;
       background-color: rgba(79, 156, 44, 1);
@@ -67,7 +66,7 @@
       cursor: pointer;
     }
 
-    .subscribe__call-wrapper{
+    .subscribe__call-wrapper {
       display: flex;
       align-items: center;
       gap: 1vw;
@@ -76,7 +75,7 @@
       }
     }
 
-    .subscribe__call-text{
+    .subscribe__call-text {
       color: rgba(142, 233, 1, 1);
       font-family: 'Ubuntu', sans-serif;
       font-style: normal;
@@ -87,7 +86,7 @@
     }
   }
 
-  &__info-wrapper{
+  &__info-wrapper {
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
@@ -95,9 +94,9 @@
     @media (max-width: 996px) {
       justify-content: center;
     }
-    .social-media-wrapper{
+    .social-media-wrapper {
       padding-left: 7vw;
-      .footer__logo-wrapper{
+      .footer__logo-wrapper {
         margin-bottom: 1vh;
       }
 
@@ -111,7 +110,7 @@
       }
     }
 
-    .payments-wrapper{
+    .payments-wrapper {
       display: flex;
       gap: 1vw;
       @media (max-width: 996px) {
@@ -119,7 +118,7 @@
       }
     }
   }
-  &__desc{
+  &__desc {
     color: rgba(117, 117, 138, 1);
     font-family: 'Ubuntu', sans-serif;
     font-style: normal;
