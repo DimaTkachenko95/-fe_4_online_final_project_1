@@ -25,16 +25,16 @@ const validationSchema = yup.object().shape({
     .typeError("That doesn't look like a phone number")
     .positive("A phone number can't start with a minus")
     .integer("A phone number can't include a decimal point")
-    .min(8)
-    .required('A phone number is required'),
+    .min(8),
+  // .required('A phone number is required'),
   gender: yup.mixed().oneOf(['male', 'female', 'other']).defined(),
   avatarUrl: yup
     .string()
     .matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       'Enter correct url!',
-    )
-    .required('Please enter website'),
+    ),
+  // .required('Please enter website'),
 });
 
 export default validationSchema;

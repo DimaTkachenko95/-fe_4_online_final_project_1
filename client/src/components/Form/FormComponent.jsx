@@ -2,7 +2,6 @@ import './FormComponent.scss';
 import { Formik, Form } from 'formik';
 import validationSchema from './ValidationSchema';
 import FormikControl from './FormikControl';
-import { Grid } from '@mui/material';
 import React from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -75,6 +74,7 @@ const FormComponent = () => {
                   placeholder="Enter your first name"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                  required
                 />
 
                 <FormikControl
@@ -87,30 +87,33 @@ const FormComponent = () => {
                   placeholder="Enter your last name"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                  required
                 />
 
                 <FormikControl
                   type="text"
                   control="input"
                   color="success"
-                  label="login"
+                  label="Login"
                   className="form-registration__input"
                   name="login"
                   placeholder="Enter your login"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                  required
                 />
 
                 <FormikControl
                   type="text"
                   control="input"
                   color="success"
-                  label="email"
+                  label="Email"
                   className="form-registration__input"
                   name="email"
                   placeholder="Enter your email"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                  required
                 />
 
                 <FormikControl
@@ -122,6 +125,7 @@ const FormComponent = () => {
                   name="password"
                   placeholder="Enter your password"
                   id="outlined-adornment-password"
+                  required
                   type={showPassword ? 'text' : 'password'}
                   endAdornment={
                     <InputAdornment position="end">
@@ -141,19 +145,20 @@ const FormComponent = () => {
                   type="text"
                   control="input"
                   color="success"
-                  label="telephone"
+                  label="Telephone"
                   className="form-registration__input"
                   name="telephone"
                   placeholder="Enter your telephone"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                  required
                 />
 
                 <FormikControl
                   type="text"
                   control="input"
                   color="success"
-                  label="gender"
+                  label="Gender"
                   className="form-registration__input"
                   name="gender"
                   placeholder="male, female, other"
@@ -165,10 +170,10 @@ const FormComponent = () => {
                   type="url"
                   control="input"
                   color="success"
-                  label="avatarUrl"
+                  label="Avatar"
                   className="form-registration__input"
                   name="avatarUrl"
-                  placeholder="enter link to avatar"
+                  placeholder="Enter avatar url"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                 />

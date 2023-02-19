@@ -18,7 +18,6 @@ const CustomInput = (props) => {
         {...rest}
         as={TextField}
         label={label}
-        required
         id={id}
         helperText={
           !!meta.error && meta.touched && <span className="error-registration">{meta.error}</span>

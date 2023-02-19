@@ -16,14 +16,14 @@
   }
 }
 
-@media (min-width: 481px) and (max-width: 996px) {
+@media (min-width: 482px) and (max-width: 996px) {
   .registration-container {
-    min-width: 481px;
+    min-width: 482px;
     margin: 0 auto;
     vertical-align: center;
 
     &__wrapper {
-      min-width: 481px;
+      min-width: 482px;
 
       &-title {
         font-size: 30px;
@@ -37,7 +37,7 @@
     }
   }
 }
-@media (min-width: 996.9px) and (max-width: 1445px) {
+@media (min-width: 996.9px) and (max-width: 1800px) {
   .registration-container {
     min-width: 996.9px;
     margin: 0 auto;
