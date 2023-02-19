@@ -24,6 +24,7 @@
             } 
                 .product_item {
                     border-bottom: 1px solid #EFEFEF;
+                    
                 }
                 .product_name {
                     vertical-align: middle;
@@ -89,9 +90,12 @@
                 }
             
         }
-        th, tr {
+        th {
             border-bottom: 1px solid #EFEFEF;
             text-align: left;
+        }
+        td {
+            padding: 15px 0 15px 0;
         }
     }
     .basket__footer {

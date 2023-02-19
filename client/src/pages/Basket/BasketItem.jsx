@@ -18,10 +18,12 @@ setTotalProduct(product.price * (count + 1))
 }
 
 const decrease = () => {
-setCount(count - 1);
-setTotalProduct(product.price * (count - 1))
-if (count === 0) 
-return;
+    if (count > 1) {
+      setCount(count - 1);
+setTotalProduct(product.price * (count - 1))  
+    }
+
+return null;
 }
 
 return (
@@ -44,7 +46,7 @@ return (
                             }
                         }/>
                     </div></td>
-                <td className="product_total">{totalProduct}</td>
+                <td className="product_total">{totalProduct} USD</td>
                 <td className="delete_box"><Delete onClick={test} className="delete_btn"/></td>
             </tr>
 )
