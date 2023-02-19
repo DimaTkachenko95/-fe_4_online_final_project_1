@@ -41,7 +41,7 @@ const Header = () => {
         return (() => {
             document.removeEventListener("mousedown", handleBurgerMenu);
         })
-    })
+    },[])
     const burgerMenuRef = useRef();
 
     const handleBurgerMenu = (event) => {
@@ -56,6 +56,7 @@ const Header = () => {
         console.log(allProducts);
         const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
         dispatch(actionSearchProducts(searchProducts));
+        setInputValue('')
     }
 
     const handleEnterPress = (event) => {

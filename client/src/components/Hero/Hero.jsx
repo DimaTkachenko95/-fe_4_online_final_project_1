@@ -6,24 +6,10 @@ import CurrencyBitcoinOutlinedIcon from '@mui/icons-material/CurrencyBitcoinOutl
 import './Hero.scss';
 
 
-const theme = createTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          maxWidth: '3840px', // Set your custom maxWidth value here
-        },
-      },
-    },
-  },
-});
-
 
 function Hero() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Container maxWidth="xl">
           <Box className="hero__wrapper" />
           <Box className="hero__advantages-wrapper">
             <Box className="advantage">
@@ -67,8 +53,6 @@ function Hero() {
               </Box>
             </Box>
           </Box>
-        </Container>
-      </ThemeProvider>
     </>
   );
 }
