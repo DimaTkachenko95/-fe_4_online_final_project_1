@@ -6,23 +6,28 @@ import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import { ReactComponent as Scales } from "./icons/scales.svg"
 import { ReactComponent as  CheckMark } from "./icons/check_mark.svg"
 import { width } from "@mui/system";
-import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
+import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales, selectorSearchProducts } from "../../selectors";
 import { actionFetchAllProducts, actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../reducers";
+import {actionSearchProducts} from "../../reducers/app.reducer";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import cx from "classnames";
 
 
 const Items = () => {
-  const allProducts = useSelector(selectorAllProducts)
-  const basket = useSelector(selectorBasket)
-  const favorites = useSelector(selectorFavorites)
-  const scales = useSelector(selectorScales)
-  const dispatch = useDispatch()
+  const allProducts = useSelector(selectorAllProducts);
+  const searchProducts = useSelector(selectorSearchProducts);
+  const basket = useSelector(selectorBasket);
+  const favorites = useSelector(selectorFavorites);
+  const scales = useSelector(selectorScales);
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(actionFetchAllProducts())
+    dispatch(actionFetchAllProducts());
+    return(() => {
+      dispatch(actionSearchProducts(allProducts));
+    })
   }, [])
 
 
@@ -83,7 +88,8 @@ const Items = () => {
 
 
 
-  const item = allProducts?.map(({ name, _id, currentPrice, imageUrls, brand, previousPrice }, index) => (
+
+  const item = (searchProducts && allProducts ? searchProducts : allProducts).map(({ name, _id, currentPrice, imageUrls, brand, previousPrice }, index) => (
     <Grid className="grid-main-list" item xs="12" sm="6" md="4">
       <div className="list" id={_id} key={_id}>
         <div className="list__item">
@@ -110,7 +116,7 @@ const Items = () => {
             {previousPrice && <p className="list__item--price--previous">{previousPrice.toLocaleString()}$</p>}
           </div>
           {basketId.includes(_id)?
-           <Link to="/basket"><button onClick={() => addToBasket(allProducts[index])} className="list__item--inbasket "><CheckMark/><span className="list__item--buy--text">In basket</span></button></Link> 
+           <Link to="/basket"><button onClick={() => addToBasket(allProducts[index])} className="list__item--inbasket "><CheckMark/><span className="list__item--buy--text">In basket</span></button></Link>
             :
             <button onClick={() => addToBasket(allProducts[index])} className="list__item--buy"><ShoppingCartOutlinedIcon /><span className="list__item--buy--text">Buy</span></button>
           }

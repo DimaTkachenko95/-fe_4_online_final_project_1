@@ -16,14 +16,16 @@
 
 
 }
-
+.hero__advantages-container{
+  background-color: rgba(245, 245, 245, 1);
+}
 .hero__advantages-wrapper{
   padding-top: 2vw;
   padding-bottom: 2vw;
-  background-color: rgba(245, 245, 245, 1);
+
   display: flex;
-  justify-content: space-around;
-  @media (max-width: 630px) {
+  justify-content: space-between;
+  @media (max-width: 780px) {
     background-color: transparent;
     padding-top: 15px;
     display: grid;
@@ -37,7 +39,7 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: 875px) {
+    @media (max-width: 996px) {
       width: 100%;
       height: 100%;
       background-color: rgba(245, 245, 245, 1);
@@ -55,7 +57,7 @@
       font-size: 14px;
       line-height: 20px;
       width: 180px;
-      @media (max-width: 875px) {
+      @media (max-width: 996px) {
         text-align: center;
       }
     }
