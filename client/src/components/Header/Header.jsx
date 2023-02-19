@@ -8,7 +8,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {ReactComponent as ScaleSvg} from './icons/scales-of-justice-svgrepo-com.svg';
 import './Header.scss';
 import {useEffect, useRef, useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import {selectorAllProducts, selectorBasket, selectorFavorites, selectorScales, selectorSearchProducts} from "../../selectors";
 import {actionFetchAllProducts, actionSearchProducts} from "../../reducers/app.reducer";
 import { useSelector, useDispatch} from 'react-redux'
@@ -33,7 +33,7 @@ const Header = () => {
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
@@ -56,8 +56,14 @@ const Header = () => {
         console.log(allProducts);
         const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
         dispatch(actionSearchProducts(searchProducts));
-        setInputValue('');
-    };
+    }
+
+    const handleEnterPress = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+            navigate(`/products`);
+        }
+    }
 
     return (
         <>
@@ -120,6 +126,7 @@ const Header = () => {
                                     onChange={(e) => {
                                         setInputValue(e.target.value);
                                     }}
+                                    onKeyPress={handleEnterPress}
                                     endAdornment={
                                         <Link to="/products">
                                             <IconButton onClick={handleSearch}>
