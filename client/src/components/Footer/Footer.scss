@@ -7,7 +7,7 @@
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     @media (max-width: 996px) {
       justify-content: center;
       padding-top: 6vh;
@@ -98,7 +98,7 @@
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 48vw;
     @media (max-width: 996px) {
       justify-content: center;

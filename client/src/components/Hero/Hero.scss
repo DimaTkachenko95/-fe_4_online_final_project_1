@@ -16,13 +16,15 @@
 
 
 }
-
+.hero__advantages-container{
+  background-color: rgba(245, 245, 245, 1);
+}
 .hero__advantages-wrapper{
   padding-top: 2vw;
   padding-bottom: 2vw;
-  background-color: rgba(245, 245, 245, 1);
+
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   @media (max-width: 780px) {
     background-color: transparent;
     padding-top: 15px;
