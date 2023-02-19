@@ -1,13 +1,12 @@
 .form-registration {
   justify-content: center;
-  min-width: 345px;
+  min-width: 300px;
   &__grid_wrapper {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 30px;
     &__input {
       padding: 0 30px;
-      display: flex;
     }
   }
   &__submit {
@@ -29,7 +28,6 @@
     margin-top: 104px;
     cursor: pointer;
     &:hover {
-      background: #ffffff;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       color: #8ee902;
     }
@@ -38,12 +36,12 @@
 
 @media (min-width: 482px) and (max-width: 996px) {
   .form-registration {
-    min-width: 482px;
+    min-width: 400px;
   }
 }
-@media (min-width: 996.9px) and (max-width: 1800px) {
+@media (min-width: 996.9px) {
   .form-registration {
-    min-width: 996.9px;
+    min-width: 900px;
     &__grid_wrapper {
       grid-template-columns: 1fr 1fr;
       column-gap: 30px;

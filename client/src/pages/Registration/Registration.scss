@@ -23,37 +23,18 @@
     vertical-align: center;
 
     &__wrapper {
-      min-width: 482px;
-
-      &-title {
-        font-size: 30px;
-        font-weight: 700;
-        line-height: 34px;
-        text-align: center;
-        margin-bottom: 43px;
-        margin-top: 78px;
-        text-transform: uppercase;
-      }
+      min-width: 400px;
     }
   }
 }
-@media (min-width: 996.9px) and (max-width: 1800px) {
+@media (min-width: 996.9px) {
   .registration-container {
     min-width: 996.9px;
-    margin: 0 auto;
-    vertical-align: center;
 
     &__wrapper {
-      min-width: 996.9px;
-
+      min-width: 900px;
       &-title {
-        font-size: 30px;
-        font-weight: 700;
-        line-height: 34px;
         text-align: left;
-        margin-bottom: 43px;
-        margin-top: 78px;
-        text-transform: uppercase;
       }
     }
   }

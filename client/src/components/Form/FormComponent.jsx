@@ -2,41 +2,20 @@ import './FormComponent.scss';
 import { Formik, Form } from 'formik';
 import validationSchema from './ValidationSchema';
 import FormikControl from './FormikControl';
-import React from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useState } from 'react';
 
 const FormComponent = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  // const history = useHistory();
-  //
-  // const handleSubmit = async (values, {resetForm, setFieldError}) => {
-  //   if (values.password === values.repeatPassword) {
-  //     const result = fetch('http://localhost:3001/sign-up', {
-  //       method: 'POST',
-  //       headers: {
-  //         'content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify(values)
-  //     }).then(res => res.json())
-  //
-  //     if (result.status === 'success') {
-  //       history.push('/')
-  //     }
-  //     resetForm();
-  //   }
-  //   else {
-  //     setFieldError('repeatPassword', 'Password is not the same');
-  //   }
-  // }
 
   const initialValues = {
     firstName: '',
@@ -59,7 +38,6 @@ const FormComponent = () => {
       }}
     >
       {(isValid) => {
-        // console.log(isValid);
         return (
           <>
             <Form className="form-registration" style={{ width: '100%' }}>
@@ -117,6 +95,7 @@ const FormComponent = () => {
                 />
 
                 <FormikControl
+                  htmlFor="outlined-adornment-password"
                   label="Password"
                   variant="outlined"
                   control="input"
@@ -127,18 +106,20 @@ const FormComponent = () => {
                   id="outlined-adornment-password"
                   required
                   type={showPassword ? 'text' : 'password'}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
 
                 <FormikControl

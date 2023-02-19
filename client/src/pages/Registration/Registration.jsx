@@ -5,7 +5,7 @@ import './Registration.scss';
 const Registration = () => {
   return (
     <main>
-      <Container className="registration-container" maxWidth="xl">
+      <Container className="registration-container" maxWidth="lg">
         <div className="registration-container__wrapper">
           <h2 className="registration-container__wrapper-title">Registration</h2>
           <FormComponent />
