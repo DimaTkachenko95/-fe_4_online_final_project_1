@@ -1,6 +1,9 @@
 .footer{
-  &__subscribe-wrapper{
+  &__subscribe-container{
     background-color: rgba(81, 86, 104, 1);
+  }
+  &__subscribe-wrapper{
+
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
@@ -88,13 +91,15 @@
     }
   }
 
+  &__info-container{
+    background-color: rgb(245, 245, 245);
+  }
   &__info-wrapper{
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
     justify-content: space-around;
     gap: 48vw;
-    background-color: rgb(245, 245, 245);
     @media (max-width: 996px) {
       justify-content: center;
     }
