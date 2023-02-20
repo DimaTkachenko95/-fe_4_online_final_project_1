@@ -1,13 +1,12 @@
 import Items from "./Items";
-// import { Box } from "@mui/system";
 import { Container } from "@mui/material";
-import typographyClasses from "@mui/material";
+import styles from './Slider.module.scss';
 
 const Slider = () => {
 
 return(
 <>
-<typographyClasses>POPULAR PRODUCTS</typographyClasses>
+<div className={styles.popularProducts}><span className={styles.popularProductsColored}>POPULAR</span> PRODUCTS</div>
   <Container maxWidth="lg">
     {<Items />}
   </Container>

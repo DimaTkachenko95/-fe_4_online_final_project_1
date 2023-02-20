@@ -1,0 +1,104 @@
+@mixin font-list-items {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+
+}
+
+.list{
+  position: relative;
+  width: fit-content;
+  padding-bottom: 10px;
+  margin-bottom: 85px;
+}
+
+.listItem{
+  border: 1px solid #EFEFEF;
+  margin: 0 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  min-height: 350px;
+}
+
+.listIconsContainer{
+  border: 1px solid black;
+}
+
+.listItemRating{
+  position: absolute;
+  top: 21px;
+  right: 30px;
+
+          &::before{
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 14px;
+        border: 1px solid #000000;
+      }
+      &::after{
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        border: 1px solid #000000;
+      }
+      
+}
+
+.listItemRatingLine{
+        display: inline-block;
+        width: 4px;
+        height: 10.56px;
+        border: 1px solid #000000;
+        margin-left: 2px;
+        margin-right: 2px;
+}
+
+.listItemFavourite{
+        position: absolute;
+      right: 30px;
+      top: 58px
+}
+
+.listItemMainInfo{ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px auto 20px auto;
+}
+
+
+.listItemName{
+  @include font-list-items;
+  color: #000000;
+}
+
+.listItemProducer{
+        @include font-list-items;
+      color: #75758A;
+}
+
+.listItemPrice{
+
+      @include font-list-items;
+      color: #60B021;
+      margin-top: 15px;
+      font-size: 20px;
+}
+
+
+.listButtonContainer{
+  position: absolute;
+  bottom: 30px;
+}
+
+.productCarousel{
+  position: unset !important;
+}
