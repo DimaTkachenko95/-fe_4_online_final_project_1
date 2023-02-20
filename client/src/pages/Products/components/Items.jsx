@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import Item from '@mui/material/Grid';
 import Grid from "@mui/material/Grid";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { ReactComponent as Favorites } from "./icons/favorite.svg"
-import { ReactComponent as Scales } from "./icons/scales.svg"
-import { ReactComponent as  CheckMark } from "./icons/check_mark.svg"
+import { ReactComponent as Favorites } from "../icons/favorite.svg"
+import { ReactComponent as Scales } from "../icons/scales.svg"
+import { ReactComponent as  CheckMark } from "../icons/check_mark.svg"
 import { width } from "@mui/system";
-import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
-import { actionFetchAllProducts, actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../reducers";
+import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales } from "../../../selectors";
+import { actionFetchAllProducts, actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import cx from "classnames";
@@ -19,6 +19,7 @@ const Items = () => {
   const favorites = useSelector(selectorFavorites)
   const scales = useSelector(selectorScales)
   const dispatch = useDispatch()
+  console.log(allProducts)
 
 
   useEffect(() => {
