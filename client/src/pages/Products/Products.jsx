@@ -4,8 +4,8 @@ import Items from "./components/Items";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { FormControl, RadioGroup, FormLabel,  FormControlLabel, Radio } from '@mui/material';
-import {ReactComponent as Bottom} from "./icons/bottom.svg"
-import {ReactComponent as Top} from "./icons/top.svg"
+/* import {ReactComponent as Bottom} from "./icons/bottom.svg"
+import {ReactComponent as Top} from "./icons/top.svg" */
 
 
 
