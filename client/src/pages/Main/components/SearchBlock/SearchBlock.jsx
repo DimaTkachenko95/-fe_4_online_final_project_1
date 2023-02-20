@@ -2,11 +2,11 @@ import {Box, InputBase, IconButton, Container, createTheme, ThemeProvider} from 
 import {Link, useNavigate} from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search";
 import {useState} from "react";
-import './Search.scss'
-import {actionSearchProducts} from "../../reducers/app.reducer";
+import './SearchBlock.scss'
+import {actionSearchProducts} from "../../../../reducers/app.reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorAllProducts} from "../../selectors";
-const Search = () => {
+import {selectorAllProducts} from "../../../../selectors";
+const SearchBlock = () => {
     const [inputValue, setInputValue] = useState('');
     const allProducts = useSelector(selectorAllProducts);
     const navigate = useNavigate();
@@ -48,7 +48,7 @@ const Search = () => {
                             <Box className="search__input-wrapper--helper">
                                 <InputBase
                                     className="search__input"
-                                    placeholder="Search"
+                                    placeholder="SearchBlock"
                                     value={inputValue}
                                     onChange={(e) => {
                                         setInputValue(e.target.value);
@@ -71,4 +71,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default SearchBlock;
