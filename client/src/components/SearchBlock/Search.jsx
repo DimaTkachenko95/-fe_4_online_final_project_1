@@ -41,7 +41,9 @@ const Search = () => {
                         </p>
                     </Box>
                     <Box className="search__actions">
-                        <Link to="/products" className="search__catalog-button">Show all products</Link>
+                        <Box className="search__catalog-button-wrapper">
+                            <Link to="/products" className="search__catalog-button">Show all products</Link>
+                        </Box>
                         <Box className="search__input-wrapper">
                             <Box className="search__input-wrapper--helper">
                                 <InputBase

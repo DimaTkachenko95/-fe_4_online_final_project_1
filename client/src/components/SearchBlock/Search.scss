@@ -54,14 +54,18 @@
     }
   }
 
+  &__catalog-button-wrapper{
+
+  }
   &__catalog-button {
+
     background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
     border-radius: 100px;
     text-transform: uppercase;
     color: white;
-    padding: 2vh 3.5vw;
+    padding: 2vh 3vw;
     cursor: pointer;
-    transition: 0.3s ease-out;
+    transition: 0.7s ease-out;
     font-family: 'Ubuntu', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -81,6 +85,7 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
     border-radius: 100px;
     padding: 5px;
+    max-width: 250px;
   }
 
   &__input-wrapper--helper {
@@ -92,7 +97,8 @@
   }
 
   &__input {
-    padding-left: 8px;
+    padding-left: 1vw;
+
   }
 }
 
