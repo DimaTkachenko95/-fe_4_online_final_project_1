@@ -5,9 +5,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import cx from "classnames";
 import { selectorAllProducts, selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
-import { actionFetchAllProducts, actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../reducers";
+import { actionAddToBasket, actionAddToFavorites, actionDeleteFromFavorites, actionAddToScales, actionDeleteFromScales } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from "react";
 
 
 import "./ProductCard.scss"

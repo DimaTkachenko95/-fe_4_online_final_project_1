@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 
 
-
+import './FilterMainList.scss'
 const FilterMainList = () => {
 
     const [price, setPrice] = useState([300, 700]);
