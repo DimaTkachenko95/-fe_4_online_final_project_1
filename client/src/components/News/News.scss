@@ -1,0 +1,30 @@
+.news{
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+
+  &__container {
+  }
+
+  &__wrapper {
+
+  }
+
+  &__title {
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    /* identical to box height, or 111% */
+
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+

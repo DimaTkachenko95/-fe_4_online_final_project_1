@@ -1,0 +1,45 @@
+.news-item{
+  max-width: 350px;
+  max-height: 420px;
+  &__wrapper {
+
+  }
+
+  &__image-wrapper{
+    max-width: 350px;
+    max-height: 250px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    padding-right: 1vw;
+    padding-left: 1vw;
+    border: 1px solid #EFEFEF;
+    border-top: none;
+  }
+
+  &__title {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__desc {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    /* or 186% */
+
+
+    color: #75758A;
+
+  }
+}
