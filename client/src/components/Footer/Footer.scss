@@ -1,9 +1,13 @@
-.footer {
-  &__subscribe-wrapper {
+.footer{
+  &__subscribe-container{
     background-color: rgba(81, 86, 104, 1);
+  }
+  &__subscribe-wrapper{
+
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
+    justify-content: space-between;
     @media (max-width: 996px) {
       justify-content: center;
       padding-top: 6vh;
@@ -14,8 +18,8 @@
       display: flex;
       gap: 0.8vw;
       align-items: center;
-      padding-left: 7vw;
-      margin-right: 7vw;
+      //padding-left: 7vw;
+      //margin-right: 7vw;
       @media (max-width: 996px) {
         display: none;
       }
@@ -36,7 +40,7 @@
     .subscribe__input-wrapper {
       display: flex;
       justify-content: center;
-      margin-right: 14vw;
+      //margin-right: 14vw;
       @media (max-width: 996px) {
         margin: 0;
         width: 90%;
@@ -86,21 +90,25 @@
     }
   }
 
-  &__info-wrapper {
+  &__info-container{
+    background-color: rgb(245, 245, 245);
+  }
+  &__info-wrapper{
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
-    background-color: rgb(245, 245, 245);
+    justify-content: space-between;
+    gap: 48vw;
     @media (max-width: 996px) {
       justify-content: center;
     }
-    .social-media-wrapper {
-      padding-left: 7vw;
-      .footer__logo-wrapper {
+    .social-media-wrapper{
+      //padding-left: 7vw;
+      .footer__logo-wrapper{
         margin-bottom: 1vh;
       }
 
-      margin-right: 52vw;
+      //margin-right: 52vw;
       @media (max-width: 996px) {
         margin: 0;
         padding: 0;
