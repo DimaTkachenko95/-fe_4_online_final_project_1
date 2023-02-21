@@ -2,34 +2,32 @@
 import { TextField, FormControl, RadioGroup, FormLabel, FormControlLabel, Radio, FormGroup, Checkbox, Slider } from '@mui/material';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-
+import FilterCheckBox from '../../../../components/FilterCheckBox';
 
 import './FilterMainList.scss'
+
 const FilterMainList = () => {
-
     const [price, setPrice] = useState([300, 700]);
-
     const handleChange = (e, data) => {
         console.log(data)
         setPrice(data)
     };
 
-
     return (
         <section className='main-filter-block'>
             <FormGroup>
-                <FormLabel class='header-filter'>Producer</FormLabel>
-                <FormControlLabel control={<Checkbox color="success" />} label="Asus" />
-                <FormControlLabel control={<Checkbox color="success" />} label="Apple" />
-                <FormControlLabel control={<Checkbox color="success" />} label="HP" />
-                <FormControlLabel control={<Checkbox color="success" />} label="Acer" />
-                <FormControlLabel control={<Checkbox color="success" />} label="Lenovo" />
+                <FormLabel class='header-filter'>Brend</FormLabel>
+                <FilterCheckBox label={"Asus"} />
+                <FilterCheckBox label={"Apple"} />
+                <FilterCheckBox label={"HP"} />
+                <FilterCheckBox label={"Acer"} />
+                <FilterCheckBox label={"Lenovo"} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter'>Category</FormLabel>
-                <FormControlLabel className='option_filter' control={<Checkbox color="success" />} label="Gaming Laptops" />
-                <FormControlLabel control={<Checkbox color="success" />} label="Business Laptops" />
-                <FormControlLabel control={<Checkbox color="success" />} label="Refurbished Laptops" />
+                <FilterCheckBox className='option_filter' label={"Gaming Laptops"} />
+                <FilterCheckBox label={"Business Laptops"} />
+                <FilterCheckBox label={"Refurbished Laptops"} />
             </FormGroup>
             <Box
                 sx={{
@@ -43,8 +41,8 @@ const FilterMainList = () => {
                     height="200px"
                     id="demo-helper-text-aligned"
                     label={price[0]}
-                  
-                    /* onChange={() =>} */
+
+                /* onChange={() =>} */
                 />
                 <div> </div>
                 <TextField
@@ -67,16 +65,16 @@ const FilterMainList = () => {
             </Box>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
-                <FormControlLabel control={<Checkbox color="success" />} label="Intel" />
-                <FormControlLabel control={<Checkbox color="success" />} label="AMD" />
+                <FilterCheckBox label={"Intel"} />
+                <FilterCheckBox label={"AMD"} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
-                <FormControlLabel control={<Checkbox color="success" />} label="11.6&#34;" />
-                <FormControlLabel control={<Checkbox color="success" />} label="13.3&#34;" />
-                <FormControlLabel control={<Checkbox color="success" />} label="14.0&#34;" />
-                <FormControlLabel control={<Checkbox color="success" />} label="15.6&#34;" />
-                <FormControlLabel control={<Checkbox color="success" />} label="16&#34;" />
+                <FilterCheckBox label={"11.6&#34;"} />
+                <FilterCheckBox label={"13.3&#34;"} />
+                <FilterCheckBox label={"14.0&#34;"} />
+                <FilterCheckBox label={"15.6&#34;"} />
+                <FilterCheckBox label={"16&#34;"} />
             </FormGroup>
             <div>SKDJCLKSJLDKC</div>
         </section>

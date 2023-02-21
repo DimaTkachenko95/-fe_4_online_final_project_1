@@ -1,167 +1,162 @@
 @mixin font-list-items {
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+}
 
 .list {
-    position: relative;
-    background: #FFFFFF;
-    border: 1px solid #EFEFEF;
-    width: fit-content;
-    box-sizing: border-box;
-    width: 255px;
-    height: 305px;
-    transition: 0.3s;
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid #EFEFEF;
+  width: fit-content;
+  box-sizing: border-box;
+  width: 255px;
+  height: 305px;
+  transition: 0.3s;
 
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-      scale: (1.1);
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    scale: (1.1);
+  }
+
+  &__item {
+    width: 215px;
+    height: 265px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    &--name {
+      @include font-list-items;
+      color: #000000;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
     }
-    &__item {
-      width: 215px;
-      height: 265px;
-      padding: 20px;
+
+    &--img {
+      width: 170px;
+      height: 120px;
+
+      &--laptop {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    &--scales {
+      position: absolute;
+      right: 15px;
+      top: 30px;
+      fill: darkgrey;
+      transition: 0.3s;
+
+      &:hover {
+        fill: green;
+        cursor: pointer;
+      }
+
+      &--curent {
+        fill: green;
+      }
+
+    }
+
+    &--favorite {
+      position: absolute;
+      right: 15px;
+      top: 78px;
+      fill: darkgrey;
+      transition: 0.3s;
+
+      &:hover {
+        fill: orange;
+        cursor: pointer;
+      }
+
+      &--curent {
+        fill: orange;
+      }
+    }
+
+    &--producer {
+      @include font-list-items;
+      color: #75758A;
+    }
+
+    &--price {
+      @include font-list-items;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-  
-  
-      &--name {
-        @include font-list-items;
-        color: #000000;
-  
-        &:hover {
-          text-decoration: underline;
-        }
-  
+      align-items: center;
+
+      &--curent {
+        color: #60B021;
+        font-size: 25px;
+        text-align: center;
+
       }
-  
-      &--img {
-        width: 170px;
-        height: 120px;
-  
-        &--laptop {
-          height: 100%;
-          width: auto;
-        }
+
+      &--previous {
+        color: #de3c33;
+        font-size: 20px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        text-decoration: line-through;
       }
-  
-      &--scales {
-        position: absolute;
-        right: 15px;
-        top: 30px;
-        fill: darkgrey;
-        transition: 0.3s;
-  
-        &:hover {
-          fill: green;
-          cursor: pointer;
-        }
-  
-        &--curent {
-          fill: green;
-        }
-  
+    }
+
+    &--buy {
+      @include font-list-items;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 100px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      background-color: #4ba123;
+      color: rgb(245, 240, 240);
+      padding: 10px 0;
+      transition: 0.4s;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      cursor: pointer;
+
+      &--text {
+        margin-left: 10px
       }
-  
-      &--favorite {
-        position: absolute;
-        right: 15px;
-        top: 78px;
-        fill: darkgrey;
-        transition: 0.3s;
-  
-        &:hover {
-          fill: orange;
-          cursor: pointer;
-        }
-  
-        &--curent {
-          fill: orange;
-        }
-      }
-  
-      &--producer {
-        @include font-list-items;
-        color: #75758A;
-      }
-  
-      &--price {
-        @include font-list-items;
-        display: flex;
-        align-items: center;
-  
-        &--curent {
-          color: #60B021;
-          font-size: 25px;
-          text-align: center;
-  
-        }
-  
-        &--previous {
-          color: #de3c33;
-          font-size: 20px;
-          margin-left: 10px;
-          margin-bottom: 20px;
-          text-decoration: line-through;
-  
-  
-  
-  
-        }
-  
-      }
-  
-      &--buy {
-        @include font-list-items;
-        background: #FFFFFF;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-        border-radius: 100px;
-        border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        background-color: #4ba123;
-        color: rgb(245, 240, 240);
-        padding: 10px 0;
-        transition: 0.4s;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-        cursor: pointer;
-  
-  
-        &--text {
-          margin-left: 10px
-        }
-  
-        &:hover {
-          background-color: #d6e3d1;
-          color: #4d9546;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-        }
-  
-      }
-  
-      &--inbasket {
-        @include font-list-items;
-        background: #FFFFFF;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-        border-radius: 100px;
-        border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        padding: 10px 0;
-        transition: 0.4s;
-        cursor: pointer;
+
+      &:hover {
         background-color: #d6e3d1;
         color: #4d9546;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-        width: 100%;
       }
+
+    }
+
+    &--inbasket {
+      @include font-list-items;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 100px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      padding: 10px 0;
+      transition: 0.4s;
+      cursor: pointer;
+      background-color: #d6e3d1;
+      color: #4d9546;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      width: 100%;
     }
   }
+}

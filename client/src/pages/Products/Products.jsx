@@ -1,4 +1,4 @@
-import FilterMainList from "../../components/FilterMainList";
+import FilterMainList from "./components/FilterMainList";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { selectorAllProducts } from "../../selectors";
@@ -8,8 +8,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 
 import "./Products.scss";
-
-
 
 const Products = () => {
     const allProducts = useSelector(selectorAllProducts)
@@ -28,7 +26,7 @@ const Products = () => {
                 <section className="main-list__sections">
                     <div>
                         <Grid container spacing={4}>
-                            {allProducts && allProducts?.map((el, index) => {
+                            {allProducts.length && allProducts?.map((el, index) => {
                                 return (
                                     <Grid className="grid-main-list" item xs="12" sm="6" md="4">
                                         <ProductCard el={el} index={index}
