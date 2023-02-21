@@ -1,44 +1,47 @@
-import "./Products.scss";
-
-import Items from "./Items";
+import FilterMainList from "./components/FilterMainList";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import {useSelector} from "react-redux";
-import { FormControl, RadioGroup, FormLabel,  FormControlLabel, Radio } from '@mui/material';
-import {ReactComponent as Bottom} from "./icons/bottom.svg"
-import {ReactComponent as Top} from "./icons/top.svg"
-import {selectorAllProducts, selectorSearchProducts} from "../../selectors";
+import { selectorAllProducts } from "../../selectors";
+import { actionFetchAllProducts } from "../../reducers";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import ProductCard from "../../components/ProductCard";
 
-
+import "./Products.scss";
 
 const Products = () => {
-    const allProducts = useSelector(selectorAllProducts);
-    const searchProducts = useSelector(selectorSearchProducts);
+    const allProducts = useSelector(selectorAllProducts)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(actionFetchAllProducts())
+    }, [])
 
     return (
         <main>
-        <Container className="main-list" maxWidth="lg">
-            <h5 className="count-found-product">
-                Products <span className="count-found-product__span">found</span>
-            </h5>
-            <div className="main-filter-block">
-                <div className="main-filter-block__popular">
-                    <button className="main-filter-block__popular--btn">By price</button>
-                    <button className="main-filter-block__popular--btn">By popular</button>
+            <Container className="main-list" maxWidth="lg">
+                <div>
+                    <h5 className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
                 </div>
-
-                <div className="main-filter-block__direction">
-                    <button className="main-filter-block__direction--btn"><Bottom/></button>
-                    <button className="main-filter-block__direction--btn"><Top/></button>
-                </div>
-            </div>
-            
-            <Grid   container spacing={4}>
-                {<Items />}
-            </Grid>
-        </Container>
-    </main >
+                <section className="main-list__sections">
+                    <div>
+                        <Grid container spacing={4}>
+                            {allProducts.length && allProducts?.map((el, index) => {
+                                return (
+                                    <Grid className="grid-main-list" item xs="12" sm="6" md="4">
+                                        <ProductCard el={el} index={index}
+                                        />
+                                    </Grid>
+                                )
+                            })}
+                        </Grid>
+                    </div>
+                    <div>
+                        <FilterMainList />
+                    </div>
+                </section>
+            </Container>
+        </main >
     );
 }
-
 export default Products;
