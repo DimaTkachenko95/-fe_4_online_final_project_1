@@ -48,7 +48,7 @@ const SearchBlock = () => {
                             <Box className="search__input-wrapper--helper">
                                 <InputBase
                                     className="search__input"
-                                    placeholder="SearchBlock"
+                                    placeholder="Search"
                                     value={inputValue}
                                     onChange={(e) => {
                                         setInputValue(e.target.value);

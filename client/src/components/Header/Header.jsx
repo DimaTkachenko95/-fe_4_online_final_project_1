@@ -122,7 +122,7 @@ const Header = () => {
                             <Box className="header__input-wrapper">
                                 <InputBase
                                     className="header__input"
-                                    placeholder="SearchBlock"
+                                    placeholder="Search"
                                     value={inputValue}
                                     onChange={(e) => {
                                         setInputValue(e.target.value);
