@@ -1,0 +1,50 @@
+.all_container{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  .map{
+    margin: auto;
+    display: contents;
+  }
+}
+
+.contacts {
+  .link_shop{
+    margin-top: 10px;
+    background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+  }
+  .number_point {
+    background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.contacts_header{
+  padding-left: 30px;
+  padding-top: 20px;
+  display: flex;
+  width: 105px;
+  height: 35px;
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+
+  text-transform: uppercase;
+  color: #000000;
+  .point_span{
+    background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+}
