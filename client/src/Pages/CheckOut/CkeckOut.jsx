@@ -1,8 +1,7 @@
-import "./CheckOut.scss"
+import './CheckOut.scss';
 
 const CheckOut = () => {
-
-    return (<div>Оформлення замовлення</div>)
-}
+  <div>Оформлення замовлення</div>;
+};
 
 export default CheckOut;

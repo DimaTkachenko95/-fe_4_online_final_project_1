@@ -29,7 +29,7 @@ body {
   }
 
   &__logo-wrapper {
-    padding-left: 2vw;
+    //padding-left: 2vw;
     cursor: pointer;
     @media (max-width: 996px) {
       padding: 0;
@@ -42,16 +42,6 @@ body {
   }
 
   &__logo {
-    color: rgba(0, 0, 0, 1);
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 21px;
-    line-height: 26px;
-
-    .colored {
-      color: rgba(96, 176, 33, 1);
-    }
 
     @media (max-width: 390px) {
       width: 50px;

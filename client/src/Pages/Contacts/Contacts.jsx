@@ -1,10 +1,5 @@
-import "./Contacts.scss";
+import './Contacts.scss';
 
-const Contacts = () => {
-
-    return(
-        <div>Контакти</div>
-    )
-}
+const Contacts = () => <div>Контакти</div>;
 
 export default Contacts;

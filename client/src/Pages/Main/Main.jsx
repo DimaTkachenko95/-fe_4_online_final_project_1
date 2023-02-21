@@ -1,16 +1,14 @@
 import './Main.scss';
-import Slider from '../../Components/Slider';
 
-const Main = () => {
+import Hero from "./components/Hero";
+import SearchBlock from "./components/SearchBlock";
 
-    return (
-        <main>
-            <div> Головна сторінка</div>
-            <Slider />
+const Main = () => (
+  <main>
+      <Hero />
+      <SearchBlock/>
+  </main>
+);
 
-        </main>
-
-    )
-}
 
 export default Main;
