@@ -10,14 +10,20 @@
   margin: 50px auto;
 
   &__sections {
-    display: flex;
-    justify-content: center;
+  display: flex;
+/*     display: grid;
+    grid-template-columns: 4fr 1fr; */
+    /*  column-gap: 3%;   */
+
+    
   }
 }
 
 .grid-main-list {
+
   display: grid;
   justify-content: center;
+  
 }
 
 

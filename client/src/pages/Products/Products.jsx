@@ -15,7 +15,7 @@ const Products = () => {
 
     useEffect(() => {
         dispatch(actionFetchAllProducts())
-    }, [])
+    }, []) 
 
     return (
         <main>
@@ -25,10 +25,10 @@ const Products = () => {
                 </div>
                 <section className="main-list__sections">
                     <div>
-                        <Grid container spacing={4}>
+                        <Grid  container spacing={4}  >
                             {allProducts.length && allProducts?.map((el, index) => {
                                 return (
-                                    <Grid className="grid-main-list" item xs="12" sm="6" md="4">
+                                    <Grid className="grid-main-list" item xs="12"  sm="12" md="5" lg="4">
                                         <ProductCard el={el} index={index}
                                         />
                                     </Grid>
@@ -36,9 +36,9 @@ const Products = () => {
                             })}
                         </Grid>
                     </div>
-                    <div>
+                      <div>
                         <FilterMainList />
-                    </div>
+                    </div> 
                 </section>
             </Container>
         </main >

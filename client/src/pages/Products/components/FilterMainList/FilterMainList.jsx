@@ -7,11 +7,19 @@ import FilterCheckBox from '../../../../components/FilterCheckBox';
 import './FilterMainList.scss'
 
 const FilterMainList = () => {
-    const [price, setPrice] = useState([300, 700]);
+    const [price, setPrice] = useState([300, 1700]);
+    const [minPrice, setMinPrice] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
     const handleChange = (e, data) => {
-        console.log(data)
+        
+        if(data[0]>data[1]-500){
+            return null
+        }
         setPrice(data)
+        setMinPrice(data[0])
+        setMaxPrice(data[1]-500)
     };
+  
 
     return (
         <section className='main-filter-block'>
@@ -29,40 +37,53 @@ const FilterMainList = () => {
                 <FilterCheckBox label={"Business Laptops"} />
                 <FilterCheckBox label={"Refurbished Laptops"} />
             </FormGroup>
-            <Box
+           <div>
+            <Box 
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    '& > :not(style)': { m: 0 },
+                    justifyContent: 'center',
+                   
                 }}
             >
-                <TextField
+                <TextField 
                     color="success"
-                    height="200px"
-                    id="demo-helper-text-aligned"
-                    label={price[0]}
+                    height="20px"
+                   /*  label={price[0]} */
+                    maxRows="6"
+                    size="small"
+                    value={minPrice}
+                    onChange={e => setMinPrice(e.target.value)}
+                  
 
-                /* onChange={() =>} */
+                
                 />
-                <div> </div>
+                <span className='line'> </span>
                 <TextField
                     color="success"
-                    id="demo-helper-text-aligned-no-helper"
-                    label={price[1]}
-                    value={price[1]}
+                   /*  label={price[1]-400}  */
+                    maxRows="6"
+                    size="small"
+                    value={maxPrice}
+                    onChange={e => setMaxPrice(e.target.value)}
+                  
+
                 />
             </Box>
-
-
-            <Box sx={{}}>
-                <Slider color="success"
+            <Box sx={{
+                marginTop: 1,
+                marginBottom: 2,
+            }}>
+                <Slider
+                    color="success"
                     value={price}
                     onChange={handleChange}
-                    max={5000}
+                    max={3700}
                     min={100}
-                    disableSwap
+                    disableSwap 
                 />
             </Box>
+            </div>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
                 <FilterCheckBox label={"Intel"} />
@@ -70,11 +91,11 @@ const FilterMainList = () => {
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
-                <FilterCheckBox label={"11.6&#34;"} />
-                <FilterCheckBox label={"13.3&#34;"} />
-                <FilterCheckBox label={"14.0&#34;"} />
-                <FilterCheckBox label={"15.6&#34;"} />
-                <FilterCheckBox label={"16&#34;"} />
+                <FilterCheckBox label={"11.6\""} />
+                <FilterCheckBox label={"13.3\""} />
+                <FilterCheckBox label={"14.0\""} />
+                <FilterCheckBox label={"15.6\""} />
+                <FilterCheckBox label={"16\""} />
             </FormGroup>
             <div>SKDJCLKSJLDKC</div>
         </section>

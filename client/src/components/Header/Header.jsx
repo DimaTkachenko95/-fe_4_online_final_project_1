@@ -53,9 +53,10 @@ const Header = () => {
 
     const handleSearch = () => {
         console.log(`We ready to show you ${inputValue}`);
-        console.log(allProducts);
+        console.log(inputValue);
         const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
         dispatch(actionSearchProducts(searchProducts));
+        console.log(searchProducts, "s");
         setInputValue('')
     }
 
