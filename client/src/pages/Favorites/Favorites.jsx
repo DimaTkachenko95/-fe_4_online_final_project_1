@@ -19,10 +19,7 @@ export default function Favorites() {
             <Card  className='card' sx={{ maxWidth:200 }}>
               <CardActionArea>
                 <CardMedia className="card_img"
-
                     component="img"
-                    height="100px"
-                    width= "100px"
                     image={item.imageUrls[0]}
                     alt="laptop"
                 />
