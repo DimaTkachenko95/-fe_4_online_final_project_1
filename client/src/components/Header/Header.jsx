@@ -1,17 +1,17 @@
-import {Box, InputBase, IconButton, Container, createTheme, ThemeProvider} from '@mui/material';
+import {Box, Container, createTheme, ThemeProvider} from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import SearchIcon from '@mui/icons-material/Search';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {ReactComponent as ScaleSvg} from './icons/scales-of-justice-svgrepo-com.svg';
 import './Header.scss';
 import {useEffect, useRef, useState} from 'react';
-import {Link, NavLink, useNavigate} from 'react-router-dom';
-import {selectorAllProducts, selectorBasket, selectorFavorites, selectorScales, selectorSearchProducts} from "../../selectors";
-import {actionFetchAllProducts, actionSearchProducts} from "../../reducers/app.reducer";
+import {Link, NavLink} from 'react-router-dom';
+import {selectorBasket, selectorFavorites, selectorScales} from "../../selectors";
+import {actionFetchAllProducts} from "../../reducers";
 import { useSelector, useDispatch} from 'react-redux'
+import InputSearch from "../InputSearch";
 
 const theme = createTheme({
     components: {
@@ -27,13 +27,10 @@ const theme = createTheme({
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [inputValue, setInputValue] = useState('');
-    const allProducts = useSelector(selectorAllProducts);
     const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
@@ -47,22 +44,6 @@ const Header = () => {
     const handleBurgerMenu = (event) => {
         if (burgerMenuRef && !burgerMenuRef.current.contains(event.target) && isMenuOpen) {
             setIsMenuOpen(!isMenuOpen);
-        }
-    }
-
-
-    const handleSearch = () => {
-        console.log(`We ready to show you ${inputValue}`);
-        console.log(allProducts);
-        const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
-        dispatch(actionSearchProducts(searchProducts));
-        setInputValue('')
-    }
-
-    const handleEnterPress = (event) => {
-        if (event.key === "Enter") {
-            handleSearch();
-            navigate(`/products`);
         }
     }
 
@@ -120,22 +101,7 @@ const Header = () => {
                             </nav>
 
                             <Box className="header__input-wrapper">
-                                <InputBase
-                                    className="header__input"
-                                    placeholder="Search"
-                                    value={inputValue}
-                                    onChange={(e) => {
-                                        setInputValue(e.target.value);
-                                    }}
-                                    onKeyPress={handleEnterPress}
-                                    endAdornment={
-                                        <Link to="/products">
-                                            <IconButton onClick={handleSearch}>
-                                                <SearchIcon/>
-                                            </IconButton>
-                                        </Link>
-                                    }
-                                />
+                                <InputSearch style="header__input"/>
                             </Box>
                             <Box className="header__items-actions">
                                 <Box className="action">
