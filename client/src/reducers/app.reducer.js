@@ -4,6 +4,8 @@ import {sendRequest} from "../helpers";
 
 const initialState = {
     allProducts: [],
+    searchProducts: [],
+    isSearch: false,
     pageProduct: {},
     pageLoading: true
 }
@@ -20,14 +22,19 @@ const appSlice = createSlice({
             state.loading = payload
         },
         actionSearchProducts: (state, {payload}) => {
+            state.isSearch = true;
             state.searchProducts = [...payload];
+        },
+        actionChangeSearchFlag: (state, {payload}) => {
+            state.isSearch = payload;
         }
     }
 })
 export const {
     actionAllProducts,
     actionPageLoading,
-    actionSearchProducts
+    actionSearchProducts,
+    actionChangeSearchFlag
 } = appSlice.actions
 
 

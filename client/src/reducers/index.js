@@ -1,7 +1,8 @@
 import appReducer, {
     actionFetchAllProducts,
     actionPageLoading,
-    actionSearchProducts
+    actionSearchProducts,
+    actionChangeSearchFlag
 } from "./app.reducer";
 import favoritesReducer, {
     actionAddToFavorites,
@@ -21,6 +22,7 @@ export{
     actionFetchAllProducts,
     actionPageLoading,
     actionSearchProducts,
+    actionChangeSearchFlag,
     favoritesReducer,
     actionAddToFavorites,
     actionDeleteFromFavorites,
