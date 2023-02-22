@@ -1,8 +1,8 @@
 import FilterMainList from "./components/FilterMainList";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { selectorAllProducts } from "../../selectors";
-import { actionFetchAllProducts } from "../../reducers";
+import { selectorAllProducts, selectorSearchProducts  } from "../../selectors";
+import { actionFetchAllProducts, actionSearchProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
@@ -11,11 +11,20 @@ import "./Products.scss";
 
 const Products = () => {
     const allProducts = useSelector(selectorAllProducts)
+    const searchProducts = useSelector(selectorSearchProducts);
     const dispatch = useDispatch()
+    console.log(searchProducts, "aaaa")
+
+    /* useEffect(() => {
+        dispatch(actionFetchAllProducts())
+    }, [])  */
 
     useEffect(() => {
-        dispatch(actionFetchAllProducts())
-    }, []) 
+        dispatch(actionFetchAllProducts());
+        return(() => {
+          dispatch(actionSearchProducts(allProducts));
+        })
+      }, [])
 
     return (
         <main>
@@ -26,10 +35,10 @@ const Products = () => {
                 <section className="main-list__sections">
                     <div>
                         <Grid  container spacing={4}  >
-                            {allProducts.length && allProducts?.map((el, index) => {
+                            { (searchProducts && allProducts.length ? searchProducts : allProducts).map((el, index) => {
                                 return (
                                     <Grid className="grid-main-list" item xs="12"  sm="12" md="5" lg="4">
-                                        <ProductCard el={el} index={index}
+                                        <ProductCard el={el} index={index} 
                                         />
                                     </Grid>
                                 )

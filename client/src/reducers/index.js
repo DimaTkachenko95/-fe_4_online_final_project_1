@@ -4,7 +4,8 @@ import appReducer, {actionFetchAllProducts,
                    actionAddToFavorites, 
                    actionDeleteFromFavorites,
                    actionAddToScales,
-                   actionDeleteFromScales} from "./app.reducer";
+                   actionDeleteFromScales,
+                   actionSearchProducts} from "./app.reducer";
 
 export{
     appReducer,
@@ -14,5 +15,6 @@ export{
     actionAddToFavorites, 
     actionDeleteFromFavorites,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    actionSearchProducts
 }
