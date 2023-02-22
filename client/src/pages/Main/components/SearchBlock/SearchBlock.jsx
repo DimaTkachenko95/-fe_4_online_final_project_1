@@ -1,30 +1,8 @@
-import {Box, InputBase, IconButton, Container, createTheme, ThemeProvider} from '@mui/material';
-import {Link, useNavigate} from 'react-router-dom';
-import SearchIcon from "@mui/icons-material/Search";
-import {useState} from "react";
+import {Box, Container} from '@mui/material';
+import {Link} from 'react-router-dom';
 import './SearchBlock.scss'
-import {actionSearchProducts} from "../../../../reducers/app.reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {selectorAllProducts} from "../../../../selectors";
+import InputSearch from "../../../../components/InputSearch";
 const SearchBlock = () => {
-    const [inputValue, setInputValue] = useState('');
-    const allProducts = useSelector(selectorAllProducts);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-
-    const handleSearch = () => {
-        const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
-        dispatch(actionSearchProducts(searchProducts));
-        setInputValue('')
-    }
-
-    const handleEnterPress = (event) => {
-        if (event.key === "Enter") {
-            handleSearch();
-            navigate(`/products`);
-        }
-    }
 
     return(
         <Box className="search">
@@ -46,22 +24,7 @@ const SearchBlock = () => {
                         </Box>
                         <Box className="search__input-wrapper">
                             <Box className="search__input-wrapper--helper">
-                                <InputBase
-                                    className="search__input"
-                                    placeholder="SearchBlock"
-                                    value={inputValue}
-                                    onChange={(e) => {
-                                        setInputValue(e.target.value);
-                                    }}
-                                    onKeyPress={handleEnterPress}
-                                    endAdornment={
-                                        <Link to="/products">
-                                            <IconButton onClick={handleSearch}>
-                                                <SearchIcon/>
-                                            </IconButton>
-                                        </Link>
-                                    }
-                                />
+                                <InputSearch style="search__input"/>
                             </Box>
                         </Box>
                     </Box>

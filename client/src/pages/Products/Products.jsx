@@ -29,26 +29,30 @@ const Products = () => {
     return (
         <main>
             <Container className="main-list" maxWidth="lg">
-                <div>
-                    <h5 className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
-                </div>
-                <section className="main-list__sections">
-                    <div>
-                        <Grid  container spacing={4}  >
-                            { (searchProducts && allProducts.length ? searchProducts : allProducts).map((el, index) => {
-                                return (
-                                    <Grid className="grid-main-list" item xs="12"  sm="12" md="5" lg="4">
-                                        <ProductCard el={el} index={index} 
-                                        />
-                                    </Grid>
-                                )
-                            })}
-                        </Grid>
-                    </div>
-                      <div>
-                        <FilterMainList />
-                    </div> 
-                </section>
+                {
+                    allProducts.length > 0 &&
+                    <>
+                        <div>
+                            <h5 className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
+                        </div>
+                        <section className="main-list__sections">
+                            <div>
+                                <Grid container spacing={4}>
+                                    { allProducts?.map((el, index) => (
+                                            <Grid className="grid-main-list" item xs="12" sm="6" md="4">
+                                                <ProductCard el={el} index={index}
+                                                />
+                                            </Grid>
+                                        ))
+                                    }
+                                </Grid>
+                            </div>
+                            <div>
+                                <FilterMainList />
+                            </div>
+                        </section>
+                    </>
+                }
             </Container>
         </main >
     );
