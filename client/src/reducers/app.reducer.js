@@ -23,6 +23,10 @@ const appSlice = createSlice({
             state.basket = [...state.basket, payload]
             localStorage.setItem("basket", JSON.stringify([...state.basket]))
         },
+        actionDeleteFromBasket: (state, {payload}) => {
+            state.basket = state.basket.filter((item) => item._id !== payload._id);
+            localStorage.setItem("basket", JSON.stringify([...state.basket]))
+        },
         actionAddToFavorites: (state, {payload}) => {
             state.favorites = [...state.favorites, payload]
             localStorage.setItem("favorites", JSON.stringify([...state.favorites]))
@@ -49,6 +53,7 @@ export const {
     actionAllProducts,
     actionPageLoading,
     actionAddToBasket,
+    actionDeleteFromBasket,
     actionAddToFavorites,
     actionDeleteFromFavorites,
     actionAddToScales,
