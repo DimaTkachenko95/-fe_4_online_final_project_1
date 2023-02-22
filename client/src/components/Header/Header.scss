@@ -247,5 +247,11 @@ body {
 }
 
 .active {
-  display: block;
+display: block;
+  @media (max-width: 996px) {
+    background: whitesmoke;
+    z-index: 1;
+  }
 }
+
+

@@ -10,15 +10,13 @@ import Contacts from './pages/Contacts';
 import Favorites from './pages/Favorites';
 import Product from './pages/Product';
 import Registration from './pages/Registration';
-import Hero from './components/Hero';
-
+import NotFound from "./pages/NotFound";
 import './reset.css';
 
 const App = () => {
   return (
     <>
       <Header />
-      <Hero />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/contacts" element={<Contacts />} />
@@ -28,6 +26,7 @@ const App = () => {
         <Route path="/check-out" element={<CheckOut />} />
         <Route path="/product" element={<Product />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
