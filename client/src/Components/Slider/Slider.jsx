@@ -1,6 +1,7 @@
-import Items from "./Items";
+import Items from "./SliderItems";
 import { Container } from "@mui/material";
 import styles from './Slider.module.scss';
+
 
 const Slider = () => {
 
