@@ -13,12 +13,15 @@ import ProductCard from '../ProductCard/ProductCard'
 const Items = () => {
   const allProducts = useSelector(selectorAllProducts)
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     dispatch(actionFetchAllProducts())
   }, [])
-
+  
   console.log(allProducts)
+
+  const allPopularProducts = allProducts.filter(({ previousPrice }) => previousPrice !== null)
+  console.log(allPopularProducts);
 
   const responsive = {
   largeDesktop: {
@@ -46,7 +49,7 @@ const Items = () => {
         infinite={true} 
         responsive={responsive}
         >
-        {allProducts.length && allProducts?.map((el, index) => {
+        {allPopularProducts.length && allPopularProducts?.map((el, index) => {
           return (
             <Grid key={index} className="grid-main-list" item xs="12" sm="6" md="4">
               <ProductCard el={el} index={index}
