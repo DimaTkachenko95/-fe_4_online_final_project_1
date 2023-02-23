@@ -1,19 +1,19 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {sendRequest} from "../helpers";
 import axios from "axios";
+import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../endpoints";
 
 
 const initialState = {
     allProducts: [],
     searchProducts: [],
     isSearch: false,
-    pageProduct: {},
-    pageLoading: true
+    pageLoading: true,
+    serverError: null
 }
 
 
-const appSlice = createSlice({
-    name: "app",
+const productsSlice = createSlice({
+    name: "products",
     initialState,
     reducers: {
         actionAllProducts: (state, {payload}) => {
@@ -36,13 +36,13 @@ export const {
     actionPageLoading,
     actionSearchProducts,
     actionChangeSearchFlag
-} = appSlice.actions
+} = productsSlice.actions
 
 
 export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true))
-    return sendRequest("http://localhost:5000/api/products")
-        .then((data) => {
+    return axios.get(GET_ALL_PRODUCTS)
+        .then(({data}) => {
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
@@ -50,11 +50,11 @@ export const actionFetchAllProducts = () => (dispatch) => {
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     dispatch(actionPageLoading(true));
-    return axios.post("http://localhost:5000/api/products/search", {query: inputValue})
+    return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
             dispatch(actionSearchProducts(data));
             dispatch(actionPageLoading(false));
         })
 }
 
-export default appSlice.reducer
+export default productsSlice.reducer

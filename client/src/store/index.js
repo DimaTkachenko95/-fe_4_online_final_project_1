@@ -1,12 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 /* import logger from "redux-logger"; */
 import thunk from "redux-thunk";
-import { appReducer, favoritesReducer, scalesReducer, basketReducer } from "../reducers";
+import { productsReducer, favoritesReducer, scalesReducer, basketReducer } from "../reducers";
 
 
 const store = configureStore({
     reducer:{
-        app: appReducer,
+        products: productsReducer,
         favorites: favoritesReducer,
         scales: scalesReducer,
         basket: basketReducer
