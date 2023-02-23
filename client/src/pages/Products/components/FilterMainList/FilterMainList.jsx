@@ -1,5 +1,4 @@
-
-import { TextField, FormControl, RadioGroup, FormLabel, FormControlLabel, Radio, FormGroup, Checkbox, Slider } from '@mui/material';
+import { TextField, FormLabel, FormGroup, Slider } from '@mui/material';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import FilterCheckBox from '../../../../components/FilterCheckBox';
@@ -52,7 +51,6 @@ const FilterMainList = () => {
                     value={price[1]}
                 />
             </Box>
-
 
             <Box sx={{}}>
                 <Slider color="success"
