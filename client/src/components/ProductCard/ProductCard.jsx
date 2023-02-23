@@ -19,18 +19,19 @@ const ProductCard = ({ el }) => {
   const scales = useSelector(selectorScales);
   const dispatch = useDispatch();
 
-  const checkProduct = arrayProducts => arrayProducts.some(item => item._id === _id);
+  const isProductInCart = basket.some(item => item._id === _id);
+  const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
   const addToBasket = item => {
     dispatch(actionAddToBasket(item));
   }
 
-  const toggleFavorites = item => {
-    dispatch(toggleFavoriteProduct(item));
+  const toggleFavorites = id => {
+    dispatch(toggleFavoriteProduct(id));
   }
 
-  const toggleScales = item => {
-    dispatch(toggleScalesProduct(item));
+  const toggleScales = id => {
+    dispatch(toggleScalesProduct(id));
   }
 
   return (
@@ -42,11 +43,11 @@ const ProductCard = ({ el }) => {
           </Link>
         </div>
         <span >
-          <Scales onClick={() => toggleScales(el)}
+          <Scales onClick={() => toggleScales(el._id)}
                   className={cx("list__item--scales", { "list__item--scales--curent": checkProduct(scales) })} />
         </span>
         <span>
-          <Favorites onClick={() => toggleFavorites(el)}
+          <Favorites onClick={() => toggleFavorites(el._id)}
                      className={cx("list__item--favorite", { "list__item--favorite--curent": checkProduct(favorites) })} />
         </span>
         <div>
@@ -59,7 +60,7 @@ const ProductCard = ({ el }) => {
           <p className="list__item--price--curent">{currentPrice.toLocaleString()} $</p>
           {previousPrice && <p className="list__item--price--previous">{previousPrice.toLocaleString()} $</p>}
         </div>
-        {checkProduct(basket) ?
+        {isProductInCart ?
           <Link to="/basket">
             <button onClick={() => addToBasket(el)} className="list__item--inbasket "><CheckMark />
               <span className="list__item--buy--text">In basket</span>

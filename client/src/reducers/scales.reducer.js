@@ -13,7 +13,7 @@ const scalesSlice = createSlice({
             localStorage.setItem("scales", JSON.stringify([...state.scales]))
         },
         actionDeleteFromScales: (state, {payload}) => {
-            state.scales = [...state.scales.filter(({_id}) => _id !== payload._id)];
+            state.scales = [...state.scales.filter(itemId => itemId !== payload)];
             localStorage.setItem("scales", JSON.stringify([...state.scales]));
         },
     }
@@ -23,14 +23,14 @@ export const {
     actionDeleteFromScales
 } = scalesSlice.actions;
 
-export const toggleScalesProduct = product => (dispatch, getState) => {
+export const toggleScalesProduct = id => (dispatch, getState) => {
     const state = getState();
     const scalesProducts = state.scales.scales;
-    const isProductInScales = scalesProducts.some(item => item._id === product._id);
+    const isProductInScales = scalesProducts.some(itemId => itemId === id);
 
     isProductInScales
-        ? dispatch(actionDeleteFromScales(product))
-        : dispatch(actionAddToScales(product))
+        ? dispatch(actionDeleteFromScales(id))
+        : dispatch(actionAddToScales(id))
 }
 
 export default scalesSlice.reducer;
