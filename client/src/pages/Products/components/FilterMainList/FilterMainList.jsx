@@ -5,52 +5,60 @@ import FilterCheckBox from '../../../../components/FilterCheckBox';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from "react";
 import { selectoRequestObj } from '../../../../selectors';
-import { actionFetchAllProducts } from '../../../../reducers';
+import { actionFetchSearchFilterProducts, actionFetchAllProducts } from '../../../../reducers';
 
 import './FilterMainList.scss'
 
 const FilterMainList = () => {
-    
-    const [requestObj, setRequestObj] = useState({brand: ''})
+
+    const [requestObj, setRequestObj] = useState({ brand: '', color: null, })
     const [price, setPrice] = useState([300, 1700]);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
     const dispatch = useDispatch()
     const handleChange = (e, data) => {
-        
-        if(data[0]>data[1]-500){
+
+        if (data[0] > data[1] - 500) {
             return null
         }
         setPrice(data)
         setMinPrice(data[0])
-        setMaxPrice(data[1]-500)
+        setMaxPrice(data[1] - 500)
     };
 
- 
 
-    const request = (key, name)=>{
-        if(requestObj[key].includes(name)){
+
+    const request = (key, name) => {
+        if (requestObj[key].includes(name)) {
             console.log(requestObj[key])
-            requestObj[key] =  requestObj[key].split(',').filter(item => item !== name).join(',');
-            console.log( requestObj)
-        }else{
-             requestObj[key] += name + ","
-            console.log( requestObj) 
+            requestObj[key] = requestObj[key].split(',').filter(item => item !== name).join(',');
+            console.log(requestObj)
+        } else {
+            requestObj[key] += name + ","
+            console.log(requestObj)
         }
-        
-         dispatch(actionFetchAllProducts(requestObj)) 
+        /*  Object.keys(requestObj).forEach((key) => requestObj[key] == '' && delete requestObj[key]); */
+        if (requestObj.brand == '') {
+            dispatch(actionFetchAllProducts())
+            console.log(1)
+        } else {
+            dispatch(actionFetchSearchFilterProducts(requestObj))
+            console.log(2)
+        }
+
+        console.log(Object.keys(requestObj).length)
     }
-  
+
 
     return (
         <section className='main-filter-block'>
             <FormGroup>
                 <FormLabel class='header-filter'>Brand</FormLabel>
-                <FilterCheckBox name={'brand'} value={'Asus'} label={"Asus"} onClick={(e) => {request(e.target.name, e.target.value)}}  />
-                <FilterCheckBox name={'brand'} value={'Apple'} label={"Apple"} onClick={(e) => {request(e.target.name, e.target.value)}} />
-                <FilterCheckBox name={'brand'} value={'HP'} label={"HP"} onClick={(e) => {request(e.target.name, e.target.value)}} />
-                <FilterCheckBox name={'brand'} value={'Acer'} label={"Acer"} onClick={(e) => {request(e.target.name, e.target.value)}} />
-                <FilterCheckBox name={'brand'} value={'Lenovo'} label={"Lenovo"} onClick={(e) => {request(e.target.name, e.target.value)}} />
+                <FilterCheckBox name={'brand'} value={'Asus'} label={"Asus"} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Apple'} label={"Apple"} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'HP'} label={"HP"} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Acer'} label={"Acer"} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Lenovo'} label={"Lenovo"} onClick={(e) => { request(e.target.name, e.target.value) }} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter'>Category</FormLabel>
@@ -58,49 +66,49 @@ const FilterMainList = () => {
                 <FilterCheckBox label={"Business Laptops"} />
                 <FilterCheckBox label={"Refurbished Laptops"} />
             </FormGroup>
-           <div>
-            <Box 
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                   
-                }}
-            >
-                <TextField 
-                    color="success"
-                    height="20px"
-                   /*  label={price[0]} */
-                    maxRows="6"
-                    size="small"
-                    value={minPrice}
-                    onChange={e => setMinPrice(e.target.value)}
-                  
+            <div>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
 
-                
-                />
-                <span className='line'> </span>
-                <TextField
-                    color="success"
-                   /*  label={price[1]-400}  */
-                    maxRows="6"
-                    size="small"
-                    value={maxPrice}
-                    onChange={e => setMaxPrice(e.target.value)}
-                  
+                    }}
+                >
+                    <TextField
+                        color="success"
+                        height="20px"
+                        /*  label={price[0]} */
+                        maxRows="6"
+                        size="small"
+                        value={minPrice}
+                        onChange={e => setMinPrice(e.target.value)}
 
-                />
-            </Box>
 
-            <Box sx={{}}>
-                <Slider color="success"
-                    value={price}
-                    onChange={handleChange}
-                    max={3700}
-                    min={100}
-                    disableSwap 
-                />
-            </Box>
+
+                    />
+                    <span className='line'> </span>
+                    <TextField
+                        color="success"
+                        /*  label={price[1]-400}  */
+                        maxRows="6"
+                        size="small"
+                        value={maxPrice}
+                        onChange={e => setMaxPrice(e.target.value)}
+
+
+                    />
+                </Box>
+
+                <Box sx={{}}>
+                    <Slider color="success"
+                        value={price}
+                        onChange={handleChange}
+                        max={3700}
+                        min={100}
+                        disableSwap
+                    />
+                </Box>
             </div>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>

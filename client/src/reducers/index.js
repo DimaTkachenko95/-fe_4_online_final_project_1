@@ -2,6 +2,7 @@ import productsReducer, {
     actionFetchAllProducts,
     actionPageLoading,
     actionSearchProducts,
+    actionFetchSearchFilterProducts,
     actionChangeSearchFlag
 } from "./products.reducer";
 import favoritesReducer, {
@@ -20,6 +21,7 @@ import basketReducer, {
 export{
     productsReducer,
     actionFetchAllProducts,
+    actionFetchSearchFilterProducts,
     actionPageLoading,
     actionSearchProducts,
     actionChangeSearchFlag,

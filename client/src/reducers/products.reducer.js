@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../endpoints";
+import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoints";
 
 
 const initialState = {
@@ -44,13 +44,26 @@ export const {
 
 
 export const actionFetchAllProducts = () => (dispatch) => {
-    dispatch(actionPageLoading(true))
+    dispatch(actionPageLoading(true)) 
     return axios.get(GET_ALL_PRODUCTS)
         .then(({data}) => {
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionServerError(true)))
+         .catch(() => dispatch(actionServerError(true)))
+}
+
+export const actionFetchSearchFilterProducts = (obj) => (dispatch) => {
+    dispatch(actionPageLoading(true))
+    console.log('uuuuuuuu')
+    let filter = new URLSearchParams(obj).toString()
+    return axios.get(`${FILTERED_PRODUCTS}${filter}`)
+        .then(({data}) => {
+            console.log(data.products, 'ppppppppppp')
+            dispatch(actionAllProducts(data.products));
+            dispatch(actionPageLoading(false));
+        })
+       /*  .catch(() => dispatch(actionServerError(true))) */
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {

@@ -2,7 +2,7 @@ const PREFIX = "http://localhost:5000/api";
 
 export const GET_ALL_PRODUCTS = `${PREFIX}/products`;
 export const SEARCH_PRODUCTS = `${PREFIX}/products/search`;
-export const FILTERED_PRODUCTS = `${PREFIX}/products/filter`;
+export const FILTERED_PRODUCTS = `${PREFIX}/products/filter?`;
 export const FILTERS = `${PREFIX}/filters`;
 export const UPDATE_FILTERS = `${PREFIX}/filters/:id`;
 export const GET_FILTERS_BY_TYPE = `${PREFIX}/filters/:type`;
