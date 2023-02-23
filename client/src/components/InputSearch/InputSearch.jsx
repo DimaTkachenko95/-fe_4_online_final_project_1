@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { actionSearchProducts } from "../../reducers";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import {actionFetchSearchProducts} from "../../reducers/app.reducer";
 
 import axios from 'axios';
 
@@ -12,12 +13,9 @@ const InputSearch = ({style = "header__input"}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleSearch = async () => {
-        const result = await axios.post("http://localhost:5000/api/products/search", {query: inputValue});
-        const searchProducts = result.data;
-        dispatch(actionSearchProducts(searchProducts));
-        setInputValue('')
-
+    const handleSearch = () => {
+        dispatch(actionFetchSearchProducts(inputValue));
+        setInputValue('');
     }
 
     const handleEnterPress = (event) => {
