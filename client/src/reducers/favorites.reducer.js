@@ -13,7 +13,7 @@ const favoritesSlice = createSlice({
             localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
         },
         actionDeleteFromFavorites: (state, {payload}) => {
-            state.favorites = [...state.favorites.filter(({_id}) => _id !== payload._id)];
+            state.favorites = [...state.favorites.filter(itemId => itemId !== payload)];
             localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
         }
     }
@@ -23,14 +23,14 @@ export const {
     actionDeleteFromFavorites
 } = favoritesSlice.actions;
 
-export const toggleFavoriteProduct = product => (dispatch, getState) => {
+export const toggleFavoriteProduct = id => (dispatch, getState) => {
     const state = getState();
     const favoriteProducts = state.favorites.favorites;
-    const isFavoriteProduct = favoriteProducts.some(item => item._id === product._id);
+    const isFavoriteProduct = favoriteProducts.some(itemId => itemId === id);
 
     isFavoriteProduct
-        ? dispatch(actionDeleteFromFavorites(product))
-        : dispatch(actionAddToFavorites(product))
+        ? dispatch(actionDeleteFromFavorites(id))
+        : dispatch(actionAddToFavorites(id))
 }
 
 export default favoritesSlice.reducer;

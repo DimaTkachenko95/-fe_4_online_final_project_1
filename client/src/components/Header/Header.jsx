@@ -9,9 +9,9 @@ import './Header.scss';
 import {useEffect, useRef, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {selectorBasket, selectorFavorites, selectorScales} from "../../selectors";
-import {actionFetchAllProducts} from "../../reducers";
 import { useSelector, useDispatch} from 'react-redux'
 import InputSearch from "../InputSearch";
+import { actionChangeSearchFlag } from "../../reducers";
 
 const theme = createTheme({
     components: {
@@ -26,15 +26,14 @@ const theme = createTheme({
 });
 
 const Header = () => {
+    const dispatch = useDispatch();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
-    const dispatch = useDispatch();
 
       useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
-         dispatch(actionFetchAllProducts());  
         return (() => {
             document.removeEventListener("mousedown", handleBurgerMenu);
         })
@@ -45,6 +44,10 @@ const Header = () => {
         if (burgerMenuRef && !burgerMenuRef.current.contains(event.target) && isMenuOpen) {
             setIsMenuOpen(!isMenuOpen);
         }
+    }
+
+    const handleSearchAll = () => {
+        dispatch(actionChangeSearchFlag(false));
     }
 
     return (
@@ -66,6 +69,7 @@ const Header = () => {
                                         to="/products"
                                         className="menu-list__item"
                                         activeClassName="menu-list__item active-item"
+                                        onClick={ handleSearchAll }
                                     >
                                         Products
                                     </NavLink>
