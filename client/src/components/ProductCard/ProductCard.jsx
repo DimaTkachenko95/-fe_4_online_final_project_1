@@ -38,7 +38,7 @@ const ProductCard = ({ el }) => {
       <div className="list__item">
         <div className="list__item--img">
           <Link to={`/products/${itemNo}`}>
-            <img className="list__item--img--laptop" src={imageUrls[0]} alt="photo" />
+            <img className="list__item--img--laptop" src={imageUrls[0]} alt={name} />
           </Link>
         </div>
         <span >

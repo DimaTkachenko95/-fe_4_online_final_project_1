@@ -28,6 +28,9 @@ const productsSlice = createSlice({
         },
         actionChangeSearchFlag: (state, {payload}) => {
             state.isSearch = payload;
+        },
+        actionServerError: (state, {payload}) => {
+            state.serverError = payload;
         }
     }
 })
@@ -35,7 +38,8 @@ export const {
     actionAllProducts,
     actionPageLoading,
     actionSearchProducts,
-    actionChangeSearchFlag
+    actionChangeSearchFlag,
+    actionServerError
 } = productsSlice.actions
 
 
@@ -46,15 +50,18 @@ export const actionFetchAllProducts = () => (dispatch) => {
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
+        .catch(() => dispatch(actionServerError(true)))
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     dispatch(actionPageLoading(true));
+    debugger
     return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
             dispatch(actionSearchProducts(data));
             dispatch(actionPageLoading(false));
         })
+        .catch(() => dispatch(actionServerError(true)))
 }
 
 export default productsSlice.reducer

@@ -2,7 +2,12 @@ import FilterMainList from "./components/FilterMainList";
 import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Link } from "react-router-dom";
-import { selectorAllProducts, selectorIsSearch, selectorSearchProducts } from "../../selectors";
+import {
+    selectorAllProducts,
+    selectorIsSearch,
+    selectorSearchProducts,
+    selectorServerErrorProducts
+} from "../../selectors";
 import { actionChangeSearchFlag, actionFetchAllProducts, actionSearchProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,13 +19,14 @@ const Products = () => {
     const allProducts = useSelector(selectorAllProducts);
     const searchProducts = useSelector(selectorSearchProducts);
     const isSearch = useSelector(selectorIsSearch);
+    const serverError = useSelector(selectorServerErrorProducts);
     const dispatch = useDispatch();
 
     const productsShown = isSearch ? searchProducts : allProducts;
 
     useEffect(() => {
         dispatch(actionFetchAllProducts());
-        return(() => {
+        return (() => {
             dispatch(actionSearchProducts([]));
         })
     }, [])
@@ -33,45 +39,58 @@ const Products = () => {
         <main>
             <Container className="main-list" maxWidth="lg">
                 {
-                    (productsShown.length > 0) ?
-                        (<>
+                    serverError &&
+                    (<section className="main-list__sections-nothing-found">
+                        <p className="main-list__description">The system is currently experiencing difficulties;
+                            please try again. </p>
+                        <p className="main-list__description">If problem persists, please contact customer service.</p>
+                    </section>)
+                }
+
+                {
+                    (productsShown.length > 0 && !serverError) &&
+                    (<>
+                        <div>
+                            <h5 className="count-found-product">Products <span
+                                className="count-found-product__span">found</span></h5>
+                        </div>
+                        <section className="main-list__sections">
                             <div>
-                                <h5 className="count-found-product">Products <span className="count-found-product__span">found</span></h5>
+                                <Grid container spacing={ 4 }>
+                                    { productsShown.map((el, index) => (
+                                        <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={ el._id }>
+                                            <ProductCard el={ el } index={ index }/>
+                                        </Grid>
+                                    ))
+                                    }
+                                </Grid>
                             </div>
-                            <section className="main-list__sections">
-                                <div>
-                                    <Grid container spacing={4}>
-                                        { productsShown.map((el, index) => (
-                                                <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={el._id}>
-                                                    <ProductCard el={el} index={index} />
-                                                </Grid>
-                                            ))
-                                        }
-                                    </Grid>
-                                </div>
-                                <div>
-                                    <FilterMainList />
-                                </div>
-                            </section>
-                        </>)
-                        :
-                        (<section className="main-list__sections-nothing-found">
-                            <p className="main-list__nothing-found">Sorry, nothing found</p>
-                            <div className="main-list__nothing-found">
-                                <Box className="search__catalog-button-wrapper">
-                                    <Link
-                                        to="/products"
-                                        className="search__catalog-button"
-                                        onClick={ handleSearchAll }
-                                    >
-                                        Show all products
-                                    </Link>
-                                </Box>
+                            <div>
+                                <FilterMainList/>
                             </div>
-                        </section>)
+                        </section>
+                    </>)
+                }
+
+                {
+                    (productsShown.length < 0 && !serverError) &&
+                    (<section className="main-list__sections-nothing-found">
+                        <p className="main-list__nothing-found">Sorry, nothing found</p>
+                        <div className="main-list__descriptions">
+                            <Box className="search__catalog-button-wrapper">
+                                <Link
+                                    to="/products"
+                                    className="search__catalog-button"
+                                    onClick={ handleSearchAll }
+                                >
+                                    Show all products
+                                </Link>
+                            </Box>
+                        </div>
+                    </section>)
                 }
             </Container>
-        </main >
+        </main>
     );
 }
 export default Products;
