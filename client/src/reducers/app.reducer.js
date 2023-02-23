@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {sendRequest} from "../helpers";
+import axios from "axios";
 
 
 const initialState = {
@@ -42,8 +43,17 @@ export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true))
     return sendRequest("http://localhost:5000/api/products")
         .then((data) => {
-            dispatch(actionAllProducts(data))
-            dispatch(actionPageLoading(false))
+            dispatch(actionAllProducts(data));
+            dispatch(actionPageLoading(false));
+        })
+}
+
+export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
+    dispatch(actionPageLoading(true));
+    return axios.post("http://localhost:5000/api/products/search", {query: inputValue})
+        .then(({data}) => {
+            dispatch(actionSearchProducts(data));
+            dispatch(actionPageLoading(false));
         })
 }
 

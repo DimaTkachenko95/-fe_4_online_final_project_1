@@ -1,22 +1,21 @@
 import { IconButton, InputBase } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import { actionFetchAllProducts, actionSearchProducts } from "../../reducers";
+import { actionSearchProducts } from "../../reducers";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectorAllProducts } from "../../selectors";
+import { useDispatch } from "react-redux";
+import {actionFetchSearchProducts} from "../../reducers/app.reducer";
+
+import axios from 'axios';
 
 const InputSearch = ({style = "header__input"}) => {
     const [inputValue, setInputValue] = useState('');
-    const allProducts = useSelector(selectorAllProducts);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSearch = () => {
-        dispatch(actionFetchAllProducts());
-        const searchProducts = allProducts.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase()));
-        dispatch(actionSearchProducts(searchProducts));
-        setInputValue('')
+        dispatch(actionFetchSearchProducts(inputValue));
+        setInputValue('');
     }
 
     const handleEnterPress = (event) => {
