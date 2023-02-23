@@ -12,6 +12,7 @@ import { actionChangeSearchFlag, actionFetchAllProducts, actionSearchProducts } 
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
+import BreadCrumbs from "../../components/BreadCrumbs";
 
 import "./Products.scss";
 
@@ -50,6 +51,7 @@ const Products = () => {
                 {
                     (productsShown.length > 0 && !serverError) &&
                     (<>
+                        <BreadCrumbs linksArray={ [{ link: "/products", text: "Products" }] }/>
                         <div>
                             <h5 className="count-found-product">Products <span
                                 className="count-found-product__span">found</span></h5>
