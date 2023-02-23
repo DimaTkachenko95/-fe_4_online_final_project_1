@@ -8,14 +8,17 @@ const basketSlice = createSlice({
     name: "basket",
     initialState,
     reducers: {
+
         actionAddToBasket: (state, {payload}) => {
-            state.basket = [...state.basket, payload]
+            const id = Object.values(payload._id).join('');
+            const item = {id: id, quantity: 1}
+            state.basket = [...state.basket, item]
             localStorage.setItem("basket", JSON.stringify([...state.basket]))
         },
+
         actionDeleteFromBasket: (state, {payload}) => {
-            // надо протестить на пейдже с корзиной
-            state.scales = [...state.scales.filter(({_id}) => _id !== payload._id)];
-            localStorage.setItem("basket", JSON.stringify([...state.scales]));
+            state.basket = [...state.basket.filter(({_id}) => _id !== payload._id)];
+            localStorage.setItem("basket", JSON.stringify([...state.basket]));
         },
     }
 })

@@ -59,35 +59,29 @@ const mixin = (props) => {
     color: #4d9546;
     //background: linear-gradient(to bottom, #FFFFFF, #D3D3D3);
   `
-
-  //background: linear-gradient(to bottom, #f5f5f5, #d3d3d3);
-
   const widthMixin = css`
   && {
     width: ${props => props.width || "240px"};
   }
 `;
-
-        // background-color: #d6e3d1;
-        // color: #4d9546;
-        // box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
   const ButtonMain = styled(ButtonBase).attrs((props) => ({
     href: props.href,
     component: props.to && Link,
     to: props.to,
   })) `
   && {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    cursor: pointer;
-    min-width: 50px;
-    height: 50px;
-    border-radius: 30px;
-    border: none;}
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        cursor: pointer;
+        min-width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        border: none;
+        transition: background 0.4s ease;
+     }
     ${(props) => mixin(props)}
     ${widthMixin}
   `;
@@ -103,11 +97,11 @@ const Btn = ({text, type, variant, width, href, to, className, ...restProps}) =>
 
 return (
     <ButtonMain 
-        type={type}                 // тип кнопки (button, submit)
-        variant={variant}           // зовнішній вигляд (gradient-green, white-shadow)
-        width={width}               // ширину задавати тільки в тому випадку, якщо кнопка повинна бути менша 240px
-        href={href}                 // посилання для кнопки типу a href="" 
-        to={to}                     // посилання для кнопки типу Link to=""
+        type={type}                 // тип кнопки (button, submit) =>  type="button"
+        variant={variant}           // зовнішній вигляд (gradient-green, white-shadow...) => variant="gradient-green"
+        width={width}               // ширину задавати тільки в тому випадку, якщо кнопка повинна бути менша 240px 
+        href={href}                 // посилання для кнопки типу a href=""  => href="products"
+        to={to}                     // посилання для кнопки типу Link to="" => to="products"
         className={buttonClassName} // ігнорувати. також можна передавати до кнопки новий додатковий className
         {...restProps} 
         >

@@ -21,9 +21,12 @@ const Basket = () => {
 
     const [result, setResult] = useState("Number")
 
+
+
+    
     return (
-        <ContainerBasket maxWidth="xl">
-            <h1 className="basket__title">Shopping cart</h1>
+        <ContainerBasket maxWidth="lg">
+            <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             <div className="basket__box">
                 <div className="basket__item">
                 <table className="basket__table">
@@ -46,7 +49,7 @@ const Basket = () => {
             
             <div className="basket__footer">
                 <div className="basket__footer_total">Total: <span className="total_price">{result} USD</span></div>
-                <div className="basket__footer_checkout"><Link to="/checkOut" className="checkout_btn">checkout</Link></div>
+                <div className="basket__footer_checkout"><Btn text="checkout" to="/checkOut" variant="gradient-green"/></div>
             </div>
         </ContainerBasket>
     )
