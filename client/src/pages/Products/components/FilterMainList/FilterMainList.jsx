@@ -3,13 +3,20 @@ import { TextField, FormControl, RadioGroup, FormLabel, FormControlLabel, Radio,
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import FilterCheckBox from '../../../../components/FilterCheckBox';
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from "react";
+import { selectoRequestObj } from '../../../../selectors';
+import { actionFetchAllProducts } from '../../../../reducers';
 
 import './FilterMainList.scss'
 
 const FilterMainList = () => {
+    
+    const [requestObj, setRequestObj] = useState({brand: ''})
     const [price, setPrice] = useState([300, 1700]);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
+    const dispatch = useDispatch()
     const handleChange = (e, data) => {
         
         if(data[0]>data[1]-500){
@@ -19,17 +26,32 @@ const FilterMainList = () => {
         setMinPrice(data[0])
         setMaxPrice(data[1]-500)
     };
+
+ 
+
+    const request = (key, name)=>{
+        if(requestObj[key].includes(name)){
+            console.log(requestObj[key])
+            requestObj[key] =  requestObj[key].split(',').filter(item => item !== name).join(',');
+            console.log( requestObj)
+        }else{
+             requestObj[key] += name + ","
+            console.log( requestObj) 
+        }
+        
+         dispatch(actionFetchAllProducts(requestObj)) 
+    }
   
 
     return (
         <section className='main-filter-block'>
             <FormGroup>
-                <FormLabel class='header-filter'>Brend</FormLabel>
-                <FilterCheckBox label={"Asus"} />
-                <FilterCheckBox label={"Apple"} />
-                <FilterCheckBox label={"HP"} />
-                <FilterCheckBox label={"Acer"} />
-                <FilterCheckBox label={"Lenovo"} />
+                <FormLabel class='header-filter'>Brand</FormLabel>
+                <FilterCheckBox name={'brand'} value={'Asus'} label={"Asus"} onClick={(e) => {request(e.target.name, e.target.value)}}  />
+                <FilterCheckBox name={'brand'} value={'Apple'} label={"Apple"} onClick={(e) => {request(e.target.name, e.target.value)}} />
+                <FilterCheckBox name={'brand'} value={'HP'} label={"HP"} onClick={(e) => {request(e.target.name, e.target.value)}} />
+                <FilterCheckBox name={'brand'} value={'Acer'} label={"Acer"} onClick={(e) => {request(e.target.name, e.target.value)}} />
+                <FilterCheckBox name={'brand'} value={'Lenovo'} label={"Lenovo"} onClick={(e) => {request(e.target.name, e.target.value)}} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter'>Category</FormLabel>

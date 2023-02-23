@@ -32,13 +32,13 @@ const Header = () => {
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+      useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
-        dispatch(actionFetchAllProducts()); 
+         dispatch(actionFetchAllProducts());  
         return (() => {
             document.removeEventListener("mousedown", handleBurgerMenu);
         })
-    },[])
+    },[])   
     const burgerMenuRef = useRef();
 
     const handleBurgerMenu = (event) => {

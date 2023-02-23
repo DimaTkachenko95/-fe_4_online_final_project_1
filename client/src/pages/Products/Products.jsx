@@ -13,18 +13,19 @@ const Products = () => {
     const allProducts = useSelector(selectorAllProducts)
     const searchProducts = useSelector(selectorSearchProducts);
     const dispatch = useDispatch()
-    console.log(searchProducts, "aaaa")
-
-    /* useEffect(() => {
-        dispatch(actionFetchAllProducts())
-    }, [])  */
 
     useEffect(() => {
+        dispatch(actionFetchAllProducts())
+    }, [])   
+   
+
+ /*    useEffect(() => {
         dispatch(actionFetchAllProducts());
         return(() => {
-          dispatch(actionSearchProducts(allProducts));
+           dispatch(actionSearchProducts(allProducts)); 
         })
-      }, [])
+      }, []) */
+  
 
     return (
         <main>
@@ -37,15 +38,15 @@ const Products = () => {
                         </div>
                         <section className="main-list__sections">
                             <div>
-                                <Grid container spacing={4}>
+                                <div className="grid-main-list">
                                     { allProducts?.map((el, index) => (
-                                            <Grid className="grid-main-list" item xs="12" sm="6" md="4">
+                                          
                                                 <ProductCard el={el} index={index}
                                                 />
-                                            </Grid>
+                                            
                                         ))
                                     }
-                                </Grid>
+                                </div>
                             </div>
                             <div>
                                 <FilterMainList />

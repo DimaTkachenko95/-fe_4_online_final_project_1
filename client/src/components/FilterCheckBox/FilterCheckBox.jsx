@@ -1,8 +1,8 @@
 import { FormControlLabel, Checkbox } from '@mui/material';
 
-const FilterCheckBox = ({ label }) => {
+const FilterCheckBox = ({ label, name, value, onClick}) => {
     return (
-        <FormControlLabel control={<Checkbox color="success" />} label={label} />
+        <FormControlLabel control={<Checkbox color="success" onClick={onClick} />} label={label} name={name} value={value} />
     )
 }
 
