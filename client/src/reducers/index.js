@@ -1,9 +1,9 @@
-import appReducer, {
+import productsReducer, {
     actionFetchAllProducts,
     actionPageLoading,
     actionSearchProducts,
     actionChangeSearchFlag
-} from "./app.reducer";
+} from "./products.reducer";
 import favoritesReducer, {
     actionAddToFavorites,
     actionDeleteFromFavorites
@@ -18,7 +18,7 @@ import basketReducer, {
 } from "./basket.reducer";
 
 export{
-    appReducer,
+    productsReducer,
     actionFetchAllProducts,
     actionPageLoading,
     actionSearchProducts,
