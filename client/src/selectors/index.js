@@ -5,7 +5,7 @@ export const selectorIsSearch = state => state.products.isSearch;
 export const selectorServerErrorProducts = state => state.products.serverError;
 
 //ONE PRODUCT
-export const selectorProduct = state => state.app.pageProduct;
+export const selectorProduct = state => state.app.productData;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;

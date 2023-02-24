@@ -2,7 +2,8 @@ import productsReducer, {
     actionFetchAllProducts,
     actionPageLoading,
     actionSearchProducts,
-    actionChangeSearchFlag
+    actionChangeSearchFlag,
+    actionFetchOneProduct
 } from "./products.reducer";
 import favoritesReducer, {
     actionAddToFavorites,
@@ -31,5 +32,6 @@ export{
     actionDeleteFromBasket,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    actionFetchOneProduct
 }
