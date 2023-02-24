@@ -47,6 +47,7 @@ export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true)) 
     return axios.get(GET_ALL_PRODUCTS)
         .then(({data}) => {
+            console.log(data)
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
@@ -58,6 +59,7 @@ export const actionFetchSearchFilterProducts = (arrRequest) => (dispatch) => {
     let filter = new URLSearchParams(arrRequest).toString()
     return axios.get(`${FILTERED_PRODUCTS}${filter}`)
         .then(({data}) => {
+          
             dispatch(actionAllProducts(data.products));
             dispatch(actionPageLoading(false));
         })
@@ -66,9 +68,10 @@ export const actionFetchSearchFilterProducts = (arrRequest) => (dispatch) => {
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     dispatch(actionPageLoading(true));
-    debugger
+     debugger 
     return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
+       
             dispatch(actionSearchProducts(data));
             dispatch(actionPageLoading(false));
         })

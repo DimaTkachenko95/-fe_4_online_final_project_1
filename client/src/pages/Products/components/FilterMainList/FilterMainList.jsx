@@ -11,7 +11,7 @@ import './FilterMainList.scss'
 
 const FilterMainList = () => {
 
-    const [requestObj, setRequestObj] = useState({ brand: '', color: '', category: '' })
+    const [requestObj, setRequestObj] = useState({ brand: '', color: '', category: '', processorBrand: '', screenSize: '' })
     const [price, setPrice] = useState([300, 1700]);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
@@ -70,7 +70,6 @@ const FilterMainList = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-
                     }}
                 >
                     <TextField
@@ -81,9 +80,6 @@ const FilterMainList = () => {
                         size="small"
                         value={minPrice}
                         onChange={e => setMinPrice(e.target.value)}
-
-
-
                     />
                     <span className='line'> </span>
                     <TextField
@@ -93,11 +89,8 @@ const FilterMainList = () => {
                         size="small"
                         value={maxPrice}
                         onChange={e => setMaxPrice(e.target.value)}
-
-
                     />
                 </Box>
-
                 <Box sx={{}}>
                     <Slider color="success"
                         value={price}
@@ -110,16 +103,16 @@ const FilterMainList = () => {
             </div>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
-                <FilterCheckBox label={"Intel"} />
-                <FilterCheckBox label={"AMD"} />
+                <FilterCheckBox name={'processorBrand'} value={'Intel'} label={'Intel'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'processorBrand'} value={'AMD'} label={'AMD'} onClick={(e) => { request(e.target.name, e.target.value) }} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
-                <FilterCheckBox label={"11.6\""} />
-                <FilterCheckBox label={"13.3\""} />
-                <FilterCheckBox label={"14.0\""} />
-                <FilterCheckBox label={"15.6\""} />
-                <FilterCheckBox label={"16\""} />
+                <FilterCheckBox name={'screenSize'} value={'11.6'} label={'11.6\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'screenSize'} value={'13.3'} label={'13.3\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'screenSize'} value={'14'} label={'14\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'screenSize'} value={'15.6'} label={'15.6\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'screenSize'} value={'16'} label={'16\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
             </FormGroup>
             <div>SKDJCLKSJLDKC</div>
         </section>
