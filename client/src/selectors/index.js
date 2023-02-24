@@ -3,6 +3,9 @@ export const selectorAllProducts = state => state.app.allProducts;
 export const selectorSearchProducts = state => state.app.searchProducts;
 export const selectorIsSearch = state => state.app.isSearch;
 
+//ONE PRODUCT
+export const selectorProduct = state => state.app.pageProduct;
+
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
 
