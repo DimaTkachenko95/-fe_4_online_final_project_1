@@ -35,7 +35,7 @@ const productsSlice = createSlice({
         },
         actionProductData: (state, {payload}) => {
             state.productData = {...payload};
-        }
+        },
     }
 })
 export const {
@@ -71,11 +71,13 @@ export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
 export const actionFetchOneProduct = (itemNo) => (dispatch) => {
     dispatch(actionPageLoading(true));
     return axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', itemNo))
-        .then((data) => {
+        .then(({data}) => {
             dispatch(actionProductData(data));
             dispatch(actionPageLoading(false));
         })
         .catch(() => dispatch(actionServerError(true)))
 }
+
+
 
 export default productsSlice.reducer

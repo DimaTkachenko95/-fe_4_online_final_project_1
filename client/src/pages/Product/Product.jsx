@@ -11,7 +11,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actionFetchOneProduct(itemNo));
+
     });
 
     return(
