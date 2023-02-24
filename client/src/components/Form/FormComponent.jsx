@@ -7,8 +7,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import createCustomerServer from '../../store/actionCreators/registration.actionCreators';
 
 const FormComponent = () => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -23,7 +27,7 @@ const FormComponent = () => {
     login: '',
     email: '',
     password: '',
-    telephone: '',
+    telephone: '+380',
     gender: '',
     avatarUrl: '',
   };
@@ -33,7 +37,7 @@ const FormComponent = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        dispatch(createCustomerServer(values));
         resetForm();
       }}
     >
