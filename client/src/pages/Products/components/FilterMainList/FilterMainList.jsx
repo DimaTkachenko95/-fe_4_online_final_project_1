@@ -11,7 +11,7 @@ import './FilterMainList.scss'
 
 const FilterMainList = () => {
 
-    const [requestObj, setRequestObj] = useState({ brand: '', color: null, })
+    const [requestObj, setRequestObj] = useState({ brand: '', color: '', category: '' })
     const [price, setPrice] = useState([300, 1700]);
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
@@ -29,24 +29,22 @@ const FilterMainList = () => {
 
 
     const request = (key, name) => {
-        if (requestObj[key].includes(name)) {
-            console.log(requestObj[key])
-            requestObj[key] = requestObj[key].split(',').filter(item => item !== name).join(',');
-            console.log(requestObj)
-        } else {
+        requestObj[key].includes(name) ?
+            requestObj[key] = requestObj[key].split(',').filter(item => item !== name).join(',')
+            :
             requestObj[key] += name + ","
-            console.log(requestObj)
-        }
-        /*  Object.keys(requestObj).forEach((key) => requestObj[key] == '' && delete requestObj[key]); */
-        if (requestObj.brand == '') {
-            dispatch(actionFetchAllProducts())
-            console.log(1)
-        } else {
-            dispatch(actionFetchSearchFilterProducts(requestObj))
-            console.log(2)
+
+        let arrRequest = []
+        for (let key in requestObj) {
+            if (requestObj[key] !== '') {
+                arrRequest.push([key, requestObj[key]])
+            }
         }
 
-        console.log(Object.keys(requestObj).length)
+        arrRequest.length == 0 ? 
+            dispatch(actionFetchAllProducts())
+            :
+            dispatch(actionFetchSearchFilterProducts(arrRequest))
     }
 
 
@@ -54,17 +52,17 @@ const FilterMainList = () => {
         <section className='main-filter-block'>
             <FormGroup>
                 <FormLabel class='header-filter'>Brand</FormLabel>
-                <FilterCheckBox name={'brand'} value={'Asus'} label={"Asus"} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                <FilterCheckBox name={'brand'} value={'Apple'} label={"Apple"} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                <FilterCheckBox name={'brand'} value={'HP'} label={"HP"} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                <FilterCheckBox name={'brand'} value={'Acer'} label={"Acer"} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                <FilterCheckBox name={'brand'} value={'Lenovo'} label={"Lenovo"} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Asus'} label={'Asus'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Apple'} label={'Apple'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'HP'} label={'HP'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Acer'} label={'Acer'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'brand'} value={'Lenovo'} label={'Lenovo'} onClick={(e) => { request(e.target.name, e.target.value) }} />
             </FormGroup>
             <FormGroup>
                 <FormLabel class='header-filter'>Category</FormLabel>
-                <FilterCheckBox className='option_filter' label={"Gaming Laptops"} />
-                <FilterCheckBox label={"Business Laptops"} />
-                <FilterCheckBox label={"Refurbished Laptops"} />
+                <FilterCheckBox className='option_filter' name={'category'} value={'Gaming Laptops'} label={'Gaming Laptops'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'category'} value={'Business Laptops'} label={'Business Laptops'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                <FilterCheckBox name={'category'} value={'Refurbished Laptops'} label={'Refurbished Laptops'} onClick={(e) => { request(e.target.name, e.target.value) }} />
             </FormGroup>
             <div>
                 <Box

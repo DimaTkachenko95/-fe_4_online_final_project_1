@@ -53,17 +53,15 @@ export const actionFetchAllProducts = () => (dispatch) => {
          .catch(() => dispatch(actionServerError(true)))
 }
 
-export const actionFetchSearchFilterProducts = (obj) => (dispatch) => {
+export const actionFetchSearchFilterProducts = (arrRequest) => (dispatch) => {
     dispatch(actionPageLoading(true))
-    console.log('uuuuuuuu')
-    let filter = new URLSearchParams(obj).toString()
+    let filter = new URLSearchParams(arrRequest).toString()
     return axios.get(`${FILTERED_PRODUCTS}${filter}`)
         .then(({data}) => {
-            console.log(data.products, 'ppppppppppp')
             dispatch(actionAllProducts(data.products));
             dispatch(actionPageLoading(false));
         })
-       /*  .catch(() => dispatch(actionServerError(true))) */
+        .catch(() => dispatch(actionServerError(true))) 
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
