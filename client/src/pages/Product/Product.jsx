@@ -4,7 +4,8 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 
 import ProductBlock from "../../components/ProductBlock";
-import {actionFetchOneProduct} from "../../reducers/products.reducer";
+import {actionFetchOneProduct} from "../../reducers";
+
 const Product = () => {
     let {itemNo} = useParams();
     const dispatch = useDispatch();
