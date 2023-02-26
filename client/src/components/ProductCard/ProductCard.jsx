@@ -38,7 +38,7 @@ const ProductCard = ({ el }) => {
     <div className="list" id={_id} key={_id}>
       <div className="list__item">
         <div className="list__item--img">
-          <Link to={`/products/${itemNo}`} onClick={() => dispatch(actionFetchOneProduct(itemNo))}>
+          <Link to={`/products/${itemNo}`}>
             <img className="list__item--img--laptop" src={imageUrls[0]} alt={name} />
           </Link>
         </div>
@@ -51,7 +51,7 @@ const ProductCard = ({ el }) => {
                      className={cx("list__item--favorite", { "list__item--favorite--curent": checkProduct(favorites) })} />
         </span>
         <div>
-          <Link to={`/products/${itemNo}`} onClick={() => dispatch(actionFetchOneProduct(itemNo))}>
+          <Link to={`/products/${itemNo}`}>
             <p className="list__item--name">{name}</p>
           </Link>
           <p className="list__item--producer">{brand}</p>

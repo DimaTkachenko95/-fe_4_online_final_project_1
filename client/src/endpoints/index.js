@@ -21,4 +21,9 @@ export const CHANGE_PRODUCT_QUANTITY_SHOPPING_CART = `${PREFIX}/cart/product/:pr
 
 
 
+export const PRODUCT_COMMENTS = `${PREFIX}/comments/product/:itemNo`;
+export const PRODUCT_ADD_COMMENTS = `${PREFIX}/comments`;
+
+
+
 

@@ -1,6 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {GET_ALL_PRODUCTS, GET_DETAILS_PRODUCT, SEARCH_PRODUCTS} from "../endpoints";
+import {
+    GET_ALL_PRODUCTS,
+    GET_DETAILS_PRODUCT,
+    PRODUCT_ADD_COMMENTS,
+    PRODUCT_COMMENTS,
+    SEARCH_PRODUCTS
+} from "../endpoints";
 
 
 const initialState = {
@@ -10,6 +16,7 @@ const initialState = {
     pageLoading: true,
     serverError: null,
     productData: {},
+    productComments: [],
 }
 
 
@@ -36,6 +43,12 @@ const productsSlice = createSlice({
         actionProductData: (state, {payload}) => {
             state.productData = {...payload};
         },
+        actionProductComments: (state, {payload}) => {
+            state.productComments = [...payload];
+        },
+        actionAddComment: (state, {payload}) => {
+            state.productComments = [...state.productComments, payload];
+        }
     }
 })
 export const {
@@ -44,7 +57,9 @@ export const {
     actionSearchProducts,
     actionChangeSearchFlag,
     actionServerError,
-    actionProductData
+    actionProductData,
+    actionProductComments,
+    actionAddComment
 } = productsSlice.actions
 
 
@@ -74,6 +89,26 @@ export const actionFetchOneProduct = (itemNo) => (dispatch) => {
         .then(({data}) => {
             dispatch(actionProductData(data));
             dispatch(actionPageLoading(false));
+        })
+        .catch(() => dispatch(actionServerError(true)))
+}
+
+export const actionFetchAllComments = (itemNo) => (dispatch) => {
+    return axios
+        .get(PRODUCT_COMMENTS.replace(':itemNo', itemNo))
+        .then(({data}) => {
+            console.log(data)
+            dispatch(actionProductComments(data));
+        })
+        .catch(() => dispatch(actionServerError(true)))
+}
+
+
+export const actionFetchAddComment = (newComment) => (dispatch) => {
+    return axios
+        .post(PRODUCT_ADD_COMMENTS, newComment)
+        .then(newComment => {
+            dispatch(actionAddComment(newComment));
         })
         .catch(() => dispatch(actionServerError(true)))
 }

@@ -7,6 +7,9 @@ export const selectorServerErrorProducts = state => state.products.serverError;
 //ONE PRODUCT
 export const selectorProduct = state => state.products.productData;
 
+//ALL COMMENTS
+export const selectorProductComments = state => state.products.productComments;
+
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
 

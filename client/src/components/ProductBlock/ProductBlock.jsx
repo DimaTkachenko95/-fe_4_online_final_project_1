@@ -1,4 +1,4 @@
-import {Box, Container, createTheme, ThemeProvider} from '@mui/material';
+import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../ProductCard/icons/favorite.svg";
 import './ProductBlock.scss';
@@ -7,15 +7,37 @@ import cx from "classnames";
 import {toggleFavoriteProduct} from "../../reducers/favorites.reducer";
 import {toggleScalesProduct} from "../../reducers/scales.reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorFavorites, selectorProduct, selectorScales, selectorServerErrorProducts} from "../../selectors";
+import {
+    selectorBasket,
+    selectorFavorites,
+    selectorProduct,
+    selectorScales,
+} from "../../selectors";
+import {actionAddToBasket} from "../../reducers";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import {Link} from "react-router-dom";
+import {ReactComponent as CheckMark} from "../ProductCard/icons/check_mark.svg";
+import Comments from "./components/Comments";
+import {useEffect, useState} from "react";
 
 const ProductBlock = () => {
+    const [showAll, setShowAll] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth <= 970);
+    }, []);
 
     const product = useSelector(selectorProduct);
-
+    const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
+
     const dispatch = useDispatch();
+
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+    };
 
     const toggleFavorites = id => {
         dispatch(toggleFavoriteProduct(id));
@@ -25,8 +47,13 @@ const ProductBlock = () => {
         dispatch(toggleScalesProduct(id));
     }
 
+    const addToBasket = item => {
+        dispatch(actionAddToBasket(item));
+    }
+
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
-    const serverError = useSelector(selectorServerErrorProducts);
+    const isProductInCart = basket.some(item => item._id === product._id);
+
 
     return (
         <>
@@ -37,7 +64,7 @@ const ProductBlock = () => {
                         link: `/products/${product.itemNo}`,
                         text: `${product.name}`
                     }]}/>
-                    <Box className="product__wrapper">
+                    <Box className={showAll && isMobile ? "product__wrapper--mobile" : "product__wrapper"}>
                         <Box className="product__title-wrapper">
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
@@ -62,9 +89,17 @@ const ProductBlock = () => {
                             </Box>
 
                             <Box className="product__desc-text-wrapper">
-                                <p className="product__desc-text">{product.description}</p>
+                                <p className="product__desc-text">
+                                    { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
+                                </p>
+                                {isMobile &&  (
+                                    <button onClick={toggleShowAll} className="product__desc-button">
+                                        {showAll ? 'Show Less' : 'Show More'}
+                                    </button>
+                                )}
                             </Box>
                         </Box>
+
 
                         <Box className="product__info-wrapper">
                             <Box className="product__info-title-wrapper">
@@ -94,7 +129,7 @@ const ProductBlock = () => {
 
                                 <Box className="product__info-content">
                                     <span className="product__property">OS</span>
-                                    <span className="product__value">{product.operatingSystem}</span>
+                                    <span className="product__value">{product.operatingSystem || "Without OS"}</span>
                                 </Box>
 
                                 <Box className="product__info-content">
@@ -113,7 +148,33 @@ const ProductBlock = () => {
                                 </Box>
                             </Box>
                         </Box>
+
+                        <Box className="product__button-wrapper">
+                            <Box className="product__price-wrapper">
+                                <span className="product__price-text">PRICE</span>
+                                <Box className="product__item--price">
+                                    <p className="product__item--price--curent">{product.currentPrice.toLocaleString()} $</p>
+                                    {product.previousPrice &&
+                                        <p className="product__item--price--previous">{product.previousPrice.toLocaleString()} $</p>}
+                                </Box>
+                            </Box>
+
+                            {isProductInCart ?
+                                <Link to="/basket">
+                                    <button className="list__item--inbasket "><CheckMark/>
+                                        <span className="list__item--buy--text">In basket</span>
+                                    </button>
+                                </Link>
+                                :
+                                <button onClick={() => addToBasket(product)} className="list__item--buy">
+                                    <ShoppingCartOutlinedIcon/>
+                                    <span className="list__item--buy--text">Buy</span>
+                                </button>
+                            }
+                        </Box>
                     </Box>
+
+                    <Comments/>
                 </Container>
             </Box>}
         </>
