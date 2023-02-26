@@ -7,16 +7,19 @@
   font-size: 14px;
   color: #75758A;
   cursor: pointer;
-    &:after {
+
+    &::after {
       content: "/";
       display: inline-block;
       position: relative;
       top: 1px;
       margin: 0 3px;
     }
-    &:last-child:after {
+
+    &:last-child::after {
       content: "";
     }
+
     &:hover {
       color: #60B021;
     }
