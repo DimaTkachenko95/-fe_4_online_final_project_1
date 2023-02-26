@@ -8,6 +8,7 @@
     "property-no-unknown": null,
     "no-empty-source": null,
     "no-duplicate-selectors": null,
-    "keyframes-name-pattern": null
+    "keyframes-name-pattern": null,
+    "property-no-vendor-prefix": null
   }
 }
