@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../endpoints";
+import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS} from "../endpoints";
 
 
 const initialState = {

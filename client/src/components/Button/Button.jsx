@@ -2,6 +2,8 @@ import {ButtonBase} from "@mui/material";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import classnames from 'classnames';
+import PropTypes from 'prop-types'
+import { string } from "yup/lib/locale";
 
 const mixin = (props) => {
     switch (props.variant) {
@@ -110,5 +112,16 @@ return (
 )
 
 }
+
+Btn.propTypes = {
+  text: PropTypes.string,
+  type: PropTypes.string,
+  variant: PropTypes.string,
+  width: PropTypes.number,
+  href: PropTypes.string,
+  to: PropTypes.string,
+  className: PropTypes.string
+}
+
 
 export default Btn;
