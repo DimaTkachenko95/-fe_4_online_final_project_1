@@ -12,6 +12,7 @@ import Product from './pages/Product';
 import Registration from './pages/Registration';
 import NotFound from "./pages/NotFound";
 import './reset.css';
+import LogIn from './pages/LogIn/LogIn';
 
 const App = () => {
     return (
@@ -27,6 +28,7 @@ const App = () => {
                     <Route path="/check-out" element={ <CheckOut/> }/>
                     <Route path="/product" element={ <Product/> }/>
                     <Route path="/registration" element={ <Registration/> }/>
+                    <Route path="/log_in" element={<LogIn/>}/>
                     <Route path="/*" element={ <NotFound/> }/>
                 </Routes>
             </div>

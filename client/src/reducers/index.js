@@ -1,3 +1,4 @@
+
 import productsReducer, {
     actionFetchAllProducts,
     actionPageLoading,
@@ -16,6 +17,10 @@ import basketReducer, {
     actionAddToBasket,
     actionDeleteFromBasket
 } from "./basket.reducer";
+import logInReducer, {
+    actionFetchLogin,
+    actionToken
+} from "./logIn.reducer";
 
 export{
     productsReducer,
@@ -31,5 +36,8 @@ export{
     actionDeleteFromBasket,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    logInReducer,
+    actionFetchLogin,
+    actionToken
 }

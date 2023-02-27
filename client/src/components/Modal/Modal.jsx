@@ -20,7 +20,6 @@ const ModalWrapper = styled.div `
 const ModalBlock = styled(Box) `
         max-width: 450px;
         min-width: 320px;
-        border: 1px solid black;
         position: relative;
         background-color: #FFFFFF;
         padding: 45px 35px 30px;

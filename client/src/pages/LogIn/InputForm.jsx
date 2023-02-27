@@ -1,5 +1,5 @@
+
 import { Field, ErrorMessage } from "formik";
-import cx from "classnames";
 import PropTypes from "prop-types";
 
 import "./LogIn.scss";
@@ -15,9 +15,7 @@ const InputForm = ({
 }) => {
   return (
     <>
-      <label
-        className={cx("form-item", className, { "has-validation": error })}
-      >
+      <label>
         <p className="form-label">{label}</p>
         <Field
           type={type}
@@ -35,6 +33,7 @@ const InputForm = ({
     </>
   );
 };
+
 
 InputForm.defautProps = {
   type: "text",
