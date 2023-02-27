@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {
+    FILTERED_PRODUCTS,
     GET_DETAILS_PRODUCT,
     PRODUCT_ADD_COMMENTS,
     PRODUCT_COMMENTS
@@ -32,6 +33,9 @@ const productDetailsSlice = createSlice({
         },
         actionAddComment: (state, {payload}) => {
             state.productComments = [...state.productComments, payload];
+        },
+        actionSimilarProduct: (state, {payload}) => {
+            state.similarProducts = [...payload];
         }
     }
 })
@@ -40,11 +44,12 @@ export const {
     actionServerError,
     actionProductData,
     actionProductComments,
-    actionAddComment
+    actionAddComment,
+    actionSimilarProduct,
 } = productDetailsSlice.actions
 
 
-export const actionFetchOneProduct = (itemNo) => (dispatch) => {
+export const actionFetchOneProduct = itemNo => dispatch => {
     dispatch(actionPageLoading(true));
     return axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', itemNo))
         .then(({data}) => {
@@ -54,7 +59,7 @@ export const actionFetchOneProduct = (itemNo) => (dispatch) => {
         .catch(() => dispatch(actionServerError(true)))
 }
 
-export const actionFetchAllComments = (itemNo) => (dispatch) => {
+export const actionFetchAllComments = itemNo => dispatch => {
     return axios
         .get(PRODUCT_COMMENTS.replace(':itemNo', itemNo))
         .then(({data}) => {
@@ -65,7 +70,7 @@ export const actionFetchAllComments = (itemNo) => (dispatch) => {
 }
 
 
-export const actionFetchAddComment = (newComment) => (dispatch) => {
+export const actionFetchAddComment = newComment => dispatch => {
     return axios
         .post(PRODUCT_ADD_COMMENTS, newComment)
         .then(newComment => {
@@ -74,6 +79,14 @@ export const actionFetchAddComment = (newComment) => (dispatch) => {
         .catch(() => dispatch(actionServerError(true)))
 }
 
+export const actionFetchSimilarProducts = filter => dispatch => {
+    const stringParams = new URLSearchParams(filter);
+    debugger
 
+    return axios.get(FILTERED_PRODUCTS, {params: stringParams})
+        .then(({data}) => {
+            dispatch(actionSimilarProduct(data.products));
+        })
+}
 
 export default productDetailsSlice.reducer
