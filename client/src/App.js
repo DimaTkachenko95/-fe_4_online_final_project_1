@@ -8,15 +8,12 @@ import Basket from './pages/Backet';
 import CheckOut from './pages/CheckOut';
 import Contacts from './pages/Contacts';
 import Favorites from './pages/Favorites';
-import Product from './pages/Product';
+import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
 import NotFound from "./pages/NotFound";
-import ProductBlock from "./components/ProductBlock";
-import {useParams} from "react-router-dom";
 import './reset.css';
 
 const App = () => {
-    // let { itemNo } = useParams();
 
     return (
         <div className="app-wrapper">
@@ -26,7 +23,7 @@ const App = () => {
                     <Route path="/" element={ <Main/> }/>
                     <Route path="/contacts" element={ <Contacts/> }/>
                     <Route path="/products" element={ <Products/> }/>
-                    <Route path="/products/:itemNo" element={ <Product/> }/>
+                    <Route path="/products/:itemNo" element={ <ProductDetails/> }/>
 
                     <Route path="/basket" element={ <Basket/> }/>
                     <Route path="/favorites" element={ <Favorites/> }/>

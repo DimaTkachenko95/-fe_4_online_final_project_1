@@ -1,9 +1,9 @@
 import {Box, Button, TextField} from "@mui/material";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {actionFetchAddComment, actionFetchAllComments} from "../../../reducers/products.reducer";
-import {selectorProduct} from "../../../selectors";
-
+import {actionFetchAddComment} from "../../../../reducers/products.reducer";
+import {selectorProduct} from "../../../../selectors";
+import './Comments.scss';
 
 const Comments = () => {
     const dispatch = useDispatch();
@@ -100,7 +100,7 @@ const Comments = () => {
                 </Box>
 
                 <Box className="product__comments-content">
-                    <h3 className="product__comments-title">Comments:</h3>
+                    <h3 className="product__comments-title">Reviews:</h3>
 
                     <Box className="comments">
                         <Box className="product__comment">

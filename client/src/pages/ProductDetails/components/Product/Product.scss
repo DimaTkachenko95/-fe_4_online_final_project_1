@@ -12,13 +12,12 @@
       grid-template-rows: 1fr 3fr 5fr;
     }
 
-    &--mobile{
+    &--mobile {
       display: grid;
       grid-template-columns: 2fr 3fr;
       grid-template-rows: 1fr 3fr 3fr;
       column-gap: 30px;
       row-gap: 15px;
-
     }
   }
 
@@ -36,7 +35,7 @@
     font-size: 30px;
     line-height: 34px;
     text-transform: uppercase;
-    
+
     @media (max-width: 940px) {
       font-size: 24px;
     }
@@ -51,13 +50,13 @@
     border: 1px solid #EFEFEF;
     max-width: 440px;
     max-height: fit-content;
-    padding-right: 4vw;
+
     position: relative;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 20px;
     grid-row-start: 2;
     @media (max-width: 550px) {
       padding-right: 6vw;
@@ -69,11 +68,10 @@
 
   }
 
-  &__action-wrapper{
-
-  }
   &__action{
-
+    background-color: #ffffff;
+    border-radius: 5px ;
+    padding: 6px;
   }
 
   &__desc-wrapper {
@@ -90,10 +88,9 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
-
-
   }
-  &__desc-button{
+
+  &__desc-button {
     margin-top: 10px;
     background: none;
     border: none;
@@ -104,12 +101,8 @@
     font-weight: 700;
     font-size: 12px;
     text-decoration: underline;
-
-
   }
 
-  &__desc-text-wrapper {
-  }
 
   &__desc-text {
     font-family: 'Ubuntu', sans-serif;
@@ -127,9 +120,7 @@
   &__info-wrapper {
     grid-row-start: 3;
     grid-column-start: 2;
-  }
-
-  &__info-title-wrapper {
+    margin-bottom: 25px;
   }
 
   &__info-title {
@@ -141,56 +132,20 @@
     margin-bottom: 18px;
   }
 
-  &__info-content-wrapper {
-    /*display: flex;
-    flex-direction: column;*/
-  }
 
-  &__info-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid #EFEFEF;
-
-    &:last-child{
-      border-bottom: 1px solid #EFEFEF;
-    }
-  }
-
-  &__property {
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-
-    color: #75758A;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  &__value {
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: right;
-
-  }
-
-  &__button-wrapper{
+  &__button-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  &__price-wrapper{
+  &__price-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  &__price-text{
+
+  &__price-text {
     font-family: 'Ubuntu', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -205,92 +160,26 @@
     }
   }
 
-  &__input-wrapper{
+  &__input-wrapper {
     margin-bottom: 25px;
   }
-  &__review-input{
+
+  &__review-input {
     margin-bottom: 14px !important;
   }
 
-  &__form{
+  &__form {
     display: flex;
     flex-direction: column;
   }
 
-  &__form-button{
+  &__form-button {
     align-self: end;
     padding: 5px 30px !important;
   }
 
-  &__comments-wrapper{
-    margin-bottom: 40px;
-  }
-  &__comments-title{
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 34px;
-    margin-bottom: 25px;
-  }
-
-  &__comments-content {
-
-  }
-
-  .comments{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  &__comment {
-    max-width: 550px;
-    border: 1px solid rgb(188, 188, 188);
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 2px 2px 2px rgba(83, 83, 83, 0.3);
-  }
-
-  &__comment-user-wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
-
-  &__comment-user {
-
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-
-    color: #75758A;
-
-    text-transform: uppercase;
-  }
-
-  &__comment-date{
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-
-    color: #75758A;
-  }
-
-  &__comment-text {
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
-  }
 
   &__item--price {
-
     display: flex;
     align-items: center;
     font-family: 'Ubuntu', sans-serif;

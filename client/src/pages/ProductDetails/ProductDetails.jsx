@@ -1,13 +1,13 @@
-import './Product.scss';
+import './ProductDetails.scss';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
-import ProductBlock from "../../components/ProductBlock";
+import Product from "./components/Product";
 import {actionChangeSearchFlag, actionFetchOneProduct} from "../../reducers";
 import {selectorServerErrorProducts} from "../../selectors";
 
-const Product = () => {
+const ProductDetails = () => {
     let {itemNo} = useParams();
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const Product = () => {
         return (() => {
             dispatch(actionChangeSearchFlag(false));
         })
-    }, []);
+    }, [itemNo, dispatch]);
 
     const serverError = useSelector(selectorServerErrorProducts);
 
@@ -30,10 +30,10 @@ const Product = () => {
                     <p className="main-list__description">If problem persists, please contact customer service.</p>
                 </section>)
             }
-            <ProductBlock/>
+            <Product/>
         </main>
 
     )
 };
 
-export default Product;
+export default ProductDetails;

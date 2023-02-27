@@ -1,26 +1,26 @@
 import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
-import {ReactComponent as Favorites} from "../ProductCard/icons/favorite.svg";
-import './ProductBlock.scss';
-import BreadCrumbs from "../BreadCrumbs";
+import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
+import './Product.scss';
+import BreadCrumbs from "../../../../components/BreadCrumbs";
 import cx from "classnames";
-import {toggleFavoriteProduct} from "../../reducers/favorites.reducer";
-import {toggleScalesProduct} from "../../reducers/scales.reducer";
+import {toggleFavoriteProduct} from "../../../../reducers/favorites.reducer";
+import {toggleScalesProduct} from "../../../../reducers/scales.reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {
     selectorBasket,
     selectorFavorites,
     selectorProduct,
     selectorScales,
-} from "../../selectors";
-import {actionAddToBasket} from "../../reducers";
+} from "../../../../selectors";
+import {actionAddToBasket} from "../../../../reducers";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {Link} from "react-router-dom";
-import {ReactComponent as CheckMark} from "../ProductCard/icons/check_mark.svg";
-import Comments from "./components/Comments";
+import {ReactComponent as CheckMark} from "../../../../components/ProductCard/icons/check_mark.svg";
+import Comments from "../Comments";
 import {useEffect, useState} from "react";
-
-const ProductBlock = () => {
+import Specification from "../Specification";
+const Product = () => {
     const [showAll, setShowAll] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -75,11 +75,11 @@ const ProductBlock = () => {
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
-                                             className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})}/>
+                                             className={cx("list__item--scales product__action", {"list__item--scales--curent": checkProduct(scales)})}/>
                                  </span>
                                 <span>
                                     <Favorites onClick={() => toggleFavorites(product._id)}
-                                               className={cx("list__item--favorite", {"list__item--favorite--curent": checkProduct(favorites)})}/>
+                                               className={cx("list__item--favorite product__action", {"list__item--favorite--curent": checkProduct(favorites)})}/>
                                 </span>
                             </Box>
                         </Box>
@@ -107,45 +107,14 @@ const ProductBlock = () => {
                             </Box>
 
                             <Box className="product__info-content-wrapper">
-                                <Box className="product__info-content">
-                                    <span className="product__property">Brand</span>
-                                    <span className="product__value">{product.brand}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">Processor</span>
-                                    <span className="product__value">{product.processorType}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">Screen size</span>
-                                    <span className="product__value">{product.screenSize}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">GPU</span>
-                                    <span className="product__value">{product.videoCard}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">OS</span>
-                                    <span className="product__value">{product.operatingSystem || "Without OS"}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">RAM</span>
-                                    <span className="product__value">{product.ramMemory}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">HDR</span>
-                                    <span className="product__value">{product.hardDriveCapacity}</span>
-                                </Box>
-
-                                <Box className="product__info-content">
-                                    <span className="product__property">Color</span>
-                                    <span className="product__value">{product.color}</span>
-                                </Box>
+                                <Specification property="Brand" value={product.brand} isBackGround={true}/>
+                                <Specification property="Processor" value={product.processorType}/>
+                                <Specification property="Screen size" value={`${product.screenSize}"`} isBackGround={true}/>
+                                <Specification property="GPU" value={product.videoCard}/>
+                                <Specification property="OS" value={product.operatingSystem || "Without OS"} isBackGround={true}/>
+                                <Specification property="RAM" value={product.ramMemory}/>
+                                <Specification property="HDR" value={product.hardDriveCapacity} isBackGround={true}/>
+                                <Specification property="Color" value={product.color}/>
                             </Box>
                         </Box>
 
@@ -181,4 +150,4 @@ const ProductBlock = () => {
     )
 }
 
-export default ProductBlock;
+export default Product;
