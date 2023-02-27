@@ -16,6 +16,9 @@ import basketReducer, {
     actionAddToBasket,
     actionDeleteFromBasket
 } from "./basket.reducer";
+import productDetailsReducer, {
+    actionFetchOneProduct,
+} from "./productDetails.reducer";
 
 export{
     productsReducer,
@@ -31,5 +34,7 @@ export{
     actionDeleteFromBasket,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    productDetailsReducer,
+    actionFetchOneProduct
 }

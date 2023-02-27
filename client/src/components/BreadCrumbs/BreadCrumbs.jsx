@@ -8,7 +8,9 @@ const BreadCrumbs = ({ linksArray = [] }) => {
         <div className="breadcrumbs__wrapper">
             <Link to="/" className="breadcrumbs__link">Home</Link>
             {
-                linksArray.map(item => <Link to={ item.link } className="breadcrumbs__link">{ item.text }</Link>)
+                linksArray.map((item, index) => (
+                    <Link key={ index } to={ item.link } className="breadcrumbs__link">{ item.text }</Link>)
+                )
             }
         </div>
     );

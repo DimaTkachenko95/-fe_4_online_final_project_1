@@ -4,6 +4,14 @@ export const selectorSearchProducts = state => state.products.searchProducts;
 export const selectorIsSearch = state => state.products.isSearch;
 export const selectorServerErrorProducts = state => state.products.serverError;
 
+// PRODUCT DETAILS
+export const selectorProduct = state => state.productsDetails.productData;
+export const selectorSimilarProducts = state => state.productsDetails.similarProducts;
+export const selectorServerErrorProductDetails = state => state.productsDetails.serverError;
+
+// ALL COMMENTS
+export const selectorProductComments = state => state.products.productComments;
+
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
 
