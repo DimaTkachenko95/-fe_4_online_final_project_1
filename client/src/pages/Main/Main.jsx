@@ -1,9 +1,14 @@
 import './Main.scss';
 
+import Hero from "./components/Hero";
+import SearchBlock from "./components/SearchBlock";
+
 const Main = () => (
   <main>
-    <div> Головна сторінка</div>
+      <Hero />
+      <SearchBlock/>
   </main>
 );
+
 
 export default Main;
