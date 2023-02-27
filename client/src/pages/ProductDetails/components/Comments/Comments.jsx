@@ -79,6 +79,7 @@ const Comments = () => {
         <>
             <Box className="product__comments-wrapper">
                 <Box className="product__input-wrapper">
+                    <h3 className="product__comments-title">Leave your feedback:</h3>
                     <form onSubmit={handleSubmit} className="product__form">
                         <TextField
                             className="product__review-input"
