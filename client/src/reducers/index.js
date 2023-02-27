@@ -20,6 +20,9 @@ import basketReducer, {
     actionDecraese,
     actionFetchProductByItemNo
 } from "./basket.reducer";
+import productDetailsReducer, {
+    actionFetchOneProduct,
+} from "./productDetails.reducer";
 
 export{
     productsReducer,
@@ -39,5 +42,7 @@ export{
     actionFetchProductByItemNo,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    productDetailsReducer,
+    actionFetchOneProduct
 }
