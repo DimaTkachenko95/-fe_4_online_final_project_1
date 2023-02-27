@@ -21,6 +21,7 @@ import Comments from "../Comments";
 import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
+
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -145,7 +146,7 @@ const Product = () => {
                     </Box>
 
                     <Comments/>
-                    <SimilarProducts/>
+                    <SimilarProducts />
                 </Container>
             </Box>}
         </>
