@@ -1,9 +1,9 @@
 import {Box, Button, TextField} from "@mui/material";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {actionFetchAddComment} from "../../../../reducers/products.reducer";
 import {selectorProduct} from "../../../../selectors";
 import './Comments.scss';
+import { actionFetchAddComment } from "../../../../reducers/productDetails.reducer";
 
 const Comments = () => {
     const dispatch = useDispatch();

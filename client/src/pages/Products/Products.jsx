@@ -1,18 +1,19 @@
 import FilterMainList from "./components/FilterMainList";
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { Link } from "react-router-dom";
 import {
     selectorAllProducts,
     selectorIsSearch,
     selectorSearchProducts,
     selectorServerErrorProducts
 } from "../../selectors";
-import { actionChangeSearchFlag, actionFetchAllProducts, actionSearchProducts } from "../../reducers";
+import { actionFetchAllProducts, actionSearchProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";
+import ServerError from "../../components/Notifications/ServerError";
+import NothingFound from "../../components/Notifications/NothingFound";
 
 import "./Products.scss";
 
@@ -32,21 +33,11 @@ const Products = () => {
         })
     }, [])
 
-    const handleSearchAll = () => {
-        dispatch(actionChangeSearchFlag(false));
-    }
-
     return (
         <main>
             <Container className="main-list" maxWidth="lg">
-                {
-                    serverError &&
-                    (<section className="main-list__sections-nothing-found">
-                        <p className="main-list__description">The system is currently experiencing difficulties;
-                            please try again. </p>
-                        <p className="main-list__description">If problem persists, please contact customer service.</p>
-                    </section>)
-                }
+                { serverError && <ServerError /> }
+                { (productsShown.length === 0 && !serverError) && <NothingFound /> }
 
                 {
                     (productsShown.length > 0 && !serverError) &&
@@ -62,8 +53,7 @@ const Products = () => {
                                     { productsShown.map((el, index) => (
                                         <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={ el._id }>
                                             <ProductCard el={ el } index={ index }/>
-                                        </Grid>
-                                    ))
+                                        </Grid>))
                                     }
                                 </Grid>
                             </div>
@@ -72,24 +62,6 @@ const Products = () => {
                             </div>
                         </section>
                     </>)
-                }
-
-                {
-                    (productsShown.length < 0 && !serverError) &&
-                    (<section className="main-list__sections-nothing-found">
-                        <p className="main-list__nothing-found">Sorry, nothing found</p>
-                        <div className="main-list__descriptions">
-                            <Box className="search__catalog-button-wrapper">
-                                <Link
-                                    to="/products"
-                                    className="search__catalog-button"
-                                    onClick={ handleSearchAll }
-                                >
-                                    Show all products
-                                </Link>
-                            </Box>
-                        </div>
-                    </section>)
                 }
             </Container>
         </main>

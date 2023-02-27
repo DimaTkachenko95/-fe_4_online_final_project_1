@@ -5,7 +5,8 @@ import {useEffect} from "react";
 
 import Product from "./components/Product";
 import {actionChangeSearchFlag, actionFetchOneProduct} from "../../reducers";
-import {selectorServerErrorProducts} from "../../selectors";
+import { selectorServerErrorProductDetails } from "../../selectors";
+import ServerError from "../../components/Notifications/ServerError";
 
 const ProductDetails = () => {
     let {itemNo} = useParams();
@@ -18,18 +19,11 @@ const ProductDetails = () => {
         })
     }, [itemNo, dispatch]);
 
-    const serverError = useSelector(selectorServerErrorProducts);
+    const serverError = useSelector(selectorServerErrorProductDetails);
 
     return (
         <main>
-            {
-                serverError &&
-                (<section className="main-list__sections-nothing-found">
-                    <p className="main-list__description">The system is currently experiencing difficulties;
-                        please try again. </p>
-                    <p className="main-list__description">If problem persists, please contact customer service.</p>
-                </section>)
-            }
+            { serverError && <ServerError /> }
             <Product/>
         </main>
 

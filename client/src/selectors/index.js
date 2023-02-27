@@ -4,10 +4,12 @@ export const selectorSearchProducts = state => state.products.searchProducts;
 export const selectorIsSearch = state => state.products.isSearch;
 export const selectorServerErrorProducts = state => state.products.serverError;
 
-//ONE PRODUCT
-export const selectorProduct = state => state.products.productData;
+// PRODUCT DETAILS
+export const selectorProduct = state => state.productsDetails.productData;
+export const selectorSimilarProducts = state => state.productsDetails.similarProducts;
+export const selectorServerErrorProductDetails = state => state.productsDetails.serverError;
 
-//ALL COMMENTS
+// ALL COMMENTS
 export const selectorProductComments = state => state.products.productComments;
 
 // PRODUCTS IN BASKET
