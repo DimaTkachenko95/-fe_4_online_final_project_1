@@ -3,4 +3,6 @@
 
 cd client
 npm test
+npx eslint src/**/*.jsx --fix
 npx eslint src/**/*.jsx
+
