@@ -8,7 +8,7 @@
 
 .main-list {
   margin: 50px auto;
-
+  position: relative;
   &__sections {
     display: flex;
     justify-content: center;
@@ -20,8 +20,6 @@
   justify-content: center;
 }
 
-
-
 .count-found-product {
   @include font-list-items;
   font-size: 16px;
@@ -31,9 +29,6 @@
   &__span {
     @include font-list-items;
     font-size: 16px;
-    color: #60B021;
+    color: #60b021;
   }
 }
-
-
-

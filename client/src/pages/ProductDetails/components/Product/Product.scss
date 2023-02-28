@@ -1,11 +1,12 @@
 .product {
   &__container {
+    position: relative;
   }
 
   &__wrapper {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    grid-template-rows: 1fr 5fr 4fr;
+    grid-template-rows: 1fr 5fr minmax(4fr, 350px);
     column-gap: 30px;
     row-gap: 30px;
     @media (max-width: 566px) {
@@ -186,7 +187,8 @@
     font-family: 'Ubuntu', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 25px;
+    color: #60B021;
 
     &--curent {
       color: #de3c33;
