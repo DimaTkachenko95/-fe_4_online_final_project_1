@@ -81,8 +81,6 @@ export const actionFetchAddComment = newComment => dispatch => {
 
 export const actionFetchSimilarProducts = filter => dispatch => {
     const stringParams = new URLSearchParams(filter);
-    debugger
-
     return axios.get(FILTERED_PRODUCTS, {params: stringParams})
         .then(({data}) => {
             dispatch(actionSimilarProduct(data.products));

@@ -124,7 +124,7 @@ const Product = () => {
                             <Box className="product__price-wrapper">
                                 <span className="product__price-text">PRICE</span>
                                 <Box className="product__item--price">
-                                    <p className="product__item--price--curent">{product.currentPrice.toLocaleString()} $</p>
+                                    <p className={product.previousPrice ? "product__item--price--curent" : "product__item--price--default" }>{product.currentPrice.toLocaleString()} $</p>
                                     {product.previousPrice &&
                                         <p className="product__item--price--previous">{product.previousPrice.toLocaleString()} $</p>}
                                 </Box>
