@@ -15,7 +15,8 @@ import BreadCrumbs from "../../components/BreadCrumbs";
 import ButtonChangePages from "./components/ButtonChangePages";
 
 
-import "./Products.scss";
+import './Products.scss';
+import Preloader from "../../components/Preloader";
 
 const Products = () => {
     const allProducts = useSelector(selectorAllProducts);

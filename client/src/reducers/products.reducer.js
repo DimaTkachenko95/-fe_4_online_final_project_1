@@ -26,7 +26,9 @@ const initialState = {
                                                                              minPrice: '',
                                                                              maxPrice: '',
                                                                              sort: '',
-                                                                             } 
+                                                                             },
+    isLoading: false,
+    serverError: null
 }
 
 
@@ -45,7 +47,7 @@ const productsSlice = createSlice({
             state.sortByPrise = payload
         },
         actionPageLoading: (state, {payload}) => {
-            state.loading = payload
+            state.isLoading = payload
         },
         actionSearchProducts: (state, {payload}) => {
             state.isSearch = true;
@@ -76,6 +78,7 @@ export const {
     actionSortByPrise,
     actionRequestObjUser,
     actionShowMoreFilters,
+    actionProductComments,
 } = productsSlice.actions
 
 
@@ -113,8 +116,7 @@ export const actionFetchSearchFilterProducts = (selectorObjUser) => (dispatch) =
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     dispatch(actionPageLoading(true));
-    /*  debugger  */
-    return axios.post({SEARCH_PRODUCTS} ,{query: inputValue})
+    return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.length))    
             dispatch(actionSearchProducts(data));
