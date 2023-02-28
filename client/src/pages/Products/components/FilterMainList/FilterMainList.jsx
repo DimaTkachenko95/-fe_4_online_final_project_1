@@ -43,7 +43,6 @@ const FilterMainList = () => {
         if (e) {
             newObj.sort = e
         }
-
         dispatch(actionFetchSearchFilterProducts(newObj))
     }
 
@@ -147,7 +146,6 @@ const FilterMainList = () => {
 
                 {showMoreFilters ?
                     <>
-                        <button className='triger-more-filter'  onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
                             <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '16')} name={'screenSize'} value={'16'} label={'16\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
@@ -180,6 +178,7 @@ const FilterMainList = () => {
                             <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '128 GB')} name={'hardDriveCapacity'} value={'128 GB'} label={'128 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
                             <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '64 GB')} name={'hardDriveCapacity'} value={'64 GB'} label={'64 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
                         </FormGroup>
+                        <button className='triger-more-filter'  onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
                     </>
                     :
                     <button className='triger-more-filter' onClick={() => dispatch(actionShowMoreFilters(true))}>Show more filters</button>

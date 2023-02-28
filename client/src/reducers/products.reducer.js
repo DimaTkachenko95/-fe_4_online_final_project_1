@@ -7,7 +7,7 @@ import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoin
 const initialState = {
     allProducts: [],
     productsQuantity: 0,
-    showMoreFilters: false,
+    showMoreFilters: JSON.parse(localStorage.getItem("showMoreFilters")) ||false,
     searchProducts: [],
     sortByPrise: 'Doesn`t matter',
     isSearch: false,
@@ -61,6 +61,7 @@ const productsSlice = createSlice({
         },
         actionShowMoreFilters: (state, {payload}) => {
             state.showMoreFilters = payload;
+            localStorage.setItem("showMoreFilters", JSON.stringify(payload));
         },
         actionRequestObjUser: (state, {payload}) => {
             state.requestObjUser = payload
@@ -90,7 +91,7 @@ export const actionFetchAllProducts = () => (dispatch) => {
             dispatch(actionAllProducts(data.products));
             dispatch(actionPageLoading(false));
         })
-         /* .catch(() => dispatch(actionServerError(true))) */
+          .catch(() => dispatch(actionServerError(true))) 
 }
 
 export const actionFetchSearchFilterProducts = (selectorObjUser) => (dispatch) => {
@@ -111,7 +112,7 @@ export const actionFetchSearchFilterProducts = (selectorObjUser) => (dispatch) =
             dispatch(actionAllProducts(data.products));
             dispatch(actionPageLoading(false));
         })
-       /*  .catch(() => dispatch(actionServerError(true)))  */
+         .catch(() => dispatch(actionServerError(true)))  
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {

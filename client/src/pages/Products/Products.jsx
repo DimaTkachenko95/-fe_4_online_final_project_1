@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ButtonChangePages from "./components/ButtonChangePages";
+import ServerError from "../../components/Notifications/ServerError";
 
 
 import './Products.scss';
@@ -40,8 +41,8 @@ const Products = () => {
   
     return (
         <main>
-            <Container className="main-list" maxWidth="lg">
-                
+            <Container className="main-list" maxWidth="lg">   
+            {serverError && <ServerError/>}
                 {!serverError && (
                     <>
                         <BreadCrumbs linksArray={[{ link: "/products", text: "Products" }]} />
@@ -61,9 +62,8 @@ const Products = () => {
                                         </div>
                                         <ButtonChangePages />
                                     </>
-                                   
                                     :
-                                    <h1>Nothing to find, pleace change your filter</h1>
+                                    <h1 className="text-product__not-found">Nothing to find, pleace change your filter</h1>
                                 }
                             </div>
                             <div>
