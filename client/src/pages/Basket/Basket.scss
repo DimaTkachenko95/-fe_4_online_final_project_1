@@ -43,8 +43,8 @@
                     }
                 }
                 img {
-                        width: 70px;
-                        height: 70px;
+                        width: 80px;
+                        height: 80px;
                         object-fit: contain;
                     }
                 .product_price {
@@ -92,6 +92,10 @@
                     }
                 .product_total {
                     vertical-align: middle;
+                    width: 120px;
+                        @media (max-width: 600px) {
+                            width: 80px;
+                        }
                 }
                 .delete_box {
                     text-align: center;
@@ -115,9 +119,7 @@
             border-bottom: 1px solid #EFEFEF;
             text-align: center;
         }
-        td {
-            padding: 15px 0 15px 0;
-        }
+      
     }
     .basket__footer {
         display: grid;

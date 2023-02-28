@@ -14,7 +14,6 @@ import "./Basket.scss"
 
 const BasketItems = () => {
     
-    const [single, setSingle] = useState(true);
     const dispatch = useDispatch();
     const basket = useSelector(selectorBasket);
     const productBasket = useSelector(selectorBasketProduct);
@@ -26,6 +25,7 @@ const BasketItems = () => {
        dispatch(actionFetchProductByItemNo({itemNos, quantity}))
 
     }, [basket])
+
 
 
     const handlerDeleteFromBasket = (item) => {
@@ -52,7 +52,7 @@ const BasketItems = () => {
                     <td className="product_price">{item.currentPrice.toLocaleString()} USD</td>
                     <td className="quantity"><div>
                         <Minus 
-                            className={!single ? "decrease" : "decrease_disabled"} 
+                            className={item.cartQuantity >= 2 ? "decrease" : "decrease_disabled"} 
                             onClick={() => {
                                 decrease(item)
                             }}
@@ -60,7 +60,6 @@ const BasketItems = () => {
                         <span>{item.cartQuantity}</span>
                         <Plus className="increase" onClick={() => {
                         increase(item)
-                        console.log(item);
                                 }
                             }/>
                         </div></td>
@@ -77,3 +76,4 @@ return (
 }
 
 export default BasketItems;
+

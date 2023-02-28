@@ -13,7 +13,7 @@ import Btn from "../../components/Button/";
 
 
 const ContainerBasket = styled(Container) `
-    padding: 25px 0;
+    padding: 25px 0 50px 0;
     `
 
   
@@ -59,7 +59,7 @@ const Basket = () => {
             
             <div className="basket__footer">
                 <div className="basket__footer_total">Total: <span className="total_price">{result.toLocaleString()} USD</span></div>
-                <div className="basket__footer_checkout"><Btn text="checkout" to="/checkOut" variant="gradient-green"/></div>
+                <div className="basket__footer_checkout"><Btn text="checkout" to="/checkOut"/></div>
             </div>
             </> }
         </ContainerBasket> 

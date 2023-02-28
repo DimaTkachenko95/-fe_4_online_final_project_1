@@ -50,8 +50,9 @@ const mixin = (props) => {
   `
   
   const hoverGradientGreen = css`
-    background: linear-gradient(to bottom, #FFFFFF, #80808080);
-    color: #4d9546;
+   background: #4ba123;
+   //linear-gradient(#d6e3d1, rgba(79, 156, 44, 1));
+    //color: #4d9546;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   `
 
