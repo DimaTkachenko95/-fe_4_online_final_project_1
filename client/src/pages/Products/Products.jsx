@@ -2,7 +2,8 @@ import FilterMainList from './components/FilterMainList';
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import {
-  selectorAllProducts, selectorIsAllProductsLoading,
+  selectorAllProducts,
+  selectorIsAllProductsLoading,
   selectorIsSearch,
   selectorSearchProducts,
   selectorServerErrorProducts,
@@ -13,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../../components/ProductCard';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import ServerError from '../../components/Notifications/ServerError';
-import NothingFound from '../../components/Notifications/NothingFound';
+import NothingFound from "./components/NothingFound";
 
 import './Products.scss';
 import Preloader from "../../components/Preloader";

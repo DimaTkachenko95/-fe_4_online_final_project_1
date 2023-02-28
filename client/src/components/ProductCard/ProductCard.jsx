@@ -18,11 +18,13 @@ const ProductCard = ({ el }) => {
   const scales = useSelector(selectorScales);
   const dispatch = useDispatch();
 
-  const isProductInCart = basket.some(item => item._id === _id);
+  const isProductInCart = basket.some(item => item.id === _id);
   const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
   const addToBasket = item => {
-    dispatch(actionAddToBasket(item));
+    if (!basket.find((elem) => elem.id === item._id)) {
+      dispatch(actionAddToBasket(item));
+    } 
   }
 
   const toggleFavorites = id => {

@@ -16,7 +16,7 @@ export const selectorProductComments = state => state.products.productComments;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
-
+export const selectorBasketProduct = state => state.basket.basketProduct;
 // PRODUCTS IN SCALES
 export const selectorScales = state => state.scales.scales;
 

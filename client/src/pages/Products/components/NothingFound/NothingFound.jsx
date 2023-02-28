@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { actionChangeSearchFlag } from "../../../reducers";
+import { actionChangeSearchFlag } from "../../../../reducers";
 import { useDispatch } from "react-redux";
 
 const NothingFound = () => {
