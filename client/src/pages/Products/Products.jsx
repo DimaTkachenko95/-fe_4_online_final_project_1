@@ -2,7 +2,7 @@ import FilterMainList from './components/FilterMainList';
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import {
-  selectorAllProducts,
+  selectorAllProducts, selectorIsAllProductsLoading,
   selectorIsSearch,
   selectorSearchProducts,
   selectorServerErrorProducts,
@@ -16,12 +16,14 @@ import ServerError from '../../components/Notifications/ServerError';
 import NothingFound from '../../components/Notifications/NothingFound';
 
 import './Products.scss';
+import Preloader from "../../components/Preloader";
 
 const Products = () => {
   const allProducts = useSelector(selectorAllProducts);
   const searchProducts = useSelector(selectorSearchProducts);
   const isSearch = useSelector(selectorIsSearch);
   const serverError = useSelector(selectorServerErrorProducts);
+  const isLoading = useSelector(selectorIsAllProductsLoading);
   const dispatch = useDispatch();
 
   const productsShown = isSearch ? searchProducts : allProducts;
@@ -36,8 +38,9 @@ const Products = () => {
   return (
     <main>
       <Container className="main-list" maxWidth="lg">
+        <Preloader open={ isLoading } />
         {serverError && <ServerError />}
-        {productsShown.length === 0 && !serverError && <NothingFound />}
+        {productsShown.length === 0 && !serverError && !isLoading && <NothingFound />}
 
         {productsShown.length > 0 && !serverError && (
           <>

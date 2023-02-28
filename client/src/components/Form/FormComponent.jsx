@@ -7,7 +7,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
-import Preloader from '../Preloader';
 
 const FormComponent = () => {
   const [showPassword, setShowPassword] = useState(false);

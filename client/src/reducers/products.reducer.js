@@ -10,7 +10,7 @@ const initialState = {
     allProducts: [],
     searchProducts: [],
     isSearch: false,
-    pageLoading: true,
+    isLoading: false,
     serverError: null
 }
 
@@ -23,7 +23,7 @@ const productsSlice = createSlice({
             state.allProducts = [...payload]
         },
         actionPageLoading: (state, {payload}) => {
-            state.loading = payload
+            state.isLoading = payload
         },
         actionSearchProducts: (state, {payload}) => {
             state.isSearch = true;
