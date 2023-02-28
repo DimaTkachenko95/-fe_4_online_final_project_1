@@ -135,7 +135,7 @@ const Product = () => {
                                 </Box>
                             </Box>
 
-                            {isProductInCart ?
+                            {basket.some(item => item.id === product._id) ?
                                 <Link to="/basket">
                                     <button className="list__item--inbasket "><CheckMark/>
                                         <span className="list__item--buy--text">In basket</span>
