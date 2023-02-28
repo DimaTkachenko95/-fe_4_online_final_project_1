@@ -9,6 +9,7 @@
     grid-template-rows: 1fr 5fr minmax(4fr, 350px);
     column-gap: 30px;
     row-gap: 30px;
+
     @media (max-width: 566px) {
       grid-template-rows: 1fr 3fr 5fr;
     }
@@ -23,14 +24,13 @@
   }
 
   &__title-wrapper {
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1 / 3;
     display: flex;
     align-items: center;
   }
 
   &__title {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -44,14 +44,12 @@
     @media (max-width: 770px) {
       font-size: 18px;
     }
-
   }
 
   &__image-wrapper {
-    border: 1px solid #EFEFEF;
+    border: 1px solid #efefef;
     max-width: 440px;
     max-height: fit-content;
-
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -59,6 +57,7 @@
     align-items: center;
     padding: 20px;
     grid-row-start: 2;
+
     @media (max-width: 550px) {
       max-height: 220px;
     }
@@ -66,12 +65,11 @@
 
   &__image {
     width: 100%;
-
   }
 
-  &__action{
-    background-color: #ffffff;
-    border-radius: 5px ;
+  &__action {
+    background-color: #fff;
+    border-radius: 5px;
     padding: 6px;
   }
 
@@ -85,7 +83,7 @@
   }
 
   &__desc-title {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -98,21 +96,20 @@
     border: none;
     padding: 0;
     color: #03ba55;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
     text-decoration: underline;
   }
 
-
   &__desc-text {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 32px;
-    color: #75758A;
+    color: #75758a;
 
     @media (max-width: 940px) {
       line-height: 24px;
@@ -126,14 +123,13 @@
   }
 
   &__info-title {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 18px;
   }
-
 
   &__button-wrapper {
     display: flex;
@@ -148,15 +144,17 @@
   }
 
   &__price-text {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
     line-height: 34px;
     text-transform: uppercase;
+
     @media (max-width: 970px) {
       font-size: 18px;
     }
+
     @media (max-width: 550px) {
       font-size: 14px;
     }
@@ -180,23 +178,24 @@
     padding: 5px 30px !important;
   }
 
-
   &__item--price {
     display: flex;
     align-items: center;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
-    color: #60B021;
+    color: #60b021;
 
     &--curent {
       color: #de3c33;
       font-size: 25px;
       text-align: center;
+
       @media (max-width: 970px) {
         font-size: 21px;
       }
+
       @media (max-width: 550px) {
         font-size: 16px;
       }
@@ -208,6 +207,7 @@
       margin-left: 10px;
       margin-bottom: 20px;
       text-decoration: line-through;
+
       @media (max-width: 970px) {
         font-size: 12px;
       }
@@ -218,4 +218,3 @@
     }
   }
 }
-
