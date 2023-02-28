@@ -1,5 +1,5 @@
 @mixin font-list-items {
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -29,7 +29,8 @@
 
     &--name {
       @include font-list-items;
-      color: #000000;
+
+      color: #000;
       line-height: 16px;
       margin-bottom: 3px;
     }
@@ -38,6 +39,7 @@
       width: 170px;
       height: 120px;
       margin-bottom: 15px;
+
       &--laptop {
         height: 100%;
         width: auto;
@@ -81,6 +83,7 @@
 
     &--brand {
       @include font-list-items;
+
       color: #75758A;
       font-weight: 400;
       margin-bottom: 5px;
@@ -88,12 +91,14 @@
 
     &--price {
       @include font-list-items;
+
       margin-bottom: 10px;
 
       &--curent {
         color: #60B021;
         font-size: 25px;
       }
+
       &--curent-new {
         color: #de3c33;
       }
@@ -110,6 +115,7 @@
 
     &--buy {
       @include font-list-items;
+
       width: 100%;
       border-radius: 100px;
       border: none;
@@ -138,6 +144,7 @@
 
     &--inbasket {
       @include font-list-items;
+
       border-radius: 100px;
       border: none;
       display: flex;
