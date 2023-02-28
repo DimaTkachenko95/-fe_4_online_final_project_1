@@ -22,12 +22,14 @@
 
 .count-found-product {
   @include font-list-items;
+
   font-size: 16px;
   margin-bottom: 26px;
-  color: #000000;
+  color: #000;
 
   &__span {
     @include font-list-items;
+
     font-size: 16px;
     color: #60b021;
   }

@@ -27,12 +27,14 @@
     }
   }
 }
+
 @media (min-width: 996.9px) {
   .registration-container {
     min-width: 996.9px;
 
     &__wrapper {
       min-width: 900px;
+
       &-title {
         text-align: left;
       }
