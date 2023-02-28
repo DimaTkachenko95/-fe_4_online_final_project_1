@@ -1,9 +1,13 @@
 import productsReducer, {
     actionFetchAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
     actionPageLoading,
     actionSearchProducts,
     actionFetchSearchFilterProducts,
-    actionChangeSearchFlag
+    actionChangeSearchFlag,
+    actionAllProducts,
+    actionShowMoreFilters,
 } from "./products.reducer";
 import favoritesReducer, {
     actionAddToFavorites,
@@ -22,6 +26,10 @@ export{
     productsReducer,
     actionFetchAllProducts,
     actionFetchSearchFilterProducts,
+    actionAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
+    actionShowMoreFilters,
     actionPageLoading,
     actionSearchProducts,
     actionChangeSearchFlag,
@@ -33,5 +41,6 @@ export{
     actionDeleteFromBasket,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+   
 }

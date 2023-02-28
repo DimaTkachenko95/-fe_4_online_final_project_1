@@ -11,6 +11,7 @@ const InputSearch = ({style = "header__input"}) => {
     const navigate = useNavigate();
 
     const handleSearch = () => {
+        console.log(inputValue)
         dispatch(actionFetchSearchProducts(inputValue));
         setInputValue('');
     }

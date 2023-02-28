@@ -8,25 +8,10 @@
 
 .main-list {
   margin: 50px auto;
-
   &__sections {
- 
     display: grid;
-  
     grid-template-columns: 6fr 1fr; 
     column-gap: 0px;
-   
-
-    
-  }
-  &__description {
-    font-size: 30px;
-    padding-bottom: 40px;
-    text-align: center;
-  }
-  &__sections-nothing-found {
-    display: flex;
-    flex-direction: column;
   }
 }
 
