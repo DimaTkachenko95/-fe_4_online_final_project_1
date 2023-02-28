@@ -14,8 +14,15 @@ import scalesReducer, {
 } from "./scales.reducer";
 import basketReducer, {
     actionAddToBasket,
-    actionDeleteFromBasket
+    actionDeleteFromBasket,
+    actionBasketProduct,
+    actionIncrease,
+    actionDecraese,
+    actionFetchProductByItemNo
 } from "./basket.reducer";
+import productDetailsReducer, {
+    actionFetchOneProduct,
+} from "./productDetails.reducer";
 
 export{
     productsReducer,
@@ -29,7 +36,13 @@ export{
     basketReducer,
     actionAddToBasket,
     actionDeleteFromBasket,
+    actionBasketProduct,
+    actionIncrease,
+    actionDecraese,
+    actionFetchProductByItemNo,
     scalesReducer,
     actionAddToScales,
-    actionDeleteFromScales
+    actionDeleteFromScales,
+    productDetailsReducer,
+    actionFetchOneProduct
 }

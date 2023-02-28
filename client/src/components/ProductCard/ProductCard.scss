@@ -1,5 +1,5 @@
 @mixin font-list-items {
-  font-family: Ubuntu;
+  font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -8,11 +8,10 @@
 
 .list {
   position: relative;
-  background: #FFF;
   border: 1px solid #EFEFEF;
   box-sizing: border-box;
   width: 255px;
-  height: 305px;
+  height: 100%;
   transition: 0.3s;
 
   &:hover {
@@ -21,29 +20,24 @@
   }
 
   &__item {
-    width: 215px;
-    height: 265px;
+    height: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     justify-content: space-between;
-
 
     &--name {
       @include font-list-items;
-
-      color: #000;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
+      color: #000000;
+      line-height: 16px;
+      margin-bottom: 3px;
     }
 
     &--img {
       width: 170px;
       height: 120px;
-
+      margin-bottom: 15px;
       &--laptop {
         height: 100%;
         width: auto;
@@ -85,38 +79,38 @@
       }
     }
 
-    &--producer {
+    &--brand {
       @include font-list-items;
-
       color: #75758A;
+      font-weight: 400;
+      margin-bottom: 5px;
     }
 
     &--price {
       @include font-list-items;
-
-      display: flex;
-      align-items: center;
+      margin-bottom: 10px;
 
       &--curent {
         color: #60B021;
         font-size: 25px;
-        text-align: center;
-
+      }
+      &--curent-new {
+        color: #de3c33;
       }
 
       &--previous {
-        color: #de3c33;
-        font-size: 20px;
-        margin-left: 10px;
-        margin-bottom: 20px;
+        color: #a5a5a5;
+        font-size: 18px;
+        position: relative;
+        bottom: 10px;
+        left: 10px;
         text-decoration: line-through;
       }
     }
 
     &--buy {
       @include font-list-items;
-
-      background: #FFF;
+      width: 100%;
       border-radius: 100px;
       border: none;
       display: flex;
@@ -144,8 +138,6 @@
 
     &--inbasket {
       @include font-list-items;
-
-      background: #FFF;
       border-radius: 100px;
       border: none;
       display: flex;
