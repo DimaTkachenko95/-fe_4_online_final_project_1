@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     selectorBasket,
     selectorFavorites,
+    selectorIsDetailsProductLoading,
     selectorProduct,
     selectorScales,
 } from "../../../../selectors";
@@ -21,6 +22,7 @@ import Comments from "../Comments";
 import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
+import Preloader from "../../../../components/Preloader";
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
@@ -34,6 +36,7 @@ const Product = () => {
     const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
+    const isLoading = useSelector(selectorIsDetailsProductLoading);
 
     const dispatch = useDispatch();
 
@@ -62,6 +65,8 @@ const Product = () => {
 
             {Object.keys(product).length > 0 && <Box className="product">
                 <Container maxWidth="lg" className="product__container">
+                    <Preloader open={ isLoading } />
+
                     <BreadCrumbs linksArray={[{link: "/products", text: "Products"}, {
                         link: `/products/${product.itemNo}`,
                         text: `${product.name}`

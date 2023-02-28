@@ -8,7 +8,7 @@ import {
 } from "../endpoints";
 
 const initialState = {
-    pageLoading: true,
+    isLoading: false,
     serverError: null,
     productData: {},
     productComments: [],
@@ -20,7 +20,7 @@ const productDetailsSlice = createSlice({
     initialState,
     reducers: {
         actionPageLoading: (state, {payload}) => {
-            state.loading = payload
+            state.isLoading = payload
         },
         actionServerError: (state, {payload}) => {
             state.serverError = payload;
@@ -81,10 +81,12 @@ export const actionFetchAddComment = newComment => dispatch => {
 
 export const actionFetchSimilarProducts = filter => dispatch => {
     const stringParams = new URLSearchParams(filter);
+
     return axios.get(FILTERED_PRODUCTS, {params: stringParams})
         .then(({data}) => {
             dispatch(actionSimilarProduct(data.products));
         })
+        .catch(() => dispatch(actionSimilarProduct([])))
 }
 
 export default productDetailsSlice.reducer
