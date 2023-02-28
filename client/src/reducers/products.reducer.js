@@ -109,11 +109,6 @@ export const actionFetchSearchFilterProducts = (selectorObjUser) => (dispatch) =
             dispatch(actionPageLoading(false));
         })
        /*  .catch(() => dispatch(actionServerError(true)))  */
-
-
-    
-    
-        
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {

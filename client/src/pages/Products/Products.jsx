@@ -1,6 +1,5 @@
 import FilterMainList from "./components/FilterMainList";
-import { Box, Container } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Container } from '@mui/material';
 import {
     selectorAllProducts,
     selectorIsSearch,
@@ -8,13 +7,13 @@ import {
     selectorServerErrorProducts,
     selectorProductsQuantity,
 } from "../../selectors";
-import { actionChangeSearchFlag, actionFetchAllProducts, actionSearchProducts, actionFetchSearchFilterProducts } from "../../reducers";
+import { actionFetchAllProducts, actionFetchSearchFilterProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ButtonChangePages from "./components/ButtonChangePages";
-import ServerError from "../../components/ServerError";
+
 
 import "./Products.scss";
 
@@ -37,20 +36,11 @@ const Products = () => {
         dispatch(actionFetchAllProducts()); 
     }, [])
 
-  /*   const handleSearchAll = () => {
-        dispatch(actionChangeSearchFlag(false));
-    } */
-
-
-
-
-
-
-
+  
     return (
         <main>
             <Container className="main-list" maxWidth="lg">
-                {serverError &&  <ServerError/>}
+                
                 {!serverError && (
                     <>
                         <BreadCrumbs linksArray={[{ link: "/products", text: "Products" }]} />
@@ -73,21 +63,6 @@ const Products = () => {
                                    
                                     :
                                     <h1>Nothing to find, pleace change your filter</h1>
-                                /*     <section className="main-list__sections-nothing-found">
-                                        <p className="main-list__nothing-found">Sorry, nothing found</p>
-                                        <div className="main-list__descriptions">
-                                            <Box className="search__catalog-button-wrapper">
-                                                <Link
-                                                    to="/products"
-                                                    className="search__catalog-button"
-                                                    onClick={() => dispatch(actionFetchAllProducts())}
-                                                >
-                                                    Show all products
-                                                </Link>
-                                            </Box>
-                                        </div>
-                                    </section> */
-
                                 }
                             </div>
                             <div>
