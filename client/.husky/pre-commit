@@ -2,7 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 cd client
-npm test
-npx eslint src/**/*.jsx --fix
+npx stylelint src/**/*.scss
 npx eslint src/**/*.jsx
+npm test
+
 

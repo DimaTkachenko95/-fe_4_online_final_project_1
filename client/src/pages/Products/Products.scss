@@ -1,5 +1,5 @@
 @mixin font-list-items {
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -9,6 +9,7 @@
 .main-list {
   margin: 50px auto;
   position: relative;
+
   &__sections {
     display: flex;
     justify-content: center;
