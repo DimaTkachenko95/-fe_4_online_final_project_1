@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ServerError from "../../components/Notifications/ServerError";
-import NothingFound from "../../components/Notifications/NothingFound";
+import NothingFound from "./components/NothingFound";
 
 import "./Products.scss";
 

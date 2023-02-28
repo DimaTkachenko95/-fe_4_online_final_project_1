@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import classnames from 'classnames';
 import PropTypes from 'prop-types'
-import { string } from "yup/lib/locale";
 
 const mixin = (props) => {
     switch (props.variant) {
@@ -89,7 +88,7 @@ const mixin = (props) => {
     ${widthMixin}
   `;
  
-const Btn = ({text, type, variant, width, href, to, className, ...restProps}) => {
+const Button = ({text, type, variant, width, href, to, className, ...restProps}) => {
 
     const buttonClassName = classnames({
         'gradient-green': variant === 'gradient-green',
@@ -114,7 +113,7 @@ return (
 
 }
 
-Btn.propTypes = {
+Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
@@ -125,4 +124,4 @@ Btn.propTypes = {
 }
 
 
-export default Btn;
+export default Button;
