@@ -31,6 +31,8 @@ const Header = () => {
     const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
+    const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0)
+
 
     useEffect(() => {
         document.addEventListener("mousedown", handleBurgerMenu);
@@ -126,7 +128,7 @@ const Header = () => {
                                 </Box>
                                 <Box className="action ">
                                     <div className="count count-cart">
-                                        <span>{basket.length}</span>
+                                        <span>{countInBasket}</span>
                                     </div>
                                     <Link to="/basket" className="action__icon icon-cart">
                                         <ShoppingCartOutlinedIcon/>

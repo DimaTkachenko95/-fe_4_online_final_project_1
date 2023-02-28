@@ -1,13 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS } from "../endpoints";
+import {
+    GET_ALL_PRODUCTS,
+    SEARCH_PRODUCTS
+} from "../endpoints";
 
 
 const initialState = {
     allProducts: [],
     searchProducts: [],
     isSearch: false,
-    pageLoading: true,
+    isLoading: false,
     serverError: null
 }
 
@@ -20,7 +23,7 @@ const productsSlice = createSlice({
             state.allProducts = [...payload]
         },
         actionPageLoading: (state, {payload}) => {
-            state.loading = payload
+            state.isLoading = payload
         },
         actionSearchProducts: (state, {payload}) => {
             state.isSearch = true;
@@ -39,7 +42,8 @@ export const {
     actionPageLoading,
     actionSearchProducts,
     actionChangeSearchFlag,
-    actionServerError
+    actionServerError,
+    actionProductComments,
 } = productsSlice.actions
 
 
@@ -55,7 +59,6 @@ export const actionFetchAllProducts = () => (dispatch) => {
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     dispatch(actionPageLoading(true));
-    debugger
     return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
             dispatch(actionSearchProducts(data));

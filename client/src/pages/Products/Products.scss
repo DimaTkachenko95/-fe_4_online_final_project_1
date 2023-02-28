@@ -8,19 +8,10 @@
 
 .main-list {
   margin: 50px auto;
-
+  position: relative;
   &__sections {
     display: flex;
     justify-content: center;
-  }
-  &__description {
-    font-size: 30px;
-    padding-bottom: 40px;
-    text-align: center;
-  }
-  &__sections-nothing-found {
-    display: flex;
-    flex-direction: column;
   }
 }
 
@@ -28,8 +19,6 @@
   display: grid;
   justify-content: center;
 }
-
-
 
 .count-found-product {
   @include font-list-items;
@@ -40,9 +29,6 @@
   &__span {
     @include font-list-items;
     font-size: 16px;
-    color: #60B021;
+    color: #60b021;
   }
 }
-
-
-
