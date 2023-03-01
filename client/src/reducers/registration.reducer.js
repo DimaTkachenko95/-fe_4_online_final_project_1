@@ -1,23 +1,46 @@
-import initialValues from '../components/Form/FormComponent';
-import { NEW_CUSTOMER } from '../store/actions/registration.actions';
+import { createSlice } from '@reduxjs/toolkit';
+import { REGISTER_USER } from '../../src/endpoints/index';
+import axios from 'axios';
+import { actionServerError } from './products.reducer';
 
-const registrationReducer = (state = initialValues, action) => {
-  switch (action.type) {
-    case NEW_CUSTOMER:
-      return {
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
-        login: action.payload.login,
-        email: action.payload.email,
-        password: action.payload.password,
-        telephone: action.payload.telephone,
-        gender: action.payload.gender,
-        avatarUrl: action.payload.avatarUrl,
-      };
-    default: {
-      return state;
-    }
-  }
+const registrationSlice = createSlice({
+  name: 'registration',
+  initialState: {
+    firstName: '',
+    lastName: '',
+    login: '',
+    email: '',
+    password: '',
+    telephone: '',
+    gender: '',
+    avatarUrl: '',
+  },
+  reducers: {
+    createCustomerServer: (state, action) => {
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.login = action.payload.login;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
+      state.telephone = action.payload.telephone;
+      state.gender = action.payload.gender;
+      state.avatarUrl = action.payload.avatarUrl;
+    },
+    actionServerError: (state, { payload }) => {
+      state.serverError = payload;
+    },
+  },
+});
+
+export const { createCustomerServer } = registrationSlice.actions;
+
+export const createCustomerServerApi = (value) => (dispatch) => {
+  axios
+    .post(REGISTER_USER, value)
+    .then((savedCustomer) => {
+      dispatch(createCustomerServer(savedCustomer));
+    })
+    .catch(() => dispatch(actionServerError(true)));
 };
 
-export default registrationReducer;
+export default registrationSlice.reducer;
