@@ -20,3 +20,5 @@ export const PRODUCT_IN_WISHLIST = `${PREFIX}/wishlist/:productId`;
 export const SHOPPING_CART = `${PREFIX}/cart`;
 export const PRODUCT_IN_SHOPPING_CART = `${PREFIX}/cart/:productId`;
 export const CHANGE_PRODUCT_QUANTITY_SHOPPING_CART = `${PREFIX}/cart/product/:productId`;
+export const ORDERS = `${PREFIX}/orders`;
+
