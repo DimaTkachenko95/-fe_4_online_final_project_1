@@ -1,7 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
+import axios from "axios";
+import {GET_ALL_PRODUCTS} from "../endpoints";
+import {actionBasketProduct} from "./basket.reducer";
 
 const initialState = {
-    favorites: JSON.parse(localStorage.getItem("favorites")) || []
+    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+    favoritesProduct: []
 }
 
 const favoritesSlice = createSlice({
@@ -15,12 +19,16 @@ const favoritesSlice = createSlice({
         actionDeleteFromFavorites: (state, {payload}) => {
             state.favorites = [...state.favorites.filter(itemId => itemId !== payload)];
             localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
-        }
+        },
+        actionFavoritesProduct: (state, {payload}) => {
+            state.favoritesProduct = [...payload];
+        },
     }
 })
 export const {
     actionAddToFavorites,
-    actionDeleteFromFavorites
+    actionDeleteFromFavorites,
+    actionFavoritesProduct
 } = favoritesSlice.actions;
 
 export const toggleFavoriteProduct = id => (dispatch, getState) => {
@@ -31,6 +39,20 @@ export const toggleFavoriteProduct = id => (dispatch, getState) => {
     isFavoriteProduct
         ? dispatch(actionDeleteFromFavorites(id))
         : dispatch(actionAddToFavorites(id))
+}
+
+
+export const actionFetchProductFavoritesByItemNo = (itemNos) => async (dispatch) => {
+    try {
+        const products = [];
+        for (let i = 0; i < itemNos.length; i++) {
+            const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
+        products.push(data)
+        }
+        dispatch(actionFavoritesProduct(products));
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export default favoritesSlice.reducer;
