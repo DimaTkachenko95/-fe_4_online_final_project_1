@@ -12,8 +12,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";
-import ButtonChangePages from "./components/ButtonChangePages";
 import ServerError from "../../components/Notifications/ServerError";
+import Paginate from "./components/Paginate";
 
 
 import './Products.scss';
@@ -32,7 +32,7 @@ const Products = () => {
     const productsShown = isSearch ? searchProducts : allProducts;
 
     useEffect(() => {
-        let obj = JSON.parse(localStorage.getItem("requestObjUser"))
+        let obj = JSON.parse(sessionStorage.getItem("filterRequest"))
         obj? dispatch(actionFetchSearchFilterProducts(obj))
         :
         dispatch(actionFetchAllProducts()); 
@@ -51,7 +51,7 @@ const Products = () => {
                                 className="count-found-product__span">{productsQuantity} found</span></h5>
                         </div>
                         <section className="main-list__sections">
-                            <div>
+                            <div className="main-list__sections--products">
                                 {(productsShown.length > 0 && !serverError) ?
                                     <>
                                         <div className="grid-main-list">
@@ -60,16 +60,18 @@ const Products = () => {
                                             ))
                                             }
                                         </div>
-                                        <ButtonChangePages />
+                                        <Paginate/>
                                     </>
                                     :
                                     <h1 className="text-product__not-found">Nothing to find, pleace change your filter</h1>
                                 }
                             </div>
-                            <div>
+                            <div className="main-list__sections--filters">
                                 <FilterMainList />
                             </div>
                         </section>
+                       
+
                     </>
                 )
                 }

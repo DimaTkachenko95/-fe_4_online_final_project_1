@@ -4,16 +4,16 @@ export const selectorSearchProducts = state => state.products.searchProducts;
 export const selectorIsSearch = state => state.products.isSearch;
 export const selectorServerErrorProducts = state => state.products.serverError;
 export const selectorSortByPrise = state => state.products.sortByPrise;
-export const selectorRequestObjUser = state => state.products.requestObjUser
+export const selectorFilterRequest = state => state.products.filterRequest
 export const selectorShowMoreFilters = state => state.products.showMoreFilters
 export const selectorProductsQuantity = state => state.products.productsQuantity
-export const selectorIsAllProductsLoading = state => state.products.isLoading;
+export const selectorIsAllProductsLoading = state => state.products.pageLoading;
 
 // PRODUCT DETAILS
 export const selectorProduct = state => state.productsDetails.productData;
 export const selectorSimilarProducts = state => state.productsDetails.similarProducts;
 export const selectorServerErrorProductDetails = state => state.productsDetails.serverError;
-export const selectorIsDetailsProductLoading = state => state.productsDetails.isLoading;
+export const selectorIsDetailsProductLoading = state => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
 export const selectorProductComments = state => state.products.productComments;

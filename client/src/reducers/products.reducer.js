@@ -7,28 +7,26 @@ import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoin
 const initialState = {
     allProducts: [],
     productsQuantity: 0,
-    showMoreFilters: JSON.parse(localStorage.getItem("showMoreFilters")) ||false,
+    showMoreFilters: JSON.parse(sessionStorage.getItem("showMoreFilters")) ||false,
     searchProducts: [],
-    sortByPrise: 'Doesn`t matter',
+    sortByPrise: 'Popular',
     isSearch: false,
-    pageLoading: true,
+    pageLoading: false,
     serverError: null,
-    requestObjUser:  JSON.parse(localStorage.getItem("requestObjUser"))  ||  { brand: '', 
-                                                                             color: '', 
+    filterRequest:  JSON.parse(sessionStorage.getItem("filterRequest"))  ||  { brand: '', 
                                                                              category: '', 
                                                                              processorBrand: '', 
                                                                              screenSize: '', 
                                                                              color: '', 
                                                                              ramMemory: '',
                                                                              hardDriveCapacity: '',
-                                                                             perPage: 8,
+                                                                             perPage: 3,
                                                                              startPage: 1, 
                                                                              minPrice: '',
                                                                              maxPrice: '',
                                                                              sort: '',
                                                                              },
-    isLoading: false,
-    serverError: null
+    
 }
 
 
@@ -47,7 +45,7 @@ const productsSlice = createSlice({
             state.sortByPrise = payload
         },
         actionPageLoading: (state, {payload}) => {
-            state.isLoading = payload
+            state.pageLoading = payload
         },
         actionSearchProducts: (state, {payload}) => {
             state.isSearch = true;
@@ -61,11 +59,11 @@ const productsSlice = createSlice({
         },
         actionShowMoreFilters: (state, {payload}) => {
             state.showMoreFilters = payload;
-            localStorage.setItem("showMoreFilters", JSON.stringify(payload));
+            sessionStorage.setItem("showMoreFilters", JSON.stringify(payload));
         },
-        actionRequestObjUser: (state, {payload}) => {
-            state.requestObjUser = payload
-            localStorage.setItem("requestObjUser", JSON.stringify(payload));
+        actionFilterRequest: (state, {payload}) => {
+            state.filterRequest = payload
+            sessionStorage.setItem("filterRequest", JSON.stringify(payload));
         }
     }
 })
@@ -77,7 +75,7 @@ export const {
     actionChangeSearchFlag,
     actionServerError,
     actionSortByPrise,
-    actionRequestObjUser,
+    actionFilterRequest,
     actionShowMoreFilters,
     actionProductComments,
 } = productsSlice.actions
@@ -85,7 +83,7 @@ export const {
 
 export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true)) 
-    return axios.get(`${GET_ALL_PRODUCTS}/filter?&perPage=8&startPage=1`) 
+    return axios.get(GET_ALL_PRODUCTS) 
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.productsQuantity))    
             dispatch(actionAllProducts(data.products));
@@ -94,18 +92,16 @@ export const actionFetchAllProducts = () => (dispatch) => {
           .catch(() => dispatch(actionServerError(true))) 
 }
 
-export const actionFetchSearchFilterProducts = (selectorObjUser) => (dispatch) => {
+export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatch) => {
     dispatch(actionPageLoading(true))
-    dispatch(actionRequestObjUser(selectorObjUser))
+    dispatch(actionFilterRequest(newFilterRequestObj))
     let arrRequest = []
-    for (let key in selectorObjUser) {
-        if (selectorObjUser[key] !== '') {
-            arrRequest.push([key, selectorObjUser[key]])
+    for (let key in newFilterRequestObj) {
+        if (newFilterRequestObj[key] !== '') {
+            arrRequest.push([key, newFilterRequestObj[key]])
         }
     }
     let filter = new URLSearchParams(arrRequest).toString()
-    console.log(arrRequest, "aaaaaaa")
-    console.log(filter, "b")
     return axios.get(`${FILTERED_PRODUCTS}${filter}`)
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.productsQuantity))         

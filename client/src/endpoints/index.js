@@ -1,6 +1,6 @@
 const PREFIX = "http://localhost:5000/api";
 
-export const GET_ALL_PRODUCTS = `${PREFIX}/products`;
+export const GET_ALL_PRODUCTS = `${PREFIX}/products/filter?&perPage=3&startPage=1`;
 export const SEARCH_PRODUCTS = `${PREFIX}/products/search`;
 export const FILTERED_PRODUCTS = `${PREFIX}/products/filter?`;
 export const FILTERS = `${PREFIX}/filters`;

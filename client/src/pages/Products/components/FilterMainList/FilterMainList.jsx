@@ -2,18 +2,19 @@ import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem,
 import { useState } from 'react';
 import cx from "classnames";
 import Box from '@mui/material/Box';
-import FilterCheckBox from '../../../../components/FilterCheckBox';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorRequestObjUser, selectorShowMoreFilters } from '../../../../selectors';
+import { selectorFilterRequest, selectorShowMoreFilters } from '../../../../selectors';
 import { actionFetchSearchFilterProducts, actionShowMoreFilters } from '../../../../reducers';
+import RenderSectionFilter from './RenderSectionFilter';
+import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity} from './configFilters';
 
 import './FilterMainList.scss'
 
 const FilterMainList = () => {
-    const selectorObjUser = useSelector(selectorRequestObjUser)
+    const filterRequestObj = useSelector(selectorFilterRequest)
     const showMoreFilters = useSelector(selectorShowMoreFilters)
-    const [minimalInputPrice, setMinimalInputPrice] = useState(selectorObjUser.minPrice || '')
-    const [maximalInputPrice, setMaximalInputPrice] = useState(selectorObjUser.maxPrice || '')
+    const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
+    const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
 
@@ -27,23 +28,23 @@ const FilterMainList = () => {
     };
 
     const request = (key, name) => {
-        let newObj = { ...selectorObjUser }
-        newObj.startPage = 1
-        newObj[key].includes(name) ?
-            newObj[key] = newObj[key].split(',').filter(item => item !== name).join(',')
+        let newFilterRequestObj = { ...filterRequestObj }
+        newFilterRequestObj.startPage = 1
+        newFilterRequestObj[key].includes(name) ?
+        newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
             :
-            newObj[key] += name + ","
-        dispatch(actionFetchSearchFilterProducts(newObj))
+            newFilterRequestObj[key] += name + ","
+        dispatch(actionFetchSearchFilterProducts(newFilterRequestObj))
     }
 
     const filterWithCurentPrice = (e) => {
-        let newObj = { ...selectorObjUser }
-        newObj.minPrice = minimalInputPrice
-        newObj.maxPrice = maximalInputPrice
+        let newFilterRequestObj = { ...filterRequestObj }
+        newFilterRequestObj.minPrice = minimalInputPrice
+        newFilterRequestObj.maxPrice = maximalInputPrice
         if (e) {
-            newObj.sort = e
+            newFilterRequestObj.sort = e
         }
-        dispatch(actionFetchSearchFilterProducts(newObj))
+        dispatch(actionFetchSearchFilterProducts(newFilterRequestObj))
     }
 
     const comparePrice = () => {
@@ -60,16 +61,16 @@ const FilterMainList = () => {
     }
 
     const checked = (key, name) => {
-        return selectorObjUser[key].includes(name)
+        return filterRequestObj[key].includes(name)
     }
-
+    
 
     return (
         <>
             <section className='main-filter-block'>
                 <FormControl>
                     <InputLabel color="success"> Sort by price </InputLabel>
-                    <Select value={selectorObjUser.sort} color="success" sx={{
+                    <Select value={filterRequestObj.sort} color="success" sx={{
                         width: 140
                     }}
                         onChange={(e) => { filterWithCurentPrice(e.target.value) }}
@@ -82,18 +83,12 @@ const FilterMainList = () => {
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Brand</FormLabel>
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('brand', 'Asus')} name={'brand'} value={'Asus'} label={'Asus'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('brand', 'Apple')} name={'brand'} value={'Apple'} label={'Apple'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('brand', 'HP')} name={'brand'} value={'HP'} label={'HP'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('brand', 'Acer')} name={'brand'} value={'Acer'} label={'Acer'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('brand', 'Lenovo')} name={'brand'} value={'Lenovo'} label={'Lenovo'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request}/>
                 </FormGroup>
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Category</FormLabel>
-                    <FilterCheckBox className='option_filter brand-block__item' defaultChecked={checked('category', 'Gaming')} name={'category'} value={'Gaming'} label={'Gaming'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('category', 'Business')} name={'category'} value={'Business'} label={'Business'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('category', 'Refurbished')} name={'category'} value={'Refurbished'} label={'Refurbished'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                    <RenderSectionFilter arrFilters={category} blockNameFilters={'category'} checked={checked} request={request}/>
                 </FormGroup>
 
                 <div>
@@ -139,8 +134,7 @@ const FilterMainList = () => {
                 </div>
                 <FormGroup>
                     <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('processorBrand', 'Intel')} name={'processorBrand'} value={'Intel'} label={'Intel'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                    <FilterCheckBox className="brand-block__item" defaultChecked={checked('processorBrand', 'AMD')} name={'processorBrand'} value={'AMD'} label={'AMD'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                    <RenderSectionFilter arrFilters={processorBrand} blockNameFilters={'processorBrand'} checked={checked} request={request}/>
                 </FormGroup>
 
 
@@ -148,35 +142,22 @@ const FilterMainList = () => {
                     <>
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '16')} name={'screenSize'} value={'16'} label={'16\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '15.6')} name={'screenSize'} value={'15.6'} label={'15.6\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '14')} name={'screenSize'} value={'14'} label={'14\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '13.3')} name={'screenSize'} value={'13.3'} label={'13.3\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('screenSize', '11.6')} name={'screenSize'} value={'11.6'} label={'11.6\"'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                            <RenderSectionFilter arrFilters={screenSize} blockNameFilters={'screenSize'} checked={checked} request={request}/>
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Color</FormLabel>
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('color', 'black')} name={'color'} value={'black'} label={'black'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('color', 'silver')} name={'color'} value={'silver'} label={'silver'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('color', 'white')} name={'color'} value={'white'} label={'white'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                            <RenderSectionFilter arrFilters={color} blockNameFilters={'color'} checked={checked} request={request}/>
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Ram memory</FormLabel>
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('ramMemory', '32 GB')} name={'ramMemory'} value={'32 GB'} label={'32 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('ramMemory', '16 GB')} name={'ramMemory'} value={'16 GB'} label={'16 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('ramMemory', '8 GB')} name={'ramMemory'} value={'8 GB'} label={'8 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('ramMemory', '4 GB')} name={'ramMemory'} value={'4 GB'} label={'4 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                            <RenderSectionFilter arrFilters={ramMemory} blockNameFilters={'ramMemory'} checked={checked} request={request}/>
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '1 TB')} name={'hardDriveCapacity'} value={'1 TB'} label={'1 TB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '512 GB')} name={'hardDriveCapacity'} value={'512 GB'} label={'512 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '256 GB')} name={'hardDriveCapacity'} value={'256 GB'} label={'256 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '128 GB')} name={'hardDriveCapacity'} value={'128 GB'} label={'128 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
-                            <FilterCheckBox className="brand-block__item" defaultChecked={checked('hardDriveCapacity', '64 GB')} name={'hardDriveCapacity'} value={'64 GB'} label={'64 GB'} onClick={(e) => { request(e.target.name, e.target.value) }} />
+                            <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request}/>
                         </FormGroup>
                         <button className='triger-more-filter'  onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
                     </>
