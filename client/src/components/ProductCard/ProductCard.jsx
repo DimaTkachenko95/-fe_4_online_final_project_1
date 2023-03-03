@@ -9,7 +9,6 @@ import { actionAddToBasket } from "../../reducers";
 import { toggleFavoriteProduct } from "../../reducers/favorites.reducer";
 import { toggleScalesProduct } from "../../reducers/scales.reducer";
 import { useSelector, useDispatch } from 'react-redux'
-
 import "./ProductCard.scss"
 
 const ProductCard = ({ el }) => {
@@ -19,11 +18,13 @@ const ProductCard = ({ el }) => {
   const scales = useSelector(selectorScales);
   const dispatch = useDispatch();
 
-  const isProductInCart = basket.some(item => item._id === _id);
+  const isProductInCart = basket.some(item => item.id === _id);
   const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
   const addToBasket = item => {
-    dispatch(actionAddToBasket(item));
+    if (!basket.find((elem) => elem.id === item._id)) {
+      dispatch(actionAddToBasket(item));
+    } 
   }
 
   const toggleFavorites = id => {
@@ -37,39 +38,49 @@ const ProductCard = ({ el }) => {
   return (
     <div className="list" id={_id} key={_id}>
       <div className="list__item">
-        <div className="list__item--img">
-          <Link to={`/products/${itemNo}`}>
-            <img className="list__item--img--laptop" src={imageUrls[0]} alt={name} />
-          </Link>
-        </div>
-        <span >
+        <div>
+          <div className="list__item--img">
+            <Link to={`/products/${itemNo}`}>
+              <img className="list__item--img--laptop" src={imageUrls[0]} alt={name} />
+            </Link>
+          </div>
+
+          <span >
           <Scales onClick={() => toggleScales(el._id)}
                   className={cx("list__item--scales", { "list__item--scales--curent": checkProduct(scales) })} />
         </span>
-        <span>
+          <span>
           <Favorites onClick={() => toggleFavorites(el._id)}
                      className={cx("list__item--favorite", { "list__item--favorite--curent": checkProduct(favorites) })} />
-        </span>
+          </span>
+        </div>
+
         <div>
-          <Link to={`/products/${itemNo}`}>
-            <p className="list__item--name">{name}</p>
-          </Link>
-          <p className="list__item--producer">{brand}</p>
+          <div>
+            <Link to={`/products/${itemNo}`}>
+              <p className="list__item--name">{name}</p>
+            </Link>
+            <p className="list__item--brand">{brand}</p>
+          </div>
+
+          <div className="list__item--price">
+          <span className={cx("list__item--price--curent", { "list__item--price--curent-new": previousPrice })} >
+            {currentPrice.toLocaleString()} $
+          </span>
+            {previousPrice && <span className="list__item--price--previous">{previousPrice.toLocaleString()} $</span>}
+          </div>
+
+          { isProductInCart ?
+              <Link to="/basket">
+                <button onClick={() => addToBasket(el)} className="list__item--inbasket "><CheckMark />
+                  <span className="list__item--buy--text">In basket</span>
+                </button></Link>
+              :
+              <button onClick={() => addToBasket(el)} className="list__item--buy"><ShoppingCartOutlinedIcon />
+                <span className="list__item--buy--text">Buy</span>
+              </button>
+          }
         </div>
-        <div className="list__item--price">
-          <p className="list__item--price--curent">{currentPrice.toLocaleString()} $</p>
-          {previousPrice && <p className="list__item--price--previous">{previousPrice.toLocaleString()} $</p>}
-        </div>
-        {isProductInCart ?
-          <Link to="/basket">
-            <button onClick={() => addToBasket(el)} className="list__item--inbasket "><CheckMark />
-              <span className="list__item--buy--text">In basket</span>
-            </button></Link>
-          :
-          <button onClick={() => addToBasket(el)} className="list__item--buy"><ShoppingCartOutlinedIcon />
-            <span className="list__item--buy--text">Buy</span>
-          </button>
-        }
       </div>
     </div>
   )
