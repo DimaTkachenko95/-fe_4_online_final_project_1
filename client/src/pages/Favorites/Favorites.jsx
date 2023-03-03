@@ -11,7 +11,6 @@ import {actionFetchProductFavoritesByItemNo} from "../../reducers/favorites.redu
 import ProductCard from "../../components/ProductCard";
 
 import Grid from "@mui/material/Grid";
-import {useState} from "react";
 import EmptyFavorites from "./EmptyFavorites";
 
 
@@ -20,32 +19,21 @@ export default function Favorites() {
   const favorites = useSelector(selectorFavorites)
     const productFavorites = useSelector(selectorFavoritesProduct);
     const dispatch = useDispatch();
-    const [isEmpty, setIsEmpty] = useState(true);
 
-    // useEffect(() => {
-    //     if (favorites.length >= 1) {
-    //         setIsEmpty(false)
-    //     } else setIsEmpty(true)
-    // }, [favorites])
 
 
     useEffect(() => {
-        if (favorites.length >= 1) {
-            setIsEmpty(false)
-        } else setIsEmpty(true)
-
         dispatch(actionFetchProductFavoritesByItemNo(favorites))
-
     }, [favorites])
 
 
   return (
       <div className="sector_favorites">
-          {isEmpty ?
+          {favorites.length <= 1 ?
               <EmptyFavorites/> :
-                                  <Grid container spacing={4}>
+                                  <Grid  container xs={12} spacing={3}>
                                       {productFavorites.map((el, index) => (
-                                          <Grid className="grid-main-list" item xs="12" sm="5" md="3" key={el._id}>
+                                          <Grid className="grid_favorites" item  key={el._id}>
                                               <ProductCard el={el} index={index} />
                                           </Grid>
                                       ))}

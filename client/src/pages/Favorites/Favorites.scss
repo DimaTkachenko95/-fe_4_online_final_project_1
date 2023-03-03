@@ -1,13 +1,7 @@
-.emptySection{
-
-}
-
-
   .card_img{
     height: 168px;
     object-fit: contain;
   }
-
 
 .sector_favorites{
   flex-wrap: wrap;
@@ -15,9 +9,14 @@
   justify-content: center;
   column-gap: 50px;
   margin: auto;
-  max-width: 1536px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  max-width: 1400px;
+  padding: 50px;
+
+.grid_favorites{
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
 }
 
 
