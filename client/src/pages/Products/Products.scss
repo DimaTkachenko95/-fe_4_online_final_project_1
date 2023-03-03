@@ -30,6 +30,7 @@
 .grid-main-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 320px);
   gap: 30px;
 
   @media (max-width: 1066px) {
