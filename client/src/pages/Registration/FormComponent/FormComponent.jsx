@@ -8,8 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCustomerServerApi } from '../../reducers/registration.reducer';
-import initialState from '../../reducers/registration.reducer';
+import { createCustomerServerApi } from '../../../reducers/registration.reducer';
+import initialState from '../../../reducers/registration.reducer';
+import Button from '../../../components/Button';
 
 const FormComponent = () => {
   const dispatch = useDispatch();
@@ -153,9 +154,13 @@ const FormComponent = () => {
                   id="outlined-multiline-flexible"
                 />
               </div>
-              <button type="submit" className="form-registration__submit" disabled={!isValid}>
-                Submit
-              </button>
+              <Button
+                type="submit"
+                variant="gradient-green"
+                disabled={!isValid}
+                text="submit"
+                style={{ display: 'block', margin: '0 auto', marginTop: 104, marginBottom: 150 }}
+              />
             </Form>
           </>
         );
