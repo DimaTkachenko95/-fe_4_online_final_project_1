@@ -19,6 +19,10 @@ import basketReducer, {
 } from './basket.reducer';
 import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
 import registrationReducer, { createCustomerServer } from './registration.reducer';
+import discountedProductsReducer, { 
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
+ } from './discountedProducts.reducer';
 
 export {
   productsReducer,
@@ -43,4 +47,7 @@ export {
   actionFetchOneProduct,
   registrationReducer,
   createCustomerServer,
+  discountedProductsReducer,
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
 };

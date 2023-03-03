@@ -1,24 +1,21 @@
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
-import styles from './Slider.module.scss';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { selectorAllProducts } from "../../selectors";
-import { actionFetchAllProducts } from "../../reducers";
+import { selectorDiscountedProducts } from "../../selectors";
+import { actionFetchDiscountedProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../ProductCard";
-
+import "./Slider.scss"
 
 const Slider = () => {
-  const allProducts = useSelector(selectorAllProducts)
+  const allDiscountedProducts = useSelector(selectorDiscountedProducts)
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(actionFetchAllProducts())
+    dispatch(actionFetchDiscountedProducts())
   }, [])
-  
-  const allPopularProducts = allProducts.filter(({ previousPrice }) => previousPrice !== null)
 
   const responsive = {
   largeDesktop: {
@@ -37,32 +34,21 @@ const Slider = () => {
     breakpoint: { max: 600, min: 345 },
     items: 1
   }
-  
 }
-
-// const CustomRightArrow = ({ onClick, ...rest }) => {
-//   const {
-//     onMove,
-//     carouselState: { currentSlide, deviceType }
-//   } = rest;
-//   // onMove means if dragging or swiping in progress.
-//   return <button onClick={() => onClick()} className={styles.customRightArrow} />;
-// };
 
 return(
 <>
-<div className={styles.popularProducts}><span className={styles.popularProductsColored}>POPULAR</span> PRODUCTS</div>
+<Container maxWidth="lg" className="discounted-products">
+<div className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</div>
   <Container maxWidth="lg">
-     {allPopularProducts.length &&
+     {!!allDiscountedProducts.length &&
       (<Carousel 
-        className={styles.productCarousel}
+        className="discounted-products__carousel"
         infinite={true} 
         responsive={responsive}
-        itemClass={styles.productCarouselItem}
         removeArrowOnDeviceType={["tablet", "mobile"]}
-        // customRightArrow={<CustomRightArrow />}
         >
-        {allPopularProducts?.map((el, index) => {
+        {allDiscountedProducts?.map((el, index) => {
           return (
             <Grid key={index} className="grid-main-list" item xs="12" sm="6" md="4">
               <ProductCard el={el} index={index}
@@ -72,6 +58,7 @@ return(
         })}
       </Carousel>)
       }
+  </Container>
   </Container>
 </>
 )
