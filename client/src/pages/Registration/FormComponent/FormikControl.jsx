@@ -1,4 +1,4 @@
-import CustomInput from '../CustomInput/CustomInput';
+import CustomInput from '../../../components/CustomInput/CustomInput';
 import PropTypes from 'prop-types';
 
 const FormikControl = ({ control, ...rest }) => {

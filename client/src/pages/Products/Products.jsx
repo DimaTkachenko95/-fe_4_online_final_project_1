@@ -1,4 +1,4 @@
-import FilterMainList from "./components/FilterMainList";
+import FilterMainList from './components/FilterMainList';
 import { Container } from '@mui/material';
 import {
     selectorAllProducts,
@@ -28,9 +28,6 @@ const Products = () => {
 
     const dispatch = useDispatch();
     
-
-   
-
     useEffect(() => {
         if(searchInputValue === ''){
             let obj = JSON.parse(sessionStorage.getItem("filterRequest"))
@@ -76,8 +73,6 @@ const Products = () => {
                                 <FilterMainList />
                             </div>
                         </section>
-                       
-
                     </>
                 )
                 }

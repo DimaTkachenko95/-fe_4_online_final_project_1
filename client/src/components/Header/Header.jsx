@@ -12,7 +12,6 @@ import { selectorBasket, selectorFavorites, selectorScales } from '../../selecto
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 
-
 const theme = createTheme({
   components: {
     MuiContainer: {
@@ -47,10 +46,6 @@ const Header = () => {
     }
   };
 
- /*  const handleSearchAll = () => {
-    dispatch(actionChangeSearchFlag(false));
-  }; */
-
   return (
     <>
       <header className="header">
@@ -73,7 +68,6 @@ const Header = () => {
                     to="/products"
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
-                   /*  onClick={handleSearchAll} */
                   >
                     Products
                   </NavLink>

@@ -4,7 +4,7 @@ import {CardActionArea} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-/* import { GoogleMap, LoadScript } from '@react-google-maps/api'; */
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const Contacts = () =>{
     const API_KEY = process.env.YOUR_API_KEY
@@ -60,7 +60,7 @@ const Contacts = () =>{
                 </Card>
             </div>
 
-           {/*  <div className="map">
+            <div className="map">
                 <LoadScript
                     googleMapsApiKey={API_KEY}
                 >
@@ -72,7 +72,7 @@ const Contacts = () =>{
                     >
                     </GoogleMap>
                 </LoadScript>
-            </div> */}
+            </div>
         </div>
 
     )

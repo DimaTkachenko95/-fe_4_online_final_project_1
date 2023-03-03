@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectorFilterRequest, selectorShowMoreFilters } from '../../../../selectors';
 import { actionFetchSearchFilterProducts, actionShowMoreFilters } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
-import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity} from './configFilters';
+import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
 import './FilterMainList.scss'
 import zIndex from '@mui/material/styles/zIndex';
@@ -32,7 +32,7 @@ const FilterMainList = () => {
         let newFilterRequestObj = { ...filterRequestObj }
         newFilterRequestObj.startPage = 1
         newFilterRequestObj[key].includes(name) ?
-        newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
+            newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
             :
             newFilterRequestObj[key] += name + ","
         dispatch(actionFetchSearchFilterProducts(newFilterRequestObj))
@@ -64,19 +64,14 @@ const FilterMainList = () => {
     const checked = (key, name) => {
         return filterRequestObj[key].includes(name)
     }
-    
 
     return (
         <>
             <section className='main-filter-block'>
-                <FormControl sx={{
-                       
-                       
-                       
-                   }}>
+                <FormControl>
                     <div className='header-filter'> Sort by  </div>
                     <Select value={filterRequestObj.sort} color="success" sx={{
-                       /*  width: 140 */
+                        /*  width: 140 */
                     }}
                         onChange={(e) => { filterWithCurentPrice(e.target.value) }}
                     >
@@ -88,12 +83,12 @@ const FilterMainList = () => {
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Brand</FormLabel>
-                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request}/>
+                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request} />
                 </FormGroup>
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Category</FormLabel>
-                    <RenderSectionFilter arrFilters={category} blockNameFilters={'category'} checked={checked} request={request}/>
+                    <RenderSectionFilter arrFilters={category} blockNameFilters={'category'} checked={checked} request={request} />
                 </FormGroup>
 
                 <div>
@@ -131,40 +126,38 @@ const FilterMainList = () => {
                             disableSwap
                         />
                         <button disabled={!comparePrice()}
-                        className={cx("btn-send-request", { "btn-send-request-disabled": !comparePrice() })}
-                        onClick={() => filterWithCurentPrice()}>OK
-                    </button>
+                            className={cx("btn-send-request", { "btn-send-request-disabled": !comparePrice() })}
+                            onClick={() => filterWithCurentPrice()}>OK
+                        </button>
                     </Box>
-                    
                 </div>
                 <FormGroup>
                     <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
-                    <RenderSectionFilter arrFilters={processorBrand} blockNameFilters={'processorBrand'} checked={checked} request={request}/>
+                    <RenderSectionFilter arrFilters={processorBrand} blockNameFilters={'processorBrand'} checked={checked} request={request} />
                 </FormGroup>
-
 
                 {showMoreFilters ?
                     <>
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
-                            <RenderSectionFilter arrFilters={screenSize} blockNameFilters={'screenSize'} checked={checked} request={request}/>
+                            <RenderSectionFilter arrFilters={screenSize} blockNameFilters={'screenSize'} checked={checked} request={request} />
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Color</FormLabel>
-                            <RenderSectionFilter arrFilters={color} blockNameFilters={'color'} checked={checked} request={request}/>
+                            <RenderSectionFilter arrFilters={color} blockNameFilters={'color'} checked={checked} request={request} />
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Ram memory</FormLabel>
-                            <RenderSectionFilter arrFilters={ramMemory} blockNameFilters={'ramMemory'} checked={checked} request={request}/>
+                            <RenderSectionFilter arrFilters={ramMemory} blockNameFilters={'ramMemory'} checked={checked} request={request} />
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
-                            <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request}/>
+                            <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
                         </FormGroup>
-                        <button className='triger-more-filter'  onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
+                        <button className='triger-more-filter' onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
                     </>
                     :
                     <button className='triger-more-filter' onClick={() => dispatch(actionShowMoreFilters(true))}>Show more filters</button>
