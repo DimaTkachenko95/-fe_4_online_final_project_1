@@ -33,8 +33,8 @@ const SimilarProducts = () => {
                     <div className="similar-products__wrapper">
                         { shownProduct.map( (item, index) => (
                             (index < 4) &&
-                                <div className="similar-products__item">
-                                    <ProductCard key={item._id} el={item} />
+                                <div key={item._id} className="similar-products__item">
+                                    <ProductCard el={item} />
                                 </div> )
                             )
                         }
