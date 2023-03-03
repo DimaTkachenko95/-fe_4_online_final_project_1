@@ -26,18 +26,28 @@ const Slider = () => {
     items: 5
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 850 },
     items: 3
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 850, min: 600 },
     items: 2
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 600, min: 345 },
     items: 1
   }
+  
 }
+
+// const CustomRightArrow = ({ onClick, ...rest }) => {
+//   const {
+//     onMove,
+//     carouselState: { currentSlide, deviceType }
+//   } = rest;
+//   // onMove means if dragging or swiping in progress.
+//   return <button onClick={() => onClick()} className={styles.customRightArrow} />;
+// };
 
 return(
 <>
@@ -49,8 +59,10 @@ return(
         infinite={true} 
         responsive={responsive}
         itemClass={styles.productCarouselItem}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        // customRightArrow={<CustomRightArrow />}
         >
-        {allPopularProducts.length && allPopularProducts?.map((el, index) => {
+        {allPopularProducts?.map((el, index) => {
           return (
             <Grid key={index} className="grid-main-list" item xs="12" sm="6" md="4">
               <ProductCard el={el} index={index}
