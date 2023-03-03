@@ -44,11 +44,15 @@ export const toggleFavoriteProduct = id => (dispatch, getState) => {
 
 export const actionFetchProductFavoritesByItemNo = (itemNos) => async (dispatch) => {
     try {
-        const products = [];
-        for (let i = 0; i < itemNos.length; i++) {
-            const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
-        products.push(data)
-        }
+        // const products = [];
+        // for (let i = 0; i < itemNos.length; i++) {
+        //     const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
+        // products.push(data)
+        // }
+        const products = await Promise.all(itemNos.map(async (itemNo) => {
+            const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNo}`);
+            return data;
+        }));
         dispatch(actionFavoritesProduct(products));
     } catch (error) {
         console.error(error);

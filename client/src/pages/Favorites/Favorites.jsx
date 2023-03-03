@@ -26,7 +26,8 @@ export default function Favorites() {
   return (
       <div className="sector_favorites">
           <Container maxWidth="lg">
-          {favorites.length <= 1 ?
+              <h1 className="favorites__title">Favorite <span className="title_contrast">Products</span></h1>
+          {favorites.length <= 0 ?
               <EmptyFavorites/> :
               <div>
                   <Grid container spacing={12}>
