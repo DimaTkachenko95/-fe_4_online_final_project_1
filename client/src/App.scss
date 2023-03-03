@@ -1,3 +1,13 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-routes-wrapper {
+  flex: 1;
+}
+
 .App {
   text-align: center;
 }
@@ -32,14 +42,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .logo{
-  color: rgba(0, 0, 0, 1);
-  font-family: 'Montserrat', sans-serif;
+  color: rgb(0 0 0 / 100%);
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 800;
   font-size: 21px;
@@ -47,6 +58,6 @@
 
 
   .colored {
-    color: rgba(96, 176, 33, 1);
+    color: rgb(96 176 33 / 100%);
   }
 }

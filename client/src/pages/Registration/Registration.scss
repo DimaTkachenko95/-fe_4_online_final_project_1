@@ -1,5 +1,6 @@
 .registration-container {
   min-width: 345px;
+  position: relative;
 
   &__wrapper {
     min-width: 300px;
@@ -10,7 +11,6 @@
       line-height: 34px;
       text-align: center;
       margin-bottom: 43px;
-      margin-top: 78px;
       text-transform: uppercase;
     }
   }
@@ -27,12 +27,14 @@
     }
   }
 }
+
 @media (min-width: 996.9px) {
   .registration-container {
     min-width: 996.9px;
 
     &__wrapper {
       min-width: 900px;
+
       &-title {
         text-align: left;
       }

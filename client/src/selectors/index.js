@@ -1,5 +1,30 @@
-export const selectorAllProducts = state => state.app.allProducts;
-export const selectorSearchProducts = state => state.app.searchProducts;
-export const selectorBasket = state => state.app.basket;
-export const selectorFavorites = state => state.app.favorites;
-export const selectorScales = state => state.app.scales;
+// ALL PRODUCTS
+export const selectorAllProducts = state => state.products.allProducts;
+export const selectorSearchProducts = state => state.products.searchProducts;
+export const selectorSearchInputValue = state => state.products.searchInputValue;
+export const selectorServerErrorProducts = state => state.products.serverError;
+export const selectorSortByPrise = state => state.products.sortByPrise;
+export const selectorFilterRequest = state => state.products.filterRequest
+export const selectorShowMoreFilters = state => state.products.showMoreFilters
+export const selectorProductsQuantity = state => state.products.productsQuantity
+export const selectorIsAllProductsLoading = state => state.products.pageLoading;
+
+// PRODUCT DETAILS
+export const selectorProduct = state => state.productsDetails.productData;
+export const selectorSimilarProducts = state => state.productsDetails.similarProducts;
+export const selectorServerErrorProductDetails = state => state.productsDetails.serverError;
+export const selectorIsDetailsProductLoading = state => state.productsDetails.pageLoading;
+
+// ALL COMMENTS
+export const selectorProductComments = state => state.products.productComments;
+
+// PRODUCTS IN BASKET
+export const selectorBasket = state => state.basket.basket;
+export const selectorBasketProduct = state => state.basket.basketProduct;
+// PRODUCTS IN SCALES
+export const selectorScales = state => state.scales.scales;
+
+// FAVORITES PRODUCTS
+export const selectorFavorites = state => state.favorites.favorites;
+
+export const selectoRequestObj = state => state.app.requestObj
