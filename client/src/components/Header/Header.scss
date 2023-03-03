@@ -144,12 +144,13 @@ body {
     .action {
       position: relative;
 
+
       &:last-child {
         .action__icon {
           border-right: 1px solid #EFEFEF;
 
           @media (max-width: 996px) {
-            border: none;
+            border-right: none;
           }
         }
       }
@@ -162,7 +163,7 @@ body {
         width: 1.34vw;
         height: 1.34vw;
         position: absolute;
-        top: -17px;
+        top: -14px;
         right: 9px;
         font-family: Ubuntu, sans-serif;
         font-style: normal;
@@ -191,15 +192,20 @@ body {
         border-bottom: 2px solid transparent;
 
         @media (max-width: 996px) {
-          border: none;
+          border-left: none;
         }
       }
 
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
+        fill: rgb(96 176 33 / 100%);
         border-bottom: 2px solid rgb(96 176 33 / 100%);
 
       }
+    }
+    .active{
+      color: rgb(96 176 33 / 100%);
+      fill: rgb(96 176 33 / 100%);
     }
   }
 
@@ -215,7 +221,7 @@ body {
           border-right: 1px solid #EFEFEF;
 
           @media (max-width: 996px) {
-            border: none;
+            border-right: none;
           }
         }
 
@@ -249,7 +255,7 @@ body {
   }
 }
 
-.active {
+.header__menu--active {
 display: block;
 
   @media (max-width: 996px) {
