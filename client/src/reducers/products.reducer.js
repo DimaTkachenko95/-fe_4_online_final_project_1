@@ -8,9 +8,8 @@ const initialState = {
     allProducts: [],
     productsQuantity: 0,
     showMoreFilters: JSON.parse(sessionStorage.getItem("showMoreFilters")) ||false,
-    searchProducts: [],
     sortByPrise: 'Popular',
-    isSearch: false,
+    searchInputValue:  JSON.parse(sessionStorage.getItem("searchInputValue")) ||  '',
     pageLoading: false,
     serverError: null,
     filterRequest:  JSON.parse(sessionStorage.getItem("filterRequest"))  ||  { brand: '', 
@@ -35,7 +34,6 @@ const productsSlice = createSlice({
     initialState,
     reducers: {
         actionAllProducts: (state, {payload}) => {
-            state.isSearch = false;
             state.allProducts = [...payload]
         },
         actionProductsQuantity: (state, {payload}) => {
@@ -47,12 +45,9 @@ const productsSlice = createSlice({
         actionPageLoading: (state, {payload}) => {
             state.pageLoading = payload
         },
-        actionSearchProducts: (state, {payload}) => {
-            state.isSearch = true;
-            state.searchProducts = [...payload];
-        },
-        actionChangeSearchFlag: (state, {payload}) => {
-            state.isSearch = payload;
+        actionSearchInputValue: (state, {payload}) => {
+            state.searchInputValue = payload;
+            sessionStorage.setItem("searchInputValue", JSON.stringify(payload))
         },
         actionServerError: (state, {payload}) => {
             state.serverError = payload;
@@ -71,8 +66,7 @@ export const {
     actionAllProducts,
     actionProductsQuantity,
     actionPageLoading,
-    actionSearchProducts,
-    actionChangeSearchFlag,
+    actionSearchInputValue,
     actionServerError,
     actionSortByPrise,
     actionFilterRequest,
@@ -106,6 +100,7 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.productsQuantity))         
             dispatch(actionAllProducts(data.products));
+            dispatch(actionSearchInputValue(''))
             dispatch(actionPageLoading(false));
         })
          .catch(() => dispatch(actionServerError(true)))  
@@ -116,7 +111,7 @@ export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     return axios.post(SEARCH_PRODUCTS, {query: inputValue})
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.length))    
-            dispatch(actionSearchProducts(data));
+            dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
         .catch(() => dispatch(actionServerError(true)))

@@ -1,7 +1,7 @@
 // ALL PRODUCTS
 export const selectorAllProducts = state => state.products.allProducts;
 export const selectorSearchProducts = state => state.products.searchProducts;
-export const selectorIsSearch = state => state.products.isSearch;
+export const selectorSearchInputValue = state => state.products.searchInputValue;
 export const selectorServerErrorProducts = state => state.products.serverError;
 export const selectorSortByPrise = state => state.products.sortByPrise;
 export const selectorFilterRequest = state => state.products.filterRequest

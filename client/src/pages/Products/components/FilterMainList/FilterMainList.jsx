@@ -9,6 +9,7 @@ import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity} from './configFilters';
 
 import './FilterMainList.scss'
+import zIndex from '@mui/material/styles/zIndex';
 
 const FilterMainList = () => {
     const filterRequestObj = useSelector(selectorFilterRequest)
@@ -68,14 +69,18 @@ const FilterMainList = () => {
     return (
         <>
             <section className='main-filter-block'>
-                <FormControl>
-                    <InputLabel color="success"> Sort by price </InputLabel>
+                <FormControl sx={{
+                       
+                       
+                       
+                   }}>
+                    <div className='header-filter'> Sort by  </div>
                     <Select value={filterRequestObj.sort} color="success" sx={{
-                        width: 140
+                       /*  width: 140 */
                     }}
                         onChange={(e) => { filterWithCurentPrice(e.target.value) }}
                     >
-                        <MenuItem name={'sort'} value={'By popular'}>By popular</MenuItem>
+                        <MenuItem name={'sort'} value={'By popular'}>Popular</MenuItem>
                         <MenuItem name={'sort'} value={"currentPrice"}>Cheap first</MenuItem>
                         <MenuItem name={'sort'} value={"-currentPrice"}>Expensive first</MenuItem>
                     </Select>

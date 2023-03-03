@@ -2,12 +2,12 @@ import FilterMainList from "./components/FilterMainList";
 import { Container } from '@mui/material';
 import {
     selectorAllProducts,
-    selectorIsSearch,
+    selectorSearchInputValue,
     selectorSearchProducts,
     selectorServerErrorProducts,
     selectorProductsQuantity,
 } from "../../selectors";
-import { actionFetchAllProducts, actionFetchSearchFilterProducts } from "../../reducers";
+import { actionFetchAllProducts, actionFetchSearchFilterProducts, actionFetchSearchProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
@@ -23,19 +23,25 @@ const Products = () => {
     const allProducts = useSelector(selectorAllProducts);
     const productsQuantity = useSelector(selectorProductsQuantity);
     const searchProducts = useSelector(selectorSearchProducts);
-    const isSearch = useSelector(selectorIsSearch);
+    const searchInputValue = useSelector(selectorSearchInputValue);
     const serverError = useSelector(selectorServerErrorProducts);
 
     const dispatch = useDispatch();
+    
 
-
-    const productsShown = isSearch ? searchProducts : allProducts;
+   
 
     useEffect(() => {
-        let obj = JSON.parse(sessionStorage.getItem("filterRequest"))
-        obj? dispatch(actionFetchSearchFilterProducts(obj))
-        :
-        dispatch(actionFetchAllProducts()); 
+        if(searchInputValue === ''){
+            let obj = JSON.parse(sessionStorage.getItem("filterRequest"))
+            if(obj){
+                dispatch(actionFetchSearchFilterProducts(obj))
+            }else{
+                dispatch(actionFetchAllProducts()); 
+            }
+        } else{
+           dispatch(actionFetchSearchProducts(searchInputValue))
+        }
     }, [])
 
   
@@ -52,10 +58,10 @@ const Products = () => {
                         </div>
                         <section className="main-list__sections">
                             <div className="main-list__sections--products">
-                                {(productsShown.length > 0 && !serverError) ?
+                                {(allProducts.length > 0 && !serverError) ?
                                     <>
                                         <div className="grid-main-list">
-                                            {productsShown?.map((el, index) => (
+                                            {allProducts?.map((el, index) => (
                                                 <ProductCard el={el} index={index} />
                                             ))
                                             }
@@ -63,7 +69,7 @@ const Products = () => {
                                         <Paginate/>
                                     </>
                                     :
-                                    <h1 className="text-product__not-found">Nothing to find, pleace change your filter</h1>
+                                    <h1 className="text-product__not-found">Nothing to find, pleace enter corect name or change your filter</h1>
                                 }
                             </div>
                             <div className="main-list__sections--filters">

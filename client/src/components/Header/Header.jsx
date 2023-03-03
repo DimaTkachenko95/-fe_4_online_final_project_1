@@ -11,7 +11,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { selectorBasket, selectorFavorites, selectorScales } from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
-import { actionChangeSearchFlag } from '../../reducers';
+
 
 const theme = createTheme({
   components: {
@@ -47,9 +47,9 @@ const Header = () => {
     }
   };
 
-  const handleSearchAll = () => {
+ /*  const handleSearchAll = () => {
     dispatch(actionChangeSearchFlag(false));
-  };
+  }; */
 
   return (
     <>
@@ -73,7 +73,7 @@ const Header = () => {
                     to="/products"
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
-                    onClick={handleSearchAll}
+                   /*  onClick={handleSearchAll} */
                   >
                     Products
                   </NavLink>
