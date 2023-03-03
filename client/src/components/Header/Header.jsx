@@ -41,18 +41,6 @@ const Header = () => {
   }, []);
   const burgerMenuRef = useRef();
 
-      useEffect(() => {
-        document.addEventListener("mousedown", handleBurgerMenu);
-        return (() => {
-            document.removeEventListener("mousedown", handleBurgerMenu);
-        })
-    },[])   
-    const burgerMenuRef = useRef();
-
-    const handleBurgerMenu = (event) => {
-        if (burgerMenuRef && !burgerMenuRef.current.contains(event.target) && isMenuOpen) {
-            setIsMenuOpen(!isMenuOpen);
-        }
   const handleBurgerMenu = (event) => {
     if (burgerMenuRef && !burgerMenuRef.current.contains(event.target) && isMenuOpen) {
       setIsMenuOpen(!isMenuOpen);
@@ -169,6 +157,5 @@ const Header = () => {
     </>
   );
 };
-}
 
 export default Header;

@@ -49,7 +49,7 @@ export{
     scalesReducer,
     actionAddToScales,
     actionDeleteFromScales,
-   
+    registrationReducer,
     productDetailsReducer,
     actionFetchOneProduct
 }
