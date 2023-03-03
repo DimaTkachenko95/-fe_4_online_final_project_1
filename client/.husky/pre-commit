@@ -4,6 +4,7 @@
 cd client
 npx stylelint src/**/*.scss
 npx eslint src/**/*.jsx
+npx eslint src/**/*.js
 npm test
 
 
