@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoints";
+import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoints";
 
 
 
@@ -77,7 +77,7 @@ export const {
 
 export const actionFetchAllProducts = () => (dispatch) => {
     dispatch(actionPageLoading(true)) 
-    return axios.get(GET_ALL_PRODUCTS) 
+    return axios.get(GET_ALL_PRODUCTS_PAGINATION) 
         .then(({data}) => {
             dispatch(actionProductsQuantity(data.productsQuantity))    
             dispatch(actionAllProducts(data.products));
