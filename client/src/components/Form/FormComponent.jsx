@@ -7,8 +7,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createCustomerServerApi } from '../../reducers/registration.reducer';
+import initialState from '../../reducers/registration.reducer';
 
 const FormComponent = () => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -17,23 +22,12 @@ const FormComponent = () => {
     event.preventDefault();
   };
 
-  const initialValues = {
-    firstName: '',
-    lastName: '',
-    login: '',
-    email: '',
-    password: '',
-    telephone: '',
-    gender: '',
-    avatarUrl: '',
-  };
-
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialState}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        dispatch(createCustomerServerApi(values));
         resetForm();
       }}
     >

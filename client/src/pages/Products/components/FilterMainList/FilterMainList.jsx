@@ -169,4 +169,4 @@ const FilterMainList = () => {
     )
 }
 
-export default FilterMainList
+export default FilterMainList;

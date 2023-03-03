@@ -1,5 +1,5 @@
 @mixin font-list-items {
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -8,6 +8,8 @@
 
 .main-list {
   margin: 50px auto;
+  position: relative;
+
   &__sections {
     display: grid;
     grid-template-columns: 6fr 1fr;
@@ -50,12 +52,14 @@
 
 .count-found-product {
   @include font-list-items;
+
   font-size: 16px;
   margin-bottom: 26px;
-  color: #000000;
+  color: #000;
 
   &__span {
     @include font-list-items;
+
     font-size: 16px;
     color: #60b021;
   }
