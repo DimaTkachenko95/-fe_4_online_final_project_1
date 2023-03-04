@@ -25,8 +25,4 @@ export const selectorFavorites = state => state.favorites.favorites;
 
 // LOGIN
 export const selectorUserData = state => state.logIn.userData;
-export const selectorLoginOrEmail = state => state.logIn.userData.loginOrEmail;
-export const selectorPassword = state => state.logIn.userData.password;
 export const selectorToken = state => state.logIn.token;
-
-

@@ -12,7 +12,7 @@ import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
 import NotFound from "./pages/NotFound";
 import './reset.css';
-import LogIn from './pages/LogIn/LogIn';
+import LogIn from './components/Authorization/Authorization';
 
 const App = () => {
 
@@ -30,7 +30,7 @@ const App = () => {
                     <Route path="/favorites" element={ <Favorites/> }/>
                     <Route path="/check-out" element={ <CheckOut/> }/>
                     <Route path="/registration" element={ <Registration/> }/>
-                    <Route path="/log_in" element={<LogIn/>}/>
+                    {/* <Route path="/log_in" element={<LogIn/>}/> */}
                     <Route path="/*" element={ <NotFound/> }/>
                 </Routes>
             </div>

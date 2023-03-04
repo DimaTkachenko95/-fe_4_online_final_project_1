@@ -2,7 +2,7 @@
 import { Field, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 
-import "./LogIn.scss";
+import "./Authorization.scss";
 
 const InputForm = ({
   className,

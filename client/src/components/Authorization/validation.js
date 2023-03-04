@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
-export const validationSchema = yup.object({
-    email: yup
+export const validationSchema = yup.object().shape({
+    loginOrEmail: yup
         .string("Enter your email or login")
         .required("E-mail/phone is required")
         .min(5, "Min 5 symbols"),

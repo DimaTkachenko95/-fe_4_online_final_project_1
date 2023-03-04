@@ -41,11 +41,11 @@ const CloseBtn = styled(Close) `
         cursor: pointer;
     `
 
-const Modal = ({children, modalAction}) => {
+const Modal = ({children, modalAction, closeAction}) => {
 return (
     <div className="wrapper">
-    <ModalWrapper>
-        <ModalBlock>
+    <ModalWrapper onClick={closeAction}>
+        <ModalBlock onClick={(e) => e.stopPropagation()}>
             <CloseBtn fontSize="large" stroke="white" onClick={modalAction}/>
             {children}
         </ModalBlock>
