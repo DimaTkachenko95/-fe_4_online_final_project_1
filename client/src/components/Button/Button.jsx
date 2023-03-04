@@ -57,8 +57,8 @@ const mixin = (props) => {
 
   const hoverWhiteShadow = css`
     box-shadow: 0px 3px 8px rgba(79, 156, 44, 0.6);
-    background: linear-gradient(#FFFFFF, rgba(79, 156, 44, 0.6));
-    color: #4d9546;
+    background: rgba(79, 156, 44, 0.6);
+    color: #FFFFFF;
     //background: linear-gradient(to bottom, #FFFFFF, #D3D3D3);
   `
   const widthMixin = css`
