@@ -3,10 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
+
     &--bc{
       background-color: #ededed;
     }
@@ -14,19 +14,18 @@
   }
 
   &__property {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-
     color: #75758A;
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
   &__value {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

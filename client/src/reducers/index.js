@@ -1,18 +1,15 @@
 
 import productsReducer, {
-    actionFetchAllProducts,
-    actionPageLoading,
-    actionSearchProducts,
-    actionChangeSearchFlag
-} from "./products.reducer";
+  actionFetchAllProducts,
+  actionPageLoading,
+  actionSearchProducts,
+  actionChangeSearchFlag,
+} from './products.reducer';
 import favoritesReducer, {
-    actionAddToFavorites,
-    actionDeleteFromFavorites
-} from "./favorites.reducer";
-import scalesReducer, {
-    actionAddToScales,
-    actionDeleteFromScales
-} from "./scales.reducer";
+  actionAddToFavorites,
+  actionDeleteFromFavorites,
+} from './favorites.reducer';
+import scalesReducer, { actionAddToScales, actionDeleteFromScales } from './scales.reducer';
 import basketReducer, {
     actionAddToBasket,
     actionDeleteFromBasket,
@@ -28,7 +25,9 @@ import logInReducer, {
 import productDetailsReducer, {
     actionFetchOneProduct,
 } from "./productDetails.reducer";
-
+import registrationReducer, {
+    createCustomerServer,
+} from './registration.reducer';
 export{
     productsReducer,
     actionFetchAllProducts,
@@ -52,5 +51,7 @@ export{
     actionFetchLogin,
     actionToken,
     productDetailsReducer,
-    actionFetchOneProduct
+    actionFetchOneProduct,
+    registrationReducer,
+    createCustomerServer,
 }

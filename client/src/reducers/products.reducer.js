@@ -54,7 +54,10 @@ export const actionFetchAllProducts = () => (dispatch) => {
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionServerError(true)))
+        .catch(() => {
+            dispatch(actionServerError(true));
+            dispatch(actionPageLoading(false));
+        })
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
@@ -64,7 +67,10 @@ export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
             dispatch(actionSearchProducts(data));
             dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionServerError(true)))
+        .catch(() => {
+            dispatch(actionServerError(true));
+            dispatch(actionPageLoading(false));
+        })
 }
 
 export default productsSlice.reducer

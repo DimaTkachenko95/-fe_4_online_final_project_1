@@ -75,7 +75,7 @@ const Header = () => {
                                 </Link>
                             </Box>
 
-                            <nav className={isMenuOpen ? 'header__menu active' : 'header__menu'} ref={burgerMenuRef}>
+                            <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
                                 <Box className="menu-list">
                                     <NavLink
                                         to="/products"
@@ -124,25 +124,25 @@ const Header = () => {
                                     <div className="count">
                                         <span>{favorites.length}</span>
                                     </div>
-                                    <Link to="/favorites" className="action__icon icon-favorite">
+                                    <NavLink to="/favorites" className="action__icon icon-favorite">
                                         <StarBorderIcon/>
-                                    </Link>
+                                    </NavLink>
                                 </Box>
                                 <Box className="action">
                                     <div className="count">
                                         <span>{scales.length}</span>
                                     </div>
-                                    <Link to="/compare" className="action__icon icon-compare">
+                                    <NavLink to="/compare" className="action__icon icon-compare">
                                         <ScaleSvg/>
-                                    </Link>
+                                    </NavLink>
                                 </Box>
                                 <Box className="action ">
                                     <div className="count count-cart">
                                         <span>{countInBasket}</span>
                                     </div>
-                                    <Link to="/basket" className="action__icon icon-cart">
+                                    <NavLink to="/basket" className="action__icon icon-cart">
                                         <ShoppingCartOutlinedIcon/>
-                                    </Link>
+                                    </NavLink>
                                 </Box>
                             </Box>
 
