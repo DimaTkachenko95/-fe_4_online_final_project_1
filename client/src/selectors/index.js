@@ -1,13 +1,11 @@
 // ALL PRODUCTS
 export const selectorAllProducts = state => state.products.allProducts;
-export const selectorSearchProducts = state => state.products.searchProducts;
 export const selectorSearchInputValue = state => state.products.searchInputValue;
 export const selectorServerErrorProducts = state => state.products.serverError;
 export const selectorSortByPrise = state => state.products.sortByPrise;
 export const selectorFilterRequest = state => state.products.filterRequest
-export const selectorShowMoreFilters = state => state.products.showMoreFilters
 export const selectorProductsQuantity = state => state.products.productsQuantity
-export const selectorIsAllProductsLoading = state => state.products.pageLoading;
+export const selectorPageLoading = state => state.products.pageLoading;
 
 // PRODUCT DETAILS
 export const selectorProduct = state => state.productsDetails.productData;

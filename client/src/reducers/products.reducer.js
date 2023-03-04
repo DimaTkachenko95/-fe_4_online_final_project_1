@@ -6,8 +6,7 @@ import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from 
 
 const initialState = {
     allProducts: [],
-    productsQuantity: 0,
-    showMoreFilters: JSON.parse(sessionStorage.getItem("showMoreFilters")) ||false,
+    productsQuantity: 0,  
     sortByPrise: 'Popular',
     searchInputValue:  JSON.parse(sessionStorage.getItem("searchInputValue")) ||  '',
     pageLoading: false,
@@ -52,10 +51,6 @@ const productsSlice = createSlice({
         actionServerError: (state, {payload}) => {
             state.serverError = payload;
         },
-        actionShowMoreFilters: (state, {payload}) => {
-            state.showMoreFilters = payload;
-            sessionStorage.setItem("showMoreFilters", JSON.stringify(payload));
-        },
         actionFilterRequest: (state, {payload}) => {
             state.filterRequest = payload
             sessionStorage.setItem("filterRequest", JSON.stringify(payload));
@@ -70,7 +65,6 @@ export const {
     actionServerError,
     actionSortByPrise,
     actionFilterRequest,
-    actionShowMoreFilters,
     actionProductComments,
 } = productsSlice.actions
 

@@ -3,9 +3,9 @@ import { Container } from '@mui/material';
 import {
     selectorAllProducts,
     selectorSearchInputValue,
-    selectorSearchProducts,
     selectorServerErrorProducts,
     selectorProductsQuantity,
+    selectorPageLoading
 } from "../../selectors";
 import { actionFetchAllProducts, actionFetchSearchFilterProducts, actionFetchSearchProducts } from "../../reducers";
 import { useEffect } from "react";
@@ -22,9 +22,9 @@ import Preloader from "../../components/Preloader";
 const Products = () => {
     const allProducts = useSelector(selectorAllProducts);
     const productsQuantity = useSelector(selectorProductsQuantity);
-    const searchProducts = useSelector(selectorSearchProducts);
     const searchInputValue = useSelector(selectorSearchInputValue);
     const serverError = useSelector(selectorServerErrorProducts);
+    const pageLoading = useSelector(selectorPageLoading);
 
     const dispatch = useDispatch();
     
@@ -45,13 +45,14 @@ const Products = () => {
     return (
         <main>
             <Container className="main-list" maxWidth="lg">   
+            <Preloader open={ pageLoading } />
             {serverError && <ServerError/>}
                 {!serverError && (
                     <>
                         <BreadCrumbs linksArray={[{ link: "/products", text: "Products" }]} />
                         <div>
-                            <h5 className="count-found-product">Products <span
-                                className="count-found-product__span">{productsQuantity} found</span></h5>
+                            <p className="count-found-product">Products <span
+                                className="count-found-product__span">{productsQuantity} found</span></p>
                         </div>
                         <section className="main-list__sections">
                             <div className="main-list__sections--products">
@@ -66,7 +67,7 @@ const Products = () => {
                                         <Paginate/>
                                     </>
                                     :
-                                    <h1 className="text-product__not-found">Nothing to find, pleace enter corect name or change your filter</h1>
+                                    <p className="text-product__not-found">Nothing to find, please enter correct name or change your filter</p>
                                 }
                             </div>
                             <div className="main-list__sections--filters">

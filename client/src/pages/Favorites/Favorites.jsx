@@ -11,6 +11,7 @@ import {selectorFavorites} from "../../selectors";
 export default function Favorites() {
 
   const favorites = useSelector(selectorFavorites)
+  console.log(favorites)
 
 
   return (
@@ -20,7 +21,7 @@ export default function Favorites() {
               <CardActionArea>
                 <CardMedia className="card_img"
                     component="img"
-                    image={item.imageUrls[0]}
+                  /*   image={item.imageUrls[0]} */
                     alt="laptop"
                 />
                 <CardContent>

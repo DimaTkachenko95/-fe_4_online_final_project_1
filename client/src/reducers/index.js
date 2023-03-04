@@ -6,7 +6,6 @@ import productsReducer, {
     actionFetchSearchFilterProducts,
     actionSearchInputValue,
     actionAllProducts,
-    actionShowMoreFilters,
     actionFetchSearchProducts,
 } from "./products.reducer";
 import favoritesReducer, {
@@ -32,7 +31,6 @@ export{
     actionAllProducts,
     actionProductsQuantity,
     actionSortByPrise,
-    actionShowMoreFilters,
     actionPageLoading,
     actionSearchInputValue,
     actionFetchSearchProducts,

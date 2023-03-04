@@ -1,19 +1,19 @@
-import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorFilterRequest, selectorShowMoreFilters } from '../../../../selectors';
-import { actionFetchSearchFilterProducts, actionShowMoreFilters } from '../../../../reducers';
+import { selectorFilterRequest } from '../../../../selectors';
+import { actionFetchSearchFilterProducts} from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
 import './FilterMainList.scss'
-import zIndex from '@mui/material/styles/zIndex';
+
 
 const FilterMainList = () => {
     const filterRequestObj = useSelector(selectorFilterRequest)
-    const showMoreFilters = useSelector(selectorShowMoreFilters)
+    const [showMoreFilters, setShowMoreFilters ] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
     const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
     const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
@@ -157,10 +157,10 @@ const FilterMainList = () => {
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
                             <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
                         </FormGroup>
-                        <button className='triger-more-filter' onClick={() => dispatch(actionShowMoreFilters(false))}>Hide filters</button>
+                        <button className='triger-more-filter' onClick={() => setShowMoreFilters(false)}>Hide filters</button>
                     </>
                     :
-                    <button className='triger-more-filter' onClick={() => dispatch(actionShowMoreFilters(true))}>Show more filters</button>
+                    <button className='triger-more-filter' onClick={() => setShowMoreFilters(true)}>Show more filters</button>
                 }
             </section>
         </>

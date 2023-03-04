@@ -9,7 +9,7 @@ import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { selectorBasket, selectorFavorites, selectorScales } from '../../selectors';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import InputSearch from '../InputSearch';
 
 const theme = createTheme({
@@ -25,7 +25,6 @@ const theme = createTheme({
 });
 
 const Header = () => {
-  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const basket = useSelector(selectorBasket);
   const favorites = useSelector(selectorFavorites);
