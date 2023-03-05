@@ -109,7 +109,6 @@ const closeModalAuth = () => {
                   </NavLink>
                 </Box>
               </nav>
-
               <Box className="header__input-wrapper">
                 <InputSearch style="header__input" />
               </Box>
