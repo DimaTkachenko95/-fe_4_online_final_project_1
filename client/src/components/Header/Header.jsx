@@ -9,7 +9,7 @@ import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { selectorBasket, selectorFavorites, selectorScales } from '../../selectors';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import InputSearch from '../InputSearch';
 
 const theme = createTheme({
@@ -58,7 +58,10 @@ const Header = () => {
                 </Link>
               </Box>
 
-              <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
+              <nav
+                className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'}
+                ref={burgerMenuRef}
+              >
                 <Box className="menu-list">
                   <NavLink
                     to="/products"
@@ -114,7 +117,7 @@ const Header = () => {
                   <div className="count">
                     <span>{scales.length}</span>
                   </div>
-                  <Link to="/compare" className="action__icon icon-compare">
+                  <Link to="/comparison" className="action__icon icon-compare">
                     <ScaleSvg />
                   </Link>
                 </Box>

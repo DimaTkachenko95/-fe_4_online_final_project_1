@@ -1,0 +1,22 @@
+@use 'src/styles/variables';
+
+@mixin mainText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+@mixin titleStyles {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  text-transform: uppercase;
+}
+
+@mixin liner-gradient-tile {
+  background: variables.$linearGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
