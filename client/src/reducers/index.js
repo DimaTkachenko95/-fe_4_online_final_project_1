@@ -1,9 +1,13 @@
 import productsReducer, {
-  actionFetchAllProducts,
-  actionPageLoading,
-  actionSearchProducts,
-  actionChangeSearchFlag,
-} from './products.reducer';
+    actionFetchAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
+    actionPageLoading,
+    actionFetchSearchFilterProducts,
+    actionSearchInputValue,
+    actionAllProducts,
+    actionFetchSearchProducts,
+} from "./products.reducer";
 import favoritesReducer, {
   actionAddToFavorites,
   actionDeleteFromFavorites,
@@ -20,27 +24,30 @@ import basketReducer, {
 import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
 import registrationReducer, { createCustomerServer } from './registration.reducer';
 
-export {
-  productsReducer,
-  actionFetchAllProducts,
-  actionPageLoading,
-  actionSearchProducts,
-  actionChangeSearchFlag,
-  favoritesReducer,
-  actionAddToFavorites,
-  actionDeleteFromFavorites,
-  basketReducer,
-  actionAddToBasket,
-  actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
-  scalesReducer,
-  actionAddToScales,
-  actionDeleteFromScales,
-  productDetailsReducer,
-  actionFetchOneProduct,
-  registrationReducer,
-  createCustomerServer,
-};
+export{
+    productsReducer,
+    actionFetchAllProducts,
+    actionFetchSearchFilterProducts,
+    actionAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
+    actionPageLoading,
+    actionSearchInputValue,
+    actionFetchSearchProducts,
+    favoritesReducer,
+    actionAddToFavorites,
+    actionDeleteFromFavorites,
+    basketReducer,
+    actionAddToBasket,
+    actionDeleteFromBasket,
+    actionBasketProduct,
+    actionIncrease,
+    actionDecraese,
+    actionFetchProductByItemNo,
+    scalesReducer,
+    actionAddToScales,
+    actionDeleteFromScales,
+    registrationReducer,
+    productDetailsReducer,
+    actionFetchOneProduct
+}
