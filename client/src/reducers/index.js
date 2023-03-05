@@ -1,10 +1,14 @@
 
 import productsReducer, {
-  actionFetchAllProducts,
-  actionPageLoading,
-  actionSearchProducts,
-  actionChangeSearchFlag,
-} from './products.reducer';
+    actionFetchAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
+    actionPageLoading,
+    actionFetchSearchFilterProducts,
+    actionSearchInputValue,
+    actionAllProducts,
+    actionFetchSearchProducts,
+} from "./products.reducer";
 import favoritesReducer, {
   actionAddToFavorites,
   actionDeleteFromFavorites,
@@ -31,9 +35,14 @@ import registrationReducer, {
 export{
     productsReducer,
     actionFetchAllProducts,
+    actionAllProducts,
+    actionProductsQuantity,
+    actionSortByPrise,
+    actionSearchInputValue,
     actionPageLoading,
     actionSearchProducts,
-    actionChangeSearchFlag,
+    actionFetchSearchProducts,
+    actionFetchSearchFilterProducts,
     favoritesReducer,
     actionAddToFavorites,
     actionDeleteFromFavorites,
