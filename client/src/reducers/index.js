@@ -40,7 +40,6 @@ export{
     actionSortByPrise,
     actionSearchInputValue,
     actionPageLoading,
-    actionSearchProducts,
     actionFetchSearchProducts,
     actionFetchSearchFilterProducts,
     favoritesReducer,

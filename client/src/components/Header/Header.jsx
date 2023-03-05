@@ -42,7 +42,7 @@ useEffect(() => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
   }, []);
-  const burgerMenuRef = useRef();p
+  const burgerMenuRef = useRef();
 
   const handleBurgerMenu = (event) => {
     if (burgerMenuRef && !burgerMenuRef.current.contains(event.target) && isMenuOpen) {
