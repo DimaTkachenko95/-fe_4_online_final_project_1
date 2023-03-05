@@ -8,7 +8,7 @@ import {
 } from "../endpoints";
 
 const initialState = {
-    isLoading: false,
+    pageLoading: false,
     serverError: null,
     productData: {},
     productComments: [],
@@ -20,7 +20,7 @@ const productDetailsSlice = createSlice({
     initialState,
     reducers: {
         actionPageLoading: (state, {payload}) => {
-            state.isLoading = payload
+            state.pageLoading = payload
         },
         actionServerError: (state, {payload}) => {
             state.serverError = payload;
