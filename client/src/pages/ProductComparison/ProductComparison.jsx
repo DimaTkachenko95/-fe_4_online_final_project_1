@@ -13,6 +13,7 @@ import './ProductComparison.scss';
 import { actionFetchAllProducts } from '../../reducers';
 import Preloader from '../../components/Preloader';
 import ServerError from '../../components/Notifications/ServerError';
+import { actionFetchAllProductsComp } from '../../reducers/products.reducer';
 
 const ProductComparisonSlice = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const ProductComparisonSlice = () => {
   const [comparisonProducts, setComparisonProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(actionFetchAllProducts());
+    dispatch(actionFetchAllProductsComp());
   }, []);
 
   useEffect(() => {
