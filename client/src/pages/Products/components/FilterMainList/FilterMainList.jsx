@@ -4,7 +4,7 @@ import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectorFilterRequest } from '../../../../selectors';
-import { actionFetchSearchFilterProducts} from '../../../../reducers';
+import { actionFetchSearchFilterProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
@@ -13,7 +13,7 @@ import './FilterMainList.scss'
 
 const FilterMainList = () => {
     const filterRequestObj = useSelector(selectorFilterRequest)
-    const [showMoreFilters, setShowMoreFilters ] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
+    const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
     const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
     const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
@@ -75,7 +75,7 @@ const FilterMainList = () => {
                     }}
                         onChange={(e) => { filterWithCurentPrice(e.target.value) }}
                     >
-                        <MenuItem name={'sort'} value={'By popular'}>Popular</MenuItem>
+                        <MenuItem name={'sort'} value={' '}>Popular</MenuItem>
                         <MenuItem name={'sort'} value={"currentPrice"}>Cheap first</MenuItem>
                         <MenuItem name={'sort'} value={"-currentPrice"}>Expensive first</MenuItem>
                     </Select>
@@ -157,10 +157,18 @@ const FilterMainList = () => {
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
                             <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
                         </FormGroup>
-                        <button className='triger-more-filter' onClick={() => setShowMoreFilters(false)}>Hide filters</button>
+                        <button className='triger-more-filter' onClick={() => {
+                            setShowMoreFilters(false)
+                            sessionStorage.setItem("showMoreFilters", false)
+                        }}>
+                            Hide filters</button>
                     </>
                     :
-                    <button className='triger-more-filter' onClick={() => setShowMoreFilters(true)}>Show more filters</button>
+                    <button className='triger-more-filter' onClick={() => {
+                        setShowMoreFilters(true)
+                        sessionStorage.setItem("showMoreFilters", true)
+                    }}>
+                        Show more filters</button>
                 }
             </section>
         </>
