@@ -9,7 +9,6 @@ import {
 
 const initialState = {
   allProducts: [],
-  allProductsComp: [],
   productsQuantity: 0,
   sortByPrise: 'Popular',
   searchInputValue: JSON.parse(sessionStorage.getItem('searchInputValue')) || '',
@@ -28,6 +27,7 @@ const initialState = {
     minPrice: '',
     maxPrice: '',
     sort: '',
+    allProductsComp: [],
   },
 };
 
