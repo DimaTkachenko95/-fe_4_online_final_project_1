@@ -11,6 +11,7 @@ import Favorites from './pages/Favorites';
 import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
 import './reset.css';
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
                     <Route path="/contacts" element={ <Contacts/> }/>
                     <Route path="/products" element={ <Products/> }/>
                     <Route path="/products/:itemNo" element={ <ProductDetails/> }/>
-
+                    <Route path="/about" element={<About/>}/>
                     <Route path="/basket" element={ <Basket/> }/>
                     <Route path="/favorites" element={ <Favorites/> }/>
                     <Route path="/check-out" element={ <CheckOut/> }/>

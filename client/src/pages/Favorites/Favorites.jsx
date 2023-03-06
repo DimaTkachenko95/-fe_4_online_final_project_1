@@ -9,19 +9,14 @@ import Grid from "@mui/material/Grid";
 import EmptyFavorites from "./EmptyFavorites";
 import { Container } from '@mui/material';
 
-
 export default function Favorites() {
-
   const favorites = useSelector(selectorFavorites)
     const productFavorites = useSelector(selectorFavoritesProduct);
     const dispatch = useDispatch();
 
-
-
     useEffect(() => {
         dispatch(actionFetchProductFavoritesByItemNo(favorites))
     }, [favorites])
-
 
   return (
       <div className="sector_favorites">
