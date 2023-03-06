@@ -77,7 +77,7 @@ export const {
 
 export const actionFetchAllProductsComp = () => (dispatch) => {
   return axios.get(GET_ALL_PRODUCTS).then(({ data }) => {
-    dispatch(actionAllProductsComp(data.products));
+    dispatch(actionAllProductsComp(data));
   });
 };
 
@@ -86,6 +86,7 @@ export const actionFetchAllProducts = () => (dispatch) => {
   return axios
     .get(GET_ALL_PRODUCTS_PAGINATION)
     .then(({ data }) => {
+      console.log(data);
       dispatch(actionProductsQuantity(data.productsQuantity));
       dispatch(actionAllProducts(data.products));
       dispatch(actionPageLoading(false));
