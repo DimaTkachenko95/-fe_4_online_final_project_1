@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import { Formik, Form } from "formik";
 import {validationSchema} from "./validation";
 import Button from "../Button";
-import { Typography } from "@mui/material";
 import {actionFetchLogin} from "../../reducers"
 import { useDispatch, useSelector } from "react-redux";
 import {selectorUserData} from "../../selectors";
@@ -29,7 +28,6 @@ const Authorization = ({closeModalAuth}) => {
             <Formik
           initialValues={userData}
           onSubmit={(values) => {
-            //console.log("Дані користувача", values);
             closeModalAuth();
             dispatch(actionFetchLogin(values))
           }}
@@ -53,7 +51,6 @@ const Authorization = ({closeModalAuth}) => {
                   required
                 />
                 <AuthInput
-                
                 htmlFor="outlined-adornment-password"
                 label="Password"
                 variant="outlined"
