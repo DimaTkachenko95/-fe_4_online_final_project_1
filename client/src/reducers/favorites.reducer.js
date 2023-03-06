@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {GET_ALL_PRODUCTS} from "../endpoints";
+import {GET_DETAILS_PRODUCT} from "../endpoints";
 import {actionBasketProduct} from "./basket.reducer";
 
 const initialState = {
@@ -42,21 +42,13 @@ export const toggleFavoriteProduct = id => (dispatch, getState) => {
 }
 
 
-export const actionFetchProductFavoritesByItemNo = (itemNos) => async (dispatch) => {
-    try {
-        // const products = [];
-        // for (let i = 0; i < itemNos.length; i++) {
-        //     const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
-        // products.push(data)
-        // }
-        const products = await Promise.all(itemNos.map(async (itemNo) => {
-            const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNo}`);
+export const actionFetchProductFavoritesByItemNo = (itemNos) =>  (dispatch) => {
+         Promise.all(itemNos.map(async (itemNo) => {
+            const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo',itemNo));
             return data;
-        }));
-        dispatch(actionFavoritesProduct(products));
-    } catch (error) {
-        console.error(error);
+        }))
+        .then( data => dispatch(actionFavoritesProduct(data)))
+        .catch(error => console.error(error));
     }
-}
 
 export default favoritesSlice.reducer;
