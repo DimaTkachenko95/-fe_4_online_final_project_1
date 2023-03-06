@@ -4,9 +4,11 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+
 }
 
 .list {
+
   position: relative;
   border: 1px solid #EFEFEF;
   box-sizing: border-box;
@@ -20,6 +22,7 @@
   }
 
   &__item {
+
     height: 100%;
     padding: 20px;
     display: flex;

@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import styled from "styled-components";
 
+
 const Title = styled(Typography) `
     && {
         text-align: center;
@@ -13,7 +14,10 @@ const Title = styled(Typography) `
 const EmptyBasket = () => {
     return (
         <Title variant="h2">
-            You nave not added any product yet
+            <div className="secEmpty">
+            <img src="https://xl-static.rozetka.com.ua/assets/img/design/modal-cart-dummy.svg" alt="dino"/>
+                   <p>You haven't added any product yet</p>
+            </div>
         </Title>
     )
 }
