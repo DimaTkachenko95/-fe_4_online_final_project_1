@@ -124,7 +124,7 @@ const FormComponent = () => {
                   label="Telephone"
                   className="form-registration__input"
                   name="telephone"
-                  // placeholder="Enter your telephone"
+                  placeholder="Enter your telephone"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                   required
@@ -158,10 +158,9 @@ const FormComponent = () => {
               </div>
               <Button
                 type="submit"
-                variant="gradient-green"
                 disabled={!isValid}
                 text="submit"
-                style={{ display: 'block', margin: '0 auto', marginTop: 104, marginBottom: 150 }}
+                style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
               />
             </Form>
           </>
