@@ -1,0 +1,85 @@
+@use './src/styles/mixins';
+@use 'src/styles/variables';
+
+.comparison-container__wrapper-title {
+  @include mixins.titleStyles;
+
+  margin-top: 20px;
+  color: variables.$black;
+}
+
+.comparison-container__wrapper-title-quantity {
+  @include mixins.titleStyles;
+  @include mixins.liner-gradient-tile;
+
+  margin-bottom: 45px;
+}
+
+.comparison-container__wrapper {
+  position: relative;
+  margin: 0 auto;
+  overflow-x: scroll;
+  min-width: 996px;
+}
+
+.table {
+  width: 100%;
+}
+
+.product-image-header {
+  border: none;
+}
+
+.product-image {
+  padding: 10px;
+  border-top: none;
+}
+
+.btn-table-header {
+  border: none;
+  box-shadow: variables.$box-shadow;
+}
+
+.product-name-header-item {
+  border: none;
+  padding: 10px;
+}
+
+.product-name-header {
+  border-top: none;
+}
+
+tbody {
+  border: none;
+}
+
+.feature-header {
+  color: variables.$border;
+  padding: 14px 30px 14px 10px;
+  border: none;
+  border-bottom: 1px solid variables.$light-border;
+}
+
+th {
+  border-bottom: 1px solid variables.$light-border;
+}
+
+.feature-value {
+  min-width: 200px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid variables.$light-border;
+}
+
+tr:nth-child(3) .feature-value {
+  color: variables.$red;
+}
+
+tr:nth-child(4) .feature-value {
+  color: variables.$light-green;
+}
+
+//tr:last-child .feature-value {
+//  overflow-y: scroll;
+//  height: 200px;
+//}
