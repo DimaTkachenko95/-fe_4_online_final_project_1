@@ -8,6 +8,7 @@ import {
   basketReducer,
   productDetailsReducer,
   registrationReducer,
+  personalOfficeReducer
 } from '../reducers';
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
     scales: scalesReducer,
     basket: basketReducer,
     registration: registrationReducer,
+    personalOffice: personalOfficeReducer,
   },
   /*  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger,thunk) */
 });

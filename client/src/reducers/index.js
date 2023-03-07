@@ -23,6 +23,7 @@ import basketReducer, {
 } from './basket.reducer';
 import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
 import registrationReducer, { createCustomerServer } from './registration.reducer';
+import personalOfficeReducer, {actionUserData} from "./personalOffice.reducer";
 
 export{
     productsReducer,
@@ -49,5 +50,7 @@ export{
     actionDeleteFromScales,
     registrationReducer,
     productDetailsReducer,
-    actionFetchOneProduct
+    actionFetchOneProduct,
+    personalOfficeReducer,
+    actionUserData,
 }

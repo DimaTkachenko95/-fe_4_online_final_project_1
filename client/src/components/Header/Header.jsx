@@ -9,7 +9,7 @@ import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { selectorBasket, selectorFavorites, selectorScales } from '../../selectors';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import InputSearch from '../InputSearch';
 
 const theme = createTheme({
@@ -127,13 +127,12 @@ const Header = () => {
                   </Link>
                 </Box>
               </Box>
-
               <Box className="header__user-actions">
                 <Box className="action">
                   {
-                    <a href="#" className="action__icon icon-user">
+                    <Link to="/personal-office" className="action__icon icon-user">
                       <Person2OutlinedIcon />
-                    </a>
+                    </Link>
                   }
                 </Box>
               </Box>

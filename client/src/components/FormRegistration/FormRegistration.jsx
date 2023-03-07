@@ -8,11 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCustomerServerApi } from '../../../reducers/registration.reducer';
-import initialState from '../../../reducers/registration.reducer';
-import Button from '../../../components/Button';
+import { createCustomerServerApi } from '../../reducers/registration.reducer';
+import initialState from '../../reducers/registration.reducer';
+import Button from '../../components/Button';
 
-const FormComponent = () => {
+const FormRegistration = () => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -170,4 +170,4 @@ const FormComponent = () => {
   );
 };
 
-export default FormComponent;
+export default FormRegistration;

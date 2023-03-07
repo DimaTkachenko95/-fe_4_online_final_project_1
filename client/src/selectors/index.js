@@ -25,4 +25,7 @@ export const selectorScales = state => state.scales.scales;
 // FAVORITES PRODUCTS
 export const selectorFavorites = state => state.favorites.favorites;
 
+// PERSONAL OFFICE
+export const selectorUserData = state => state.personalOffice.userData
+
 /* export const selectoRequestObj = state => state.app.requestObj */
