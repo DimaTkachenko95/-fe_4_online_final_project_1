@@ -9,7 +9,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCustomerServerApi } from '../../../reducers/registration.reducer';
-import initialState from '../../../reducers/registration.reducer';
+import { initialState } from '../../../reducers/registration.reducer';
 import Button from '../../../components/Button';
 
 const FormComponent = () => {
@@ -124,10 +124,12 @@ const FormComponent = () => {
                   label="Telephone"
                   className="form-registration__input"
                   name="telephone"
-                  placeholder="Enter your telephone"
+                  // placeholder="Enter your telephone"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                   required
+                  mask="+380 99 999 99 99"
+                  placeholder="+380 99 999 99 99"
                 />
 
                 <FormikControl

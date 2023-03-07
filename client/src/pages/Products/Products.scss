@@ -14,13 +14,16 @@
     display: grid;
     grid-template-columns: 6fr 1fr;
     column-gap: 20px;
+
     @media (max-width: 490px) {
       &--products{
         order: 2;
       }
+
       &--filters{
         order: 1;
       }
+
       display: flex;
       flex-direction: column;
     }
@@ -53,6 +56,7 @@
 
 .count-found-product {
   @include font-list-items;
+
   font-size: 16px;
   margin-bottom: 26px;
   color: #000;
@@ -67,7 +71,7 @@
 
 .text-product__not-found {
   text-align: center;
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 26px;

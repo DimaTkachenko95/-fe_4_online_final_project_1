@@ -11,7 +11,7 @@ const registrationSlice = createSlice({
     login: '',
     email: '',
     password: '',
-    telephone: '',
+    telephone: '+380',
     gender: '',
     avatarUrl: '',
   },
@@ -43,4 +43,5 @@ export const createCustomerServerApi = (value) => (dispatch) => {
     .catch(() => dispatch(actionServerError(true)));
 };
 
+export const initialState = registrationSlice.getInitialState();
 export default registrationSlice.reducer;

@@ -5,7 +5,7 @@ import './CustomInput.scss';
 
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
-  const { name, label, type, placeholder, className, id, helperText, ...rest } = props;
+  const { name, label, type, placeholder, className, id, helperText, mask, ...rest } = props;
   return (
     <>
       <Field
@@ -16,6 +16,7 @@ const CustomInput = (props) => {
         className={className}
         {...field}
         {...rest}
+        mask={mask}
         as={TextField}
         label={label}
         id={id}
