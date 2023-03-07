@@ -11,7 +11,7 @@ import { Link, NavLink } from 'react-router-dom';
 import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
-import Authorization from "../Authorization";
+import Authorization from "../../pages/Authorization";
 import {actionFetchAuthorizationUser} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 import {getWrappedValue} from "../../helpers/getWrappedValue";
@@ -158,7 +158,7 @@ const closeModalAuth = () => {
               <Box className="header__user-actions">
                 <Box className="action">
                   { authToken ? (
-                      <Link to="/cabinet" className="action__icon user-name" >
+                      <Link to="/personal-office" className="action__icon user-name" >
                         {getWrappedValue(userData.firstName, 10)}
                         {/*OB*/}
                       </Link>)

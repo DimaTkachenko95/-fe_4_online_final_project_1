@@ -6,7 +6,7 @@ import setAuthToken from "../helpers/setAuthToken";
 const initialState = {
     userData: {},
     token: localStorage.getItem("token") || '',
-    serverError: null
+    error: null
 }
 
 const logInSlice = createSlice({
@@ -20,26 +20,39 @@ const logInSlice = createSlice({
         actionAuthorizationUser: (state, {payload}) => {
             state.userData = payload
         },
-        actionServerError: (state, {payload}) => {
-            state.serverError = payload;
+        actionError: (state, {payload}) => {
+            state.error = payload;
         },
+        actionResetLoginError: (state) => {
+            state.error = initialState.error;
+        }
     }
 })
 
 export const {
     actionToken,
     actionAuthorizationUser,
-    actionServerError
+    actionError,
+    actionResetLoginError
 } = logInSlice.actions
 
 export const actionFetchLogin = (userData) => (dispatch) => {
+    debugger
     return axios.post(LOGIN_USER, userData)
         .then(({ data }) => {
+            dispatch(actionError(null))
             dispatch(actionToken(data.token))
             setAuthToken(data.token)
         })
-        .catch(() => {
-            dispatch(actionServerError(true))
+        .catch((err) => {
+            if (err.response.status === 404) {
+               return dispatch(actionError('NOT_FOUND'))
+            }
+            if (err.response.status === 400) {
+                return dispatch(actionError('BAD_REQUEST'))
+            }
+            return dispatch(actionError('SERVER_ERROR'))
+
         });
 }
 
@@ -48,9 +61,6 @@ export const actionFetchAuthorizationUser = () => (dispatch) => {
         .then(user => {
             dispatch(actionAuthorizationUser(user.data))
         })
-        .catch(() => {
-            dispatch(actionServerError(true))
-        });
 }
 
 export default logInSlice.reducer

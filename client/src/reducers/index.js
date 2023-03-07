@@ -24,7 +24,8 @@ import basketReducer, {
 import logInReducer, {
     actionFetchLogin,
     actionToken,
-    actionFetchAuthorizationUser
+    actionFetchAuthorizationUser,
+    actionResetLoginError
 } from "./logIn.reducer";
 import productDetailsReducer, {
     actionFetchOneProduct,
@@ -57,6 +58,7 @@ export{
     actionDeleteFromScales,
     logInReducer,
     actionFetchLogin,
+    actionResetLoginError,
     actionFetchAuthorizationUser,
     actionToken,
     productDetailsReducer,
