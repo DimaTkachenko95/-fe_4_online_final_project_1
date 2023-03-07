@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../ProductCard";
 import "./Slider.scss"
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 const Slider = () => {
   const allDiscountedProducts = useSelector(selectorDiscountedProducts)
@@ -50,7 +51,7 @@ return(
         >
         {allDiscountedProducts?.map((el, index) => {
           return (
-            <Grid key={index} className="grid-main-list" item xs="12" sm="6" md="4">
+            <Grid key={index} className="grid-main-list" item spacing={2}>
               <ProductCard el={el} index={index}
               />
             </Grid>
