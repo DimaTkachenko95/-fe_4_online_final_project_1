@@ -12,7 +12,7 @@ import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
-import ProductComparison from './pages/ProductComparison';
+import ProductComparison from './pages/ProductComparison/ProductComparison';
 import './reset.css';
 
 const App = () => {
