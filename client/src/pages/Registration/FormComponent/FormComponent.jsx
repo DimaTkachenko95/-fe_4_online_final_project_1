@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCustomerServerApi } from '../../../reducers/registration.reducer';
+import { createCustomerServerApi } from '../../../reducers';
 import { initialState } from '../../../reducers/registration.reducer';
 import Button from '../../../components/Button';
 
@@ -32,7 +32,7 @@ const FormComponent = () => {
         resetForm();
       }}
     >
-      {(isValid) => {
+      {(isValid, setFieldValue) => {
         return (
           <>
             <Form className="form-registration" style={{ width: '100%' }}>
@@ -124,7 +124,7 @@ const FormComponent = () => {
                   label="Telephone"
                   className="form-registration__input"
                   name="telephone"
-                  placeholder="Enter your telephone"
+                  // placeholder="Enter your telephone"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                   required

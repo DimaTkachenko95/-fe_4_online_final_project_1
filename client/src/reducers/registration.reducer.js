@@ -10,10 +10,10 @@ const registrationSlice = createSlice({
     login: '',
     email: '',
     password: '',
-    telephone: '+380',
+    telephone: '',
     gender: '',
     avatarUrl: '',
-    serverError: null
+    serverError: null,
   },
   reducers: {
     actionCreateCustomer: (state, action) => {
@@ -32,12 +32,9 @@ const registrationSlice = createSlice({
   },
 });
 
-export const {
-  actionCreateCustomer,
-  actionServerError
-} = registrationSlice.actions;
+export const { actionCreateCustomer, actionServerError } = registrationSlice.actions;
 
-export const createCustomerInServer = (value) => (dispatch) => {
+export const createCustomerServerApi = (value) => (dispatch) => {
   axios
     .post(REGISTER_USER, value)
     .then((savedCustomer) => {

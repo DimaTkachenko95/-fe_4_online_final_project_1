@@ -6,6 +6,7 @@ import './CustomInput.scss';
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
   const { name, label, type, placeholder, className, id, helperText, mask, ...rest } = props;
+
   return (
     <>
       <Field

@@ -24,10 +24,10 @@ const validationSchema = yup.object().shape({
   telephone: yup
     .string()
     .typeError("That doesn't look like a phone number")
-    .min(13, 'Phone number should start with a plus and contain 13 chars minimum')
+    .min(13, 'Phone number should start with +380 and contain 13 chars')
     .matches(
       /^\+380\d{3}\d{2}\d{2}\d{2}$/,
-      'Phone number should start with a plus and contain 13 chars minimum',
+      'Phone number should start with +380 and contain 13 chars',
     )
     .required('A phone number is required'),
   gender: yup.string().oneOf(['male', 'female', 'other']).lowercase(),
