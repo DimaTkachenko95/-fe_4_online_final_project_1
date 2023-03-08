@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { REGISTER_USER } from '../../src/endpoints/index';
 import axios from 'axios';
-import { actionServerError } from './products.reducer';
 
 const registrationSlice = createSlice({
   name: 'registration',
@@ -14,9 +13,10 @@ const registrationSlice = createSlice({
     telephone: '',
     gender: '',
     avatarUrl: '',
+    serverError: null
   },
   reducers: {
-    createCustomerServer: (state, action) => {
+    actionCreateCustomer: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.login = action.payload.login;
@@ -32,13 +32,16 @@ const registrationSlice = createSlice({
   },
 });
 
-export const { createCustomerServer } = registrationSlice.actions;
+export const {
+  actionCreateCustomer,
+  actionServerError
+} = registrationSlice.actions;
 
-export const createCustomerServerApi = (value) => (dispatch) => {
+export const createCustomerInServer = (value) => (dispatch) => {
   axios
     .post(REGISTER_USER, value)
     .then((savedCustomer) => {
-      dispatch(createCustomerServer(savedCustomer));
+      dispatch(actionCreateCustomer(savedCustomer));
     })
     .catch(() => dispatch(actionServerError(true)));
 };

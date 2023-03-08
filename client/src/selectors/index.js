@@ -27,4 +27,7 @@ export const selectorScales = (state) => state.scales.scales;
 export const selectorFavorites = (state) => state.favorites.favorites;
 export const selectorFavoritesProduct = (state) => state.favorites.favoritesProduct;
 
-/* export const selectoRequestObj = state => state.app.requestObj */
+// LOGIN
+export const selectorAllLoginErrors = state => state.logIn.error;
+export const selectorUserData = state => state.logIn.userData;
+export const selectorToken = state => state.logIn.token;
