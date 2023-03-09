@@ -3,6 +3,7 @@ export const columns = [
     id: 'image',
     label: 'Image',
     minWidth: 100,
+    format: (value) => value.image,
   },
   {
     id: 'name',

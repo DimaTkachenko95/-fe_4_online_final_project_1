@@ -12,8 +12,8 @@ import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
-import ProductComparison from './pages/ProductComparison/ProductComparison';
 import './reset.css';
+import ProductComparisonLast from './pages/ProductComparison1/ProductComparisonLast';
 
 const App = () => {
   return (
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/check-out" element={<CheckOut />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/comparison" element={<ProductComparison />} />
+          <Route path="/comparison" element={<ProductComparisonLast />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>

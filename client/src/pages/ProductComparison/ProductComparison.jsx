@@ -12,7 +12,6 @@ import './ProductComparison.scss';
 import Preloader from '../../components/Preloader';
 import ServerError from '../../components/Notifications/ServerError';
 import { actionFetchAllProductsComp } from '../../reducers/products.reducer';
-
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,7 +29,6 @@ const ProductComparisonSlice = () => {
   const serverError = useSelector(selectorServerErrorProducts);
   const isLoading = useSelector(selectorPageLoading);
   const [comparisonProducts, setComparisonProducts] = useState([]);
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -91,7 +89,7 @@ const ProductComparisonSlice = () => {
                               const value = row[column.id];
                               return (
                                 <TableCell key={column.id} align={column.align}>
-                                  {column.format && typeof value === 'number'
+                                  {column.format && typeof value === 'object'
                                     ? column.format(value)
                                     : value}
                                 </TableCell>
@@ -121,26 +119,3 @@ const ProductComparisonSlice = () => {
 };
 
 export default ProductComparisonSlice;
-
-// function createData(imageUrls, name, brand, category, currentPrice) {
-//   const density = population / size;
-//   return { imageUrls, name, brand, category, currentPrice};
-// }
-//
-// const rows = [
-//   createData('India', 'IN', 1324171354, 3287263),
-//   createData('China', 'CN', 1403500365, 9596961),
-//   createData('Italy', 'IT', 60483973, 301340),
-//   createData('United States', 'US', 327167434, 9833520),
-//   createData('Canada', 'CA', 37602103, 9984670),
-//   createData('Australia', 'AU', 25475400, 7692024),
-//   createData('Germany', 'DE', 83019200, 357578),
-//   createData('Ireland', 'IE', 4857000, 70273),
-//   createData('Mexico', 'MX', 126577691, 1972550),
-//   createData('Japan', 'JP', 126317000, 377973),
-//   createData('France', 'FR', 67022000, 640679),
-//   createData('United Kingdom', 'GB', 67545757, 242495),
-//   createData('Russia', 'RU', 146793744, 17098246),
-//   createData('Nigeria', 'NG', 200962417, 923768),
-//   createData('Brazil', 'BR', 210147125, 8515767),
-// ];
