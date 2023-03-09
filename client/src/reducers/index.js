@@ -20,7 +20,16 @@ import basketReducer, {
     actionBasketProduct,
     actionIncrease,
     actionDecraese,
-    actionFetchProductByItemNo
+    actionFetchProductByItemNo,
+    actionAddToProducts,
+    actionFetchAddUserCart,
+    actionGetCart,
+    actionAddToAuthBasket,
+    actionDeleteFromAuthBasket,
+    actionDeleteFromProducts,
+    actionAuthProducts,
+    actionDeleteAllFromAuthBasket,
+    actionDeleteAllProducts
 } from "./basket.reducer";
 import logInReducer, {
     actionFetchLogin,
@@ -52,6 +61,15 @@ export{
     actionIncrease,
     actionDecraese,
     actionFetchProductByItemNo,
+    actionAddToProducts,
+    actionFetchAddUserCart,
+    actionGetCart,
+    actionAddToAuthBasket,
+    actionDeleteFromAuthBasket,
+    actionDeleteFromProducts,
+    actionAuthProducts,
+    actionDeleteAllFromAuthBasket,
+    actionDeleteAllProducts,
     scalesReducer,
     actionAddToScales,
     actionDeleteFromScales,

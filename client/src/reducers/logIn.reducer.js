@@ -15,8 +15,6 @@ const logInSlice = createSlice({
     reducers: {
 
         actionToken: (state, {payload}) => {
-            // state.userData = payload
-            // console.log(payload.token);
             localStorage.setItem('token', payload.token)
         }
     }

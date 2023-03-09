@@ -19,6 +19,10 @@ export const selectorProductComments = state => state.products.productComments;
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
 export const selectorBasketProduct = state => state.basket.basketProduct;
+export const selectorBasketAuth = state => state.basket.basketAuth;
+export const selectorProducts = state => state.basket.products;
+export const selectorAuthBasketProducts = state => state.basket.authBasketProducts;
+
 // PRODUCTS IN SCALES
 export const selectorScales = state => state.scales.scales;
 

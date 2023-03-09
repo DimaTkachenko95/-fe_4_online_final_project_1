@@ -4,8 +4,8 @@ import { ReactComponent as CheckMark } from "./icons/check_mark.svg"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import cx from "classnames";
-import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
-import { actionAddToBasket } from "../../reducers";
+import { selectorBasket, selectorProducts, selectorFavorites, selectorScales } from "../../selectors";
+import { actionAddToBasket, actionAddToAuthBasket } from "../../reducers";
 import { toggleFavoriteProduct } from "../../reducers/favorites.reducer";
 import { toggleScalesProduct } from "../../reducers/scales.reducer";
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,17 +14,24 @@ import "./ProductCard.scss"
 const ProductCard = ({ el }) => {
   const { name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice } = el;
   const basket = useSelector(selectorBasket);
+  const products = useSelector(selectorProducts);
+  const userProducts = localStorage.getItem("token") ? products : basket;
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const dispatch = useDispatch();
 
-  const isProductInCart = basket.some(item => item.id === _id);
+  const isProductInCart = userProducts.some(item => item.product === _id);
   const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
   const addToBasket = item => {
-    if (!basket.find((elem) => elem.id === item._id)) {
-      dispatch(actionAddToBasket(item));
-    } 
+    if(!localStorage.getItem("token")) {
+      
+      if (!basket.find((elem) => elem.id === item._id)) {  
+        dispatch(actionAddToBasket(item));
+          } 
+    } else {
+      dispatch(actionAddToAuthBasket(item._id))
+    }
   }
 
   const toggleFavorites = id => {
@@ -86,4 +93,4 @@ const ProductCard = ({ el }) => {
   )
 }
 
-export default ProductCard
+export default ProductCard;

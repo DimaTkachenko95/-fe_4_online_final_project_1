@@ -3,10 +3,10 @@ import BasketItems from "./BasketItem";
 import EmptyBasket from "./EmptyBasket";
 import styled from "styled-components";
 import "./Basket.scss";
-import {useSelector} from "react-redux";
-import {selectorBasket, selectorBasketProduct} from "../../selectors";
 import {useEffect, useState} from "react";
-
+import {useSelector, useDispatch} from "react-redux";
+import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken } from "../../selectors";
+import {actionFetchAddUserCart, actionGetCart} from "../../reducers";
 import Button from "../../components/Button/";
 
 const ContainerBasket = styled(Container)`
@@ -14,23 +14,38 @@ const ContainerBasket = styled(Container)`
 `
 
 const Basket = () => {
-
+    const dispatch = useDispatch();
     const basket = useSelector(selectorBasket);
-    const [isEmpty, setIsEmpty] = useState(true);
-    const basketProduct = useSelector(selectorBasketProduct)
+    const basketProduct = useSelector(selectorBasketProduct);
+    const token = useSelector(selectorToken);
     const result = basketProduct.reduce((prev, item) => prev + item.cartQuantity * item.currentPrice, 0)
 
     useEffect(() => {
-        if (basket.length >= 1) {
-            setIsEmpty(false)
-        } else setIsEmpty(true)
-    }, [basket])
+       
+        if(localStorage.getItem("basket") && localStorage.getItem("token")) {
+                const newCart = {
+                    products: basket.map((item) => {
+                        return {
+                            product: item.id,
+                            cartQuantity: item.cartQuantity
+                        }
+                    })
+                }
+         
+         localStorage.removeItem("basket")
+         dispatch(actionFetchAddUserCart(newCart))
+     }
+     }, [token])
+
+     useEffect(() => {
+        dispatch(actionGetCart())
+     }, [])
 
     return (
 
         <ContainerBasket maxWidth="lg">
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
-            {isEmpty ?
+            {!basketProduct && !basketProduct.length <= 1 ? 
                 <EmptyBasket/> :
                 <>
                     <div className="basket__box">
@@ -61,7 +76,8 @@ const Basket = () => {
                             <Button text="checkout" to="/checkOut"/>
                         </div>
                     </div>
-                </>}
+                </>
+                }
         </ContainerBasket>
     )
 }
