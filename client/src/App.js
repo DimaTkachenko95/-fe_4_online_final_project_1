@@ -13,7 +13,7 @@ import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 import './reset.css';
-import ProductComparisonLast from './pages/ProductComparison1/ProductComparisonLast';
+import ProductComparisonPage from './pages/ProductComparison/ProductComparisonPage';
 
 const App = () => {
   return (
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/check-out" element={<CheckOut />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/comparison" element={<ProductComparisonLast />} />
+          <Route path="/comparison" element={<ProductComparisonPage />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>

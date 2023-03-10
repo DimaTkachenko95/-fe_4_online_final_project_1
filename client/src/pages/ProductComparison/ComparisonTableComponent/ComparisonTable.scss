@@ -1,20 +1,6 @@
 @use './src/styles/mixins';
 @use 'src/styles/variables';
 
-.comparison-container__wrapper-title {
-  @include mixins.titleStyles;
-
-  margin-top: 20px;
-  color: variables.$black;
-}
-
-.comparison-container__wrapper-title-quantity {
-  @include mixins.titleStyles;
-  @include mixins.liner-gradient-tile;
-
-  margin-bottom: 45px;
-}
-
 .comparison-container__wrapper {
   position: relative;
   margin: 0 auto;
