@@ -27,8 +27,8 @@ const initialState = {
     minPrice: '',
     maxPrice: '',
     sort: '',
-    allProductsComp: [],
   },
+  allProductsComp: [],
 };
 
 const productsSlice = createSlice({
@@ -82,54 +82,57 @@ export const actionFetchAllProductsComp = () => (dispatch) => {
 };
 
 export const actionFetchAllProducts = () => (dispatch) => {
-    dispatch(actionPageLoading(true)) 
-    return axios.get(GET_ALL_PRODUCTS_PAGINATION) 
-        .then(({data}) => {
-            dispatch(actionProductsQuantity(data.productsQuantity))    
-            dispatch(actionAllProducts(data.products));
-            dispatch(actionPageLoading(false));
-        })
-          .catch(() => {
-              dispatch(actionPageLoading(false));
-              dispatch(actionServerError(true))
-          })
-}
+  dispatch(actionPageLoading(true));
+  return axios
+    .get(GET_ALL_PRODUCTS_PAGINATION)
+    .then(({ data }) => {
+      dispatch(actionProductsQuantity(data.productsQuantity));
+      dispatch(actionAllProducts(data.products));
+      dispatch(actionPageLoading(false));
+    })
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });
+};
 
 export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatch) => {
-    dispatch(actionPageLoading(true))
-    dispatch(actionFilterRequest(newFilterRequestObj))
-    let arrRequest = []
-    for (let key in newFilterRequestObj) {
-        if (newFilterRequestObj[key] !== '') {
-            arrRequest.push([key, newFilterRequestObj[key]])
-        }
+  dispatch(actionPageLoading(true));
+  dispatch(actionFilterRequest(newFilterRequestObj));
+  let arrRequest = [];
+  for (let key in newFilterRequestObj) {
+    if (newFilterRequestObj[key] !== '') {
+      arrRequest.push([key, newFilterRequestObj[key]]);
     }
-    let filter = new URLSearchParams(arrRequest).toString()
-    return axios.get(`${FILTERED_PRODUCTS}${filter}`)
-        .then(({data}) => {
-            dispatch(actionProductsQuantity(data.productsQuantity))         
-            dispatch(actionAllProducts(data.products));
-            dispatch(actionSearchInputValue(''))
-            dispatch(actionPageLoading(false));
-        })
-         .catch(() => {
-             dispatch(actionPageLoading(false));
-             dispatch(actionServerError(true))
-         })
-}
+  }
+  let filter = new URLSearchParams(arrRequest).toString();
+  return axios
+    .get(`${FILTERED_PRODUCTS}${filter}`)
+    .then(({ data }) => {
+      dispatch(actionProductsQuantity(data.productsQuantity));
+      dispatch(actionAllProducts(data.products));
+      dispatch(actionSearchInputValue(''));
+      dispatch(actionPageLoading(false));
+    })
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });
+};
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
-    dispatch(actionPageLoading(true));
-    return axios.post(SEARCH_PRODUCTS, {query: inputValue})
-        .then(({data}) => {
-            dispatch(actionProductsQuantity(data.length))    
-            dispatch(actionAllProducts(data));
-            dispatch(actionPageLoading(false));
-        })
-        .catch(() => {
-            dispatch(actionPageLoading(false));
-            dispatch(actionServerError(true))
-        })
-}
+  dispatch(actionPageLoading(true));
+  return axios
+    .post(SEARCH_PRODUCTS, { query: inputValue })
+    .then(({ data }) => {
+      dispatch(actionProductsQuantity(data.length));
+      dispatch(actionAllProducts(data));
+      dispatch(actionPageLoading(false));
+    })
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });
+};
 
 export default productsSlice.reducer;
