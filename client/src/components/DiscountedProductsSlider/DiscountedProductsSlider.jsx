@@ -52,7 +52,6 @@ const PrevArrow = ({ className, onClick }) => {
             slidesToShow: 3,
             slidesToScroll: 1,
             infinite: true,
-            dots: true,
           }
         },
         {
@@ -61,9 +60,7 @@ const PrevArrow = ({ className, onClick }) => {
             slidesToShow: 2,
             slidesToScroll: 1,
             initialSlide: 2,
-            dots: true,
-            // arrows: false,
-
+            arrows: false,
           }
         },
         {
@@ -71,15 +68,11 @@ const PrevArrow = ({ className, onClick }) => {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            dots: true,
             arrows: false,
           }
         }
       ]
     };
-
-
-
 return(
 <>
 <Container maxWidth="lg" className="discounted-products">
