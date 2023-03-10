@@ -11,7 +11,6 @@ import { actionFetchAllProductsComp } from '../../reducers/products.reducer';
 import { Container } from '@mui/material';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import Preloader from '../../components/Preloader';
-import { createCustomerInServer } from '../../reducers';
 import { toggleScalesProduct } from '../../reducers/scales.reducer';
 // import ServerError from '../../components/Notifications/ServerError';
 
@@ -87,7 +86,11 @@ const ProductComparisonSlice = () => {
                           </clipPath>
                         </defs>
                       </svg>
-                      <img style={{ width: '100%', height: '75%' }} src={product.imageUrls[0]} />
+                      <img
+                        style={{ width: '100%', height: '75%' }}
+                        src={product.imageUrls[0]}
+                        alt="laptop"
+                      />
                     </th>
                   ))}
                 </tr>

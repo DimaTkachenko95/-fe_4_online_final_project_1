@@ -13,7 +13,7 @@ const registrationSlice = createSlice({
     telephone: '',
     gender: '',
     avatarUrl: '',
-    serverError: null
+    serverError: null,
   },
   reducers: {
     actionCreateCustomer: (state, action) => {
@@ -32,10 +32,7 @@ const registrationSlice = createSlice({
   },
 });
 
-export const {
-  actionCreateCustomer,
-  actionServerError
-} = registrationSlice.actions;
+export const { actionCreateCustomer, actionServerError } = registrationSlice.actions;
 
 export const createCustomerInServer = (value) => (dispatch) => {
   axios
