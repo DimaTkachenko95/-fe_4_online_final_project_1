@@ -14,27 +14,36 @@ import favoritesReducer, {
 } from './favorites.reducer';
 import scalesReducer, { actionAddToScales, actionDeleteFromScales } from './scales.reducer';
 import basketReducer, {
-  actionAddToBasket,
-  actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
-} from './basket.reducer';
-import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
-import registrationReducer, { createCustomerServer } from './registration.reducer';
-import personalOfficeReducer, {actionUserData} from "./personalOffice.reducer";
-
+    actionAddToBasket,
+    actionDeleteFromBasket,
+    actionBasketProduct,
+    actionIncrease,
+    actionDecraese,
+    actionFetchProductByItemNo
+} from "./basket.reducer";
+import logInReducer, {
+    actionFetchLogin,
+    actionToken,
+    actionFetchAuthorizationUser,
+    actionResetLoginError
+} from "./logIn.reducer";
+import productDetailsReducer, {
+    actionFetchOneProduct,
+} from "./productDetails.reducer"; 
+import registrationReducer, {
+    createCustomerInServer,
+} from './registration.reducer';
+import personalOfficeReducer, {actionUserInfo} from "./personalOffice.reducer";
 export{
     productsReducer,
     actionFetchAllProducts,
-    actionFetchSearchFilterProducts,
     actionAllProducts,
     actionProductsQuantity,
     actionSortByPrise,
-    actionPageLoading,
     actionSearchInputValue,
+    actionPageLoading,
     actionFetchSearchProducts,
+    actionFetchSearchFilterProducts,
     favoritesReducer,
     actionAddToFavorites,
     actionDeleteFromFavorites,
@@ -48,9 +57,15 @@ export{
     scalesReducer,
     actionAddToScales,
     actionDeleteFromScales,
-    registrationReducer,
+    logInReducer,
+    actionFetchLogin,
+    actionResetLoginError,
+    actionFetchAuthorizationUser,
+    actionToken,
     productDetailsReducer,
     actionFetchOneProduct,
+    registrationReducer,
+    createCustomerInServer,
     personalOfficeReducer,
-    actionUserData,
+    actionUserInfo,
 }

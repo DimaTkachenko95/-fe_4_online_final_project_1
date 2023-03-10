@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    userData: {
+    userInfo: {
         firstName: '11111',
         lastName: 'bbbb',
         login: 'cccc',
@@ -19,13 +19,13 @@ const initialState = {
         name: "personalOfficeSlice",
         initialState,
         reducers: {
-            actionUserData: (state, {payload}) => {
+            actionUserInfo: (state, {payload}) => {
                 console.log('aaa', payload)
-                state.userData = {...payload}
+                state.userInfo = {...payload}
             }
         }
     })
 
-export const {actionUserData} = personalOfficeSlice.actions
+export const {actionUserInfo} = personalOfficeSlice.actions
 
  export default personalOfficeSlice.reducer 

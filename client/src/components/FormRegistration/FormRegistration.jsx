@@ -8,11 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCustomerServerApi } from '../../reducers/registration.reducer';
-import initialState from '../../reducers/registration.reducer';
 import Button from '../../components/Button';
+import sx from "classnames";
 
-const FormRegistration = () => {
+
+
+
+  
+const FormRegistration = ({onSubmit, initialValues, sx, disabled, onClick}) => { 
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,36 +25,38 @@ const FormRegistration = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  
+
 
   return (
+    <>
     <Formik
-      initialValues={initialState}
+      initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
-        console.log(values)
-        dispatch(createCustomerServerApi(values));
-        resetForm();
-      }}
+      onSubmit={onSubmit}
     >
       {(isValid) => {
         return (
           <>
             <Form className="form-registration" style={{ width: '100%' }}>
               <div className="form-registration__grid_wrapper">
-                <FormikControl
-                  type="text"
-                  control="input"
-                  label="First Name"
-                  color="success"
-                  className="form-registration__input"
-                  name="firstName"
-                  placeholder="Enter your first name"
-                  variant="outlined"
-                  id="outlined-multiline-flexible"
-                  required
+                <FormikControl 
+                    sx={sx}  
+                    type="text"
+                    control="input"
+                    label="First Name"
+                    color="success"
+                    className="form-registration__input"
+                    name="firstName"
+                    placeholder="Enter your first name"
+                    variant="outlined"
+                    id="outlined-multiline-flexible"
+                    disabled={disabled}
+              
+                    required
                 />
-
-                <FormikControl
+            
+            <FormikControl 
                   type="text"
                   control="input"
                   color="success"
@@ -61,8 +66,9 @@ const FormRegistration = () => {
                   placeholder="Enter your last name"
                   variant="outlined"
                   id="outlined-multiline-flexible"
-                  required
-                />
+                  required> </FormikControl>
+                  
+                
 
                 <FormikControl
                   type="text"
@@ -77,7 +83,7 @@ const FormRegistration = () => {
                   required
                 />
 
-                <FormikControl
+                <FormikControl 
                   type="text"
                   control="input"
                   color="success"
@@ -153,20 +159,21 @@ const FormRegistration = () => {
                   placeholder="Enter avatar url"
                   variant="outlined"
                   id="outlined-multiline-flexible"
+                 
                 />
               </div>
               <Button
                 type="submit"
-                variant="gradient-green"
                 disabled={!isValid}
                 text="submit"
-                style={{ display: 'block', margin: '0 auto', marginTop: 104, marginBottom: 150 }}
+                style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
               />
             </Form>
           </>
         );
       }}
     </Formik>
+    </>
   );
 };
 

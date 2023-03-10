@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createCustomerServerApi } from '../../../reducers/registration.reducer';
+import { createCustomerInServer } from '../../../reducers';
 import initialState from '../../../reducers/registration.reducer';
 import Button from '../../../components/Button';
 
@@ -28,8 +28,7 @@ const FormComponent = () => {
       initialValues={initialState}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values)
-        dispatch(createCustomerServerApi(values));
+        dispatch(createCustomerInServer(values));
         resetForm();
       }}
     >
@@ -157,10 +156,9 @@ const FormComponent = () => {
               </div>
               <Button
                 type="submit"
-                variant="gradient-green"
                 disabled={!isValid}
                 text="submit"
-                style={{ display: 'block', margin: '0 auto', marginTop: 104, marginBottom: 150 }}
+                style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
               />
             </Form>
           </>

@@ -8,9 +8,13 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { selectorBasket, selectorFavorites, selectorScales } from '../../selectors';
-import { useSelector } from 'react-redux';
+import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
+import Authorization from "../../pages/Authorization";
+import {actionFetchAuthorizationUser} from "../../reducers";
+import setAuthToken from "../../helpers/setAuthToken";
+import {getWrappedValue} from "../../helpers/getWrappedValue";
 
 const theme = createTheme({
   components: {
@@ -25,10 +29,16 @@ const theme = createTheme({
 });
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
+
   const basket = useSelector(selectorBasket);
+  const userData = useSelector(selectorUserData);
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
+  const authToken = useSelector(selectorToken);
+
   const countInBasket = basket.reduce((acc, { cartQuantity }) => acc + cartQuantity, 0);
 
   useEffect(() => {
@@ -37,6 +47,14 @@ const Header = () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
   }, []);
+
+  useEffect(() => {
+    setAuthToken(authToken)
+    if (authToken) {
+      dispatch(actionFetchAuthorizationUser())
+    }
+  }, [authToken]);
+
   const burgerMenuRef = useRef();
 
   const handleBurgerMenu = (event) => {
@@ -44,6 +62,15 @@ const Header = () => {
       setIsMenuOpen(!isMenuOpen);
     }
   };
+
+  const toggleModalAuth = (event) => {
+    event.preventDefault();
+    setIsModalAuthOpen(!isModalAuthOpen)
+}
+
+const closeModalAuth = () => {
+    setIsModalAuthOpen(false)
+}
 
   return (
     <>
@@ -57,6 +84,7 @@ const Header = () => {
                   <span className="colored">24</span>
                 </Link>
               </Box>
+
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
                 <Box className="menu-list">
@@ -97,7 +125,6 @@ const Header = () => {
                   </NavLink>
                 </Box>
               </nav>
-
               <Box className="header__input-wrapper">
                 <InputSearch style="header__input" />
               </Box>
@@ -129,17 +156,26 @@ const Header = () => {
               </Box>
               <Box className="header__user-actions">
                 <Box className="action">
-                  {
-                    <Link to="/personal-office" className="action__icon icon-user">
-                      <Person2OutlinedIcon />
-                    </Link>
+                  { authToken ? (
+                      <Link to="/personal-office" className="action__icon user-name" >
+                        {getWrappedValue(userData.firstName, 10)}
+                        {/*OB*/}
+                      </Link>)
+                      : (
+                      <button className="action__icon icon-user" /* onClick={(event) => toggleModalAuth(event)} */>
+                         <Link to="/personal-office"  >
+                        <Person2OutlinedIcon/>
+                        </Link>
+                      </button>)
                   }
                 </Box>
               </Box>
+
               <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
+                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
               </Box>
             </Box>
+            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
           </Container>
         </ThemeProvider>
       </header>
