@@ -34,7 +34,7 @@ const registrationSlice = createSlice({
 
 export const { actionCreateCustomer, actionServerError } = registrationSlice.actions;
 
-export const createCustomerInServer = (value) => (dispatch) => {
+export const createCustomerServerApi = (value) => (dispatch) => {
   axios
     .post(REGISTER_USER, value)
     .then((savedCustomer) => {
@@ -43,4 +43,5 @@ export const createCustomerInServer = (value) => (dispatch) => {
     .catch(() => dispatch(actionServerError(true)));
 };
 
+export const initialState = registrationSlice.getInitialState();
 export default registrationSlice.reducer;

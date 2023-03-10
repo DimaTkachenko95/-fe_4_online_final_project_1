@@ -14,7 +14,6 @@ const validationSchema = yup.object().shape({
     .required('Last name field is requierd')
     .matches(/[a-zA-z\s]/g, 'Should contain only characters and space'),
   login: yup.string().min(3, 'Min 3 symbols').max(20, 'Max 20 symbols').required('Not valid login'),
-
   email: yup.string().email('Not valid email').required('Email field is requierd'),
   password: yup
     .string()
@@ -25,10 +24,13 @@ const validationSchema = yup.object().shape({
   telephone: yup
     .string()
     .typeError("That doesn't look like a phone number")
-    .min(13, 'Telephone is too short - should be 13 chars minimum')
+    .min(13, 'Phone number should start with +380 and contain 13 chars')
+    .matches(
+      /^\+380\d{3}\d{2}\d{2}\d{2}$/,
+      'Phone number should start with +380 and contain 13 chars',
+    )
     .required('A phone number is required'),
-
-  gender: yup.mixed().oneOf(['male', 'female', 'other']),
+  gender: yup.string().oneOf(['male', 'female', 'other']).lowercase(),
   avatarUrl: yup
     .string()
     .matches(
