@@ -14,49 +14,6 @@ import favoritesReducer, {
 } from './favorites.reducer';
 import scalesReducer, { actionAddToScales, actionDeleteFromScales } from './scales.reducer';
 import basketReducer, {
-<<<<<<< HEAD
-  actionAddToBasket,
-  actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
-} from './basket.reducer';
-import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
-import registrationReducer, { createCustomerServer } from './registration.reducer';
-import discountedProductsReducer, { 
-  actionDiscountedProducts,
-  actionFetchDiscountedProducts,
- } from './discountedProducts.reducer';
-
-export {
-  productsReducer,
-  actionFetchAllProducts,
-  actionPageLoading,
-  actionSearchProducts,
-  actionChangeSearchFlag,
-  favoritesReducer,
-  actionAddToFavorites,
-  actionDeleteFromFavorites,
-  basketReducer,
-  actionAddToBasket,
-  actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
-  scalesReducer,
-  actionAddToScales,
-  actionDeleteFromScales,
-  productDetailsReducer,
-  actionFetchOneProduct,
-  registrationReducer,
-  createCustomerServer,
-  discountedProductsReducer,
-  actionDiscountedProducts,
-  actionFetchDiscountedProducts,
-};
-=======
     actionAddToBasket,
     actionDeleteFromBasket,
     actionBasketProduct,
@@ -76,6 +33,12 @@ import productDetailsReducer, {
 import registrationReducer, {
     createCustomerServerApi,
 } from './registration.reducer';
+
+import discountedProductsReducer, { 
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
+ } from './discountedProducts.reducer';
+
 export{
     productsReducer,
     actionFetchAllProducts,
@@ -108,5 +71,8 @@ export{
     actionFetchOneProduct,
     registrationReducer,
     createCustomerServerApi,
+      discountedProductsReducer,
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
 }
->>>>>>> 06f19a7bd6ce3f80641333ad94a6480c4eab1e29
+

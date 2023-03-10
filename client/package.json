@@ -24,12 +24,9 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
-<<<<<<< HEAD
     "react-material-ui-carousel": "^3.4.2",
-=======
     "react-image-gallery": "^1.2.11",
     "react-input-mask": "^2.0.4",
->>>>>>> 06f19a7bd6ce3f80641333ad94a6480c4eab1e29
     "react-multi-carousel": "^2.8.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
