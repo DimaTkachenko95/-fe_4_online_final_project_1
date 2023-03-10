@@ -12,9 +12,12 @@
 }
 
 .contacts {
+  padding: 20px;
+
   .link_shop {
     margin-top: 10px;
-    background: linear-gradient(270deg, #8ee901 0%, #4f9c2c 99.06%);
+    color: #4f9c2c;
+    text-decoration-line: underline;
   }
 
   .number_point {
@@ -26,6 +29,10 @@
     display: flex;
     justify-content: center;
   }
+}
+
+.card {
+  margin: 15px;
 }
 
 .contacts_header {
@@ -44,7 +51,7 @@
 
   .point_span {
     background: linear-gradient(270deg, #8ee901 0%, #4f9c2c 99.06%);
-    background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
   }

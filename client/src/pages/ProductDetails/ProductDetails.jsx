@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
 import Product from "./components/Product";
-import {actionChangeSearchFlag, actionFetchOneProduct} from "../../reducers";
+import { actionFetchOneProduct} from "../../reducers";
 import { selectorServerErrorProductDetails } from "../../selectors";
 import ServerError from "../../components/Notifications/ServerError";
 
@@ -14,9 +14,6 @@ const ProductDetails = () => {
 
     useEffect(() => {
         dispatch(actionFetchOneProduct(itemNo));
-        return (() => {
-            dispatch(actionChangeSearchFlag(false));
-        })
     }, [itemNo, dispatch]);
 
     const serverError = useSelector(selectorServerErrorProductDetails);
