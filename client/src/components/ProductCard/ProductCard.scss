@@ -8,7 +8,6 @@
 }
 
 .list {
-
   position: relative;
   border: 1px solid #EFEFEF;
   box-sizing: border-box;
@@ -22,7 +21,6 @@
   }
 
   &__item {
-
     height: 100%;
     padding: 20px;
     display: flex;
@@ -32,9 +30,11 @@
 
     &--name {
       @include font-list-items;
+
       color: #000;
       line-height: 16px;
       margin-bottom: 3px;
+
       &:hover{
         text-decoration:underline;
       }

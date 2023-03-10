@@ -31,7 +31,7 @@ import productDetailsReducer, {
     actionFetchOneProduct,
 } from "./productDetails.reducer";
 import registrationReducer, {
-    createCustomerInServer,
+    createCustomerServerApi,
 } from './registration.reducer';
 export{
     productsReducer,
@@ -64,5 +64,5 @@ export{
     productDetailsReducer,
     actionFetchOneProduct,
     registrationReducer,
-    createCustomerInServer,
+    createCustomerServerApi,
 }
