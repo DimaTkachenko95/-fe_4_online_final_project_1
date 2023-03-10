@@ -2,9 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectorScales, selectorAllProductsComp, selectorPageLoading } from '../../../selectors';
 import './ComparisonTable.scss';
-import { actionFetchAllProductsComp } from '../../../reducers';
+import { actionFetchAllProductsComp, delFromComparisonTable } from '../../../reducers';
 import Preloader from '../../../components/Preloader';
-import { toggleScalesProduct } from '../../../reducers';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
@@ -26,8 +25,8 @@ const ComparisonTable = () => {
     setComparisonProducts(tableProducts);
   }, [allProd]);
 
-  const toggleScales = (id) => {
-    dispatch(toggleScalesProduct(id));
+  const delFromTable = (id) => {
+    dispatch(delFromComparisonTable(id));
   };
 
   return (
@@ -41,7 +40,7 @@ const ComparisonTable = () => {
               {comparisonProducts.map((product) => (
                 <th key={product.imageUrls} style={{ width: '200px', height: '200px' }}>
                   <svg
-                    onClick={() => toggleScales(product._id)}
+                    onClick={() => delFromTable(product._id)}
                     className="comparison-table__delete"
                     width="12"
                     height="12"

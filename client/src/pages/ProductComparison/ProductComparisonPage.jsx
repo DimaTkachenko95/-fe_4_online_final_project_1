@@ -2,9 +2,11 @@ import './ProductComparisonPage.scss';
 import ComparisonTable from './ComparisonTableComponent';
 import { Container } from '@mui/material';
 import BreadCrumbs from '../../components/BreadCrumbs';
-import itemNoArr from './ComparisonTableComponent';
+import { useSelector } from 'react-redux';
+import { selectorScales } from '../../selectors';
 
 const ProductComparisonPage = () => {
+  const itemNoArr = useSelector(selectorScales);
   return (
     <main>
       <Container className="comparison-container" maxWidth="lg">

@@ -17,7 +17,7 @@
   }
 }
 
-@media (min-width: 482px) and (max-width: 996px) {
+@media (min-width: 482px) and (max-width: 995.9px) {
   .registration-container {
     min-width: 482px;
     margin: 0 auto;
@@ -29,9 +29,9 @@
   }
 }
 
-@media (min-width: 996.9px) {
+@media (min-width: 996px) {
   .registration-container {
-    min-width: 996.9px;
+    min-width: 996px;
 
     &__wrapper {
       min-width: 900px;

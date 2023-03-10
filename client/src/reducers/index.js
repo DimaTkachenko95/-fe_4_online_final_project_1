@@ -17,6 +17,7 @@ import scalesReducer, {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
+  delFromComparisonTable,
 } from './scales.reducer';
 import basketReducer, {
   actionAddToBasket,
@@ -60,6 +61,7 @@ export {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
+  delFromComparisonTable,
   logInReducer,
   actionFetchLogin,
   actionResetLoginError,

@@ -5,22 +5,24 @@
   position: relative;
   margin: 0 auto;
   overflow-x: scroll;
-  min-width: 996px;
+  min-width: 345px;
+  padding-bottom: 80px;
 }
 
 .comparison-table__delete {
   cursor: pointer;
   position: absolute;
   top: 1px;
-  margin-left: 220px;
+  margin-left: 120px;
   margin-top: -1px;
 }
 
 table {
-  min-width: 996px;
+  min-width: 345px;
 
   tr > td,
   tr > th {
+    padding-right: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -34,7 +36,7 @@ table {
     max-width: 150px;
     color: variables.$border;
     text-align: left;
-    padding-left: 45px;
+    padding-left: 20px;
     @include mixins.comparisonStyle;
   }
 
@@ -70,11 +72,53 @@ table {
       font-weight: 700;
       font-size: 14px;
       line-height: 20px;
-      min-width: 250px;
-      min-height: 250px;
+      min-width: 150px;
+      min-height: 150px;
     }
   }
 }
 
 .thead-default th {
+}
+
+@media (min-width: 482px) and (max-width: 995.9px) {
+  .comparison-container__wrapper {
+    min-width: 482px;
+  }
+
+  .comparison-table__delete {
+    margin-left: 220px;
+  }
+
+  table {
+    min-width: 482px;
+
+    thead {
+      th {
+        min-width: 250px;
+        min-height: 250px;
+      }
+    }
+  }
+}
+
+@media (min-width: 996px) {
+  .comparison-container__wrapper {
+    min-width: 996px;
+  }
+
+  .comparison-table__delete {
+    margin-left: 220px;
+  }
+
+  table {
+    min-width: 996px;
+
+    thead {
+      th {
+        min-width: 250px;
+        min-height: 250px;
+      }
+    }
+  }
 }
