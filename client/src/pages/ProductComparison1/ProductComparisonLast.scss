@@ -3,6 +3,7 @@
 
 .comparison-container__wrapper-title {
   @include mixins.titleStyles;
+
   margin-top: 20px;
   color: variables.$black;
 }
@@ -10,6 +11,7 @@
 .comparison-container__wrapper-title-quantity {
   @include mixins.titleStyles;
   @include mixins.liner-gradient-tile;
+
   margin-bottom: 45px;
 }
 
@@ -18,50 +20,85 @@
   margin: 0 auto;
   overflow-x: scroll;
   min-width: 996px;
+}
 
-  &__table {
-    overflow: hidden;
-    font-size: 18px;
-    table-layout: fixed;
+.comparison-table__delete {
+  cursor: pointer;
+  position: absolute;
+  top: 1px;
+  margin-left: 220px;
+  margin-top: -1px;
+}
+
+table {
+  min-width: 996px;
+
+  //overflow: hidden;
+  //font-size: 18px;
+  //table-layout: fixed;
+  //position: relative;
+  //margin: 0 auto;
+  //overflow-x: scroll;
+  //min-width: 996px;
+
+  tr > td,
+  tr > th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+
+  th {
+    border-bottom: 1px solid variables.$light-border;
+  }
+
+  th[scope='row'] {
+    max-width: 150px;
+    color: variables.$border;
+    text-align: left;
+    padding-left: 45px;
+
+    @include mixins.comparisonStyle;
+  }
+
+  tr {
+    @include mixins.comparisonStyle;
+
+    color: variables.$black;
+    position: relative;
+
+    &:nth-child(1) {
+      border-bottom: 1px solid variables.$light-border;
+      box-shadow: variables.$box-shadow;
+    }
+
+    &.condition {
+      font-size: 20px;
+    }
+
+    &.colors span {
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      margin-right: 5px;
+      border-radius: 100%;
+    }
+  }
+
+  thead {
     width: 100%;
 
-    tr > td,
-    tr > th {
-      padding-top: 25px;
-      padding-bottom: 25px;
-      text-align: center;
-    }
-
-    th[scope='row'] {
-      font-size: 20px;
-      color: #393c45;
-      font-weight: normal;
-      //border: 1px solid #eee;
-      text-align: left;
-      padding-left: 45px;
-    }
-
-    tr {
-      &.colors span {
-        height: 20px;
-        width: 20px;
-        display: inline-block;
-        margin-right: 5px;
-        border-radius: 100%;
-      }
-    }
-
-    thead {
-      th {
-        font-size: 20px;
-        color: #393c45;
-        font-weight: normal;
-        min-width: 250px;
-        min-height: 250px;
-      }
+    th {
+      color: variables.$black;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      min-width: 250px;
+      min-height: 250px;
     }
   }
+}
 
-  .thead-default th {
-  }
+.thead-default th {
+  font-size: 14px;
 }

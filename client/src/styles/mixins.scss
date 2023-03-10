@@ -8,6 +8,14 @@
   line-height: 26px;
 }
 
+@mixin comparisonStyle {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
 @mixin titleStyles {
   font-weight: 700;
   font-size: 30px;

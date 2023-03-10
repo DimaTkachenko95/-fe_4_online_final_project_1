@@ -209,16 +209,19 @@ body {
         border: none;
         background-color: white;
       }
+
       &:first-child {
         .user-name {
           font-family: Ubuntu, sans-serif;
           font-size: 16px;
           font-weight: bold;
         }
+
         .action__icon {
           border-right: 1px solid #EFEFEF;
           display: flex;
           align-items: center;
+
           @media (max-width: 996px) {
             border-right: none;
           }
