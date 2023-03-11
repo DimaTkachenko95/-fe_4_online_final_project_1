@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { selectorScales, selectorAllProductsComp, selectorPageLoading } from '../../../selectors';
 import './ComparisonTable.scss';
-import { actionFetchAllProductsComp, delFromComparisonTable } from '../../../reducers';
+import { actionFetchAllProductsComp, actionDeleteFromScales } from '../../../reducers';
 import Preloader from '../../../components/Preloader';
 
 const ComparisonTable = () => {
@@ -23,10 +23,10 @@ const ComparisonTable = () => {
         return { ...item, image: item.imageUrls[0] };
       });
     setComparisonProducts(tableProducts);
-  }, [allProd]);
+  }, [allProd, itemNoArr]);
 
   const delFromTable = (id) => {
-    dispatch(delFromComparisonTable(id));
+    dispatch(actionDeleteFromScales(id));
   };
 
   return (

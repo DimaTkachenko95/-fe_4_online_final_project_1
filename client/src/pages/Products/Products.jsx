@@ -18,7 +18,6 @@ import ProductCard from '../../components/ProductCard';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import ServerError from '../../components/Notifications/ServerError';
 import Paginate from './components/Paginate';
-
 import './Products.scss';
 import Preloader from '../../components/Preloader';
 
@@ -28,7 +27,6 @@ const Products = () => {
   const searchInputValue = useSelector(selectorSearchInputValue);
   const serverError = useSelector(selectorServerErrorProducts);
   const pageLoading = useSelector(selectorPageLoading);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -17,7 +17,6 @@ import scalesReducer, {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
-  delFromComparisonTable,
 } from './scales.reducer';
 import basketReducer, {
   actionAddToBasket,
@@ -34,7 +33,7 @@ import logInReducer, {
   actionResetLoginError,
 } from './logIn.reducer';
 import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
-import registrationReducer, { createCustomerServerApi } from './registration.reducer';
+import registrationReducer, { createCustomerServerApi, initialState } from './registration.reducer';
 
 export {
   productsReducer,
@@ -61,7 +60,6 @@ export {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
-  delFromComparisonTable,
   logInReducer,
   actionFetchLogin,
   actionResetLoginError,
@@ -71,4 +69,5 @@ export {
   actionFetchOneProduct,
   registrationReducer,
   createCustomerServerApi,
+  initialState,
 };

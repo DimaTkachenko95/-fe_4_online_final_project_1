@@ -28,12 +28,4 @@ export const toggleScalesProduct = (id) => (dispatch, getState) => {
   isProductInScales ? dispatch(actionDeleteFromScales(id)) : dispatch(actionAddToScales(id));
 };
 
-export const delFromComparisonTable = (id) => (dispatch, getState) => {
-  const state = getState();
-  const scalesProducts = state.scales.scales;
-  const isProductInScales = scalesProducts.some((itemId) => itemId === id);
-
-  isProductInScales ? dispatch(actionDeleteFromScales(id)) : dispatch(actionDeleteFromScales(id));
-};
-
 export default scalesSlice.reducer;
