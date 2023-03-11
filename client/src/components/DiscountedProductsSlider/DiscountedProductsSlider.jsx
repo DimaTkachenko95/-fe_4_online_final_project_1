@@ -50,24 +50,19 @@ const PrevArrow = ({ className, onClick }) => {
           breakpoint: 1200,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
           }
         },
         {
-          breakpoint: 900,
+          breakpoint: 1000,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 1,
-            initialSlide: 2,
             arrows: false,
           }
         },
         {
-          breakpoint: 600,
+          breakpoint: 630,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1,
             arrows: false,
           }
         }
