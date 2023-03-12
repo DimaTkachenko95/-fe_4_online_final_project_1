@@ -1,4 +1,4 @@
-import Modal from "../Modal";
+import Modal from "../../components/Modal";
 import AuthInput from "./AuthInput";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -6,33 +6,54 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { Formik, Form } from "formik";
 import {validationSchema} from "./validation";
-import Button from "../Button";
-import { Typography } from "@mui/material";
-import {actionFetchLogin} from "../../reducers"
+import Button from "../../components/Button";
+import {actionFetchLogin, actionResetLoginError} from "../../reducers"
 import { useDispatch, useSelector } from "react-redux";
-import {selectorUserData} from "../../selectors";
-import { useState } from "react";
-import './Authorization.scss'
+import {selectorAllLoginErrors, selectorUserData} from "../../selectors";
+import {useState} from "react";
+import './Authorization.scss';
+import store from "../../store"
 
 const Authorization = ({closeModalAuth}) => {
     const dispatch = useDispatch();
     const userData = useSelector(selectorUserData);
+    const error = useSelector(selectorAllLoginErrors);
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+
+    const getErrorMassage = (errorCode) => {
+        switch (errorCode) {
+            case "NOT_FOUND": return "This user is not registered yet";
+            case "BAD_REQUEST": return "Password incorrect";
+            case "SERVER_ERROR": return "The system is currently experiencing difficulties; please try again.";
+            default: return "The system is currently experiencing difficulties; please try again.";
+        }
+    }
+
+    const handleSubmit = async (values) => {
+        await dispatch(actionFetchLogin(values))
+        const state = store.getState()
+        const error = state.logIn.error;
+
+        if(!error) {
+            closeModalAuth();
+            dispatch(actionResetLoginError())
+        }
+    }
+
     return (
         <Modal 
         modalAction={closeModalAuth}
-        closeAction={closeModalAuth}>
+        closeAction={() => {
+            closeModalAuth();
+            dispatch(actionResetLoginError())
+        }}>
             <Formik
           initialValues={userData}
-          onSubmit={(values) => {
-            //console.log("Дані користувача", values);
-            closeModalAuth();
-            dispatch(actionFetchLogin(values))
-          }}
+          onSubmit={ (values) => handleSubmit(values) }
           validationSchema={validationSchema}
         >
           {(isValid) => {
@@ -40,20 +61,23 @@ const Authorization = ({closeModalAuth}) => {
             <Form>
               <div className="form-block">
                 <h1 className="form-block__title">Log In to your account</h1>
+                  {
+                      error &&
+                        <p className="form-block__error-notification">{ getErrorMassage(error) }</p>
+                  }
                 <AuthInput
                   type="text"
                   control="input"
                   color="success"
-                  label="Email"
+                  label="Email or Login"
                   className="form-block__input"
                   name="loginOrEmail"
-                  placeholder="Enter your email"
+                  placeholder="Enter your email or login"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                   required
                 />
                 <AuthInput
-                
                 htmlFor="outlined-adornment-password"
                 label="Password"
                 variant="outlined"

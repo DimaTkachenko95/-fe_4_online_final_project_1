@@ -1,32 +1,29 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from "../endpoints";
-
-
+import {GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS} from "../endpoints";
 
 const initialState = {
     allProducts: [],
     productsQuantity: 0,  
     sortByPrise: 'Popular',
-    searchInputValue:  JSON.parse(sessionStorage.getItem("searchInputValue")) ||  '',
+    searchInputValue: JSON.parse(sessionStorage.getItem("searchInputValue")) || '',
     pageLoading: false,
     serverError: null,
-    filterRequest:  JSON.parse(sessionStorage.getItem("filterRequest"))  ||  { brand: '', 
-                                                                             category: '', 
-                                                                             processorBrand: '', 
-                                                                             screenSize: '', 
-                                                                             color: '', 
-                                                                             ramMemory: '',
-                                                                             hardDriveCapacity: '',
-                                                                             perPage: 3,
-                                                                             startPage: 1, 
-                                                                             minPrice: '',
-                                                                             maxPrice: '',
-                                                                             sort: '',
-                                                                             },
-    
+    filterRequest:  JSON.parse(sessionStorage.getItem("filterRequest")) ||
+        {   brand: '',
+            category: '',
+            processorBrand: '',
+            screenSize: '',
+            color: '',
+            ramMemory: '',
+            hardDriveCapacity: '',
+            perPage: 3,
+            startPage: 1,
+            minPrice: '',
+            maxPrice: '',
+            sort: '',
+        },
 }
-
 
 const productsSlice = createSlice({
     name: "products",
@@ -77,7 +74,10 @@ export const actionFetchAllProducts = () => (dispatch) => {
             dispatch(actionAllProducts(data.products));
             dispatch(actionPageLoading(false));
         })
-          .catch(() => dispatch(actionServerError(true))) 
+          .catch(() => {
+              dispatch(actionPageLoading(false));
+              dispatch(actionServerError(true))
+          })
 }
 
 export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatch) => {
@@ -97,7 +97,10 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
             dispatch(actionSearchInputValue(''))
             dispatch(actionPageLoading(false));
         })
-         .catch(() => dispatch(actionServerError(true)))  
+         .catch(() => {
+             dispatch(actionPageLoading(false));
+             dispatch(actionServerError(true))
+         })
 }
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
@@ -108,7 +111,10 @@ export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
             dispatch(actionAllProducts(data));
             dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionServerError(true)))
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionServerError(true))
+        })
 }
 
 export default productsSlice.reducer

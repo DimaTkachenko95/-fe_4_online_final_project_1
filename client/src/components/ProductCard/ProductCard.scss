@@ -4,6 +4,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+
 }
 
 .list {
@@ -29,9 +30,11 @@
 
     &--name {
       @include font-list-items;
+
       color: #000;
       line-height: 16px;
       margin-bottom: 3px;
+
       &:hover{
         text-decoration:underline;
       }

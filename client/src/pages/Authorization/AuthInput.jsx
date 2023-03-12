@@ -1,5 +1,4 @@
-import CustomInput from "../CustomInput/CustomInput";
-import { Field, ErrorMessage } from "formik";
+import CustomInput from "../../components/CustomInput/CustomInput";
 import PropTypes from "prop-types";
 
 import "./Authorization.scss";

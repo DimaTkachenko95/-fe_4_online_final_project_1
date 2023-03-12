@@ -90,8 +90,7 @@ const BasketItems = () => {
             <td className="quantity">
                 <div>
                     <Minus className={item.cartQuantity >= 2 ? "decrease" : "decrease_disabled"}
-                            onClick={() => {decrease(item)
-                            console.log(item.cartQuantity)}} />
+                            onClick={() => decrease(item)}/>
                     <span>{item.cartQuantity}</span>
                     <Plus className="increase" onClick={() => increase(item)} />
                 </div>

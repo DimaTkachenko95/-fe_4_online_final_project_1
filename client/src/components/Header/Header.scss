@@ -28,14 +28,11 @@ body {
   }
 
   &__logo-wrapper {
-    //padding-left: 2vw;
     cursor: pointer;
 
     @media (max-width: 996px) {
       padding: 0;
       grid-column-start: 2;
-
-      //margin: 0 auto;
     }
 
     @media (max-width: 390px) {
@@ -48,7 +45,6 @@ body {
       width: 50px;
       margin: 0 auto;
     }
-
   }
 
   &__input-wrapper{
@@ -109,9 +105,6 @@ body {
         @media (max-width: 996px) {
           padding: 5px 25px;
 
-          //padding: 0;
-          //flex: 1;
-
           &:focus {
             border-color: transparent;
             background-color: rgb(245 245 245 / 100%);
@@ -129,20 +122,16 @@ body {
 
   &__items-actions {
     justify-self: baseline;
-
-    //display: flex;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
     @media (max-width: 996px) {
       grid-column-start: 1;
       grid-row-start: 1;
-
     }
 
     .action {
       position: relative;
-
 
       &:last-child {
         .action__icon {
@@ -202,6 +191,7 @@ body {
 
       }
     }
+
     .active{
       color: rgb(96 176 33 / 100%);
       fill: rgb(96 176 33 / 100%);
@@ -215,16 +205,27 @@ body {
     justify-items: center;
 
     .action {
+      .icon-user {
+        border: none;
+        background-color: white;
+      }
+
       &:first-child {
+        .user-name {
+          font-family: Ubuntu, sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
         .action__icon {
           border-right: 1px solid #EFEFEF;
+          display: flex;
+          align-items: center;
 
           @media (max-width: 996px) {
             border-right: none;
           }
         }
-
-
       }
 
       &__icon {
@@ -236,7 +237,6 @@ body {
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
         border-bottom: 2px solid rgb(96 176 33 / 100%);
-
       }
     }
   }

@@ -4,8 +4,6 @@
 }
 
 .main-filter-block {
-
-
   &>div {
     margin-bottom: 20px;
     border: 1px solid #EFEFEF;
@@ -51,15 +49,15 @@
 }
 
 .btn-send-request {
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
   padding: 10px 20px;
   background-color: #4ba123;
-  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
-  color: rgb(245, 240, 240);
+  box-shadow: rgb(0 0 0 / 10%) 0 20px 25px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+  color: rgb(245 240 240);
   transition: 0.5s;
   border: none;
   border-radius: 10px;
@@ -86,10 +84,10 @@
 
 .triger-more-filter {
   border: none;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  background: #FFF;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
   border-radius: 100px;
-  font-family: 'Ubuntu';
+  font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -98,6 +96,7 @@
   padding-bottom: 15px;
   margin-bottom: 20px;
   cursor: pointer;
+
   &:active{
     transform: translateY(5px);
     transition: 0.2s ;  

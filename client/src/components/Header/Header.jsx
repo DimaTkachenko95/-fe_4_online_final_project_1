@@ -6,13 +6,15 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-com.svg';
 import './Header.scss';
-import {useEffect, useRef, useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
-import {selectorBasket, selectorProducts, selectorFavorites, selectorScales} from "../../selectors";
-import { useSelector, useDispatch} from 'react-redux'
-import InputSearch from "../InputSearch";
-import { actionChangeSearchFlag } from "../../reducers";
-import Authorization from "../Authorization"
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import {selectorBasket, selectorProducts, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import InputSearch from '../InputSearch';
+import Authorization from "../../pages/Authorization";
+import {actionFetchAuthorizationUser} from "../../reducers";
+import setAuthToken from "../../helpers/setAuthToken";
+import {getWrappedValue} from "../../helpers/getWrappedValue";
 
 const theme = createTheme({
   components: {
@@ -27,24 +29,32 @@ const theme = createTheme({
 });
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
+  const products = useSelector(selectorProducts); 
+  const basket = useSelector(selectorBasket);
+  const userData = useSelector(selectorUserData);
+  const favorites = useSelector(selectorFavorites);
+  const scales = useSelector(selectorScales);
+  const authToken = useSelector(selectorToken);
+  const userProducts = localStorage.getItem("token") ? products : basket;
+  const countInBasket = userProducts.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
 
-    const dispatch = useDispatch();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const basket = useSelector(selectorBasket);
-    const favorites = useSelector(selectorFavorites);
-    const scales = useSelector(selectorScales);
-    const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
-    const products = useSelector(selectorProducts);
-    const userProducts = localStorage.getItem("token") ? products : basket;
-    const countInBasket = userProducts.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
-  
-
-useEffect(() => {
+  useEffect(() => {
     document.addEventListener('mousedown', handleBurgerMenu);
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
   }, []);
+
+  useEffect(() => {
+    setAuthToken(authToken)
+    if (authToken) {
+      dispatch(actionFetchAuthorizationUser())
+    }
+  }, [authToken]);
+
   const burgerMenuRef = useRef();
 
   const handleBurgerMenu = (event) => {
@@ -53,27 +63,29 @@ useEffect(() => {
     }
   };
 
-    const toggleModalAuth = (event) => {
-        event.preventDefault();
-        setIsModalAuthOpen(!isModalAuthOpen)
-    }
+  const toggleModalAuth = (event) => {
+    event.preventDefault();
+    setIsModalAuthOpen(!isModalAuthOpen)
+}
 
-    const closeModalAuth = () => {
-        setIsModalAuthOpen(false)
-    }
+const closeModalAuth = () => {
+    setIsModalAuthOpen(false)
+}
 
-    return (
-        <>
-            <header className="header">
-                <ThemeProvider theme={theme}>
-                    <Container maxWidth="xl">
-                        <Box className="header__wrapper">
-                            <Box className="header__logo-wrapper">
-                                <Link to="/" className="logo">
-                                    {window.innerWidth > 996 ? 'BestLaptops' : 'BL'}
-                                    <span className="colored">24</span>
-                                </Link>
-                            </Box>
+  return (
+    <>
+      <header className="header">
+        <ThemeProvider theme={theme}>
+          <Container maxWidth="xl">
+            <Box className="header__wrapper">
+              <Box className="header__logo-wrapper">
+                <Link to="/" className="logo">
+                  {window.innerWidth > 996 ? 'BestLaptops' : 'BL'}
+                  <span className="colored">24</span>
+                </Link>
+              </Box>
+
+
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
                 <Box className="menu-list">
                   <NavLink
@@ -142,25 +154,32 @@ useEffect(() => {
                   </Link>
                 </Box>
               </Box>
-                            <Box className="header__user-actions">
-                                <Box className="action">
-                                    {
-                                        <a href="#" className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>
-                                            <Person2OutlinedIcon/>
-                                        </a>
-                                    }
-                                </Box>
-                            </Box>
-                            <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
-                            </Box>
-                        </Box>
-                       {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
-                    </Container>
-                </ThemeProvider>
-            </header>
-        </>
-    );
+
+              <Box className="header__user-actions">
+                <Box className="action">
+                  { authToken ? (
+                      <Link to="/personal-office" className="action__icon user-name" >
+                        {getWrappedValue(userData.firstName, 10)}
+                        {/*OB*/}
+                      </Link>)
+                      : (
+                      <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>
+                        <Person2OutlinedIcon/>
+                      </button>)
+                  }
+                </Box>
+              </Box>
+
+              <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
+              </Box>
+            </Box>
+            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
+          </Container>
+        </ThemeProvider>
+      </header>
+    </>
+  );
 };
 
 export default Header;

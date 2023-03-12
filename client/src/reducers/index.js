@@ -1,4 +1,3 @@
-
 import productsReducer, {
     actionFetchAllProducts,
     actionProductsQuantity,
@@ -33,13 +32,15 @@ import basketReducer, {
 } from "./basket.reducer";
 import logInReducer, {
     actionFetchLogin,
-    actionToken
+    actionToken,
+    actionFetchAuthorizationUser,
+    actionResetLoginError
 } from "./logIn.reducer";
 import productDetailsReducer, {
     actionFetchOneProduct,
 } from "./productDetails.reducer";
 import registrationReducer, {
-    createCustomerServer,
+    createCustomerServerApi,
 } from './registration.reducer';
 export{
     productsReducer,
@@ -75,9 +76,11 @@ export{
     actionDeleteFromScales,
     logInReducer,
     actionFetchLogin,
+    actionResetLoginError,
+    actionFetchAuthorizationUser,
     actionToken,
     productDetailsReducer,
     actionFetchOneProduct,
     registrationReducer,
-    createCustomerServer,
+    createCustomerServerApi,
 }
