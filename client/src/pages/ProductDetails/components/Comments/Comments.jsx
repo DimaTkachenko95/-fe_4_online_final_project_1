@@ -1,13 +1,25 @@
 import {Box, Button, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorProduct} from "../../../../selectors";
+import {selectorProduct, selectorProductComments} from "../../../../selectors";
 import './Comments.scss';
-import { actionFetchAddComment } from "../../../../reducers/productDetails.reducer";
+import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers/productDetails.reducer";
+import Comment from "./Comment";
+import {retry} from "@reduxjs/toolkit/query";
+import comment from "./Comment";
 
 const Comments = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectorProduct);
+
+    const comments = useSelector(selectorProductComments);
+
+    useEffect(() => {
+        dispatch(actionFetchAllComments(product.itemNo));
+    }, [product]);
+
+
+
 
     const MOC = {
         "_id": "5d90e8fcea6f09306470adb9",
@@ -68,13 +80,8 @@ const Comments = () => {
         }
     }
 
-    const dateString = MOC.customer.date;
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
 
-    const formattedDate = `${day } 0${month} ${year}`;
+
     return (
         <>
             <Box className="product__comments-wrapper">
@@ -104,60 +111,18 @@ const Comments = () => {
                     <h3 className="product__comments-title">Reviews:</h3>
 
                     <Box className="comments">
-                        <Box className="product__comment">
-                            <Box className="product__comment-user-wrapper">
-                                <p className="product__comment-user">{MOC.customer.firstName} {MOC.customer.lastName}</p>
-                                <p className="product__comment-date">{formattedDate}</p>
-                            </Box>
+                        {comments?.map(comment => {
+                            console.log(comment)
+                            const dateString = comment.customer.date;
+                            const date = new Date(dateString);
+                            const day = date.getDate();
+                            const month = date.getMonth() + 1;
+                            const year = date.getFullYear();
 
-                            <Box className="product__comment-text">
-                                {MOC.content}
-                            </Box>
-                        </Box>
+                            let formattedDate = `${day} 0${month} ${year}`;
 
-                        <Box className="product__comment">
-                            <Box className="product__comment-user-wrapper">
-                                <p className="product__comment-user">{MOC.customer.firstName} {MOC.customer.lastName}</p>
-                                <p className="product__comment-date">{formattedDate}</p>
-                            </Box>
-
-                            <Box className="product__comment-text">
-                                {MOC.content}
-                            </Box>
-                        </Box>
-
-                        <Box className="product__comment">
-                            <Box className="product__comment-user-wrapper">
-                                <p className="product__comment-user">{MOC.customer.firstName} {MOC.customer.lastName}</p>
-                                <p className="product__comment-date">{formattedDate}</p>
-                            </Box>
-
-                            <Box className="product__comment-text">
-                                {MOC.content}
-                            </Box>
-                        </Box>
-
-                        <Box className="product__comment">
-                            <Box className="product__comment-user-wrapper">
-                                <p className="product__comment-user">{MOC.customer.firstName} {MOC.customer.lastName}</p>
-                                <p className="product__comment-date">{formattedDate}</p>
-                            </Box>
-
-                            <Box className="product__comment-text">
-                                {MOC.content}
-                            </Box>
-                        </Box>
-
-                        <Box className="product__comment">
-                            <Box className="product__comment-user-wrapper">
-                                <p className="product__comment-user">{MOC.customer.firstName} {MOC.customer.lastName}</p>
-                                <p className="product__comment-date">{formattedDate}</p>
-                            </Box>
-
-                            <Box className="product__comment-text">
-                                {MOC.content}
-                            </Box>
-                        </Box>
+                            return (<Comment MOC={comment} formattedDate={formattedDate}/>)
+                        })}
                     </Box>
                 </Box>
             </Box>
