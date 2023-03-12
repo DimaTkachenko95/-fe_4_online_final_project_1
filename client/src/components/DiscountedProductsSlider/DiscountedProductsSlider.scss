@@ -8,7 +8,7 @@
 
 .discounted-products__title{
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 20px;
   text-align: center;
   margin: 60px auto 0 auto;
@@ -19,7 +19,8 @@
 }
 
 .discounted-products__slider-item{
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 25px;
 }
 
 .list{
@@ -28,7 +29,8 @@
 
 .slick-arrow.slick-prev,
 .slick-arrow.slick-next{
-  background: white;
+  background-color: white;
+  border-radius: 50%;
   box-shadow: 1px 1px 1px 1px lightgrey;
   width: 40px;
   height: 40px;
@@ -36,6 +38,9 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+  &:hover {
+    background-color: #d6e3d1;
+  }
 }
 
 .slick-prev::before,
@@ -43,10 +48,10 @@
   display: none;
 }
 
-.slick-prev{
-  left: -20px;
+.slick-dots li button:before {
+  color: #4ba123;
 }
 
-.slick-next{
-  right: -20px;
+.slick-dots li.slick-active button:before {
+  color: #4ba123;
 }
