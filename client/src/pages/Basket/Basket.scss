@@ -55,6 +55,10 @@
       font-size: 14px;
       font-weight: 700;
       vertical-align: middle;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
     }
 
     .quantity {

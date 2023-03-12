@@ -8,6 +8,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken } from "../../selectors";
 import {actionFetchAddUserCart, actionGetCart} from "../../reducers";
 import Button from "../../components/Button/";
+import BreadCrumbs from '../../components/BreadCrumbs';
 
 const ContainerBasket = styled(Container)`
   padding: 25px 0 50px 0;
@@ -44,6 +45,7 @@ const Basket = () => {
     return (
 
         <ContainerBasket maxWidth="lg">
+            <BreadCrumbs linksArray={[{ link: '/basket', text: 'Shopping Cart' }]} />
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {!basketProduct && !basketProduct.length <= 1 ? 
                 <EmptyBasket/> :
