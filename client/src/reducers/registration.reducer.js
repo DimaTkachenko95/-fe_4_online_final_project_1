@@ -10,6 +10,7 @@ const registrationSlice = createSlice({
     login: '',
     email: '',
     password: '',
+    confirmPassword: '',
     telephone: '',
     gender: '',
     avatarUrl: '',
@@ -22,6 +23,7 @@ const registrationSlice = createSlice({
       state.login = action.payload.login;
       state.email = action.payload.email;
       state.password = action.payload.password;
+      state.confirmPassword = action.payload.confirmPassword;
       state.telephone = action.payload.telephone;
       state.gender = action.payload.gender;
       state.avatarUrl = action.payload.avatarUrl;

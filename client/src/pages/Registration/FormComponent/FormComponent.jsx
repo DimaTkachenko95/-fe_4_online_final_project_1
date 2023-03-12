@@ -118,6 +118,34 @@ const FormComponent = () => {
                 />
 
                 <FormikControl
+                  htmlFor="outlined-adornment-password"
+                  label="Confirm password"
+                  variant="outlined"
+                  control="input"
+                  color="success"
+                  className="form-registration__input"
+                  name="confirmPassword"
+                  placeholder="Confirm your password"
+                  id="outlined-adornment-password"
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <FormikControl
                   type="text"
                   control="input"
                   color="success"
@@ -130,18 +158,6 @@ const FormComponent = () => {
                   required
                   mask="+380 99 999 99 99"
                   placeholder="+380 99 999 99 99"
-                />
-
-                <FormikControl
-                  type="text"
-                  control="input"
-                  color="success"
-                  label="Gender"
-                  className="form-registration__input"
-                  name="gender"
-                  placeholder="male, female, other"
-                  variant="outlined"
-                  id="outlined-multiline-flexible"
                 />
 
                 <FormikControl
