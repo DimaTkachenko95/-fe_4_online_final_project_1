@@ -7,16 +7,24 @@ import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
 import * as Yup from 'yup';
 import {actionFetchCreateOrder} from "../../reducers/basket.reducer";
 import OrderedSuccessfull from "./OrderedSuccessfull";
+import {useEffect} from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const CheckOut = () => {
 
     const productBasket = useSelector(selectorBasketProduct);
-
+    const navigate = useNavigate();
     const isOrdered = useSelector(selectorIsOrdered);
     const basketProduct = useSelector(selectorBasketProduct);
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if (basketProduct.length === 0){
+            navigate("/");
+        }
+    })
     const validationSchema = Yup.object({
         firstName: Yup.string().required('Please, enter your first name'),
         lastName: Yup.string().required('Please, enter your last name'),
@@ -104,6 +112,7 @@ const CheckOut = () => {
                             value={formik.values.firstName}
                             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                             helperText={formik.touched.firstName && formik.errors.firstName}
+                            color="success"
                         />
 
                         <TextField
@@ -118,6 +127,7 @@ const CheckOut = () => {
                             value={formik.values.lastName}
                             error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                             helperText={formik.touched.lastName && formik.errors.lastName}
+                            color="success"
                         />
 
                         <TextField
@@ -132,6 +142,7 @@ const CheckOut = () => {
                             value={formik.values.phone}
                             error={formik.touched.phone && Boolean(formik.errors.phone)}
                             helperText={formik.touched.phone && formik.errors.phone}
+                            color="success"
                         />
 
                         <TextField
@@ -146,6 +157,7 @@ const CheckOut = () => {
                             value={formik.values.email}
                             error={formik.touched.email && Boolean(formik.errors.email)}
                             helperText={formik.touched.email && formik.errors.email}
+                            color="success"
                         />
 
                         <TextField
@@ -160,6 +172,7 @@ const CheckOut = () => {
                             value={formik.values.country}
                             error={formik.touched.country && Boolean(formik.errors.country)}
                             helperText={formik.touched.country && formik.errors.country}
+                            color="success"
                         />
 
                         <TextField
@@ -174,6 +187,7 @@ const CheckOut = () => {
                             value={formik.values.city}
                             error={formik.touched.city && Boolean(formik.errors.city)}
                             helperText={formik.touched.city && formik.errors.city}
+                            color="success"
                         />
 
                         <TextField
@@ -188,6 +202,7 @@ const CheckOut = () => {
                             value={formik.values.address}
                             error={formik.touched.address && Boolean(formik.errors.address)}
                             helperText={formik.touched.address && formik.errors.address}
+                            color="success"
                         />
 
 
@@ -203,6 +218,7 @@ const CheckOut = () => {
                             value={formik.values.postalCode}
                             error={formik.touched.postalCode && Boolean(formik.errors.postalCode)}
                             helperText={formik.touched.postalCode && formik.errors.postalCode}
+                            color="success"
                         />
 
 

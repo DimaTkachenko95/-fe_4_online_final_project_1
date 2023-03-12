@@ -1,7 +1,7 @@
 import {ReactComponent as OrderedSvg} from "./icons/success-svgrepo-com.svg";
 import {Box, Container} from '@mui/material';
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct} from "../../selectors";
+import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
 import './OrderedSuccesseful.scss';
 import ProductCard from "../../components/ProductCard";
 import SearchBlock from "../Main/components/SearchBlock";
@@ -9,6 +9,7 @@ import {useEffect} from "react";
 import {actionBasketProduct, actionDeleteFromBasket} from "../../reducers";
 import {actionIsOrdered} from "../../reducers/basket.reducer";
 import Button from "../../components/Button";
+import { redirect } from "react-router-dom";
 
 const OrderedSuccessful = () => {
     const basketProduct = useSelector(selectorBasketProduct);
@@ -16,9 +17,9 @@ const OrderedSuccessful = () => {
 
     useEffect(() => {
         basketProduct.map(product => dispatch(actionDeleteFromBasket(product)));
-
-
         localStorage.setItem("basket", JSON.stringify([]));
+
+
 
         return(() => {
             dispatch(actionBasketProduct([]));
