@@ -3,13 +3,18 @@ import {Box, Container, TextField, Button} from '@mui/material';
 import {useFormik} from 'formik';
 import BreadCrumbs from "../../components/BreadCrumbs";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct} from "../../selectors";
+import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
 import * as Yup from 'yup';
 import {actionFetchCreateOrder} from "../../reducers/basket.reducer";
+import OrderedSuccessfull from "./OrderedSuccessfull";
 
 const CheckOut = () => {
 
     const productBasket = useSelector(selectorBasketProduct);
+
+    const isOrdered = useSelector(selectorIsOrdered);
+    const basketProduct = useSelector(selectorBasketProduct);
+
     const dispatch = useDispatch();
 
     const validationSchema = Yup.object({
@@ -62,16 +67,26 @@ const CheckOut = () => {
 
                 letterSubject: "Thank you for order! You are welcome!",
                 letterHtml:
-                    "<h1>Your order is placed. OrderNo is 0000001.</h1><p>{Other details about order in your HTML}</p>"
+                    `<h1>Dear valued customer,
+                        We are delighted to inform you that your order has been successfully processed and is now being prepared for shipment. Thank you for choosing to shop with us - we appreciate your business and are committed to providing you with the highest level of service.
+                        We will be sending you a confirmation email shortly that contains all the details of your order, including the shipping and delivery information. Please review this information carefully and let us know if there are any changes or updates you need to make.
+                        If you have any questions or concerns about your order, please don't hesitate to contact us. Our customer service team is always here to help and will be happy to assist you in any way we can.
+                        Thank you again for choosing to shop with us. We look forward to serving you again in the future.
+                        Best regards,
+                        Best Laptops 24
+                        Customer Service Representative
+                        </h1>`
             }
 
-            dispatch(actionFetchCreateOrder(newOrder));
+            dispatch(actionFetchCreateOrder(newOrder, basketProduct));
+
         },
     });
 
     return (
         <>
-            <Box className="checkout">
+            { !isOrdered ?
+                <Box className="checkout">
                 <Container maxWidth="lg" className="checkout__container">
                     <BreadCrumbs linksArray={[{link: "/basket", text: "Cart"}]}/>
                     <h3 className="checkout__title">Checkout</h3>
@@ -197,7 +212,9 @@ const CheckOut = () => {
                     </form>
                 </Container>
             </Box>
-
+                :
+                <OrderedSuccessfull/>
+            }
         </>
     )
 };
