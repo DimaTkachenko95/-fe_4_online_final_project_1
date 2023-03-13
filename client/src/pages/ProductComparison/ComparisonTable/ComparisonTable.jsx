@@ -1,22 +1,22 @@
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { selectorScales, selectorAllProductsComp, selectorPageLoading } from '../../../selectors';
+import { selectorScales, selectorProductComp, selectorPageLoading } from '../../../selectors';
+import { actionDeleteFromScales, actionFetchProductScalesByItemNo } from '../../../reducers';
 import './ComparisonTable.scss';
-import { actionFetchAllProductsComp, actionDeleteFromScales } from '../../../reducers';
 import Preloader from '../../../components/Preloader';
-import EmptyFavorites from '../../Favorites/EmptyFavorites';
-import * as React from 'react';
+import EmptyFavorites from '../../../components/EmptyFavorites';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
-  const allProd = useSelector(selectorAllProductsComp);
+  const allProd = useSelector(selectorProductComp);
   const itemNoArr = useSelector(selectorScales);
   const isLoading = useSelector(selectorPageLoading);
   const [comparisonProducts, setComparisonProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(actionFetchAllProductsComp());
-  }, []);
+    dispatch(actionFetchProductScalesByItemNo(itemNoArr));
+  }, [itemNoArr]);
 
   useEffect(() => {
     const tableProducts = allProd

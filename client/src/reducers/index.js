@@ -7,7 +7,6 @@ import productsReducer, {
   actionSearchInputValue,
   actionAllProducts,
   actionFetchSearchProducts,
-  actionFetchAllProductsComp,
 } from './products.reducer';
 import favoritesReducer, {
   actionAddToFavorites,
@@ -17,6 +16,7 @@ import scalesReducer, {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
+  actionFetchProductScalesByItemNo,
 } from './scales.reducer';
 import basketReducer, {
   actionAddToBasket,
@@ -45,7 +45,6 @@ export {
   actionPageLoading,
   actionFetchSearchProducts,
   actionFetchSearchFilterProducts,
-  actionFetchAllProductsComp,
   favoritesReducer,
   actionAddToFavorites,
   actionDeleteFromFavorites,
@@ -60,6 +59,7 @@ export {
   actionAddToScales,
   actionDeleteFromScales,
   toggleScalesProduct,
+  actionFetchProductScalesByItemNo,
   logInReducer,
   actionFetchLogin,
   actionResetLoginError,

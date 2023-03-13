@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {
-  GET_ALL_PRODUCTS_PAGINATION,
-  SEARCH_PRODUCTS,
-  FILTERED_PRODUCTS,
-  GET_ALL_PRODUCTS,
-} from '../endpoints';
+import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from '../endpoints';
 
 const initialState = {
   allProducts: [],
@@ -28,7 +23,6 @@ const initialState = {
     maxPrice: '',
     sort: '',
   },
-  allProductsComp: [],
 };
 
 const productsSlice = createSlice({
@@ -58,9 +52,6 @@ const productsSlice = createSlice({
       state.filterRequest = payload;
       sessionStorage.setItem('filterRequest', JSON.stringify(payload));
     },
-    actionAllProductsComp: (state, { payload }) => {
-      state.allProductsComp = payload;
-    },
   },
 });
 export const {
@@ -72,14 +63,7 @@ export const {
   actionSortByPrise,
   actionFilterRequest,
   actionProductComments,
-  actionAllProductsComp,
 } = productsSlice.actions;
-
-export const actionFetchAllProductsComp = () => (dispatch) => {
-  return axios.get(GET_ALL_PRODUCTS).then(({ data }) => {
-    dispatch(actionAllProductsComp(data));
-  });
-};
 
 export const actionFetchAllProducts = () => (dispatch) => {
   dispatch(actionPageLoading(true));

@@ -6,10 +6,8 @@ export const selectorSortByPrise = (state) => state.products.sortByPrise;
 export const selectorFilterRequest = (state) => state.products.filterRequest;
 export const selectorProductsQuantity = (state) => state.products.productsQuantity;
 export const selectorPageLoading = (state) => state.products.pageLoading;
-export const selectorAllProductsComp = (state) => state.products.allProductsComp;
 
 // PRODUCT DETAILS
-export const selectorProductComp = (state) => state.productsDetails.productDataComp;
 export const selectorProduct = (state) => state.productsDetails.productData;
 export const selectorSimilarProducts = (state) => state.productsDetails.similarProducts;
 export const selectorServerErrorProductDetails = (state) => state.productsDetails.serverError;
@@ -23,6 +21,7 @@ export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
+export const selectorProductComp = (state) => state.scales.productDataComp;
 
 // FAVORITES PRODUCTS
 export const selectorFavorites = (state) => state.favorites.favorites;
