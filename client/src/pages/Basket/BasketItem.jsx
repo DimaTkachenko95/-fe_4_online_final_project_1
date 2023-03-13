@@ -51,13 +51,15 @@ const BasketItems = () => {
     }
 
     const increase = (item) => {
+        const cartItem = userProducts.find((elem) => elem.product === item._id);
+        if (!cartItem || cartItem.cartQuantity <= item.quantity-1) {
         if(localStorage.getItem('token')) {
             dispatch(actionAddToAuthBasket(item._id))
         }
         dispatch(actionIncrease(item))
+        } else return null;
     }
 
-    
     const decrease = (item) => {
 
     if(item.cartQuantity >= 2) {

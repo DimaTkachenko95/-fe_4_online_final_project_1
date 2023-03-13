@@ -22,25 +22,23 @@ const Basket = () => {
     const result = basketProduct.reduce((prev, item) => prev + item.cartQuantity * item.currentPrice, 0)
 
     useEffect(() => {
-       
-        if(localStorage.getItem("basket") && localStorage.getItem("token")) {
-                const newCart = {
-                    products: basket.map((item) => {
-                        return {
-                            product: item.id,
-                            cartQuantity: item.cartQuantity
-                        }
-                    })
+        if(localStorage.getItem("token")) {
+          if(localStorage.getItem("basket")) {
+            const newCart = {
+              products: basket.map((item) => {
+                return {
+                  product: item.id,
+                  cartQuantity: item.cartQuantity
                 }
-         
-         localStorage.removeItem("basket")
-         dispatch(actionFetchAddUserCart(newCart))
-     }
-     }, [token])
-
-     useEffect(() => {
-        dispatch(actionGetCart())
-     }, [])
+              })
+            }
+            localStorage.removeItem("basket");
+            dispatch(actionFetchAddUserCart(newCart));
+          } else {
+            dispatch(actionGetCart())
+          }
+        }
+      }, []);
 
     return (
 

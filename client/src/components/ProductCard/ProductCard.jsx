@@ -25,10 +25,9 @@ const ProductCard = ({ el }) => {
 
   const addToBasket = item => {
     if(!localStorage.getItem("token")) {
-      
-      if (!basket.find((elem) => elem.id === item._id)) {  
+      if (!basket.find((elem) => elem.product === item._id)) {  
         dispatch(actionAddToBasket(item));
-          } 
+          } else return null
     } else {
       dispatch(actionAddToAuthBasket(item._id))
     }

@@ -5,7 +5,8 @@ import { GET_ALL_PRODUCTS, SHOPPING_CART, PRODUCT_IN_SHOPPING_CART, CHANGE_PRODU
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
     basketProduct: [],
-    products: JSON.parse(localStorage.getItem("authorizedBasket")) || [], // for authorizing users
+    products: JSON.parse(localStorage.getItem("authorizedBasket")) || [],
+   // products: [] // for authorizing users
 }
 
 const basketSlice = createSlice({
