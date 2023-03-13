@@ -69,9 +69,8 @@ const PrevArrow = ({ className, onClick }) => {
       ]
     };
 return(
-<>
 <Container maxWidth="lg" className="discounted-products">
-<div className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</div>
+<h2 className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</h2>
   <Container className="discounted-products__slider-container" maxWidth="lg">
      {!!allDiscountedProducts.length &&
       (
@@ -79,7 +78,7 @@ return(
           {allDiscountedProducts?.map((el, index) => {
           return (
             <div className="discounted-products__slider-item">
-              <ProductCard className="discounted-products__slider-item-card" el={el} index={index}
+              <ProductCard className="discounted-products__slider-item-card" el={el} index={index} key={index}
               />
             </div>
           )
@@ -89,7 +88,6 @@ return(
       }
   </Container>
   </Container>
-</>
 )
 }
 
