@@ -4,6 +4,7 @@ import './SearchBlock.scss'
 import InputSearch from "../../../../components/InputSearch";
 import { actionChangeSearchFlag } from "../../../../reducers";
 import { useDispatch } from "react-redux";
+import Button from '../../../../components/Button';
 
 const SearchBlock = () => {
     const dispatch = useDispatch();
@@ -28,12 +29,8 @@ const SearchBlock = () => {
                     </Box>
                     <Box className="search__actions">
                         <Box className="search__catalog-button-wrapper">
-                            <Link
-                                to="/products"
-                                className="search__catalog-button"
-                                onClick={ handleSearchAll }
-                            >
-                                Show all products
+                            <Link to="/products">
+                                <Button className="search__catalog-button" onClick={ handleSearchAll } text="Show all products" />
                             </Link>
                         </Box>
                         <Box className="search__input-wrapper">

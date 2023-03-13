@@ -1,10 +1,10 @@
-import {Box, Button, TextField} from "@mui/material";
+import {Box, TextField} from "@mui/material";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorProduct} from "../../../../selectors";
 import './Comments.scss';
 import { actionFetchAddComment } from "../../../../reducers/productDetails.reducer";
-import SendIcon from '@mui/icons-material/Send';
+import Button from "../../../../components/Button";
 
 const Comments = () => {
     const dispatch = useDispatch();
@@ -95,9 +95,7 @@ const Comments = () => {
                             color="success"
                             onKeyDown={handleKeyDown}
                         />
-                        <Button type="submit" variant="contained" color="success" className="product__form-button" endIcon={<SendIcon />}>
-                            Send
-                        </Button>
+                         <Button type="submit" variant="gradient-green" width="120px" color="success" className="product__form-button" text="Send" />
                     </form>
                 </Box>
 

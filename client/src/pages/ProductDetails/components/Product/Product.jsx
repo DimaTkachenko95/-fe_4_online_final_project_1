@@ -138,10 +138,15 @@ const Product = () => {
 
                             {basket.some(item => item.id === product._id) ?
                                 <Link to="/basket">
-                                    <Button className="list__item--inbasket" width="100%" text="In basket" endIcon={<CheckMark/>} />
-                                </Link>
-                                :
-                                <Button onClick={() => addToBasket(product)} width="100%" text="BUY" className="list__item--buy" startIcon={<ShoppingCartOutlinedIcon/>} />
+                                <button className="list__item--inbasket" text="In basket"><CheckMark/>
+                                    <span className="list__item--buy--text">In basket</span>
+                                </button>
+                            </Link>
+                            :
+                            <button onClick={() => addToBasket(product)} className="list__item--buy" text="Buy">
+                                <ShoppingCartOutlinedIcon/>
+                                <span className="list__item--buy--text">Buy</span>
+                            </button>
                             }
                         </Box>
                     </Box>

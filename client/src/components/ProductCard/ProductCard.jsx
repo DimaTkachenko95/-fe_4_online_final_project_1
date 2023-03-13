@@ -73,10 +73,13 @@ const ProductCard = ({ el }) => {
 
           { isProductInCart ?
               <Link to="/basket">
-                <Button onClick={() => addToBasket(el)} text="In basket" width="100%" className="list__item--inbasket" endIcon={<CheckMark/>}/>
-              </Link>
+                <button onClick={() => addToBasket(el)} className="list__item--inbasket "><CheckMark />
+                  <span className="list__item--buy--text">In basket</span>
+                </button></Link>
               :
-              <Button onClick={() => addToBasket(el)} text="BUY" width="100%" className="list__item--buy" startIcon={<ShoppingCartOutlinedIcon/>}/>
+              <button onClick={() => addToBasket(el)} className="list__item--buy"><ShoppingCartOutlinedIcon />
+                <span className="list__item--buy--text">Buy</span>
+              </button>
           }
         </div>
       </div>
