@@ -1,11 +1,11 @@
-import './ProductComparisonPage.scss';
-import ComparisonTable from './ComparisonTableComponent';
+import './ProductComparison.scss';
+import ComparisonTable from './ComparisonTable';
 import { Container } from '@mui/material';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import { useSelector } from 'react-redux';
 import { selectorScales } from '../../selectors';
 
-const ProductComparisonPage = () => {
+const ProductComparison = () => {
   const itemNoArr = useSelector(selectorScales);
   return (
     <main>
@@ -19,4 +19,4 @@ const ProductComparisonPage = () => {
   );
 };
 
-export default ProductComparisonPage;
+export default ProductComparison;

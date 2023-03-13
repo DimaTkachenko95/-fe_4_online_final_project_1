@@ -9,6 +9,7 @@ export const selectorPageLoading = (state) => state.products.pageLoading;
 export const selectorAllProductsComp = (state) => state.products.allProductsComp;
 
 // PRODUCT DETAILS
+export const selectorProductComp = (state) => state.productsDetails.productDataComp;
 export const selectorProduct = (state) => state.productsDetails.productData;
 export const selectorSimilarProducts = (state) => state.productsDetails.similarProducts;
 export const selectorServerErrorProductDetails = (state) => state.productsDetails.serverError;

@@ -4,6 +4,8 @@ import { selectorScales, selectorAllProductsComp, selectorPageLoading } from '..
 import './ComparisonTable.scss';
 import { actionFetchAllProductsComp, actionDeleteFromScales } from '../../../reducers';
 import Preloader from '../../../components/Preloader';
+import EmptyFavorites from '../../Favorites/EmptyFavorites';
+import * as React from 'react';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,9 @@ const ComparisonTable = () => {
   return (
     <div className="comparison-container__wrapper">
       <Preloader open={isLoading} />
-      {comparisonProducts?.length > 0 && (
+      {comparisonProducts.length <= 0 ? (
+        <EmptyFavorites />
+      ) : (
         <table className="comparison-table">
           <thead>
             <tr>
@@ -103,23 +107,8 @@ const ComparisonTable = () => {
               <th scope="row">Current Price</th>
               {comparisonProducts.map((product) => (
                 <td key={product.id} className="text-center">
-                  {product.currentPrice}
+                  {product.currentPrice} $
                 </td>
-              ))}
-            </tr>
-            <tr className="comparison-table__product-previousPrice">
-              <th scope="row">Previous Price</th>
-              {comparisonProducts.map((product) => (
-                <td key={product.id} className="previousPrice">
-                  {product.previousPrice}
-                </td>
-              ))}
-            </tr>
-
-            <tr className="comparison-table__product-processorBrand">
-              <th scope="row">Processor brand</th>
-              {comparisonProducts.map((product) => (
-                <td key={product.id}>{product.processorBrand}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-processorType">
@@ -131,7 +120,7 @@ const ComparisonTable = () => {
             <tr className="comparison-table__product-screenSize">
               <th scope="row">Screen size</th>
               {comparisonProducts.map((product) => (
-                <td key={product.id}>{product.screenSize}</td>
+                <td key={product.id}>{product.screenSize}"</td>
               ))}
             </tr>
             <tr className="comparison-table__product-videoCard">
@@ -153,7 +142,7 @@ const ComparisonTable = () => {
               ))}
             </tr>
             <tr className="comparison-table__product-hardDriveCapacity">
-              <th scope="row">HDC</th>
+              <th scope="row">SSD</th>
               {comparisonProducts.map((product) => (
                 <td key={product.id}>{product.hardDriveCapacity}</td>
               ))}
