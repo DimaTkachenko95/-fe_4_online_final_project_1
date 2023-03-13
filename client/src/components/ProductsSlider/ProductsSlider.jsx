@@ -2,23 +2,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { Container } from "@mui/material";
-import { selectorDiscountedProducts } from "../../selectors";
-import { actionFetchDiscountedProducts } from "../../reducers";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../ProductCard";
 import "./ProductsSlider.scss"
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const ProductsSlider = () => {
-  const allDiscountedProducts = useSelector(selectorDiscountedProducts)
-  const dispatch = useDispatch()
+const ProductsSlider = ({ products }) => {
   
-  useEffect(() => {
-    dispatch(actionFetchDiscountedProducts())
-  }, [])
-
   const NextArrow = ({ className, onClick }) => {
   return (
     <div className={className} onClick={onClick}>
@@ -72,10 +62,10 @@ return(
 <Container maxWidth="lg" className="discounted-products">
 <h2 className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</h2>
   <Container className="discounted-products__slider-container" maxWidth="lg">
-     {!!allDiscountedProducts.length &&
+     {!!products.length &&
       (
         <Slider {...settings}>
-          {allDiscountedProducts?.map((el, index) => {
+          {products?.map((el, index) => {
           return (
             <div className="discounted-products__slider-item">
               <ProductCard className="discounted-products__slider-item-card" el={el} index={index} key={index}
