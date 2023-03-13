@@ -1,8 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {GET_ALL_PRODUCTS, ORDERS} from "../endpoints";
-import {useSelector} from "react-redux";
-import {selectorBasketProduct} from "../selectors";
 
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
@@ -94,17 +92,11 @@ export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispat
     }
 }
 
-export const actionFetchCreateOrder = (newOrder,basketProduct) => async (dispatch) => {
-    try {
-        const newOrderReq = await axios.post(`${ORDERS}`, newOrder);
-
-        dispatch(actionIsOrdered(true));
-
-        console.log(newOrderReq);
-
-    } catch (error) {
-        console.error(error);
-    }
+export const actionFetchCreateOrder = (newOrder) =>  (dispatch) => {
+    return  axios.post(`${ORDERS}`, newOrder)
+        .then(() => {
+            dispatch(actionIsOrdered(true));
+        });
 }
 
 export default basketSlice.reducer;

@@ -1,15 +1,13 @@
 import {ReactComponent as OrderedSvg} from "./icons/success-svgrepo-com.svg";
 import {Box, Container} from '@mui/material';
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
+import {selectorBasketProduct} from "../../selectors";
 import './OrderedSuccesseful.scss';
 import ProductCard from "../../components/ProductCard";
-import SearchBlock from "../Main/components/SearchBlock";
 import {useEffect} from "react";
 import {actionBasketProduct, actionDeleteFromBasket} from "../../reducers";
 import {actionIsOrdered} from "../../reducers/basket.reducer";
 import Button from "../../components/Button";
-import { redirect } from "react-router-dom";
 
 const OrderedSuccessful = () => {
     const basketProduct = useSelector(selectorBasketProduct);
@@ -38,7 +36,7 @@ const OrderedSuccessful = () => {
                         <Box className="ordered__items">
                             {productBasket.map(product => <ProductCard el={product} isForOrderedPage={true}/>)}
                         </Box>
-                        <Button type="button" variant="gradient-green" to="/products" text="All products"/>
+                        <Button type="button" to="/products" text="Continue Shopping"/>
                     </Box>
                 </Container>
             </Box>

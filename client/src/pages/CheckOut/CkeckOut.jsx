@@ -1,15 +1,15 @@
 import './CheckOut.scss';
-import {Box, Container, TextField, Button} from '@mui/material';
+import {Box, Container, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import BreadCrumbs from "../../components/BreadCrumbs";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
 import * as Yup from 'yup';
 import {actionFetchCreateOrder} from "../../reducers/basket.reducer";
-import OrderedSuccessfull from "./OrderedSuccessfull";
+import OrderedSuccessfull from "./OrderedSuccessful";
 import {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-
+import Button from "../../components/Button";
 
 const CheckOut = () => {
 
@@ -24,7 +24,8 @@ const CheckOut = () => {
         if (basketProduct.length === 0){
             navigate("/");
         }
-    })
+    });
+
     const validationSchema = Yup.object({
         firstName: Yup.string().required('Please, enter your first name'),
         lastName: Yup.string().required('Please, enter your last name'),
@@ -221,10 +222,7 @@ const CheckOut = () => {
                             color="success"
                         />
 
-
-                        <Button type="submit" variant="contained" color="primary" className="checkout__submit-btn">
-                            Create order
-                        </Button>
+                        <Button type="submit" text="Create order" className="checkout__submit-btn"/>
                     </form>
                 </Container>
             </Box>
