@@ -10,13 +10,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCustomerServerApi } from '../../../reducers';
 import { initialState } from '../../../reducers/registration.reducer';
+
 import Button from '../../../components/Button';
 
 const FormComponent = () => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-
+  //const [openModal, setOpenModal] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -27,12 +28,12 @@ const FormComponent = () => {
     <Formik
       initialValues={initialState}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values, { resetForm, event }) => {
         dispatch(createCustomerServerApi(values));
         resetForm();
       }}
     >
-      {(isValid, setFieldValue) => {
+      {(isValid) => {
         return (
           <>
             <Form className="form-registration" style={{ width: '100%' }}>

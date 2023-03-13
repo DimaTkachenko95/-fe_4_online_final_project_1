@@ -6,34 +6,16 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 30px;
-
-    &__input {
-      padding: 0 30px;
-    }
-  }
-
-  &__submit {
-    //color: white;
-    //font-style: normal;
-    //font-weight: 700;
-    //font-size: 14px;
-    //line-height: 16px;
-    //text-align: center;
-    //text-transform: uppercase;
-    margin: 0 auto;
-    display: block;
-    margin-bottom: 150px;
-    margin-top: 104px;
   }
 }
 
-@media (min-width: 482px) and (max-width: 996px) {
+@media (min-width: 482px) and (max-width: 995.9px) {
   .form-registration {
     min-width: 400px;
   }
 }
 
-@media (min-width: 996.9px) {
+@media (min-width: 996px) {
   .form-registration {
     min-width: 900px;
 
