@@ -26,17 +26,13 @@ const SuccessModal = () => {
     setIsModalAuthOpen(false);
   };
   return (
-    <Modal
-      modalAction={closeModal}
-      closeAction={() => {
-        closeModal();
-      }}
-    >
+    <Modal modalAction={closeModal} closeAction={closeModal}>
       <p> Successful authorization </p>
       <Button
         className="form-block__btn"
         type="button"
         text="login"
+        onClick={toggleModal}
         onClick={(event) => toggleModalAuth(event)}
       />
       {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}

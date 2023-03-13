@@ -189,7 +189,6 @@ const FormComponent = ({ closeModal }) => {
                 />
               </div>
               <Button
-                to="/"
                 type="submit"
                 disabled={!isValid}
                 text="submit"
