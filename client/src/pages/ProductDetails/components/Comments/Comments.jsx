@@ -3,10 +3,9 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorProduct, selectorProductComments, selectorToken} from "../../../../selectors";
 import './Comments.scss';
-import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers/productDetails.reducer";
+import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers";
 import Comment from "./Comment";
-import {retry} from "@reduxjs/toolkit/query";
-import comment from "./Comment";
+
 
 const Comments = () => {
     const dispatch = useDispatch();
@@ -76,18 +75,15 @@ const Comments = () => {
                     <h3 className="product__comments-title">Reviews:</h3>
 
                     <Box className="comments">
-                        {comments?.map(comment => {
-                            console.log(comment)
+                        {comments?.map((comment, index) => {
                             const dateString = comment.customer.date;
-                            const date = new Date(dateString);
-                            const day = date.getDate();
-                            const month = date.getMonth() + 1;
-                            const year = date.getFullYear();
 
-                            let formattedDate = `${day} 0${month} ${year}`;
+                            const formattedDate = new Date(dateString).toLocaleString('en-us',{month:'long', year:'numeric', day:'numeric'})
 
-                            return (<Comment MOC={comment} formattedDate={formattedDate}/>)
+                            return (<Comment comment={comment} formattedDate={formattedDate} key={index}/>)
                         })}
+
+                        {comments.length === 0 && <h3 className="product__comments-title">There are currently no reviews for this product.</h3>}
                     </Box>
                 </Box>
             </Box>
