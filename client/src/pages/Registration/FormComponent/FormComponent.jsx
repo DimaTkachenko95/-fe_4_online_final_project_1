@@ -11,9 +11,10 @@ import { useDispatch } from 'react-redux';
 import { createCustomerServerApi } from '../../../reducers';
 import { initialState } from '../../../reducers/registration.reducer';
 import Button from '../../../components/Button';
-import Authorization from '../../Authorization';
+//import Authorization from '../../../pages/Authorization';
+import SuccessModal from './SuccessRegistration';
 
-const FormComponent = () => {
+const FormComponent = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -30,17 +31,21 @@ const FormComponent = () => {
     setOpenModal(!openModal);
   };
 
-  const closeModal = () => {
-    setOpenModal(false);
+  const onClickModal = (event) => {
+    toggleModal(event);
   };
+
+  // const newArr = comparisonProducts.filter((produc) => produc._id !== id);
+  // setComparisonProducts(newArr);
 
   return (
     <Formik
       initialValues={initialState}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values, event, { resetForm }) => {
         dispatch(createCustomerServerApi(values));
         resetForm();
+        onClickModal();
       }}
     >
       {(isValid) => {
@@ -184,12 +189,14 @@ const FormComponent = () => {
                 />
               </div>
               <Button
+                to="/"
                 type="submit"
                 disabled={!isValid}
                 text="submit"
                 style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
+                onClick={(event) => toggleModal(event)}
               />
-              {openModal && <Authorization closeModal={() => closeModal()} />}
+              {openModal && <SuccessModal closeModal={() => closeModal()} />}
             </Form>
           </>
         );
