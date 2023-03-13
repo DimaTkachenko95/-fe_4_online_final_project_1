@@ -29,6 +29,8 @@ import logInReducer, {
 } from "./logIn.reducer";
 import productDetailsReducer, {
     actionFetchOneProduct,
+    actionFetchAddComment,
+    actionFetchAllComments
 } from "./productDetails.reducer";
 import registrationReducer, {
     createCustomerServerApi,
@@ -65,4 +67,6 @@ export{
     actionFetchOneProduct,
     registrationReducer,
     createCustomerServerApi,
+    actionFetchAddComment,
+    actionFetchAllComments
 }

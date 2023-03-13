@@ -12,7 +12,8 @@ const initialState = {
     serverError: null,
     productData: {},
     productComments: [],
-    similarProducts: []
+    similarProducts: [],
+
 }
 
 const productDetailsSlice = createSlice({
@@ -63,7 +64,6 @@ export const actionFetchAllComments = itemNo => dispatch => {
     return axios
         .get(PRODUCT_COMMENTS.replace(':itemNo', itemNo))
         .then(({data}) => {
-            console.log(data)
             dispatch(actionProductComments(data));
         })
         .catch(() => dispatch(actionServerError(true)))
@@ -73,8 +73,8 @@ export const actionFetchAllComments = itemNo => dispatch => {
 export const actionFetchAddComment = newComment => dispatch => {
     return axios
         .post(PRODUCT_ADD_COMMENTS, newComment)
-        .then(newComment => {
-            dispatch(actionAddComment(newComment));
+        .then(({data})=> {
+            dispatch(actionAddComment(data));
         })
         .catch(() => dispatch(actionServerError(true)))
 }

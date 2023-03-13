@@ -14,7 +14,7 @@ export const selectorServerErrorProductDetails = state => state.productsDetails.
 export const selectorIsDetailsProductLoading = state => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
-export const selectorProductComments = state => state.products.productComments;
+export const selectorProductComments = state => state.productsDetails.productComments;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
