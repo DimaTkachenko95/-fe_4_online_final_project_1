@@ -1,11 +1,11 @@
 import './Main.scss';
 import Hero from "./components/Hero";
 import SearchBlock from "./components/SearchBlock";
-import DiscountedProductsSlider from '../../components/DiscountedProductsSlider';
+import ProductsSlider from '../../components/ProductsSlider';
 const Main = () => (
   <main>
       <Hero />    
-      <DiscountedProductsSlider />
+      <ProductsSlider />
       <SearchBlock/>
 
   </main>

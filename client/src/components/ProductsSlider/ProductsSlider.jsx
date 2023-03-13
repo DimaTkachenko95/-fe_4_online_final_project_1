@@ -7,11 +7,11 @@ import { actionFetchDiscountedProducts } from "../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../ProductCard";
-import "./DiscountedProductsSlider.scss"
+import "./ProductsSlider.scss"
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const DiscountedProductsSlider = () => {
+const ProductsSlider = () => {
   const allDiscountedProducts = useSelector(selectorDiscountedProducts)
   const dispatch = useDispatch()
   
@@ -91,4 +91,4 @@ return(
 )
 }
 
-export default DiscountedProductsSlider;
+export default ProductsSlider;
