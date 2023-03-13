@@ -2,7 +2,7 @@ import { Container } from '@mui/material';
 import FormComponent from '../Registration/FormComponent/FormComponent';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
-import SuccessModal from './FormComponent/SuccessRegistration';
+//import SuccessModal from './FormComponent/SuccessRegistration';
 
 const Registration = () => {
   return (

@@ -10,25 +10,35 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCustomerServerApi } from '../../../reducers';
 import { initialState } from '../../../reducers/registration.reducer';
-
 import Button from '../../../components/Button';
+import Authorization from '../../Authorization';
 
 const FormComponent = () => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-  //const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
+  const toggleModal = (event) => {
+    event.preventDefault();
+    setOpenModal(!openModal);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <Formik
       initialValues={initialState}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm, event }) => {
+      onSubmit={(values, { resetForm }) => {
         dispatch(createCustomerServerApi(values));
         resetForm();
       }}
@@ -179,6 +189,7 @@ const FormComponent = () => {
                 text="submit"
                 style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
               />
+              {openModal && <Authorization closeModal={() => closeModal()} />}
             </Form>
           </>
         );
