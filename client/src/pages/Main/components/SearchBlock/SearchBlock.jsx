@@ -30,7 +30,7 @@ const SearchBlock = () => {
                     <Box className="search__actions">
                         <Box className="search__catalog-button-wrapper">
                             <Link to="/products">
-                                <Button className="search__catalog-button" onClick={ handleSearchAll } text="Show all products" />
+                                <Button className="search__catalog-button" onClick={ handleSearchAll } variant="gradient-green" text="Show all products" />
                             </Link>
                         </Box>
                         <Box className="search__input-wrapper">
