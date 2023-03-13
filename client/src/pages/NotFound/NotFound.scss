@@ -1,0 +1,57 @@
+.not-found__wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.not-found__error {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  color: #f84147;
+  margin-bottom: 50px;
+}
+
+.not-found__text {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 34px;
+  margin-bottom: 40px;
+}
+
+.not-found__desc {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 34px;
+  margin-bottom: 45px;
+}
+
+.not-found__back-btn{
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  font-family: BlinkMacSystemFont,-apple-system,Arial,"Segoe UI",Roboto,Helvetica,sans-serif;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition-duration: .2s;
+  transition-property: color,background-color,border-color;
+  transition-timing-function: ease-in-out;
+  text-decoration: none;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00a046;
+  color: #fff;
+  margin-bottom: 35px;
+
+  &:hover{
+    background-color: #03ba55;
+  }
+}
