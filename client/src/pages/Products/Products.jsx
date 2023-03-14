@@ -1,67 +1,78 @@
 import FilterMainList from './components/FilterMainList';
 import { Container } from '@mui/material';
-import Grid from '@mui/material/Grid';
 import {
   selectorAllProducts,
-  selectorIsAllProductsLoading,
-  selectorIsSearch,
-  selectorSearchProducts,
+  selectorSearchInputValue,
   selectorServerErrorProducts,
+  selectorProductsQuantity,
+  selectorPageLoading,
 } from '../../selectors';
-import { actionFetchAllProducts, actionSearchProducts } from '../../reducers';
+import {
+  actionFetchAllProducts,
+  actionFetchSearchFilterProducts,
+  actionFetchSearchProducts,
+} from '../../reducers';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../../components/ProductCard';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import ServerError from '../../components/Notifications/ServerError';
-import NothingFound from "./components/NothingFound";
-
+import Paginate from './components/Paginate';
 import './Products.scss';
-import Preloader from "../../components/Preloader";
+import Preloader from '../../components/Preloader';
 
 const Products = () => {
   const allProducts = useSelector(selectorAllProducts);
-  const searchProducts = useSelector(selectorSearchProducts);
-  const isSearch = useSelector(selectorIsSearch);
+  const productsQuantity = useSelector(selectorProductsQuantity);
+  const searchInputValue = useSelector(selectorSearchInputValue);
   const serverError = useSelector(selectorServerErrorProducts);
-  const isLoading = useSelector(selectorIsAllProductsLoading);
+  const pageLoading = useSelector(selectorPageLoading);
   const dispatch = useDispatch();
 
-  const productsShown = isSearch ? searchProducts : allProducts;
-
   useEffect(() => {
-    dispatch(actionFetchAllProducts());
-    return () => {
-      dispatch(actionSearchProducts([]));
-    };
+    if (searchInputValue === '') {
+      let obj = JSON.parse(sessionStorage.getItem('filterRequest'));
+      if (obj) {
+        dispatch(actionFetchSearchFilterProducts(obj));
+      } else {
+        dispatch(actionFetchAllProducts());
+      }
+    } else {
+      dispatch(actionFetchSearchProducts(searchInputValue));
+    }
   }, []);
 
   return (
     <main>
       <Container className="main-list" maxWidth="lg">
-        <Preloader open={ isLoading } />
+        <Preloader open={pageLoading} />
         {serverError && <ServerError />}
-        {productsShown.length === 0 && !serverError && !isLoading && <NothingFound />}
-
-        {productsShown.length > 0 && !serverError && (
+        {!serverError && (
           <>
             <BreadCrumbs linksArray={[{ link: '/products', text: 'Products' }]} />
             <div>
-              <h5 className="count-found-product">
-                Products <span className="count-found-product__span">found</span>
-              </h5>
+              <p className="count-found-product">
+                Products <span className="count-found-product__span">{productsQuantity} found</span>
+              </p>
             </div>
             <section className="main-list__sections">
-              <div>
-                <Grid container spacing={4}>
-                  {productsShown.map((el, index) => (
-                    <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={el._id}>
-                      <ProductCard el={el} index={index} />
-                    </Grid>
-                  ))}
-                </Grid>
+              <div className="main-list__sections--products">
+                {allProducts.length > 0 && !serverError ? (
+                  <>
+                    <div className="grid-main-list">
+                      {allProducts?.map((el, index) => (
+                        <ProductCard el={el} index={index} />
+                      ))}
+                    </div>
+                    <Paginate />
+                  </>
+                ) : (
+                  <p className="text-product__not-found">
+                    Nothing to find, please enter correct name or change your filter
+                  </p>
+                )}
               </div>
-              <div>
+              <div className="main-list__sections--filters">
                 <FilterMainList />
               </div>
             </section>

@@ -1,17 +1,9 @@
 import {Box, Container} from '@mui/material';
-import {Link} from 'react-router-dom';
 import './SearchBlock.scss'
 import InputSearch from "../../../../components/InputSearch";
-import { actionChangeSearchFlag } from "../../../../reducers";
-import { useDispatch } from "react-redux";
 import Button from '../../../../components/Button';
 
 const SearchBlock = () => {
-    const dispatch = useDispatch();
-
-    const handleSearchAll = () => {
-        dispatch(actionChangeSearchFlag(false));
-    }
 
     return(
         <Box className="search">
@@ -29,9 +21,7 @@ const SearchBlock = () => {
                     </Box>
                     <Box className="search__actions">
                         <Box className="search__catalog-button-wrapper">
-                            <Link to="/products">
-                                <Button className="search__catalog-button" onClick={ handleSearchAll } variant="gradient-green" text="Show all products" />
-                            </Link>
+                            <Button className="search__catalog-button" text="Show all products" />
                         </Box>
                         <Box className="search__input-wrapper">
                             <Box className="search__input-wrapper--helper">

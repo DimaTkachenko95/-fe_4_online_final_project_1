@@ -1,39 +1,46 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 import './Favorites.scss';
-import {useSelector} from "react-redux";
-import {selectorFavorites} from "../../selectors";
+import { useDispatch, useSelector } from 'react-redux';
+import {selectorFavorites, selectorFavoritesProduct, selectorIsFavoritesPageLoading} from '../../selectors';
+import { useEffect } from 'react';
+import { actionFetchProductFavoritesByItemNo } from '../../reducers/favorites.reducer';
+import ProductCard from '../../components/ProductCard';
+import Grid from '@mui/material/Grid';
+import EmptyResult from '../../components/EmptyResult/EmptyResult';
+import { Container } from '@mui/material';
+import Preloader from "../../components/Preloader";
 
 export default function Favorites() {
+  const favorites = useSelector(selectorFavorites);
+  const productFavorites = useSelector(selectorFavoritesProduct);
+  const isLoading = useSelector(selectorIsFavoritesPageLoading);
+  const dispatch = useDispatch();
 
-  const favorites = useSelector(selectorFavorites)
-
+  useEffect(() => {
+    dispatch(actionFetchProductFavoritesByItemNo(favorites));
+  }, [favorites]);
 
   return (
-      <div className="sector_favorites">
-        {favorites.map((item) =>(
-            <Card  className='card' sx={{ maxWidth:200 }}>
-              <CardActionArea>
-                <CardMedia className="card_img"
-                    component="img"
-                    image={item.imageUrls[0]}
-                    alt="laptop"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.brand}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.currentPrice}$
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-        ))}
-      </div>
-  )
+    <div className="sector_favorites">
+      <Preloader open={isLoading} />
+      <Container maxWidth="lg">
+        <h1 className="favorites__title">
+          Favorite <span className="title_contrast">Products</span>
+        </h1>
+        {favorites.length <= 0 ? (
+          <EmptyResult />
+        ) : (
+          <div>
+            <Grid container spacing={12}>
+              {productFavorites.map((el, index) => (
+                <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={el._id}>
+                  <ProductCard el={el} index={index} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        )}
+      </Container>
+    </div>
+  );
 }

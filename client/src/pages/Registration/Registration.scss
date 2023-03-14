@@ -1,3 +1,6 @@
+@use './src/styles/mixins';
+@use 'src/styles/variables';
+
 .registration-container {
   min-width: 345px;
   position: relative;
@@ -6,17 +9,15 @@
     min-width: 300px;
 
     &-title {
-      font-size: 30px;
-      font-weight: 700;
-      line-height: 34px;
+      @include mixins.titleStyles;
+
       text-align: center;
       margin-bottom: 43px;
-      text-transform: uppercase;
     }
   }
 }
 
-@media (min-width: 482px) and (max-width: 996px) {
+@media (min-width: 482px) and (max-width: 995.9px) {
   .registration-container {
     min-width: 482px;
     margin: 0 auto;
@@ -28,9 +29,9 @@
   }
 }
 
-@media (min-width: 996.9px) {
+@media (min-width: 996px) {
   .registration-container {
-    min-width: 996.9px;
+    min-width: 996px;
 
     &__wrapper {
       min-width: 900px;

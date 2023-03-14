@@ -1,9 +1,8 @@
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Preloader = (props) => {
-
-  return (
+// Для использования, компонента в отедльном блоке, а не на весь экран, этот блок должен быть position: relative
+const Preloader = (props) => (
     <div>
       <Backdrop
         sx={{ color: '#4f9c2c', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -13,7 +12,6 @@ const Preloader = (props) => {
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
-  );
-};
+);
 
 export default Preloader;

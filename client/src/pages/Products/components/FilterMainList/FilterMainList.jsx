@@ -1,82 +1,178 @@
-import { TextField, FormLabel, FormGroup, Slider } from '@mui/material';
+import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
+import cx from "classnames";
 import Box from '@mui/material/Box';
-import FilterCheckBox from '../../../../components/FilterCheckBox';
-import './FilterMainList.scss';
+import { useSelector, useDispatch } from 'react-redux'
+import { selectorFilterRequest } from '../../../../selectors';
+import { actionFetchSearchFilterProducts } from '../../../../reducers';
+import RenderSectionFilter from './RenderSectionFilter';
+import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
+
+import './FilterMainList.scss'
+
 
 const FilterMainList = () => {
-  const [price, setPrice] = useState([300, 700]);
-  const handleChange = (e, data) => {
-    console.log(data);
-    setPrice(data);
-  };
+    const filterRequestObj = useSelector(selectorFilterRequest)
+    const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
+    const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
+    const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
+    const [price, setPrice] = useState([800, 2700]);
+    const dispatch = useDispatch()
 
-  return (
-    <section className="main-filter-block">
-      <FormGroup>
-        <FormLabel class="header-filter">Brend</FormLabel>
-        <FilterCheckBox label={'Asus'} />
-        <FilterCheckBox label={'Apple'} />
-        <FilterCheckBox label={'HP'} />
-        <FilterCheckBox label={'Acer'} />
-        <FilterCheckBox label={'Lenovo'} />
-      </FormGroup>
-      <FormGroup>
-        <FormLabel class="header-filter">Category</FormLabel>
-        <FilterCheckBox className="option_filter" label={'Gaming Laptops'} />
-        <FilterCheckBox label={'Business Laptops'} />
-        <FilterCheckBox label={'Refurbished Laptops'} />
-      </FormGroup>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          '& > :not(style)': { m: 0 },
-        }}
-      >
-        <TextField
-          color="success"
-          height="200px"
-          id="demo-helper-text-aligned"
-          label={price[0]}
+    const handleChange = (e, data) => {
+        if (data[0] > data[1] - 500) {
+            return null
+        }
+        setPrice(data)
+        setMinimalInputPrice(data[0])
+        setMaximalInputPrice(data[1] - 500)
+    };
 
-          /* onChange={() =>} */
-        />
-        <div> </div>
-        <TextField
-          color="success"
-          id="demo-helper-text-aligned-no-helper"
-          label={price[1]}
-          value={price[1]}
-        />
-      </Box>
+    const request = (key, name) => {
+        let newFilterRequestObj = { ...filterRequestObj }
+        newFilterRequestObj.startPage = 1
+        newFilterRequestObj[key].includes(name) ?
+            newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
+            :
+            newFilterRequestObj[key] += name + ","
+        dispatch(actionFetchSearchFilterProducts(newFilterRequestObj))
+    }
 
-      <Box sx={{}}>
-        <Slider
-          color="success"
-          value={price}
-          onChange={handleChange}
-          max={5000}
-          min={100}
-          disableSwap
-        />
-      </Box>
-      <FormGroup>
-        <FormLabel class="header-filter header-filter__name">Procesor</FormLabel>
-        <FilterCheckBox label={'Intel'} />
-        <FilterCheckBox label={'AMD'} />
-      </FormGroup>
-      <FormGroup>
-        <FormLabel class="header-filter header-filter__name">Screen size</FormLabel>
-        <FilterCheckBox label={'11.6&#34;'} />
-        <FilterCheckBox label={'13.3&#34;'} />
-        <FilterCheckBox label={'14.0&#34;'} />
-        <FilterCheckBox label={'15.6&#34;'} />
-        <FilterCheckBox label={'16&#34;'} />
-      </FormGroup>
-      <div>SKDJCLKSJLDKC</div>
-    </section>
-  );
-};
+    const filterWithCurentPrice = (e) => {
+        let newFilterRequestObj = { ...filterRequestObj }
+        newFilterRequestObj.minPrice = minimalInputPrice
+        newFilterRequestObj.maxPrice = maximalInputPrice
+        if (e) {
+            newFilterRequestObj.sort = e
+        }
+        dispatch(actionFetchSearchFilterProducts(newFilterRequestObj))
+    }
+
+    const comparePrice = () => {
+        if (minimalInputPrice > maximalInputPrice) {
+            return false
+        }
+        if (minimalInputPrice <= 0 || maximalInputPrice <= 0) {
+            return false
+        }
+        if (!!isNaN(+minimalInputPrice) || !!isNaN(+maximalInputPrice)) {
+            return false
+        }
+        return true
+    }
+
+    const checked = (key, name) => {
+        return filterRequestObj[key].includes(name)
+    }
+
+    return (
+        <>
+            <section className='main-filter-block'>
+                <FormControl>
+                    <div className='header-filter'> Sort by  </div>
+                    <Select value={filterRequestObj.sort} color="success" sx={{
+                        /*  width: 140 */
+                    }}
+                        onChange={(e) => { filterWithCurentPrice(e.target.value) }}
+                    >
+                        <MenuItem name={'sort'} value={' '}>Popular</MenuItem>
+                        <MenuItem name={'sort'} value={"currentPrice"}>Cheap first</MenuItem>
+                        <MenuItem name={'sort'} value={"-currentPrice"}>Expensive first</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormGroup>
+                    <FormLabel class='header-filter'>Brand</FormLabel>
+                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request} />
+                </FormGroup>
+
+                <FormGroup>
+                    <FormLabel class='header-filter'>Category</FormLabel>
+                    <RenderSectionFilter arrFilters={category} blockNameFilters={'category'} checked={checked} request={request} />
+                </FormGroup>
+
+                <div>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <TextField
+                            color="success"
+                            height="20px"
+                            maxRows="6"
+                            size="small"
+                            value={minimalInputPrice}
+                            onChange={(e) => setMinimalInputPrice(e.target.value)}
+                        />
+                        <span className='line'> </span>
+                        <TextField
+                            color="success"
+                            maxRows="6"
+                            size="small"
+                            value={maximalInputPrice}
+                            onChange={(e) => setMaximalInputPrice(e.target.value)}
+                        />
+
+                    </Box>
+                    <Box className="price-box">
+                        <Slider className="price-box__line" color="success"
+                            value={price}
+                            onChange={handleChange}
+                            max={3700}
+                            min={100}
+                            disableSwap
+                        />
+                        <button disabled={!comparePrice()}
+                            className={cx("btn-send-request", { "btn-send-request-disabled": !comparePrice() })}
+                            onClick={() => filterWithCurentPrice()}>OK
+                        </button>
+                    </Box>
+                </div>
+                <FormGroup>
+                    <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
+                    <RenderSectionFilter arrFilters={processorBrand} blockNameFilters={'processorBrand'} checked={checked} request={request} />
+                </FormGroup>
+
+                {showMoreFilters ?
+                    <>
+                        <FormGroup>
+                            <FormLabel class='header-filter header-filter__name'>Screen size</FormLabel>
+                            <RenderSectionFilter arrFilters={screenSize} blockNameFilters={'screenSize'} checked={checked} request={request} />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <FormLabel class='header-filter header-filter__name'>Color</FormLabel>
+                            <RenderSectionFilter arrFilters={color} blockNameFilters={'color'} checked={checked} request={request} />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <FormLabel class='header-filter header-filter__name'>Ram memory</FormLabel>
+                            <RenderSectionFilter arrFilters={ramMemory} blockNameFilters={'ramMemory'} checked={checked} request={request} />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
+                            <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
+                        </FormGroup>
+                        <button className='triger-more-filter' onClick={() => {
+                            setShowMoreFilters(false)
+                            sessionStorage.setItem("showMoreFilters", false)
+                        }}>
+                            Hide filters</button>
+                    </>
+                    :
+                    <button className='triger-more-filter' onClick={() => {
+                        setShowMoreFilters(true)
+                        sessionStorage.setItem("showMoreFilters", true)
+                    }}>
+                        Show more filters</button>
+                }
+            </section>
+        </>
+    )
+}
 
 export default FilterMainList;

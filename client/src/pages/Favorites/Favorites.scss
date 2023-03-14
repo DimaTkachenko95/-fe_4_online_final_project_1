@@ -1,22 +1,16 @@
-.card{
-margin: 10px;
+.sector_favorites{
+  padding: 50px;
+  position: relative;
+}
 
-  //width: 150px;
-  .card_img{
-    //padding: 10px;
-    height: 168px;
-    object-fit: contain;
+.favorites__title {
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 700;
+  padding-bottom: 50px;
+  margin-left: -40px;
+
+  .title_contrast {
+    color: #4f9c2c;
   }
 }
-
-.sector_favorites{
-  flex-wrap: wrap;
-  display: flex;
-  text-align: center;
-  margin: auto;
-  justify-content: center;
-  column-gap: 50px;
-}
-
-
-

@@ -25,39 +25,43 @@ const Contacts = () =>{
         <div className="all_container">
             <div className="contacts">
                 <h2 className="contacts_header">ISSUE <span className="point_span"> POINT</span></h2>
+                <Card  className='card'  sx={{ maxWidth: 345}}>
+                    <a href="https://klike.net/uploads/posts/2022-04/1649917181_2.jpg">
+                        <CardActionArea>
+                            <CardContent>
+                                <p className="number_point">01</p>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    <p>BestLaptops24</p>
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    <p>Khreshchatyk,13</p>
+                                </Typography>
+                                <Typography variant="body3" color="text.secondary">
+                                    <p className="link_shop" >BestLaptops24.ua</p>
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </a>
+                </Card>
+                <Card  className='card'  sx={{ maxWidth: 345}}>
+                    <a href="https://youtu.be/noAUBPrNBxY">
+                        <CardActionArea>
+                            <CardContent>
+                                <p className="number_point">02</p>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    <p>BestLaptops24</p>
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    <p>Independence Square,1</p>
+                                </Typography>
+                                <Typography variant="body3" color="text.secondary">
+                                    <p className="link_shop" >NotBestLaptops24.ua</p>
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </a>
+                </Card>
 
-                <Card  className='card' sx={{ maxWidth: 345}}>
-                    <CardActionArea>
-                        <CardContent>
-                            <p className="number_point">01</p>
-                            <Typography gutterBottom variant="h5" component="div">
-                                <p>BestLaptops24</p>
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                <p>Khreshchatyk,13</p>
-                            </Typography>
-                            <Typography variant="body3" color="text.secondary">
-                                <a className="link_shop" href="https://klike.net/uploads/posts/2022-04/1649917181_2.jpg">BestLaptops24.ua</a>
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-                <Card  className='card' sx={{ maxWidth: 345}}>
-                    <CardActionArea>
-                        <CardContent>
-                            <p className="number_point">02</p>
-                            <Typography gutterBottom variant="h5" component="div">
-                                <p>NotBestLaptops24</p>
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                <p>Independence Square,1</p>
-                            </Typography>
-                            <Typography variant="body3" color="text.secondary">
-                                <a className="link_shop" href="https://youtu.be/noAUBPrNBxY">NotBestLaptops24.ua</a>
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
             </div>
 
             <div className="map">
