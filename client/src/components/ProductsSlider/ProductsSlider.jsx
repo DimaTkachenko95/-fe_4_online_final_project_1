@@ -59,27 +59,18 @@ const ProductsSlider = ({ products }) => {
     ]
   };
   return(
-    <>
-      {!!products.length &&
-      (
-      <Container maxWidth="lg" className="discounted-products">
-        <h2 className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</h2>
-        <Container className="discounted-products__slider-container" maxWidth="lg">
-          <Slider {...settings}>
-          {products?.map((el, index) => {
+    <Container className="products-slider" maxWidth="lg">
+      <Slider {...settings}>
+        {products?.map((el, index) => {
           return (
-            <div className="discounted-products__slider-item">
-              <ProductCard className="discounted-products__slider-item-card" el={el} index={index} key={index}
+            <div className="products-slider__slider-item">
+              <ProductCard el={el} index={index} key={index}
               />
             </div>
           )
-          })}
-          </Slider>
-        </Container>
-      </Container>
-      )
-      }
-    </>
+        })}
+      </Slider>
+    </Container>
   )
 }
 
