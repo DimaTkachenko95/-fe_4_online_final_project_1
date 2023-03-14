@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://best-laptops24.cyclic.app/api';
 
 export const GET_ALL_PRODUCTS = `/products`;
 export const GET_ALL_PRODUCTS_PAGINATION = `/products/filter?&perPage=3&startPage=1`
