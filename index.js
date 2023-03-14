@@ -23,7 +23,6 @@ const comments = require('./routes/comments');
 const shippingMethods = require('./routes/shippingMethods');
 const paymentMethods = require('./routes/paymentMethods');
 const partners = require('./routes/partners');
-const {connect} = require("mongoose");
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -43,7 +42,7 @@ const db = require('./config/keys').mongoURI;
 // Connect to MongoDB
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(db, { useNewUrlParser: true, useFindAndModify: false });
+    await mongoose.connect(db, { useNewUrlParser: true, useFindAndModify: false });
     console.log('MongoDB Connected');
   } catch (error) {
     console.log(error);
