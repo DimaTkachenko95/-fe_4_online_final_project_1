@@ -1,4 +1,4 @@
-import {Box, Button, Container, createTheme, ThemeProvider} from "@mui/material";
+import {Box, Container, createTheme, ThemeProvider} from "@mui/material";
 import {ReactComponent as SubscribeSvg} from "./icons/subscribeSvg.svg";
 import {ReactComponent as CallSvg} from "./icons/phone-call.svg";
 import {ReactComponent as VisaSvg} from "./icons/visa.svg";
@@ -54,10 +54,10 @@ const Footer = () => {
                                 <Box className="subscribe__input-wrapper">
                                 <input type="email" className="subscribe__input" placeholder="Write email"
                                            value={emailInputValue} onChange={emailInputHandler}/>
-                                    <Button type="submit"
+                                    <button type="submit"
                                             className="subscribe__button">{window.innerWidth > 996 ? "Subscribe" :
                                         <SendSvg/>}
-                                    </Button>
+                                    </button>
                                 </Box>
                                 <Box className="subscribe__call-wrapper">
                                     <Box className="subscribe__call-logo-wrapper">

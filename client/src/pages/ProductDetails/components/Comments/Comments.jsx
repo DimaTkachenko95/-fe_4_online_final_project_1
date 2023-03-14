@@ -95,7 +95,7 @@ const Comments = () => {
                             color="success"
                             onKeyDown={handleKeyDown}
                         />
-                         <Button type="submit" variant="gradient-green" width="120px" color="success" className="product__form-button" text="Send" />
+                         <Button type="submit" width="120px" className="product__form-button" text="Send" />
                     </form>
                 </Box>
 

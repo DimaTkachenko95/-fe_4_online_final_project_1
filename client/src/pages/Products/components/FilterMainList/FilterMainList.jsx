@@ -9,6 +9,7 @@ import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
 import './FilterMainList.scss'
+import Button from "../../../../components/Button";
 
 
 const FilterMainList = () => {
@@ -157,18 +158,20 @@ const FilterMainList = () => {
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
                             <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
                         </FormGroup>
-                        <button className='triger-more-filter' onClick={() => {
-                            setShowMoreFilters(false)
-                            sessionStorage.setItem("showMoreFilters", false)
-                        }}>
-                            Hide filters</button>
+                        <Button
+                            text="Hide filters"
+                            variant='white-shadow'
+                            onClick={() => {
+                                setShowMoreFilters(false)
+                                sessionStorage.setItem("showMoreFilters", false)}} />
                     </>
                     :
-                    <button className='triger-more-filter' onClick={() => {
-                        setShowMoreFilters(true)
-                        sessionStorage.setItem("showMoreFilters", true)
-                    }}>
-                        Show more filters</button>
+                    <Button
+                        text="Show more filters"
+                        variant='white-shadow'
+                        onClick={() => {
+                            setShowMoreFilters(true);
+                            sessionStorage.setItem("showMoreFilters", true)}} />
                 }
             </section>
         </>

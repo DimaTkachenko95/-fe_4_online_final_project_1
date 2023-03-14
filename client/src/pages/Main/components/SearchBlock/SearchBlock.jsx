@@ -21,7 +21,7 @@ const SearchBlock = () => {
                     </Box>
                     <Box className="search__actions">
                         <Box className="search__catalog-button-wrapper">
-                            <Button className="search__catalog-button" text="Show all products" />
+                            <Button to="/products" className="search__catalog-button" text="Show all products" />
                         </Box>
                         <Box className="search__input-wrapper">
                             <Box className="search__input-wrapper--helper">
