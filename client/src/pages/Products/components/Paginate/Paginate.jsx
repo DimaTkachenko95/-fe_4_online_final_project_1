@@ -13,7 +13,6 @@ const Paginate = () => {
     const pageCount = Math.ceil(productsQuantity / filterRequestObj.perPage);
 
     const handleChange = (e, page) => {
-        console.log(page)
         let newfilterRequestObj = { ...filterRequestObj }
         newfilterRequestObj.startPage = page
         dispatch(actionFetchSearchFilterProducts(newfilterRequestObj))
@@ -23,7 +22,7 @@ const Paginate = () => {
     return (
         <div className='pagination'>
             <Pagination
-                size="medium" 
+                size="medium"
                 count={pageCount}
                 onChange={handleChange}>
             </Pagination>

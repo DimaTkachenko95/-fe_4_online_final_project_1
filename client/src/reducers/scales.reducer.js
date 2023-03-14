@@ -5,6 +5,8 @@ import { GET_DETAILS_PRODUCT } from '../endpoints';
 const initialState = {
   scales: JSON.parse(localStorage.getItem('scales')) || [],
   productDataComp: [],
+  pageLoading: false,
+  serverError: null
 };
 
 const scalesSlice = createSlice({
@@ -22,9 +24,21 @@ const scalesSlice = createSlice({
     actionScalesProduct: (state, { payload }) => {
       state.productDataComp = [...payload];
     },
+    actionPageLoading: (state, { payload }) => {
+      state.pageLoading = payload;
+    },
+    actionServerError: (state, { payload }) => {
+      state.serverError = payload;
+    },
   },
 });
-export const { actionAddToScales, actionDeleteFromScales, actionScalesProduct } =
+export const {
+  actionAddToScales,
+  actionDeleteFromScales,
+  actionScalesProduct,
+  actionPageLoading,
+  actionServerError
+} =
   scalesSlice.actions;
 
 export const toggleScalesProduct = (id) => (dispatch, getState) => {
@@ -36,14 +50,21 @@ export const toggleScalesProduct = (id) => (dispatch, getState) => {
 };
 
 export const actionFetchProductScalesByItemNo = (itemNos) => (dispatch) => {
+  dispatch(actionPageLoading(true));
   Promise.all(
     itemNos.map(async (itemNo) => {
       const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', itemNo));
       return data;
     }),
   )
-    .then((data) => dispatch(actionScalesProduct(data)))
-    .catch((error) => console.error(error));
+    .then((data) => {
+      dispatch(actionScalesProduct(data));
+      dispatch(actionPageLoading(false));
+    })
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });
 };
 
 export default scalesSlice.reducer;

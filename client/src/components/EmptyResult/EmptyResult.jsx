@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import styled from 'styled-components';
-import '../pages/Favorites/Favorites.scss';
+
 const Title = styled(Typography)`
   && {
     text-align: center;
@@ -10,9 +10,9 @@ const Title = styled(Typography)`
   }
 `;
 
-const EmptyFavorites = () => {
+const EmptyResult = () => {
   return (
-    <Title varian="h2" className="emptySection">
+    <Title varian="h2">
       <img
         src="https://xl-static.rozetka.com.ua/assets/img/design/cabinet/cabinet-dummy-error.svg"
         alt="dino"
@@ -22,4 +22,4 @@ const EmptyFavorites = () => {
   );
 };
 
-export default EmptyFavorites;
+export default EmptyResult;

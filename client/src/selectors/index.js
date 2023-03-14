@@ -19,13 +19,19 @@ export const selectorProductComments = (state) => state.products.productComments
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
+
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
 export const selectorProductComp = (state) => state.scales.productDataComp;
+export const selectorIsScalesPageLoading = (state) => state.scales.pageLoading;
+export const selectorServerErrorScalesPage = (state) => state.scales.serverError;
+
 
 // FAVORITES PRODUCTS
 export const selectorFavorites = (state) => state.favorites.favorites;
 export const selectorFavoritesProduct = (state) => state.favorites.favoritesProduct;
+export const selectorIsFavoritesPageLoading = (state) => state.favorites.pageLoading;
+export const selectorServerErrorFavoritesPage = (state) => state.favorites.serverError;
 
 // LOGIN
 export const selectorAllLoginErrors = (state) => state.logIn.error;
