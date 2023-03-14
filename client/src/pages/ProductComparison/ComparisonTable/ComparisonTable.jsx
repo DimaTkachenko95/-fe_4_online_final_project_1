@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
   selectorScales,
-  selectorProductComp,
-  selectorIsScalesPageLoading
+  selectorProductComparison,
+  selectorIsScalesPageLoading,
 } from '../../../selectors';
 import { actionDeleteFromScales, actionFetchProductScalesByItemNo } from '../../../reducers';
 import './ComparisonTable.scss';
@@ -13,7 +13,7 @@ import EmptyResult from '../../../components/EmptyResult/EmptyResult';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
-  const allProd = useSelector(selectorProductComp);
+  const allProd = useSelector(selectorProductComparison);
   const itemNoArr = useSelector(selectorScales);
   const isLoading = useSelector(selectorIsScalesPageLoading);
 
@@ -21,7 +21,7 @@ const ComparisonTable = () => {
     dispatch(actionFetchProductScalesByItemNo(itemNoArr));
   }, [itemNoArr]);
 
-  const delFromTable = (id) => {
+  const deleteFromTable = (id) => {
     dispatch(actionDeleteFromScales(id));
   };
 
@@ -38,7 +38,7 @@ const ComparisonTable = () => {
               {allProd.map((product) => (
                 <th key={product.imageUrls} style={{ width: '200px', height: '200px' }}>
                   <svg
-                    onClick={() => delFromTable(product._id)}
+                    onClick={() => deleteFromTable(product._id)}
                     className="comparison-table__delete"
                     width="12"
                     height="12"
