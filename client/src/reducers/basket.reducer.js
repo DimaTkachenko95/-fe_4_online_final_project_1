@@ -93,7 +93,7 @@ export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispat
 }
 
 export const actionFetchCreateOrder = (newOrder) =>  (dispatch) => {
-    return  axios.post(`${ORDERS}`, newOrder)
+    return  axios.post(ORDERS, newOrder)
         .then(() => {
             dispatch(actionIsOrdered(true));
         });

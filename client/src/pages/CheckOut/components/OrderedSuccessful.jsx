@@ -1,13 +1,13 @@
-import {ReactComponent as OrderedSvg} from "./icons/success-svgrepo-com.svg";
+import {ReactComponent as OrderedSvg} from "../icons/success-svgrepo-com.svg";
 import {Box, Container} from '@mui/material';
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct} from "../../selectors";
+import {selectorBasketProduct} from "../../../selectors";
 import './OrderedSuccesseful.scss';
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../../components/ProductCard";
 import {useEffect} from "react";
-import {actionBasketProduct, actionDeleteFromBasket} from "../../reducers";
-import {actionIsOrdered} from "../../reducers/basket.reducer";
-import Button from "../../components/Button";
+import {actionBasketProduct, actionDeleteFromBasket} from "../../../reducers";
+import {actionIsOrdered} from "../../../reducers/basket.reducer";
+import Button from "../../../components/Button";
 
 const OrderedSuccessful = () => {
     const basketProduct = useSelector(selectorBasketProduct);
@@ -34,7 +34,7 @@ const OrderedSuccessful = () => {
                         <OrderedSvg className="ordered-svg"/>
                         <h3 className="ordered__title">Thank you ! Your order is: </h3>
                         <Box className="ordered__items">
-                            {productBasket.map(product => <ProductCard el={product} isForOrderedPage={true}/>)}
+                            {productBasket.map(product => <ProductCard key={product.itemNo} el={product} isForOrderedPage={true}/>)}
                         </Box>
                         <Button type="button" to="/products" text="Continue Shopping"/>
                     </Box>

@@ -8,7 +8,6 @@ import { selectorBasket, selectorFavorites, selectorScales } from "../../selecto
 import { actionAddToBasket, toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss"
-import {useState} from "react";
 
 const ProductCard = ({el, isForOrderedPage}) => {
     const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice} = el;
@@ -17,7 +16,6 @@ const ProductCard = ({el, isForOrderedPage}) => {
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
 
-    const showCardActions = useState(isForOrderedPage);
     const isProductInCart = basket.some(item => item.id === _id);
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
@@ -45,14 +43,20 @@ const ProductCard = ({el, isForOrderedPage}) => {
                         </Link>
                     </div>
 
-                  { !isForOrderedPage &&<span>
-          <Scales onClick={() => toggleScales(el._id)}
-                  className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})}/>
-        </span>}
-                  { !isForOrderedPage &&<span>
-          <Favorites onClick={() => toggleFavorites(el._id)}
-                     className={cx("list__item--favorite", {"list__item--favorite--curent": checkProduct(favorites)})}/>
-          </span>}
+                    { !isForOrderedPage && (<>
+                        <span>
+                            <Scales
+                                onClick={() => toggleScales(el._id)}
+                                className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})}
+                            />
+                        </span>
+                        <span>
+                            <Favorites
+                                onClick={() => toggleFavorites(el._id)}
+                                className={cx("list__item--favorite", {"list__item--favorite--curent": checkProduct(favorites)})}/>
+                        </span>
+                      </>)
+                    }
                 </div>
 
                 <div>
@@ -64,11 +68,13 @@ const ProductCard = ({el, isForOrderedPage}) => {
                     </div>
 
                     <div className="list__item--price">
-          <span className={cx("list__item--price--curent", {"list__item--price--curent-new": previousPrice})}>
-            {currentPrice.toLocaleString()} $
-          </span>
-                        {previousPrice &&
-                            <span className="list__item--price--previous">{previousPrice.toLocaleString()} $</span>}
+                        <span className={cx("list__item--price--curent", {"list__item--price--curent-new": previousPrice})}>
+                            {currentPrice.toLocaleString()} $
+                        </span>
+                        {
+                            previousPrice &&
+                            <span className="list__item--price--previous">{previousPrice.toLocaleString()} $</span>
+                        }
                     </div>
 
                   { !isForOrderedPage && <div>
