@@ -5,9 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import cx from "classnames";
 import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
-import { actionAddToBasket } from "../../reducers";
-import { toggleFavoriteProduct } from "../../reducers/favorites.reducer";
-import { toggleScalesProduct } from "../../reducers/scales.reducer";
+import { actionAddToBasket, toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss"
 
@@ -24,7 +22,7 @@ const ProductCard = ({ el }) => {
   const addToBasket = item => {
     if (!basket.find((elem) => elem.id === item._id)) {
       dispatch(actionAddToBasket(item));
-    } 
+    }
   }
 
   const toggleFavorites = id => {
