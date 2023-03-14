@@ -9,8 +9,9 @@ import productsReducer, {
   actionFetchSearchProducts,
 } from './products.reducer';
 import favoritesReducer, {
-  actionAddToFavorites,
-  actionDeleteFromFavorites,
+    actionAddToFavorites,
+    actionDeleteFromFavorites,
+    toggleFavoriteProduct
 } from './favorites.reducer';
 import scalesReducer, {
   actionAddToScales,
@@ -34,6 +35,10 @@ import logInReducer, {
 } from './logIn.reducer';
 import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
 import registrationReducer, { createCustomerServerApi, initialState } from './registration.reducer';
+import discountedProductsReducer, {
+    actionDiscountedProducts,
+    actionFetchDiscountedProducts,
+} from './discountedProducts.reducer';
 
 export {
   productsReducer,
@@ -48,6 +53,7 @@ export {
   favoritesReducer,
   actionAddToFavorites,
   actionDeleteFromFavorites,
+  toggleFavoriteProduct,
   basketReducer,
   actionAddToBasket,
   actionDeleteFromBasket,
@@ -70,4 +76,7 @@ export {
   registrationReducer,
   createCustomerServerApi,
   initialState,
+  discountedProductsReducer,
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
 };

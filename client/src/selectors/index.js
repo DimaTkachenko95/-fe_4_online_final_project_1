@@ -37,3 +37,6 @@ export const selectorServerErrorFavoritesPage = (state) => state.favorites.serve
 export const selectorAllLoginErrors = (state) => state.logIn.error;
 export const selectorUserData = (state) => state.logIn.userData;
 export const selectorToken = (state) => state.logIn.token;
+
+// DISCOUNTED PRODUCTS
+export const selectorDiscountedProducts = state => state.discountedProducts.discountedProducts;
