@@ -1,5 +1,5 @@
 import Modal from "../../components/Modal";
-import AuthInput from "./AuthInput";
+import AuthInput from "./components/AuthInput";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -45,7 +45,7 @@ const Authorization = ({closeModalAuth}) => {
     }
 
     return (
-        <Modal 
+        <Modal
         modalAction={closeModalAuth}
         closeAction={() => {
             closeModalAuth();
@@ -103,7 +103,7 @@ const Authorization = ({closeModalAuth}) => {
                     </InputAdornment>
                   ),
                 }}
-                
+
                 />
                 {/* <p className="login_reminder" onClick={() => console.log("reminder")}>Forgot your password?</p> */}
                 <Button className="form-block__btn" type="submit" text="LogIn" disabled={!isValid}/>

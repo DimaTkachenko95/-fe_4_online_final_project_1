@@ -1,7 +1,7 @@
-import CustomInput from "../../components/CustomInput/CustomInput";
+import CustomInput from "../../../components/CustomInput/CustomInput";
 import PropTypes from "prop-types";
 
-import "./Authorization.scss";
+import "../Authorization.scss";
 
 const AuthInput = ({ control, ...rest }) => {
   switch (control) {
