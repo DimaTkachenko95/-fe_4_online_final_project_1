@@ -10,30 +10,31 @@ import Contacts from './pages/Contacts';
 import Favorites from './pages/Favorites';
 import ProductDetails from './pages/ProductDetails';
 import Registration from './pages/Registration';
-import NotFound from "./pages/NotFound";
+import NotFound from './pages/NotFound';
 import './reset.css';
+import ProductComparison from './pages/ProductComparison/ProductComparison';
 
 const App = () => {
-
-    return (
-        <div className="app-wrapper">
-            <Header/>
-            <div className="app-routes-wrapper">
-                <Routes>
-                    <Route path="/" element={ <Main/> }/>
-                    <Route path="/contacts" element={ <Contacts/> }/>
-                    <Route path="/products" element={ <Products/> }/>
-                    <Route path="/products/:itemNo" element={ <ProductDetails/> }/>
-                    <Route path="/basket" element={ <Basket/> }/>
-                    <Route path="/favorites" element={ <Favorites/> }/>
-                    <Route path="/checkout" element={ <CheckOut/> }/>
-                    <Route path="/registration" element={ <Registration/> }/>
-                    <Route path="/*" element={ <NotFound/> }/>
-                </Routes>
-            </div>
-            <Footer/>
-        </div>
-    );
+  return (
+    <div className="app-wrapper">
+      <Header />
+      <div className="app-routes-wrapper">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:itemNo" element={<ProductDetails />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/comparison" element={<ProductComparison />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default App;

@@ -7,8 +7,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createCustomerServerApi } from '../../../reducers';
+import { initialState } from '../../../reducers';
+import Button from '../../../components/Button';
 
 const FormComponent = () => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -17,27 +23,16 @@ const FormComponent = () => {
     event.preventDefault();
   };
 
-  const initialValues = {
-    firstName: '',
-    lastName: '',
-    login: '',
-    email: '',
-    password: '',
-    telephone: '',
-    gender: '',
-    avatarUrl: '',
-  };
-
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialState}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        dispatch(createCustomerServerApi(values));
         resetForm();
       }}
     >
-      {(isValid) => {
+      {(isValid, setFieldValue) => {
         return (
           <>
             <Form className="form-registration" style={{ width: '100%' }}>
@@ -129,10 +124,12 @@ const FormComponent = () => {
                   label="Telephone"
                   className="form-registration__input"
                   name="telephone"
-                  placeholder="Enter your telephone"
+                  // placeholder="Enter your telephone"
                   variant="outlined"
                   id="outlined-multiline-flexible"
                   required
+                  mask="+380 99 999 99 99"
+                  placeholder="+380 99 999 99 99"
                 />
 
                 <FormikControl
@@ -159,9 +156,12 @@ const FormComponent = () => {
                   id="outlined-multiline-flexible"
                 />
               </div>
-              <button type="submit" className="form-registration__submit" disabled={!isValid}>
-                Submit
-              </button>
+              <Button
+                type="submit"
+                disabled={!isValid}
+                text="submit"
+                style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150 }}
+              />
             </Form>
           </>
         );

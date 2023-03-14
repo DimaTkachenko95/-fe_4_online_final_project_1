@@ -1,0 +1,33 @@
+.form-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+    min-width: 360px;
+    max-width: 360px;
+
+    &__title {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    &__btn {
+        justify-self: center;
+    }
+
+    .login_reminder {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        text-decoration-line: underline;
+        color: #60B021;
+        cursor: pointer;
+    }
+
+    &__error-notification {
+        color: #d72929;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+}
+

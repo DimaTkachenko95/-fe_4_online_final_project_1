@@ -18,16 +18,19 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required('No password provided')
-    .min(8, 'Password is too short - should be 8 chars minimum')
-    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters'),
+    .min(7, 'Password is too short - should be 8 chars minimum')
+    .max(30, 'Password is too long - should be 30 chars maximum')
+    .matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for password is a-z, A-Z, 0-9'),
   telephone: yup
-    .number()
+    .string()
     .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(8)
+    .min(13, 'Phone number should start with +380 and contain 13 chars')
+    .matches(
+      /^\+380\d{3}\d{2}\d{2}\d{2}$/,
+      'Phone number should start with +380 and contain 13 chars',
+    )
     .required('A phone number is required'),
-  gender: yup.mixed().oneOf(['male', 'female', 'other']),
+  gender: yup.string().oneOf(['male', 'female', 'other']).lowercase(),
   avatarUrl: yup
     .string()
     .matches(

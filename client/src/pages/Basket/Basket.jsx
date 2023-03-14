@@ -1,13 +1,12 @@
 import {Container} from "@mui/system";
-import BasketItems from "./BasketItem";
-import EmptyBasket from "./EmptyBasket";
+import BasketItems from "./Components/BasketItem";
+import Button from "../../components/Button/";
+import EmptyResult from "../../components/EmptyResult";
 import styled from "styled-components";
 import "./Basket.scss";
 import {useSelector} from "react-redux";
 import {selectorBasket, selectorBasketProduct} from "../../selectors";
 import {useEffect, useState} from "react";
-
-import Button from "../../components/Button/";
 
 const ContainerBasket = styled(Container)`
   padding: 25px 0 50px 0;
@@ -31,7 +30,7 @@ const Basket = () => {
         <ContainerBasket maxWidth="lg">
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {isEmpty ?
-                <EmptyBasket/> :
+                <EmptyResult/> :
                 <>
                     <div className="basket__box">
                         <div className="basket__item">

@@ -1,14 +1,12 @@
-import {ReactComponent as Favorites} from "./icons/favorite.svg"
-import {ReactComponent as Scales} from "./icons/scales.svg"
-import {ReactComponent as CheckMark} from "./icons/check_mark.svg"
+import { ReactComponent as Favorites } from "./icons/favorite.svg"
+import {ReactComponent as Scales } from "./icons/scales.svg"
+import { ReactComponent as CheckMark } from "./icons/check_mark.svg"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import cx from "classnames";
-import {selectorBasket, selectorFavorites, selectorScales} from "../../selectors";
-import {actionAddToBasket} from "../../reducers";
-import {toggleFavoriteProduct} from "../../reducers/favorites.reducer";
-import {toggleScalesProduct} from "../../reducers/scales.reducer";
-import {useSelector, useDispatch} from 'react-redux'
+import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
+import { actionAddToBasket, toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
+import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss"
 import {useState} from "react";
 
@@ -20,9 +18,7 @@ const ProductCard = ({el, isForOrderedPage}) => {
     const dispatch = useDispatch();
 
     const showCardActions = useState(isForOrderedPage);
-
-    const
-    isProductInCart = basket.some(item => item.id === _id);
+    const isProductInCart = basket.some(item => item.id === _id);
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
     const addToBasket = item => {
