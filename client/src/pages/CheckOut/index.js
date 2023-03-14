@@ -1,3 +1,3 @@
-import CkeckOut from "./CheckOut";
+import CheckOut from "./CheckOut";
 
-export default CkeckOut
+export default CheckOut
