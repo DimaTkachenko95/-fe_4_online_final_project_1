@@ -52,7 +52,7 @@ const BasketItems = () => {
 
             <td className="product_name">
                 <Link to={`/products/${item._id}`}>
-                    <p className="name" onClick={() => console.log(item)}>{item.name}</p>
+                    <p className="name">{item.name}</p>
                 </Link>
                 <p className="vendor">{item.brand}</p>
             </td>

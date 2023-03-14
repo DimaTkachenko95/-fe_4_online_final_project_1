@@ -23,6 +23,7 @@ import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
+import Button from "../../../../components/Button";
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
@@ -100,9 +101,9 @@ const Product = () => {
                                     { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
                                 </p>
                                 {isMobile &&  (
-                                    <button onClick={toggleShowAll} className="product__desc-button">
+                                    <Button onClick={toggleShowAll} className="product__desc-button">
                                         {showAll ? 'Show Less' : 'Show More'}
-                                    </button>
+                                    </Button>
                                 )}
                             </Box>
                         </Box>
@@ -137,15 +138,15 @@ const Product = () => {
 
                             {basket.some(item => item.id === product._id) ?
                                 <Link to="/basket">
-                                    <button className="list__item--inbasket "><CheckMark/>
-                                        <span className="list__item--buy--text">In basket</span>
-                                    </button>
-                                </Link>
-                                :
-                                <button onClick={() => addToBasket(product)} className="list__item--buy">
-                                    <ShoppingCartOutlinedIcon/>
-                                    <span className="list__item--buy--text">Buy</span>
+                                <button className="list__item--inbasket" text="In basket"><CheckMark/>
+                                    <span className="list__item--buy--text">In basket</span>
                                 </button>
+                            </Link>
+                            :
+                            <button onClick={() => addToBasket(product)} className="list__item--buy" text="Buy">
+                                <ShoppingCartOutlinedIcon/>
+                                <span className="list__item--buy--text">Buy</span>
+                            </button>
                             }
                         </Box>
                     </Box>

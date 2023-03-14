@@ -7,7 +7,8 @@ import cx from "classnames";
 import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
 import { actionAddToBasket, toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
-import "./ProductCard.scss"
+import "./ProductCard.scss";
+import Button from "../Button";
 
 const ProductCard = ({el, isForOrderedPage}) => {
     const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice} = el;
