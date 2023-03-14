@@ -1,0 +1,168 @@
+@mixin font-list-items {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+
+}
+
+.list {
+  position: relative;
+  border: 1px solid #EFEFEF;
+  box-sizing: border-box;
+  width: 255px;
+  height: 100%;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: rgb(0 0 0 / 7%) 0 1px 2px, rgb(0 0 0 / 7%) 0 2px 4px, rgb(0 0 0 / 7%) 0 4px 8px, rgb(0 0 0 / 7%) 0 8px 16px, rgb(0 0 0 / 7%) 0 16px 32px, rgb(0 0 0 / 7%) 0 32px 64px;
+    scale: (1.1);
+  }
+
+  &__item {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-between;
+
+    &--name {
+      @include font-list-items;
+
+      color: #000;
+      line-height: 16px;
+      margin-bottom: 3px;
+
+      &:hover{
+        text-decoration:underline;
+      }
+    }
+
+    &--img {
+      width: 170px;
+      height: 120px;
+      margin-bottom: 15px;
+
+      &--laptop {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    &--scales {
+      position: absolute;
+      right: 15px;
+      top: 30px;
+      fill: darkgrey;
+      transition: 0.3s;
+
+      &:hover {
+        fill: green;
+        cursor: pointer;
+      }
+
+      &--curent {
+        fill: green;
+      }
+
+    }
+
+    &--favorite {
+      position: absolute;
+      right: 15px;
+      top: 78px;
+      fill: darkgrey;
+      transition: 0.3s;
+
+      &:hover {
+        fill: orange;
+        cursor: pointer;
+      }
+
+      &--curent {
+        fill: orange;
+      }
+    }
+
+    &--brand {
+      @include font-list-items;
+
+      color: #75758A;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    &--price {
+      @include font-list-items;
+
+      margin-bottom: 10px;
+
+      &--curent {
+        color: #60B021;
+        font-size: 25px;
+      }
+
+      &--curent-new {
+        color: #de3c33;
+      }
+
+      &--previous {
+        color: #a5a5a5;
+        font-size: 18px;
+        position: relative;
+        bottom: 10px;
+        left: 10px;
+        text-decoration: line-through;
+      }
+    }
+
+    &--buy {
+      @include font-list-items;
+
+      width: 100%;
+      border-radius: 100px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      background-color: #4ba123;
+      color: rgb(245 240 240);
+      padding: 10px 0;
+      transition: 0.4s;
+      box-shadow: rgb(0 0 0 / 10%) 0 20px 25px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+      cursor: pointer;
+
+      &--text {
+        margin-left: 10px
+      }
+
+      &:hover {
+        background-color: #d6e3d1;
+        color: #4d9546;
+        box-shadow: rgb(50 50 93 / 25%) 0 13px 27px -5px, rgb(0 0 0 / 30%) 0 8px 16px -8px;
+      }
+
+    }
+
+    &--inbasket {
+      @include font-list-items;
+
+      border-radius: 100px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      padding: 10px 0;
+      transition: 0.4s;
+      cursor: pointer;
+      background-color: #d6e3d1;
+      color: #4d9546;
+      box-shadow: rgb(50 50 93 / 25%) 0 13px 27px -5px, rgb(0 0 0 / 30%) 0 8px 16px -8px;
+      width: 100%;
+    }
+  }
+}
