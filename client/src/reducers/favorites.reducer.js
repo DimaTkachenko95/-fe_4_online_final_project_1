@@ -1,11 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {GET_DETAILS_PRODUCT} from "../endpoints";
-import {actionBasketProduct} from "./basket.reducer";
 
 const initialState = {
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
-    favoritesProduct: []
+    favoritesProduct: [],
+    serverError: null,
+    pageLoading: false
 }
 
 const favoritesSlice = createSlice({
@@ -23,12 +24,20 @@ const favoritesSlice = createSlice({
         actionFavoritesProduct: (state, {payload}) => {
             state.favoritesProduct = [...payload];
         },
+        actionPageLoading: (state, { payload }) => {
+            state.pageLoading = payload;
+        },
+        actionServerError: (state, { payload }) => {
+            state.serverError = payload;
+        },
     }
 })
 export const {
     actionAddToFavorites,
     actionDeleteFromFavorites,
-    actionFavoritesProduct
+    actionFavoritesProduct,
+    actionPageLoading,
+    actionServerError
 } = favoritesSlice.actions;
 
 export const toggleFavoriteProduct = id => (dispatch, getState) => {
@@ -43,12 +52,19 @@ export const toggleFavoriteProduct = id => (dispatch, getState) => {
 
 
 export const actionFetchProductFavoritesByItemNo = (itemNos) =>  (dispatch) => {
-         Promise.all(itemNos.map(async (itemNo) => {
-            const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo',itemNo));
-            return data;
-        }))
-        .then( data => dispatch(actionFavoritesProduct(data)))
-        .catch(error => console.error(error));
+    dispatch(actionPageLoading(true));
+    Promise.all(itemNos.map(async (itemNo) => {
+        const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo',itemNo));
+        return data;
+    }))
+        .then( data => {
+            dispatch(actionFavoritesProduct(data));
+            dispatch(actionPageLoading(false));
+        })
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionServerError(true));
+        });
     }
 
 export default favoritesSlice.reducer;

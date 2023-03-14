@@ -141,7 +141,7 @@ const closeModalAuth = () => {
                   <div className="count">
                     <span>{scales.length}</span>
                   </div>
-                  <Link to="/compare" className="action__icon icon-compare">
+                  <Link to="/comparison" className="action__icon icon-compare">
                     <ScaleSvg />
                   </Link>
                 </Box>

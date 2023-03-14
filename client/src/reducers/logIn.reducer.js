@@ -37,7 +37,6 @@ export const {
 } = logInSlice.actions
 
 export const actionFetchLogin = (userData) => (dispatch) => {
-    debugger
     return axios.post(LOGIN_USER, userData)
         .then(({ data }) => {
             dispatch(actionError(null))
