@@ -23,3 +23,5 @@ export const PRODUCT_IN_WISHLIST = `/wishlist/:productId`;
 export const SHOPPING_CART = `/cart`;
 export const PRODUCT_IN_SHOPPING_CART = `/cart/:productId`;
 export const CHANGE_PRODUCT_QUANTITY_SHOPPING_CART = `/cart/product/:productId`;
+export const ORDERS = `/orders`;
+

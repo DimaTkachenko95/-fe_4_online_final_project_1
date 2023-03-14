@@ -57,7 +57,7 @@ const Basket = () => {
                             Total: <span className="total_price">{result.toLocaleString()} USD</span>
                         </div>
                         <div className="basket__footer_checkout">
-                            <Button text="checkout" to="/checkOut"/>
+                            <Button text="checkout" to="/checkout"/>
                         </div>
                     </div>
                 </>}
