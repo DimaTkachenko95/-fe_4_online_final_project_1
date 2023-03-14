@@ -1,8 +1,7 @@
 import {Box, Container} from '@mui/material';
-import {Link} from 'react-router-dom';
 import './SearchBlock.scss'
 import InputSearch from "../../../../components/InputSearch";
-
+import Button from '../../../../components/Button';
 
 const SearchBlock = () => {
 
@@ -22,12 +21,7 @@ const SearchBlock = () => {
                     </Box>
                     <Box className="search__actions">
                         <Box className="search__catalog-button-wrapper">
-                            <Link
-                                to="/products"
-                                className="search__catalog-button"
-                            >
-                                Show all products
-                            </Link>
+                            <Button to="/products" className="search__catalog-button" text="Show all products" />
                         </Box>
                         <Box className="search__input-wrapper">
                             <Box className="search__input-wrapper--helper">

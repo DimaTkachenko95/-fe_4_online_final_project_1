@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://best-laptops24.cyclic.app/api';
 
 export const GET_ALL_PRODUCTS = `/products`;
 export const GET_ALL_PRODUCTS_PAGINATION = `/products/filter?&perPage=3&startPage=1`
@@ -23,3 +23,5 @@ export const PRODUCT_IN_WISHLIST = `/wishlist/:productId`;
 export const SHOPPING_CART = `/cart`;
 export const PRODUCT_IN_SHOPPING_CART = `/cart/:productId`;
 export const CHANGE_PRODUCT_QUANTITY_SHOPPING_CART = `/cart/product/:productId`;
+export const ORDERS = `/orders`;
+

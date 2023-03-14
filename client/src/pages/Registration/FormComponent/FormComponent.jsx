@@ -9,7 +9,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCustomerServerApi } from '../../../reducers';
-import { initialState } from '../../../reducers/registration.reducer';
+import { initialState } from '../../../reducers';
 import Button from '../../../components/Button';
 //import Authorization from '../../../pages/Authorization';
 import SuccessModal from './SuccessRegistration';
