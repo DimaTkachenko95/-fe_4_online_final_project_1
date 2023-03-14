@@ -13,7 +13,7 @@ const initialState = {
     productData: {},
     productComments: [],
     similarProducts: [],
-
+    commentError: false,
 }
 
 const productDetailsSlice = createSlice({
@@ -37,6 +37,9 @@ const productDetailsSlice = createSlice({
         },
         actionSimilarProduct: (state, {payload}) => {
             state.similarProducts = [...payload];
+        },
+        actionCommentError: (state, {payload}) => {
+            state.commentError = payload;
         }
     }
 })
@@ -47,6 +50,7 @@ export const {
     actionProductComments,
     actionAddComment,
     actionSimilarProduct,
+    actionCommentError
 } = productDetailsSlice.actions
 
 
@@ -71,12 +75,15 @@ export const actionFetchAllComments = itemNo => dispatch => {
 
 
 export const actionFetchAddComment = newComment => dispatch => {
+    dispatch(actionPageLoading(true));
     return axios
         .post(PRODUCT_ADD_COMMENTS, newComment)
         .then(({data})=> {
             dispatch(actionAddComment(data));
+            dispatch(actionCommentError(false));
+            dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionServerError(true)))
+        .catch(() => dispatch(actionCommentError(true)))
 }
 
 export const actionFetchSimilarProducts = filter => dispatch => {

@@ -16,6 +16,8 @@ export const selectorIsDetailsProductLoading = state => state.productsDetails.pa
 // ALL COMMENTS
 export const selectorProductComments = state => state.productsDetails.productComments;
 
+export const selectorCommentError = state => state.productsDetails.commentError;
+
 // PRODUCTS IN BASKET
 export const selectorBasket = state => state.basket.basket;
 export const selectorBasketProduct = state => state.basket.basketProduct;

@@ -1,7 +1,7 @@
 import {Box, Button, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorProduct, selectorProductComments, selectorToken} from "../../../../selectors";
+import {selectorCommentError, selectorProduct, selectorProductComments, selectorToken} from "../../../../selectors";
 import './Comments.scss';
 import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers";
 import Comment from "./Comment";
@@ -13,6 +13,8 @@ const Comments = () => {
     const token = useSelector(selectorToken);
 
     const comments = useSelector(selectorProductComments);
+
+    const commentError = useSelector(selectorCommentError);
 
     useEffect(() => {
         dispatch(actionFetchAllComments(product.itemNo));
@@ -69,6 +71,8 @@ const Comments = () => {
                             Send
                         </Button>
                     </form>
+
+                    {commentError && <h3 className="product__comment-error">Error, please try again!</h3>}
                 </Box>}
 
                 <Box className="product__comments-content">
