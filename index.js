@@ -23,6 +23,7 @@ const comments = require('./routes/comments');
 const shippingMethods = require('./routes/shippingMethods');
 const paymentMethods = require('./routes/paymentMethods');
 const partners = require('./routes/partners');
+const {connect} = require("mongoose");
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -40,10 +41,19 @@ app.use((req, res, next) => {
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(db, { useNewUrlParser: true, useFindAndModify: false });
+    console.log('MongoDB Connected');
+  } catch (error) {
+    console.log(error);
+    process.exit(1)
+  }
+}
+// mongoose
+//   .connect(db, { useNewUrlParser: true, useFindAndModify: false })
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch((err) => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -84,4 +94,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+connectDB().then( () => {
+  app.listen(port, () => console.log(`Server running on port ${port}`));
+})
