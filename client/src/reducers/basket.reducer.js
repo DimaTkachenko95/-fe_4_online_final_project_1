@@ -7,6 +7,8 @@ const initialState = {
     basketProduct: [],
     products: JSON.parse(localStorage.getItem("authorizedBasket")) || [],
    // products: [] // for authorizing users
+    serverError: null,
+    pageLoading: false
 }
 
 const basketSlice = createSlice({
@@ -27,7 +29,8 @@ const basketSlice = createSlice({
         },
 
         actionBasketProduct: (state, {payload}) => {
-           state.basketProduct = payload;
+
+            state.basketProduct = payload;
         },
 
         actionIncrease: (state, {payload}) => {
@@ -42,7 +45,7 @@ const basketSlice = createSlice({
                 return item;
             })
             localStorage.setItem('basket', JSON.stringify(update));
-            return { ...state, basket: update }
+            return {...state, basket: update}
         },
 
         actionDecraese: (state, {payload}) => {
@@ -59,6 +62,13 @@ const basketSlice = createSlice({
             })
             localStorage.setItem('basket', JSON.stringify(update));
             return { ...state, basket: update }
+        },
+
+        actionPageLoading: (state, { payload }) => {
+            state.pageLoading = payload;
+        },
+        actionServerError: (state, { payload }) => {
+            state.serverError = payload;
         },
 
             //for authorized user
@@ -117,20 +127,28 @@ export const {
     actionAddToProducts,
     actionDeleteFromProducts,
     actionAuthProducts,
-    actionDeleteAllProducts
+    actionDeleteAllProducts,
+    actionPageLoading,
+    actionServerError
 } = basketSlice.actions;
 
 export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispatch) => {
     try {
-        const products = await Promise.all(itemNos.map(async (itemNo, index) => {
-            const {data} = await axios.get(`${GET_ALL_PRODUCTS}/${itemNo}`);
-            return {...data, cartQuantity: quantity[index]};
-          }));
-          dispatch(actionBasketProduct(products));
+      dispatch(actionPageLoading(true));
+      dispatch(actionServerError(false));
+      const products = [];
+      for (let i = 0; i < itemNos.length; i++) {
+        const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
+        const prodWithQuantity = {...data, cartQuantity: quantity[i]};
+        products.push(prodWithQuantity);
+      }
+      dispatch(actionBasketProduct(products));
+      dispatch(actionPageLoading(false));
     } catch (error) {
-      console.error(error);
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     }
-  }
+}
 
 // ADD NEW CART
 

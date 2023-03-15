@@ -1,6 +1,7 @@
 import {Container} from "@mui/system";
-import BasketItems from "./BasketItem";
-import EmptyBasket from "./EmptyBasket";
+import BasketItems from "./Components/BasketItem";
+import Button from "../../components/Button/";
+import EmptyResult from "../../components/EmptyResult";
 import styled from "styled-components";
 import "./Basket.scss";
 import {useEffect, useState} from "react";
@@ -9,6 +10,7 @@ import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken }
 import {actionFetchAddUserCart, actionGetCart} from "../../reducers";
 import Button from "../../components/Button/";
 import BreadCrumbs from '../../components/BreadCrumbs';
+import Preloader from "../../components/Preloader";
 
 const ContainerBasket = styled(Container)`
   padding: 25px 0 50px 0;
@@ -19,7 +21,9 @@ const Basket = () => {
     const basket = useSelector(selectorBasket);
     const basketProduct = useSelector(selectorBasketProduct);
     const token = useSelector(selectorToken);
+    const isLoading = useSelector(selectorIsBasketLoading);
     const result = basketProduct.reduce((prev, item) => prev + item.cartQuantity * item.currentPrice, 0)
+
 
     useEffect(() => {
         if(localStorage.getItem("token")) {
@@ -43,6 +47,7 @@ const Basket = () => {
     return (
 
         <ContainerBasket maxWidth="lg">
+            <Preloader open={isLoading}/>
             <BreadCrumbs linksArray={[{ link: '/basket', text: 'Shopping Cart' }]} />
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {!basketProduct && !basketProduct.length <= 1 ? 
@@ -73,7 +78,7 @@ const Basket = () => {
                             Total: <span className="total_price">{result.toLocaleString()} USD</span>
                         </div>
                         <div className="basket__footer_checkout">
-                            <Button text="checkout" to="/checkOut"/>
+                            <Button text="checkout" to="/checkout"/>
                         </div>
                     </div>
                 </>

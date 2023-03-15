@@ -1,0 +1,32 @@
+.checkout{
+  margin-bottom: 30px;
+  &__title{
+    margin-bottom: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+
+    text-transform: uppercase;
+  }
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  &__input {
+    border: 1px solid #E3E3E3;
+
+  }
+
+  &__submit-btn {
+    justify-self: end;
+    grid-column-start: 2;
+    max-width: 250px;
+    background: linear-gradient(180deg, #8EE902 0%, #4F9C2C 100%);
+    border-radius: 100px !important;
+  }
+}
+

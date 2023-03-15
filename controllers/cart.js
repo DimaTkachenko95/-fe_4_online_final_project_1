@@ -194,7 +194,7 @@ exports.decreaseCartProductQuantity = async (req, res, next) => {
           );
         } else {
           res.status(400).json({
-            message: 'Product ${} does not exists in cart to decrease quantity',
+            message: 'ProductDetails ${} does not exists in cart to decrease quantity',
           });
         }
 
