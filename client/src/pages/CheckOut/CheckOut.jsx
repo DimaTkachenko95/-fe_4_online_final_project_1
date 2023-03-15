@@ -4,7 +4,7 @@ import {useFormik} from 'formik';
 import BreadCrumbs from "../../components/BreadCrumbs";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
-import {actionFetchCreateOrder} from "../../reducers/basket.reducer";
+import {actionFetchCreateOrder} from "../../reducers";
 import OrderedSuccessful from "./components/OrderedSuccessful";
 import {useEffect} from "react";
 import { useNavigate } from "react-router-dom";

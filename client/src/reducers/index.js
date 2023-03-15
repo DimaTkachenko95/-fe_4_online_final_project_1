@@ -33,12 +33,22 @@ import logInReducer, {
   actionFetchAuthorizationUser,
   actionResetLoginError,
 } from './logIn.reducer';
-import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
-import registrationReducer, { createCustomerServerApi, initialState } from './registration.reducer';
+import productDetailsReducer, {
+  actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments
+} from './productDetails.reducer';
+import registrationReducer, {
+  createCustomerServerApi,
+  initialState } from './registration.reducer';
 import discountedProductsReducer, {
-    actionDiscountedProducts,
-    actionFetchDiscountedProducts,
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
 } from './discountedProducts.reducer';
+import checkoutReducer, {
+  actionFetchCreateOrder,
+  actionIsOrdered
+} from './checkout.reducer';
 
 export {
   productsReducer,
@@ -61,6 +71,9 @@ export {
   actionIncrease,
   actionDecraese,
   actionFetchProductByItemNo,
+  checkoutReducer,
+  actionFetchCreateOrder,
+  actionIsOrdered,
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,
@@ -73,6 +86,8 @@ export {
   actionToken,
   productDetailsReducer,
   actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments,
   registrationReducer,
   createCustomerServerApi,
   initialState,

@@ -33,14 +33,11 @@ export const {
 
 
 export const actionFetchDiscountedProducts = () => (dispatch) => {
-    dispatch(actionPageLoading(true))
-
     const filterDiscountProductsString = new URLSearchParams({isDiscounted: true})
 
     return axios.get(FILTERED_PRODUCTS, {params: filterDiscountProductsString} )
         .then(({data}) => {
             dispatch(actionDiscountedProducts(data.products));
-            dispatch(actionPageLoading(false));
         })
         .catch(() => dispatch(actionServerError(true)))
 }
