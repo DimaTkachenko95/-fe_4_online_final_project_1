@@ -37,10 +37,11 @@ const registrationSlice = createSlice({
 export const { actionCreateCustomer, actionServerError } = registrationSlice.actions;
 
 export const createCustomerServerApi = (value) => (dispatch) => {
-  axios
+  return axios
     .post(REGISTER_USER, value)
     .then((savedCustomer) => {
       dispatch(actionCreateCustomer(savedCustomer));
+      return savedCustomer;
     })
     .catch(() => dispatch(actionServerError(true)));
 };

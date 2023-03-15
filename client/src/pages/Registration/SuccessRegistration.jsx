@@ -1,8 +1,8 @@
-import Modal from '../../../components/Modal';
-import Button from '../../../components/Button';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
 
 import { useState } from 'react';
-import Authorization from '../../Authorization';
+import Authorization from '../Authorization';
 
 const SuccessModal = () => {
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
@@ -32,7 +32,6 @@ const SuccessModal = () => {
         className="form-block__btn"
         type="button"
         text="login"
-        onClick={toggleModal}
         onClick={(event) => toggleModalAuth(event)}
       />
       {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
