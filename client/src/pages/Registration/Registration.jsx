@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import initialState from '../../reducers/registration.reducer';
-import { createCustomerInServer } from '../../reducers';
+import { actionCreateCustomer } from '../../reducers';
 /* import FormComponent from './FormComponent/FormComponent'; */
 import FormRegistration from '../../components/FormRegistration';
 
@@ -19,12 +19,14 @@ const Registration = () => {
         <BreadCrumbs linksArray={[{ link: '/registration', text: 'Registration' }]} />
         <div className="registration-container__wrapper">
           <h2 className="registration-container__wrapper-title">Registration</h2>
-          < FormRegistration initialValues={initialState} onSubmit={(values, { resetForm }) => {
-            console.log(values)
-            dispatch(createCustomerInServer(values));
-            resetForm();
-          }} />
-
+          < FormRegistration 
+                  initialValues={initialState} 
+                  onSubmit={(values, { resetForm }) => {
+                      console.log(values)
+                      dispatch(actionCreateCustomer(values));
+                      resetForm();
+                  }} 
+                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "gender", "avatarUrl"]}/>
         </div>
       </Container>
     </main>

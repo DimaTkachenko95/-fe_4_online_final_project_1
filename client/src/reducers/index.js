@@ -31,9 +31,17 @@ import productDetailsReducer, {
     actionFetchOneProduct,
 } from "./productDetails.reducer"; 
 import registrationReducer, {
-    createCustomerInServer,
+    createCustomerServerApi,
+    actionCreateCustomer,
 } from './registration.reducer';
-import personalOfficeReducer, {actionUserInfo} from "./personalOffice.reducer";
+import personalOfficeReducer, {
+    actionUserInfo, 
+    actionFetchUserInfo, 
+    actionEditInputs,
+    actionFetchUpdateCustomer,
+    actionFetchUpdateCustomerPassword,
+    actionChangePasswordMessage,
+} from "./personalOffice.reducer";
 export{
     productsReducer,
     actionFetchAllProducts,
@@ -65,7 +73,13 @@ export{
     productDetailsReducer,
     actionFetchOneProduct,
     registrationReducer,
-    createCustomerInServer,
+    actionCreateCustomer,
     personalOfficeReducer,
     actionUserInfo,
+    actionFetchUserInfo,
+    actionFetchUpdateCustomer,
+    actionChangePasswordMessage,
+    actionFetchUpdateCustomerPassword,
+    actionEditInputs,
+    createCustomerServerApi,
 }

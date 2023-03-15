@@ -77,7 +77,7 @@ export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispat
       const products = [];
       for (let i = 0; i < itemNos.length; i++) {
         const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
-        const prodWithQuantity = {... data, cartQuantity: quantity[i]};
+        const prodWithQuantity = {...data, cartQuantity: quantity[i]};
         products.push(prodWithQuantity);
       }
       dispatch(actionBasketProduct(products));

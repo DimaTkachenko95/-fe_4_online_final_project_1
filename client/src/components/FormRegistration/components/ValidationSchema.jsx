@@ -17,12 +17,15 @@ const validationSchema = yup.object().shape({
   //.matches(/^[a-zA-Z0-9]+$/, 'Should contain only characters and space'),
 
   email: yup.string().email('Not valid email').required('Email field is requierd'),
-  password: yup
-    .string()
+  isPassword: yup.boolean(),
+  password: yup.string().when('isPassword',{
+    is: true,
+    then: yup.string()
     .required('No password provided')
     .min(7, 'Password is too short - should be 8 chars minimum')
     .max(30, 'Password is too long - should be 30 chars maximum')
     .matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for password is a-z, A-Z, 0-9'),
+  }),
   telephone: yup
     .number()
     .typeError("That doesn't look like a phone number")

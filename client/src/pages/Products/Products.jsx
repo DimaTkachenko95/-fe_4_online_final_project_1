@@ -9,6 +9,7 @@ import {
 } from "../../selectors";
 import { actionFetchAllProducts, actionFetchSearchFilterProducts, actionFetchSearchProducts } from "../../reducers";
 import { useEffect } from "react";
+import { useNavigation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from "../../components/ProductCard";
 import BreadCrumbs from "../../components/BreadCrumbs";

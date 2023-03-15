@@ -1,1 +1,3 @@
-export { default } from "./FormRegistration";
+import FormRegistration from "./FormRegistration";
+
+export default FormRegistration

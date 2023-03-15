@@ -110,7 +110,7 @@ const Authorization = ({closeModalAuth}) => {
                 <Button className="form-block__btn" type="button" to="/registration" text="Registration" variant="white-shadow" onClick={closeModalAuth}/>
                 </div>
             </Form>
-          )}}
+          )}}     
         </Formik>
 
         </Modal>

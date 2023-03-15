@@ -13,6 +13,7 @@ import Registration from './pages/Registration';
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import PersonalOffice from './pages/PersonalOffice';
+import Authorization from './pages/Authorization';
 import './reset.css';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
                     <Route path="/check-out" element={ <CheckOut/> }/>
                     <Route path="/registration" element={ <Registration/> }/>
                     <Route path="/personal-office" element={ <PersonalOffice/> }/>
+                    <Route path="/authorization" element={ <Authorization/> }/>
                     <Route path="/*" element={ <NotFound/> }/>
                 </Routes>
             </div>
