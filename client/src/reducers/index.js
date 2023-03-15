@@ -73,6 +73,8 @@ export {
   actionToken,
   productDetailsReducer,
   actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments,
   registrationReducer,
   createCustomerServerApi,
   initialState,
