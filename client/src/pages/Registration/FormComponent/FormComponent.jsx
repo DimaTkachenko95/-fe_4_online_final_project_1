@@ -11,6 +11,8 @@ import { createCustomerServerApi } from '../../../helpers/createNewCustomer';
 import Button from '../../../components/Button';
 import Preloader from '../../../components/Preloader';
 import ModalSuccessRegistration from './../ModalSuccessRegistration';
+import ServerError from '../../../components/Notifications/ServerError';
+import RegistrationError from '../RegistrationError';
 
 const initialState = {
   firstName: '',
@@ -56,7 +58,9 @@ const FormComponent = () => {
                 resetForm();
                 toggleModal();
                 setLoading(false);
-              } else setLoading(true);
+              } else {
+                setLoading(true);
+              }
             });
             setLoading(true);
           }}
@@ -213,7 +217,7 @@ const FormComponent = () => {
           }}
         </Formik>
       ) : (
-        <Preloader open={setLoading} />
+        <RegistrationError />
       )}
       {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
     </>
