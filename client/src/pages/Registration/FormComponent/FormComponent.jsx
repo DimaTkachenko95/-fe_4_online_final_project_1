@@ -9,14 +9,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectorPageLoading, selectorServerError } from '../../../selectors';
+import { selectorServerError } from '../../../selectors';
 import { createCustomerServerApi } from '../../../reducers';
 import { initialState } from '../../../reducers';
 import Button from '../../../components/Button';
 import Preloader from '../../../components/Preloader';
 import SuccessModal from '../SuccessRegistration';
-import ServerError from '../../../components/Notifications/ServerError';
-import Authorization from '../../Authorization';
 
 const FormComponent = () => {
   const dispatch = useDispatch();
@@ -38,12 +36,6 @@ const FormComponent = () => {
   const closeModal = () => {
     setOpenModal(false);
   };
-  // const onClickModal = (event) => {
-  //   toggleModal(event);
-  // };
-
-  // const newArr = comparisonProducts.filter((produc) => produc._id !== id);
-  // setComparisonProducts(newArr);
 
   return (
     <>
@@ -58,7 +50,7 @@ const FormComponent = () => {
                 // navigate('/');
                 resetForm();
                 toggleModal();
-                setLoading(true);
+                setLoading(false);
               } else setLoading(true);
             });
             setLoading(true);

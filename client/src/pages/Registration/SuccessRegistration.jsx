@@ -3,6 +3,7 @@ import Button from '../../components/Button';
 
 import { useState } from 'react';
 import Authorization from '../Authorization';
+import { actionResetLoginError } from '../../reducers';
 
 const SuccessModal = () => {
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
@@ -26,7 +27,12 @@ const SuccessModal = () => {
     setIsModalAuthOpen(false);
   };
   return (
-    <Modal modalAction={closeModal} closeAction={closeModal}>
+    <Modal
+      modalAction={closeModal}
+      closeAction={() => {
+        closeModal();
+      }}
+    >
       <p> Successful authorization </p>
       <Button
         className="form-block__btn"
