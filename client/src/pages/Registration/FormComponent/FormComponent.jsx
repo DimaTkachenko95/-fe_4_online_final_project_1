@@ -7,19 +7,25 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectorServerError } from '../../../selectors';
-import { createCustomerServerApi } from '../../../reducers';
-import { initialState } from '../../../reducers';
+import { createCustomerServerApi } from '../../../helpers/createNewCustomer';
 import Button from '../../../components/Button';
 import Preloader from '../../../components/Preloader';
-import SuccessModal from '../SuccessRegistration';
+import ModalSuccessRegistration from './../ModalSuccessRegistration';
+
+const initialState = {
+  firstName: '',
+  lastName: '',
+  login: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  telephone: '',
+  gender: '',
+  avatarUrl: '',
+  serverError: null,
+};
 
 const FormComponent = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const serverError = useSelector(selectorServerError);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -44,10 +50,9 @@ const FormComponent = () => {
           initialValues={initialState}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => {
-            dispatch(createCustomerServerApi(values)).then((axiosValue) => {
-              console.log(axiosValue);
-              if (!serverError) {
-                // navigate('/');
+            delete values.confirmPassword;
+            createCustomerServerApi(values).then((axiosValue) => {
+              if (axiosValue) {
                 resetForm();
                 toggleModal();
                 setLoading(false);
@@ -210,7 +215,7 @@ const FormComponent = () => {
       ) : (
         <Preloader open={setLoading} />
       )}
-      {openModal && <SuccessModal closeModal={() => closeModal()} />}
+      {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
     </>
   );
 };
