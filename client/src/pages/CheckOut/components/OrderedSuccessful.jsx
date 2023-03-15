@@ -5,8 +5,7 @@ import {selectorBasketProduct} from "../../../selectors";
 import './OrderedSuccesseful.scss';
 import ProductCard from "../../../components/ProductCard";
 import {useEffect} from "react";
-import {actionBasketProduct, actionDeleteFromBasket} from "../../../reducers";
-import {actionIsOrdered} from "../../../reducers/basket.reducer";
+import {actionBasketProduct, actionDeleteFromBasket, actionIsOrdered} from "../../../reducers";
 import Button from "../../../components/Button";
 
 const OrderedSuccessful = () => {

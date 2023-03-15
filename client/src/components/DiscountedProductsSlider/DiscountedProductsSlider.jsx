@@ -8,19 +8,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const DiscountedProductsSlider = () => {
   const discountedProducts = useSelector(selectorDiscountedProducts)
+  const availableDiscountedProducts = discountedProducts.filter(product => product.quantity > 0)
   const dispatch = useDispatch()
-  console.log(discountedProducts);
-  
+
   useEffect(() => {
     dispatch(actionFetchDiscountedProducts())
   }, [])
   return(
   <>
-      {!!discountedProducts.length &&
+      {!!availableDiscountedProducts.length &&
       (
       <Container maxWidth="lg" className="discounted-products">
         <h2 className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</h2>
-      <ProductsSlider products={discountedProducts}/>
+      <ProductsSlider products={availableDiscountedProducts}/>
             </Container>
       )
       }

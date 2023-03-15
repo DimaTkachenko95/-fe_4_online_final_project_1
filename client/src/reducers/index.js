@@ -33,12 +33,19 @@ import logInReducer, {
   actionFetchAuthorizationUser,
   actionResetLoginError,
 } from './logIn.reducer';
-import productDetailsReducer, { actionFetchOneProduct } from './productDetails.reducer';
-
+import productDetailsReducer, {
+  actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments
+} from './productDetails.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
 } from './discountedProducts.reducer';
+import checkoutReducer, {
+  actionFetchCreateOrder,
+  actionIsOrdered
+} from './checkout.reducer';
 
 export {
   productsReducer,
@@ -61,6 +68,9 @@ export {
   actionIncrease,
   actionDecraese,
   actionFetchProductByItemNo,
+  checkoutReducer,
+  actionFetchCreateOrder,
+  actionIsOrdered,
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,
@@ -73,6 +83,8 @@ export {
   actionToken,
   productDetailsReducer,
   actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments,
   discountedProductsReducer,
   actionDiscountedProducts,
   actionFetchDiscountedProducts,

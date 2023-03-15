@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import classnames from 'classnames';
 import PropTypes from 'prop-types'
+import './Button.scss'
 
 const mixin = (props) => {
     switch (props.variant) {
@@ -24,7 +25,7 @@ const mixin = (props) => {
              ${hoverWhiteShadow}
            }}
         `;
-        case 'pale-green': 
+        case 'pale-green':
          return css`
             && {background: #d6e3d1;
             color: #4d9546;
@@ -47,7 +48,7 @@ const mixin = (props) => {
     color: #4d9546;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   `
-  
+
   const hoverGradientGreen = css`
    background: #4ba123;
    //linear-gradient(#d6e3d1, rgba(79, 156, 44, 1));
@@ -87,27 +88,30 @@ const mixin = (props) => {
     ${(props) => mixin(props)}
     ${widthMixin}
   `;
- 
-const Button = ({text, type, variant, width, href, to, className, ...restProps}) => {
+
+const Button = ({text, endIcon, startIcon, disabled, type, variant, width, href, to, className, ...restProps}) => {
 
     const buttonClassName = classnames({
         'gradient-green': variant === 'gradient-green',
         'pale-green': variant === 'pale-green',
         'white-shadow': variant === 'white-shadow'
       }, className);
-    
+
 
 return (
-    <ButtonMain 
+    <ButtonMain
         type={type}                 // тип кнопки (button, submit) =>  type="button"
         variant={variant}           // зовнішній вигляд (gradient-green, white-shadow...) => variant="gradient-green"
-        width={width}               // ширину задавати тільки в тому випадку, якщо кнопка повинна бути менша 240px 
+        width={width}               // ширину задавати тільки в тому випадку, якщо кнопка повинна бути менша 240px
         href={href}                 // посилання для кнопки типу a href=""  => href="products"
         to={to}                     // посилання для кнопки типу Link to="" => to="products"
         className={buttonClassName} // ігнорувати. також можна передавати до кнопки новий додатковий className
-        {...restProps} 
+        {...restProps}
+        disabled={disabled}
         >
-        {text} 
+        <span className="button__start-icon">{startIcon}</span>
+        {text}
+        <span className="button__end-icon">{endIcon}</span>
     </ButtonMain>
 )
 

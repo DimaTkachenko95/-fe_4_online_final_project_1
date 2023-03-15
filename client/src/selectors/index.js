@@ -14,12 +14,18 @@ export const selectorServerErrorProductDetails = (state) => state.productsDetail
 export const selectorIsDetailsProductLoading = (state) => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
-export const selectorProductComments = (state) => state.products.productComments;
+export const selectorProductComments = state => state.productsDetails.productComments;
+export const selectorCommentError = state => state.productsDetails.commentError;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
-export const selectorIsOrdered = (state) => state.basket.isOrdered;
+export const selectorServerErrorBasket = (state) => state.basket.serverError;
+export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
+
+// CHECKOUT
+export const selectorIsOrdered = state => state.checkout.isOrdered;
+export const selectorServerErrorCheckout = state => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
