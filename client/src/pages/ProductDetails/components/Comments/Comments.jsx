@@ -1,11 +1,11 @@
-import {Box, Button, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
+import {Box, TextField} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorCommentError, selectorProduct, selectorProductComments, selectorToken} from "../../../../selectors";
 import './Comments.scss';
 import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers";
 import Comment from "./Comment";
-
+import Button from "../../../../components/Button";
 
 const Comments = () => {
     const dispatch = useDispatch();
@@ -60,9 +60,7 @@ const Comments = () => {
                             color="success"
                             onKeyDown={handleKeyDown}
                         />
-                        <Button type="submit" variant="contained" color="success" className="product__form-button">
-                            Send
-                        </Button>
+                         <Button type="submit" width="120px" className="product__form-button" text="Send" />
                     </form>
 
                     {commentError && <p className="product__comment-error">Failed to add comment, please try again!</p>}

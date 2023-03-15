@@ -32,6 +32,7 @@ const Footer = () => {
         setEmailInputValue(e.target.value);
     }
 
+
     return (
         <>
             <footer className="footer">
@@ -51,11 +52,12 @@ const Footer = () => {
                                     </Box>
                                 </Box>
                                 <Box className="subscribe__input-wrapper">
-                                    <input type="email" className="subscribe__input" placeholder="Write email"
+                                <input type="email" className="subscribe__input" placeholder="Write email"
                                            value={emailInputValue} onChange={emailInputHandler}/>
                                     <button type="submit"
                                             className="subscribe__button">{window.innerWidth > 996 ? "Subscribe" :
-                                        <SendSvg/>}</button>
+                                        <SendSvg/>}
+                                    </button>
                                 </Box>
                                 <Box className="subscribe__call-wrapper">
                                     <Box className="subscribe__call-logo-wrapper">
