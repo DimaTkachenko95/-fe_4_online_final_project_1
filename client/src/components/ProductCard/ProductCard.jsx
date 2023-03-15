@@ -1,30 +1,20 @@
 import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import {ReactComponent as Scales } from "./icons/scales.svg"
-import { ReactComponent as CheckMark } from "./icons/check_mark.svg"
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import cx from "classnames";
-import { selectorBasket, selectorFavorites, selectorScales } from "../../selectors";
-import { actionAddToBasket, toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
+import { selectorFavorites, selectorScales } from "../../selectors";
+import { toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss";
-import Button from "../Button";
+import ByuButton from "../ByuButton";
 
 const ProductCard = ({el, isForOrderedPage}) => {
     const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice} = el;
-    const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
 
-    const isProductInCart = basket.some(item => item.id === _id);
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
-
-    const addToBasket = item => {
-        if (!basket.find((elem) => elem.id === item._id)) {
-            dispatch(actionAddToBasket(item));
-        }
-    }
 
     const toggleFavorites = id => {
         dispatch(toggleFavoriteProduct(id));
@@ -78,19 +68,7 @@ const ProductCard = ({el, isForOrderedPage}) => {
                         }
                     </div>
 
-                  { !isForOrderedPage && <div>
-                    {isProductInCart ?
-                        <Link to="/basket">
-                          <button onClick={() => addToBasket(el)} className="list__item--inbasket "><CheckMark/>
-                            <span className="list__item--buy--text">In basket</span>
-                          </button>
-                        </Link>
-                        :
-                        <button onClick={() => addToBasket(el)} className="list__item--buy"><ShoppingCartOutlinedIcon/>
-                          <span className="list__item--buy--text">Buy</span>
-                        </button>
-                    }
-                  </div>}
+                  { !isForOrderedPage && <ByuButton product={el} />}
 
                 </div>
             </div>

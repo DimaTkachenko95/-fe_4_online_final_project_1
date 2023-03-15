@@ -17,18 +17,21 @@ export const selectorIsDetailsProductLoading = (state) => state.productsDetails.
 export const selectorProductComments = state => state.productsDetails.productComments;
 export const selectorCommentError = state => state.productsDetails.commentError;
 
-
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
-export const selectorIsOrdered = state => state.basket.isOrdered;
+export const selectorServerErrorBasket = (state) => state.basket.serverError;
+export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
+
+// CHECKOUT
+export const selectorIsOrdered = state => state.checkout.isOrdered;
+export const selectorServerErrorCheckout = state => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
 export const selectorProductComp = (state) => state.scales.productDataComp;
 export const selectorIsScalesPageLoading = (state) => state.scales.pageLoading;
 export const selectorServerErrorScalesPage = (state) => state.scales.serverError;
-
 
 // FAVORITES PRODUCTS
 export const selectorFavorites = (state) => state.favorites.favorites;

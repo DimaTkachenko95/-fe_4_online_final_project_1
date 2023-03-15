@@ -1,11 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {GET_ALL_PRODUCTS, ORDERS} from "../endpoints";
+import {GET_ALL_PRODUCTS} from "../endpoints";
 
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
     basketProduct: [],
-    isOrdered: false,
+    serverError: null,
+    pageLoading: false
 }
 
 const basketSlice = createSlice({
@@ -61,11 +62,12 @@ const basketSlice = createSlice({
             localStorage.setItem('basket', JSON.stringify(update));
             return {...state, basket: update}
         },
-
-        actionIsOrdered: (state, {payload}) => {
-            state.isOrdered = payload;
+        actionPageLoading: (state, { payload }) => {
+            state.pageLoading = payload;
         },
-
+        actionServerError: (state, { payload }) => {
+            state.serverError = payload;
+        },
     }
 })
 
@@ -75,11 +77,14 @@ export const {
     actionBasketProduct,
     actionIncrease,
     actionDecraese,
-    actionIsOrdered,
+    actionPageLoading,
+    actionServerError
 } = basketSlice.actions;
 
 export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispatch) => {
     try {
+      dispatch(actionPageLoading(true));
+      dispatch(actionServerError(false));
       const products = [];
       for (let i = 0; i < itemNos.length; i++) {
         const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
@@ -87,16 +92,11 @@ export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispat
         products.push(prodWithQuantity);
       }
       dispatch(actionBasketProduct(products));
+      dispatch(actionPageLoading(false));
     } catch (error) {
-      console.error(error);
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     }
-}
-
-export const actionFetchCreateOrder = (newOrder) =>  (dispatch) => {
-    return  axios.post(ORDERS, newOrder)
-        .then(() => {
-            dispatch(actionIsOrdered(true));
-        });
 }
 
 export default basketSlice.reducer;

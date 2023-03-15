@@ -25,7 +25,6 @@ const Comments = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Submitted review:', review);
         const data = {
             product: product.itemNo,
             content: review,
