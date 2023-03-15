@@ -70,7 +70,6 @@ export const actionFetchAllComments = itemNo => dispatch => {
         .then(({data}) => {
             dispatch(actionProductComments(data));
         })
-        .catch(() => dispatch(actionServerError(true)))
 }
 
 
@@ -83,7 +82,10 @@ export const actionFetchAddComment = newComment => dispatch => {
             dispatch(actionCommentError(false));
             dispatch(actionPageLoading(false));
         })
-        .catch(() => dispatch(actionCommentError(true)))
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionCommentError(true))
+        })
 }
 
 export const actionFetchSimilarProducts = filter => dispatch => {

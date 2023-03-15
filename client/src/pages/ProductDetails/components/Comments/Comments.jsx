@@ -11,18 +11,13 @@ const Comments = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectorProduct);
     const token = useSelector(selectorToken);
-
     const comments = useSelector(selectorProductComments);
-
     const commentError = useSelector(selectorCommentError);
+    const [review, setReview] = useState('');
 
     useEffect(() => {
         dispatch(actionFetchAllComments(product.itemNo));
     }, [product]);
-
-
-
-    const [review, setReview] = useState('');
 
     const handleReviewChange = (event) => {
         setReview(event.target.value);
@@ -45,8 +40,6 @@ const Comments = () => {
             handleSubmit(event);
         }
     }
-
-
 
     return (
         <>
@@ -72,22 +65,21 @@ const Comments = () => {
                         </Button>
                     </form>
 
-                    {commentError && <h3 className="product__comment-error">Error, please try again!</h3>}
+                    {commentError && <p className="product__comment-error">Failed to add comment, please try again!</p>}
                 </Box>}
 
                 <Box className="product__comments-content">
-                    <h3 className="product__comments-title">Reviews:</h3>
+                    <h3 className="product__comments-title">Reviews</h3>
 
                     <Box className="comments">
                         {comments?.map((comment, index) => {
                             const dateString = comment.customer.date;
-
                             const formattedDate = new Date(dateString).toLocaleString('en-us',{month:'long', year:'numeric', day:'numeric'})
 
                             return (<Comment comment={comment} formattedDate={formattedDate} key={index}/>)
                         })}
 
-                        {comments.length === 0 && <h3 className="product__comments-title">There are currently no reviews for this product.</h3>}
+                        {comments.length === 0 && <p>There are currently no reviews for this product.</p>}
                     </Box>
                 </Box>
             </Box>
