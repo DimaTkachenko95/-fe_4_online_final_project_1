@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { REGISTER_USER } from '../../src/endpoints/index';
+import { REGISTER_USER } from '../endpoints';
 import axios from 'axios';
 
 const registrationSlice = createSlice({

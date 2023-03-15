@@ -117,52 +117,9 @@
         text-decoration: line-through;
       }
     }
-
-    &--buy {
-      @include font-list-items;
-
-      width: 100%;
-      border-radius: 100px;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-transform: uppercase;
-      background-color: #4ba123;
-      color: rgb(245 240 240);
-      padding: 10px 0;
-      transition: 0.4s;
-      box-shadow: rgb(0 0 0 / 10%) 0 20px 25px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
-      cursor: pointer;
-
-      &--text {
-        margin-left: 10px
-      }
-
-      &:hover {
-        background-color: #d6e3d1;
-        color: #4d9546;
-        box-shadow: rgb(50 50 93 / 25%) 0 13px 27px -5px, rgb(0 0 0 / 30%) 0 8px 16px -8px;
-      }
-
-    }
-
-    &--inbasket {
-      @include font-list-items;
-
-      border-radius: 100px;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-transform: uppercase;
-      padding: 10px 0;
-      transition: 0.4s;
-      cursor: pointer;
-      background-color: #d6e3d1;
-      color: #4d9546;
-      box-shadow: rgb(50 50 93 / 25%) 0 13px 27px -5px, rgb(0 0 0 / 30%) 0 8px 16px -8px;
-      width: 100%;
-    }
   }
+}
+
+.out-of-stock{
+  opacity: 0.5 !important;
 }

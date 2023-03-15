@@ -1,10 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_ALL_PRODUCTS} from "../endpoints";
+import {GET_ALL_PRODUCTS} from "../endpoints";
 
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
-    basketProduct: []
+    basketProduct: [],
+    serverError: null,
+    pageLoading: false
 }
 
 const basketSlice = createSlice({
@@ -26,15 +28,15 @@ const basketSlice = createSlice({
         },
 
         actionBasketProduct: (state, {payload}) => {
-            
-           state.basketProduct = payload;
+
+            state.basketProduct = payload;
         },
 
         actionIncrease: (state, {payload}) => {
             const basket = JSON.parse(JSON.stringify([...state.basket]))
             const update = basket.map((product) => {
                 if (product.id === payload._id) {
-                    return  {
+                    return {
                         ...product,
                         cartQuantity: product.cartQuantity + 1,
                     }
@@ -42,25 +44,30 @@ const basketSlice = createSlice({
                 return product;
             })
             localStorage.setItem('basket', JSON.stringify(update));
-            return { ...state, basket: update }
+            return {...state, basket: update}
         },
 
         actionDecraese: (state, {payload}) => {
             const basket = JSON.parse(JSON.stringify([...state.basket]))
             const update = basket.map((product) => {
                 if (product.id === payload._id) {
-                    if (product.cartQuantity > 1) 
-                    return  {
-                        ...product,
-                        cartQuantity: product.cartQuantity - 1,
-                    }
+                    if (product.cartQuantity > 1)
+                        return {
+                            ...product,
+                            cartQuantity: product.cartQuantity - 1,
+                        }
                 }
                 return product;
             })
             localStorage.setItem('basket', JSON.stringify(update));
-            return { ...state, basket: update }
-        }
-
+            return {...state, basket: update}
+        },
+        actionPageLoading: (state, { payload }) => {
+            state.pageLoading = payload;
+        },
+        actionServerError: (state, { payload }) => {
+            state.serverError = payload;
+        },
     }
 })
 
@@ -69,11 +76,15 @@ export const {
     actionDeleteFromBasket,
     actionBasketProduct,
     actionIncrease,
-    actionDecraese
+    actionDecraese,
+    actionPageLoading,
+    actionServerError
 } = basketSlice.actions;
 
 export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispatch) => {
     try {
+      dispatch(actionPageLoading(true));
+      dispatch(actionServerError(false));
       const products = [];
       for (let i = 0; i < itemNos.length; i++) {
         const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
@@ -81,9 +92,11 @@ export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispat
         products.push(prodWithQuantity);
       }
       dispatch(actionBasketProduct(products));
+      dispatch(actionPageLoading(false));
     } catch (error) {
-      console.error(error);
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     }
-  }
+}
 
 export default basketSlice.reducer;

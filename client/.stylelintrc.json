@@ -9,6 +9,8 @@
     "no-empty-source": null,
     "no-duplicate-selectors": null,
     "keyframes-name-pattern": null,
-    "property-no-vendor-prefix": null
+    "property-no-vendor-prefix": null,
+    "scss/at-mixin-pattern": null,
+    "scss/dollar-variable-pattern": null
   }
 }

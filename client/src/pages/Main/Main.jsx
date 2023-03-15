@@ -1,13 +1,17 @@
 import './Main.scss';
+import Hero from "./components/Hero";
+import SearchBlock from "./components/SearchBlock";
+import DiscountedProductsSlider from '../../components/DiscountedProductsSlider';
 
-import Hero from './components/Hero';
-import SearchBlock from './components/SearchBlock';
-
-const Main = () => (
+const Main = () => {
+  return(
   <main>
-    <Hero />
-    <SearchBlock />
+      <Hero />    
+      <DiscountedProductsSlider />
+      <SearchBlock/>
+
   </main>
-);
+  )
+};
 
 export default Main;

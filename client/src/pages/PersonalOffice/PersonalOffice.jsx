@@ -44,9 +44,9 @@ const PersonalOffice = () => {
                             <Tab label="History of orders" value="3" />
                     </TabList>
                 </Box>
-                <TabPanel value="1"><UserData/></TabPanel>
-                <TabPanel value="2"><ChangePassword/></TabPanel>
-                <TabPanel value="3">some</TabPanel>
+                <TabPanel className="tab-panel" value="1"><UserData/></TabPanel>
+                <TabPanel className="tab-panel" value="2"><ChangePassword/></TabPanel>
+                <TabPanel className="tab-panel" value="3">some</TabPanel>
             </TabContext>
 
         </Container>

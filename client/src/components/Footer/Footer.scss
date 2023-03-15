@@ -75,6 +75,9 @@
       text-align: center;
       text-transform: uppercase;
       cursor: pointer;
+      &:hover {
+        background-color: #478c3e;;
+      }
     }
 
     .subscribe__call-wrapper {

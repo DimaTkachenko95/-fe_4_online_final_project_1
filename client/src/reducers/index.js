@@ -1,39 +1,55 @@
 import productsReducer, {
-    actionFetchAllProducts,
-    actionProductsQuantity,
-    actionSortByPrise,
-    actionPageLoading,
-    actionFetchSearchFilterProducts,
-    actionSearchInputValue,
-    actionAllProducts,
-    actionFetchSearchProducts,
-} from "./products.reducer";
+  actionFetchAllProducts,
+  actionProductsQuantity,
+  actionSortByPrise,
+  actionPageLoading,
+  actionFetchSearchFilterProducts,
+  actionSearchInputValue,
+  actionAllProducts,
+  actionFetchSearchProducts,
+} from './products.reducer';
 import favoritesReducer, {
-  actionAddToFavorites,
-  actionDeleteFromFavorites,
+    actionAddToFavorites,
+    actionDeleteFromFavorites,
+    toggleFavoriteProduct
 } from './favorites.reducer';
-import scalesReducer, { actionAddToScales, actionDeleteFromScales } from './scales.reducer';
+import scalesReducer, {
+  actionAddToScales,
+  actionDeleteFromScales,
+  toggleScalesProduct,
+  actionFetchProductScalesByItemNo,
+} from './scales.reducer';
 import basketReducer, {
-    actionAddToBasket,
-    actionDeleteFromBasket,
-    actionBasketProduct,
-    actionIncrease,
-    actionDecraese,
-    actionFetchProductByItemNo
-} from "./basket.reducer";
+  actionAddToBasket,
+  actionDeleteFromBasket,
+  actionBasketProduct,
+  actionIncrease,
+  actionDecraese,
+  actionFetchProductByItemNo,
+} from './basket.reducer';
 import logInReducer, {
-    actionFetchLogin,
-    actionToken,
-    actionFetchAuthorizationUser,
-    actionResetLoginError
-} from "./logIn.reducer";
+  actionFetchLogin,
+  actionToken,
+  actionFetchAuthorizationUser,
+  actionResetLoginError,
+} from './logIn.reducer';
 import productDetailsReducer, {
-    actionFetchOneProduct,
-} from "./productDetails.reducer"; 
+  actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments
+} from './productDetails.reducer';
 import registrationReducer, {
-    createCustomerServerApi,
-    actionCreateCustomer,
-} from './registration.reducer';
+  createCustomerServerApi,
+  actionCreateCustomer,
+  initialState } from './registration.reducer';
+import discountedProductsReducer, {
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
+} from './discountedProducts.reducer';
+import checkoutReducer, {
+  actionFetchCreateOrder,
+  actionIsOrdered
+} from './checkout.reducer';
 import personalOfficeReducer, {
     actionUserInfo, 
     actionFetchUserInfo, 
@@ -42,44 +58,57 @@ import personalOfficeReducer, {
     actionFetchUpdateCustomerPassword,
     actionChangePasswordMessage,
 } from "./personalOffice.reducer";
-export{
-    productsReducer,
-    actionFetchAllProducts,
-    actionAllProducts,
-    actionProductsQuantity,
-    actionSortByPrise,
-    actionSearchInputValue,
-    actionPageLoading,
-    actionFetchSearchProducts,
-    actionFetchSearchFilterProducts,
-    favoritesReducer,
-    actionAddToFavorites,
-    actionDeleteFromFavorites,
-    basketReducer,
-    actionAddToBasket,
-    actionDeleteFromBasket,
-    actionBasketProduct,
-    actionIncrease,
-    actionDecraese,
-    actionFetchProductByItemNo,
-    scalesReducer,
-    actionAddToScales,
-    actionDeleteFromScales,
-    logInReducer,
-    actionFetchLogin,
-    actionResetLoginError,
-    actionFetchAuthorizationUser,
-    actionToken,
-    productDetailsReducer,
-    actionFetchOneProduct,
-    registrationReducer,
-    actionCreateCustomer,
-    personalOfficeReducer,
-    actionUserInfo,
-    actionFetchUserInfo,
-    actionFetchUpdateCustomer,
-    actionChangePasswordMessage,
-    actionFetchUpdateCustomerPassword,
-    actionEditInputs,
-    createCustomerServerApi,
-}
+
+export {
+  productsReducer,
+  actionFetchAllProducts,
+  actionAllProducts,
+  actionProductsQuantity,
+  actionSortByPrise,
+  actionSearchInputValue,
+  actionPageLoading,
+  actionFetchSearchProducts,
+  actionFetchSearchFilterProducts,
+  favoritesReducer,
+  actionAddToFavorites,
+  actionDeleteFromFavorites,
+  toggleFavoriteProduct,
+  basketReducer,
+  actionAddToBasket,
+  actionDeleteFromBasket,
+  actionBasketProduct,
+  actionIncrease,
+  actionDecraese,
+  actionFetchProductByItemNo,
+  checkoutReducer,
+  actionFetchCreateOrder,
+  actionIsOrdered,
+  scalesReducer,
+  actionAddToScales,
+  actionDeleteFromScales,
+  toggleScalesProduct,
+  actionFetchProductScalesByItemNo,
+  logInReducer,
+  actionFetchLogin,
+  actionResetLoginError,
+  actionFetchAuthorizationUser,
+  actionToken,
+  productDetailsReducer,
+  actionFetchOneProduct,
+  actionFetchAddComment,
+  actionFetchAllComments,
+  registrationReducer,
+  createCustomerServerApi,
+  actionCreateCustomer,
+  initialState,
+  discountedProductsReducer,
+  personalOfficeReducer,
+  actionDiscountedProducts,
+  actionFetchDiscountedProducts,
+  actionUserInfo, 
+  actionFetchUserInfo, 
+  actionEditInputs,
+  actionFetchUpdateCustomer,
+  actionFetchUpdateCustomerPassword,
+  actionChangePasswordMessage,
+};

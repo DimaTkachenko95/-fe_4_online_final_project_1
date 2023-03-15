@@ -15,6 +15,7 @@ import About from "./pages/About";
 import PersonalOffice from './pages/PersonalOffice';
 import Authorization from './pages/Authorization';
 import './reset.css';
+import ProductComparison from './pages/ProductComparison/ProductComparison';
 
 const App = () => {
 
