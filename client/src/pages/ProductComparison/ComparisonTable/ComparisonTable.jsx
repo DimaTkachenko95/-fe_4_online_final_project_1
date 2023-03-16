@@ -32,7 +32,7 @@ const ComparisonTable = () => {
         <EmptyResult />
       ) : (
         <table className="comparison-table">
-          <thead>
+          <thead class="comparison-table__thead">
             <tr>
               <th className="table_th" />
               {allProd.map((product) => (

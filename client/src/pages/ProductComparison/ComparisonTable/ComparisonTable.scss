@@ -17,7 +17,7 @@
   margin-top: -1px;
 }
 
-table {
+.comparison-table {
   min-width: 345px;
 
   tr > td,
@@ -64,7 +64,7 @@ table {
     }
   }
 
-  thead {
+  .comparison-table__thead {
     width: 100%;
 
     .table_th {
@@ -90,10 +90,10 @@ table {
     margin-left: 220px;
   }
 
-  table {
+  .comparison-table {
     min-width: 482px;
 
-    thead {
+    .comparison-table__thead {
       .table_th {
         min-width: 250px;
         min-height: 250px;
@@ -111,11 +111,11 @@ table {
     margin-left: 220px;
   }
 
-  table {
+  .comparison-table {
     min-width: 996px;
 
-    thead {
-      th {
+    .comparison-table__thead {
+      .table_th {
         min-width: 250px;
         min-height: 250px;
       }
