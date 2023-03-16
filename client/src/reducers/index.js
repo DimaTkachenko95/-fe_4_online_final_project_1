@@ -40,6 +40,7 @@ import productDetailsReducer, {
 } from './productDetails.reducer';
 import registrationReducer, {
   createCustomerServerApi,
+  actionCreateCustomer,
   initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
@@ -49,6 +50,15 @@ import checkoutReducer, {
   actionFetchCreateOrder,
   actionIsOrdered
 } from './checkout.reducer';
+import personalOfficeReducer, {
+    actionUserInfo, 
+    actionFetchUserInfo, 
+    actionEditInputs,
+    actionFetchUpdateCustomer,
+    actionFetchUpdateCustomerPassword,
+    actionChangePasswordMessage,
+    actionFetchAllUserOrders,
+} from "./personalOffice.reducer";
 
 export {
   productsReducer,
@@ -90,8 +100,17 @@ export {
   actionFetchAllComments,
   registrationReducer,
   createCustomerServerApi,
+  actionCreateCustomer,
   initialState,
   discountedProductsReducer,
+  personalOfficeReducer,
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
+  actionUserInfo, 
+  actionFetchUserInfo, 
+  actionEditInputs,
+  actionFetchUpdateCustomer,
+  actionFetchAllUserOrders,
+  actionFetchUpdateCustomerPassword,
+  actionChangePasswordMessage,
 };

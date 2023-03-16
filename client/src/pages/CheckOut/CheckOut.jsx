@@ -18,7 +18,6 @@ const CheckOut = () => {
     const navigate = useNavigate();
     const isOrdered = useSelector(selectorIsOrdered);
     const basketProduct = useSelector(selectorBasketProduct);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,6 +40,7 @@ const CheckOut = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+           
             const products = productBasket.map(product => {
                 return {
                     product,
@@ -48,8 +48,10 @@ const CheckOut = () => {
                     cartQuantity: product.cartQuantity,
                 }
             });
+            console.log(products, 'products')
             const newOrder = {
                 products: products,
+                customerId: '640b45ecb93d4a3c2cea21c4',
                 deliveryAddress: {
                     country: values.country,
                     city: values.city,
@@ -62,7 +64,7 @@ const CheckOut = () => {
                 letterSubject: "Thank you for order! You are welcome!",
                 letterHtml: letterHtml()
             }
-
+            
             dispatch(actionFetchCreateOrder(newOrder, basketProduct));
 
         },
@@ -70,7 +72,7 @@ const CheckOut = () => {
 
     return (
         <>
-            { !isOrdered ?
+    { !isOrdered ? 
                 <Box className="checkout">
                 <Container maxWidth="lg" className="checkout__container">
                     <BreadCrumbs linksArray={[{link: "/basket", text: "Cart"},{link: "/checkout", text: "Checkout"}]}/>
@@ -204,7 +206,7 @@ const CheckOut = () => {
             </Box>
                 :
                 <OrderedSuccessful/>
-            }
+             } 
         </>
     )
 };

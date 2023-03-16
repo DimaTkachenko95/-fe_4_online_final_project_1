@@ -27,8 +27,10 @@ export const {
 
 
 export const actionFetchCreateOrder = (newOrder) =>  (dispatch) => {
+    console.log(newOrder, 'newOrder')
     return axios.post(ORDERS, newOrder)
-        .then(() => {
+        .then((newOrder) => {
+            
             dispatch(actionIsOrdered(true));
             dispatch(actionServerError(false));
         })

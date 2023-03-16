@@ -28,6 +28,7 @@ const Products = () => {
   const serverError = useSelector(selectorServerErrorProducts);
   const pageLoading = useSelector(selectorPageLoading);
   const dispatch = useDispatch();
+  console.log(allProducts)
 
   useEffect(() => {
     if (searchInputValue === '') {
