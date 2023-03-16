@@ -1,7 +1,11 @@
+.categories{
+  margin: 60px auto 0 auto;
+}
+
 .categories__title{
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 20px;
     text-align: center;
     text-transform: uppercase;
@@ -19,8 +23,19 @@
   flex-direction: column;
   align-items: center;
   background-color: #fcf9f9;
+  border: 1px solid #EFEFEF;
+
 }
 
 .categories__list-item-text{
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.categories__list-item-img{
+  height: 180px;
+  width: 300px;
+  object-fit: cover;
 }

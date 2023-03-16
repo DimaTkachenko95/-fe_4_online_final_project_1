@@ -5,30 +5,27 @@ const Categories = () => {
   return(
     <>
     <section className="categories">
-      <p className="categories__title">Categories</p>
+      <h2 className="categories__title">Categories</h2>
       
       <ul className="categories__list">
         <li className="categories__list-item">
           <img 
-          src="https://www.pcspecialist.ie/images/misc/right-laptop.png" 
+          src="https://i.pcmag.com/imagery/roundups/02wkkhUM4TbL4UyW7EfdF0E-9..v1569492695.jpg" 
           alt="Gaming" 
-          width="250px"
           className="categories__list-item-img" />
           <p className="categories__list-item-text">Business</p>
           </li>
         <li className="categories__list-item">
           <img 
-          src="https://www.pcspecialist.ie/images/misc/right-laptop.png" 
+          src="https://i.pcmag.com/imagery/reviews/07FMJxND7Ck3AGe97FaZOek-1..v1640182987.jpg" 
           alt="Gaming" 
-          width="250px"
           className="categories__list-item-img" />
           <p className="categories__list-item-text">Gaming</p>
           </li>
         <li className="categories__list-item">
           <img 
-          src="https://www.pcspecialist.ie/images/misc/right-laptop.png" 
+          src="https://media.product.which.co.uk/prod/images/original/gm-5bb170c4-0894-45e3-b142-6bcd668e3ac3-used-laptopsmain.jpg" 
           alt="Gaming" 
-          width="250px"
           className="categories__list-item-img" />
           <p className="categories__list-item-text">Refurbished</p>
           </li>
