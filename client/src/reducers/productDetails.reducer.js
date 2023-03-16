@@ -4,7 +4,7 @@ import {
     FILTERED_PRODUCTS,
     GET_DETAILS_PRODUCT,
     PRODUCT_ADD_COMMENTS,
-    PRODUCT_COMMENTS
+    PRODUCT_COMMENTS, PRODUCT_DELETE_COMMENT
 } from "../endpoints";
 
 const initialState = {
@@ -79,6 +79,20 @@ export const actionFetchAddComment = newComment => dispatch => {
         .post(PRODUCT_ADD_COMMENTS, newComment)
         .then(({data})=> {
             dispatch(actionAddComment(data));
+            dispatch(actionCommentError(false));
+            dispatch(actionPageLoading(false));
+        })
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionCommentError(true))
+        })
+}
+
+export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
+    dispatch(actionPageLoading(true));
+    return axios
+        .put(`${PRODUCT_ADD_COMMENTS}/${id}`, updateComment)
+        .then(()=> {
             dispatch(actionCommentError(false));
             dispatch(actionPageLoading(false));
         })
