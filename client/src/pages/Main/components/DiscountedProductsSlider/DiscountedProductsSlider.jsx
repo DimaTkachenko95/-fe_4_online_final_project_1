@@ -1,8 +1,8 @@
 import './DiscountedProductsSlider.scss';
-import ProductsSlider from '../ProductsSlider';
+import ProductsSlider from '../../../../components/ProductsSlider';
 import { Container } from "@mui/material";
-import { selectorDiscountedProducts } from "../../selectors";
-import { actionFetchDiscountedProducts } from "../../reducers";
+import { selectorDiscountedProducts } from "../../../../selectors";
+import { actionFetchDiscountedProducts } from "../../../../reducers";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
