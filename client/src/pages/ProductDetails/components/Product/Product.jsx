@@ -4,25 +4,21 @@ import {ReactComponent as Favorites} from "../../../../components/ProductCard/ic
 import './Product.scss';
 import BreadCrumbs from "../../../../components/BreadCrumbs";
 import cx from "classnames";
-import {toggleFavoriteProduct} from "../../../../reducers/favorites.reducer";
-import {toggleScalesProduct} from "../../../../reducers/scales.reducer";
+import {toggleFavoriteProduct, toggleScalesProduct} from "../../../../reducers";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    selectorBasket,
     selectorFavorites,
     selectorIsDetailsProductLoading,
     selectorProduct,
     selectorScales,
 } from "../../../../selectors";
-import {actionAddToBasket} from "../../../../reducers";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import {Link} from "react-router-dom";
-import {ReactComponent as CheckMark} from "../../../../components/ProductCard/icons/check_mark.svg";
 import Comments from "../Comments";
 import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
+import Button from "../../../../components/Button";
+import ByuButton from "../../../../components/ByuButton";
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
@@ -33,7 +29,6 @@ const Product = () => {
     }, []);
 
     const product = useSelector(selectorProduct);
-    const basket = useSelector(selectorBasket);
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const isLoading = useSelector(selectorIsDetailsProductLoading);
@@ -52,13 +47,7 @@ const Product = () => {
         dispatch(toggleScalesProduct(id));
     }
 
-    const addToBasket = item => {
-        dispatch(actionAddToBasket(item));
-    }
-
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
-    const isProductInCart = basket.some(item => item._id === product._id);
-
 
     return (
         <>
@@ -100,9 +89,9 @@ const Product = () => {
                                     { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
                                 </p>
                                 {isMobile &&  (
-                                    <button onClick={toggleShowAll} className="product__desc-button">
+                                    <Button onClick={toggleShowAll} className="product__desc-button">
                                         {showAll ? 'Show Less' : 'Show More'}
-                                    </button>
+                                    </Button>
                                 )}
                             </Box>
                         </Box>
@@ -135,18 +124,7 @@ const Product = () => {
                                 </Box>
                             </Box>
 
-                            {basket.some(item => item.id === product._id) ?
-                                <Link to="/basket">
-                                    <button className="list__item--inbasket "><CheckMark/>
-                                        <span className="list__item--buy--text">In basket</span>
-                                    </button>
-                                </Link>
-                                :
-                                <button onClick={() => addToBasket(product)} className="list__item--buy">
-                                    <ShoppingCartOutlinedIcon/>
-                                    <span className="list__item--buy--text">Buy</span>
-                                </button>
-                            }
+                            <ByuButton product={product}/>
                         </Box>
                     </Box>
 

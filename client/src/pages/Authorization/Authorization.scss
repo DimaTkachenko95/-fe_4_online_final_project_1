@@ -9,9 +9,11 @@
         text-transform: uppercase;
         font-weight: 700;
     }
+
     &__btn {
         justify-self: center;
     }
+
     .login_reminder {
         font-weight: 400;
         font-size: 14px;
@@ -20,6 +22,7 @@
         color: #60B021;
         cursor: pointer;
     }
+
     &__error-notification {
         color: #d72929;
         font-weight: bold;
