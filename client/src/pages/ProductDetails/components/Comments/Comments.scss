@@ -93,7 +93,10 @@
 
   &__comment-action{
     cursor: pointer;
-
+    color: rgb(81, 86, 104);
+    &:hover {
+      color: #4ba123;
+    }
   }
 
   &__comment-text-input{
@@ -103,10 +106,12 @@
   &__comment-text {
     font-family: Ubuntu, sans-serif;
     font-style: normal;
+    width: 400px;
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;
     border: none;
+    padding: 1vh 0 1vh 1vw;
     background-color: white;
 
     &:enabled{

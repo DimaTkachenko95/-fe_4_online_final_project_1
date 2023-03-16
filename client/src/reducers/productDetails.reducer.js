@@ -91,7 +91,7 @@ export const actionFetchAddComment = newComment => dispatch => {
 export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
     dispatch(actionPageLoading(true));
     return axios
-        .put(PRODUCT_COMMENTS.replace(':itemNo', id), {content : updateComment, date: new Date()})
+        .put(`${PRODUCT_COMMENTS}/${id}`, {content : updateComment, date: new Date()})
         .then(()=> {
 
             dispatch(actionCommentError(false));
@@ -106,7 +106,7 @@ export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
 export const actionFetchDeleteComment = (id, itemNo) => dispatch => {
     dispatch(actionPageLoading(true));
     return axios
-        .delete(PRODUCT_COMMENTS.replace(':itemNo', itemNo))
+        .delete(`${PRODUCT_COMMENTS}/${id}`)
         .then(()=> {
             dispatch(actionFetchAllComments(itemNo));
             dispatch(actionCommentError(false));

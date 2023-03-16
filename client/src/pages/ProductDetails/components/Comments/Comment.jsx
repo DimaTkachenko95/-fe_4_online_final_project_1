@@ -3,22 +3,19 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import {useDispatch, useSelector} from "react-redux";
-
 import {useState} from "react";
-import {actionFetchDeleteComment, actionFetchUpdateComment} from "../../../../reducers/productDetails.reducer";
+import {actionFetchDeleteComment, actionFetchUpdateComment} from "../../../../reducers";
 import {selectorUserData} from "../../../../selectors";
+
 const Comment = ({comment, className, itemNo}) => {
-
     const userData = useSelector(selectorUserData);
-
     const dispatch = useDispatch();
-
-    const [isDisabled, setIsDissabled] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(true);
     const [commentValue, setCommentValue] = useState(comment.content);
 
     const updateComment = () => {
         dispatch(actionFetchUpdateComment(commentValue, comment._id));
-        setIsDissabled(true);
+        setIsDisabled(true);
     }
 
     const deleteComment = () => {
@@ -33,7 +30,8 @@ const Comment = ({comment, className, itemNo}) => {
     }
 
     const formattingDate = new Date(comment.date).toLocaleString('en-us',{month:'long', year:'numeric', day:'numeric'})
-  return(
+
+    return(
       <Box className={`product__comment ${className}`}>
           <Box className="product__comment-user-wrapper">
               <p className="product__comment-user">{comment.customer.firstName} {comment.customer.lastName}</p>
@@ -43,7 +41,7 @@ const Comment = ({comment, className, itemNo}) => {
 
           <Box className="product__comment-actions">
               {isSameUser() && <EditIcon className="product__comment-action" onClick={() => {
-                  setIsDissabled(false)
+                  setIsDisabled(false)
               }}/>}
               {isSameUser() && <DeleteIcon className="product__comment-action" onClick={deleteComment}/>}
               {!isDisabled && <DoneIcon className="product__comment-action" onClick={updateComment}/>}

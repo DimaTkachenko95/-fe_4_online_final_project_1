@@ -17,7 +17,6 @@ import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
-import Button from "../../../../components/Button";
 import ByuButton from "../../../../components/ByuButton";
 
 const Product = () => {
@@ -129,7 +128,7 @@ const Product = () => {
                     </Box>
 
                     <Comments/>
-                    {/*<SimilarProducts />*/}
+                    <SimilarProducts />
                 </Container>
             </Box>}
         </>
