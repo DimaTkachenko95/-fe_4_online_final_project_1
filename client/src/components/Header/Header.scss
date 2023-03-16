@@ -213,14 +213,25 @@ body {
         border: none;
         background-color: variables.$white;
       }
+      .user-name {
+        font-family: Ubuntu, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border: 2px solid #d6e3d1;
+        background-color: #d6e3d1;
+        border-radius: 50%;
+        padding: 5px 5px;
+        color: green;
+        //&:hover {
+        //  background-color: rgb(81, 86, 104);
+        //}
+      }
 
       &:first-child {
-        .user-name {
-          font-family: Ubuntu, sans-serif;
-          font-size: 16px;
-          font-weight: bold;
-        }
-
         .action__icon {
           border-right: 1px solid variables.$light-border;
           display: flex;

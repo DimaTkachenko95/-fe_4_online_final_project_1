@@ -28,7 +28,6 @@ const Products = () => {
   const serverError = useSelector(selectorServerErrorProducts);
   const pageLoading = useSelector(selectorPageLoading);
   const dispatch = useDispatch();
-  console.log(allProducts)
 
   useEffect(() => {
     if (searchInputValue === '') {
@@ -62,7 +61,7 @@ const Products = () => {
                   <>
                     <div className="grid-main-list">
                       {allProducts?.map((el, index) => (
-                        <ProductCard el={el} index={index} />
+                        <ProductCard el={el} key={el._id} index={index} />
                       ))}
                     </div>
                     <Paginate />

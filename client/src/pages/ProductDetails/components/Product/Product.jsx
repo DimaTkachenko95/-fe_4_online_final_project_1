@@ -128,7 +128,7 @@ const Product = () => {
                     </Box>
 
                     <Comments/>
-                    <SimilarProducts />
+                    <SimilarProducts id={product._id}/>
                 </Container>
             </Box>}
         </>
