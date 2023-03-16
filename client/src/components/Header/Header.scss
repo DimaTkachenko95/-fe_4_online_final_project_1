@@ -24,7 +24,8 @@ body {
     align-items: center;
 
     @media (max-width: 996px) {
-      grid-template-columns: 4fr 2fr 6fr 1fr 1fr;
+      grid-template-columns: 6fr 4fr  1fr 3fr;
+      grid-template-rows: 1fr 1fr;
     }
   }
 
@@ -51,13 +52,18 @@ body {
   &__input-wrapper {
     margin: 0 auto;
     width: 100%;
+    @media (max-width: 996px) {
+      grid-row-start: 2;
+      grid-column-start: 1;
+      grid-column-end: 5;
+    }
   }
 
   &__input {
     padding: 0.1vw 1vh;
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: calc(100% - 8px);
+    width: 100%;
 
     @media (max-width: 996px) {
       padding: 0 1vh;
@@ -133,7 +139,7 @@ body {
 
       &:last-child {
         .action__icon {
-          border-right: 1px solid #efefef;
+          border-right: 1px solid variables.$light-border;
 
           @media (max-width: 996px) {
             border-right: none;
@@ -173,7 +179,7 @@ body {
       }
 
       &__icon {
-        border-left: 1px solid #efefef;
+        border-left: 1px solid variables.$light-border;
         padding: 2vw;
         border-bottom: 2px solid transparent;
 
@@ -246,6 +252,7 @@ body {
     @media (max-width: 996px) {
       display: block;
       border: none;
+      justify-self: end;
     }
   }
 }
