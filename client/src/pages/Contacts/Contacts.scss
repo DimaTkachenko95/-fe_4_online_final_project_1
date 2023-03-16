@@ -1,3 +1,6 @@
+@use './src/styles/mixins';
+@use 'src/styles/variables';
+
 .all_container {
   display: flex;
   flex-wrap: wrap;
@@ -16,12 +19,12 @@
 
   .link_shop {
     margin-top: 10px;
-    color: #4f9c2c;
+    color: variables.$green;
     text-decoration-line: underline;
   }
 
   .number_point {
-    background: linear-gradient(270deg, #8ee901 0%, #4f9c2c 99.06%);
+    background: variables.$linearGradient;
     border-radius: 100px;
     width: 30px;
     height: 30px;
@@ -43,16 +46,10 @@
   height: 35px;
   font-family: Ubuntu;
   font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 34px;
-  text-transform: uppercase;
-  color: #000;
+  @include mixins.titleStyles;
+  color: variables.$black;
 
   .point_span {
-    background: linear-gradient(270deg, #8ee901 0%, #4f9c2c 99.06%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    @include mixins.liner-gradient-tile;
   }
 }

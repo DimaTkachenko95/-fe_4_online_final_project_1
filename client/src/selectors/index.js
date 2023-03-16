@@ -29,7 +29,7 @@ export const selectorServerErrorCheckout = state => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
-export const selectorProductComp = (state) => state.scales.productDataComp;
+export const selectorProductComparison = (state) => state.scales.productDataComparison;
 export const selectorIsScalesPageLoading = (state) => state.scales.pageLoading;
 export const selectorServerErrorScalesPage = (state) => state.scales.serverError;
 
@@ -45,4 +45,4 @@ export const selectorUserData = (state) => state.logIn.userData;
 export const selectorToken = (state) => state.logIn.token;
 
 // DISCOUNTED PRODUCTS
-export const selectorDiscountedProducts = state => state.discountedProducts.discountedProducts;
+export const selectorDiscountedProducts = (state) => state.discountedProducts.discountedProducts;
