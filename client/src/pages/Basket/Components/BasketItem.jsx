@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Link} from 'react-router-dom';
 
 import {ReactComponent as Delete} from "../icons/003-delete.svg";
@@ -6,7 +6,7 @@ import {ReactComponent as Plus} from "../icons/plus.svg";
 import {ReactComponent as Minus} from "../icons/minus.svg";
 
 import {useSelector, useDispatch} from "react-redux";
-import {selectorBasket, selectorBasketProduct, selectorToken, selectorProducts} from "../../selectors";
+import {selectorBasket, selectorBasketProduct, selectorToken, selectorProducts} from "../../../selectors";
 import {actionDeleteFromBasket, 
         actionIncrease, 
         actionDecraese, 
@@ -14,7 +14,7 @@ import {actionDeleteFromBasket,
         actionDeleteFromAuthBasket,
         actionAddToAuthBasket,
         actionDeleteAllFromAuthBasket
-    } from "../../reducers";
+    } from "../../../reducers";
 
 import "../Basket.scss"
 
@@ -40,7 +40,7 @@ const BasketItems = () => {
        
      dispatch(actionFetchProductByItemNo({itemNos, quantity}))
 
-    }, [basket, products])
+    }, [products, basket])
    
 
     const handlerDeleteFromBasket = (item) => {

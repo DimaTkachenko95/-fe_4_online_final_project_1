@@ -8,16 +8,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss";
 import ByuButton from "../ByuButton";
 
-const ProductCard = ({ el }) => {
+const ProductCard = ({ el, isForOrderedPage }) => {
   const { name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice } = el;
-  const basket = useSelector(selectorBasket);
-  const products = useSelector(selectorProducts);
- // const userProducts = localStorage.getItem("token") ? products : basket;
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const dispatch = useDispatch();
 
-//  const isProductInCart = userProducts.some(item => item.product === _id);
   const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
 

@@ -6,9 +6,8 @@ import styled from "styled-components";
 import "./Basket.scss";
 import {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken } from "../../selectors";
+import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken, selectorIsBasketLoading } from "../../selectors";
 import {actionFetchAddUserCart, actionGetCart} from "../../reducers";
-import Button from "../../components/Button/";
 import BreadCrumbs from '../../components/BreadCrumbs';
 import Preloader from "../../components/Preloader";
 
@@ -42,7 +41,7 @@ const Basket = () => {
             dispatch(actionGetCart())
           }
         }
-      }, []);
+      }, [token]);
 
     return (
 
@@ -51,19 +50,19 @@ const Basket = () => {
             <BreadCrumbs linksArray={[{ link: '/basket', text: 'Shopping Cart' }]} />
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {!basketProduct && !basketProduct.length <= 1 ? 
-                <EmptyBasket/> :
+                <EmptyResult/> :
                 <>
                     <div className="basket__box">
                         <div className="basket__item">
                             <table className="basket__table">
                                 <thead className="table_title">
                                 <tr>
-                                    <th>Photo</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>quantity</th>
-                                    <th>total</th>
-                                    <th colSpan={2}></th>
+                                    <th className="table_title__header">Photo</th>
+                                    <th className="table_title__header">Name</th>
+                                    <th className="table_title__header">Price</th>
+                                    <th className="table_title__header">quantity</th>
+                                    <th className="table_title__header">total</th>
+                                    <th className="table_title__header" colSpan={2}></th>
                                 </tr>
                                 </thead>
                                 <tbody>
