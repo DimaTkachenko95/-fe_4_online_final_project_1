@@ -51,11 +51,12 @@ body {
 
   &__input-wrapper {
     margin: 0 auto;
-    width: 100%;
+    width: calc(100% - 12px);
     @media (max-width: 996px) {
       grid-row-start: 2;
       grid-column-start: 1;
       grid-column-end: 5;
+      width: 100%;
     }
   }
 

@@ -11,7 +11,16 @@
     row-gap: 30px;
 
     @media (max-width: 566px) {
-      grid-template-rows: 1fr 3fr 5fr;
+      grid-template-rows: 1fr 3fr 2fr;
+    }
+
+    @media (max-width: 566px) {
+      grid-template-rows: 1fr 3fr 2fr;
+    }
+
+    @media (max-width: 450px) {
+      display: flex;
+      flex-direction: column;
     }
 
     &--mobile {
@@ -61,6 +70,11 @@
     @media (max-width: 550px) {
       max-height: 220px;
     }
+
+    @media (max-width: 450px) {
+      max-height: none;
+    }
+
   }
 
   &__image {
@@ -135,6 +149,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    @media (max-width: 450px) {
+      margin-bottom: 20px;
+    }
   }
 
   &__price-wrapper {
