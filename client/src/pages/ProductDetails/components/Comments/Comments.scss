@@ -16,6 +16,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+
+    @media (max-width: 710px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   &__comment {

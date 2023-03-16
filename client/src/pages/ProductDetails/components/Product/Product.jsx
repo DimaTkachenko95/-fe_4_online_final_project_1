@@ -129,7 +129,7 @@ const Product = () => {
                     </Box>
 
                     <Comments/>
-                    <SimilarProducts />
+                    {/*<SimilarProducts />*/}
                 </Container>
             </Box>}
         </>
