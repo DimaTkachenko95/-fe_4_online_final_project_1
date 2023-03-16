@@ -46,7 +46,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, []);
+  }, );
 
   useEffect(() => {
     setAuthToken(authToken)
@@ -87,7 +87,7 @@ const closeModalAuth = () => {
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list">
+                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"

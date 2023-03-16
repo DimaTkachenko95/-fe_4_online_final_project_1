@@ -89,9 +89,9 @@ const Product = () => {
                                     { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
                                 </p>
                                 {isMobile &&  (
-                                    <Button onClick={toggleShowAll} className="product__desc-button">
+                                    <button onClick={toggleShowAll} className="product__desc-button">
                                         {showAll ? 'Show Less' : 'Show More'}
-                                    </Button>
+                                    </button>
                                 )}
                             </Box>
                         </Box>
