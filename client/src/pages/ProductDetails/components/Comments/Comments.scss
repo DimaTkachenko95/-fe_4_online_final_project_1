@@ -22,6 +22,10 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+
+    @media (max-width: 450px) {
+      flex-direction: column;
+    }
   }
 
   &__comment {
@@ -111,6 +115,10 @@
   .comments__show-more-btn{
     grid-column-start: 2;
     justify-self: end;
+
+    @media (max-width: 450px) {
+      align-self: flex-end;
+    }
   }
 }
 
