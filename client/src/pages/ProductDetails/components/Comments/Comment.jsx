@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {actionFetchDeleteComment, actionFetchUpdateComment} from "../../../../reducers/productDetails.reducer";
 import {selectorUserData} from "../../../../selectors";
-const Comment = ({comment, className}) => {
+const Comment = ({comment, className, itemNo}) => {
 
     const userData = useSelector(selectorUserData);
 
@@ -22,7 +22,7 @@ const Comment = ({comment, className}) => {
     }
 
     const deleteComment = () => {
-        dispatch(actionFetchDeleteComment(comment._id));
+        dispatch(actionFetchDeleteComment(comment._id, itemNo));
     }
 
     const isSameUser = () => {
@@ -37,6 +37,7 @@ const Comment = ({comment, className}) => {
       <Box className={`product__comment ${className}`}>
           <Box className="product__comment-user-wrapper">
               <p className="product__comment-user">{comment.customer.firstName} {comment.customer.lastName}</p>
+              <span>&nbsp; / &nbsp;</span>
               <p className="product__comment-date">{formattingDate}</p>
           </Box>
 
@@ -48,12 +49,13 @@ const Comment = ({comment, className}) => {
               {!isDisabled && <DoneIcon className="product__comment-action" onClick={updateComment}/>}
           </Box>
 
-          <Box className="product__comment-text">
+          <Box className="product__comment-text-wrapper">
               <input type="text"
                      value={commentValue}
                      onChange={(e) => { setCommentValue(e.target.value)} }
                      className="product__comment-text"
                      disabled={isDisabled} />
+
           </Box>
       </Box>
   )

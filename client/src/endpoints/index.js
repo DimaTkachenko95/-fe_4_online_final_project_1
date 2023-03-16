@@ -10,8 +10,8 @@ export const UPDATE_FILTERS = `/filters/:id`;
 export const GET_FILTERS_BY_TYPE = `/filters/:type`;
 
 export const GET_DETAILS_PRODUCT = `/products/:itemNo`;
-export const PRODUCT_COMMENTS = `/comments/product/:itemNo`;
-export const PRODUCT_ADD_COMMENTS = `/comments`;
+export const GET_PRODUCT_COMMENTS = `/comments/product/:itemNo`;
+export const PRODUCT_COMMENTS = `/comments/:itemNo`;
 
 
 export const REGISTER_USER = `/customers`;

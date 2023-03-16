@@ -16,7 +16,7 @@ const Comments = () => {
 
     useEffect(() => {
         dispatch(actionFetchAllComments(product.itemNo));
-    }, [product,comments]);
+    }, [product]);
 
     const [isMoreComments, setIsMoreComments] = useState(false);
     const handleReviewChange = (event) => {
@@ -40,6 +40,7 @@ const Comments = () => {
             handleSubmit(event);
         }
     }
+
 
     return (
         <>
@@ -71,17 +72,18 @@ const Comments = () => {
 
                     <Box className="comments">
                         {comments?.map((comment, index) => {
-                            return (<Comment comment={comment} key={index} className={isMoreComments && "more-active"}/>)
+                            return (<Comment comment={comment} key={index} className={isMoreComments && "more-active"} itemNo={product._id}/>)
                         })}
 
                         {comments.length === 0 && <p>There are currently no reviews for this product.</p>}
-                        {comments.length > 4 && <Button
-                            type="button"
-                            width="180px"
-                            className="comments__show-more-btn"
-                            text={isMoreComments ? "Show less" : "Show more"}
-                            onClick={() => setIsMoreComments(!isMoreComments)} />}
+
                     </Box>
+                    {comments.length > 4 && <Button
+                        type="button"
+                        width="180px"
+                        className="comments__show-more-btn"
+                        text={isMoreComments ? "Show less" : "Show more"}
+                        onClick={() => setIsMoreComments(!isMoreComments)} />}
                 </Box>
             </Box>
         </>
