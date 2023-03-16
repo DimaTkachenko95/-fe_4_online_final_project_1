@@ -12,7 +12,7 @@ export const GET_FILTERS_BY_TYPE = `/filters/:type`;
 export const GET_DETAILS_PRODUCT = `/products/:itemNo`;
 export const PRODUCT_COMMENTS = `/comments/product/:itemNo`;
 export const PRODUCT_ADD_COMMENTS = `/comments`;
-export const PRODUCT_DELETE_COMMENT = `/comments`;
+
 
 export const REGISTER_USER = `/customers`;
 export const LOGIN_USER = `/customers/login`;

@@ -4,7 +4,7 @@ import {
     FILTERED_PRODUCTS,
     GET_DETAILS_PRODUCT,
     PRODUCT_ADD_COMMENTS,
-    PRODUCT_COMMENTS, PRODUCT_DELETE_COMMENT
+    PRODUCT_COMMENTS
 } from "../endpoints";
 
 const initialState = {
@@ -91,8 +91,24 @@ export const actionFetchAddComment = newComment => dispatch => {
 export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
     dispatch(actionPageLoading(true));
     return axios
-        .put(`${PRODUCT_ADD_COMMENTS}/${id}`, updateComment)
+        .put(`${PRODUCT_ADD_COMMENTS}/${id}`, {content : updateComment})
         .then(()=> {
+
+            dispatch(actionCommentError(false));
+            dispatch(actionPageLoading(false));
+        })
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionCommentError(true))
+        })
+}
+
+export const actionFetchDeleteComment = (id) => dispatch => {
+    dispatch(actionPageLoading(true));
+    return axios
+        .delete(`${PRODUCT_ADD_COMMENTS}/${id}`)
+        .then(()=> {
+
             dispatch(actionCommentError(false));
             dispatch(actionPageLoading(false));
         })

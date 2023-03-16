@@ -2,12 +2,14 @@ import {Box} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {useState} from "react";
-import {actionFetchUpdateComment} from "../../../../reducers/productDetails.reducer";
+import {actionFetchDeleteComment, actionFetchUpdateComment} from "../../../../reducers/productDetails.reducer";
+import {selectorUserData} from "../../../../selectors";
 const Comment = ({comment, className}) => {
 
+    const userData = useSelector(selectorUserData);
 
     const dispatch = useDispatch();
 
@@ -16,6 +18,18 @@ const Comment = ({comment, className}) => {
 
     const updateComment = () => {
         dispatch(actionFetchUpdateComment(commentValue, comment._id));
+        setIsDissabled(true);
+    }
+
+    const deleteComment = () => {
+        dispatch(actionFetchDeleteComment(comment._id));
+    }
+
+    const isSameUser = () => {
+        const userId = userData._id;
+        const commentUserId = comment.customer._id;
+
+        return userId === commentUserId;
     }
 
   return(
@@ -25,7 +39,10 @@ const Comment = ({comment, className}) => {
           </Box>
 
           <Box className="product__comment-actions">
-              <EditIcon className="product__comment-action" onClick={() => { setIsDissabled(false)} }/>
+              {isSameUser() && <EditIcon className="product__comment-action" onClick={() => {
+                  setIsDissabled(false)
+              }}/>}
+              {isSameUser() && <DeleteIcon className="product__comment-action" onClick={deleteComment}/>}
               {!isDisabled && <DoneIcon className="product__comment-action" onClick={updateComment}/>}
           </Box>
 
