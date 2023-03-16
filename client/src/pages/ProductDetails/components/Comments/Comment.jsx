@@ -32,10 +32,12 @@ const Comment = ({comment, className}) => {
         return userId === commentUserId;
     }
 
+    const formattingDate = new Date(comment.date).toLocaleString('en-us',{month:'long', year:'numeric', day:'numeric'})
   return(
       <Box className={`product__comment ${className}`}>
           <Box className="product__comment-user-wrapper">
               <p className="product__comment-user">{comment.customer.firstName} {comment.customer.lastName}</p>
+              <p className="product__comment-date">{formattingDate}</p>
           </Box>
 
           <Box className="product__comment-actions">

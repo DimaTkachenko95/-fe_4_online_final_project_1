@@ -28,6 +28,7 @@ const Comments = () => {
         const data = {
             product: product.itemNo,
             content: review,
+            date: new Date()
         }
         dispatch(actionFetchAddComment(data));
         setReview('');

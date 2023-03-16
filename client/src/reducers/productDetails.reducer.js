@@ -91,7 +91,7 @@ export const actionFetchAddComment = newComment => dispatch => {
 export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
     dispatch(actionPageLoading(true));
     return axios
-        .put(`${PRODUCT_ADD_COMMENTS}/${id}`, {content : updateComment})
+        .put(`${PRODUCT_ADD_COMMENTS}/${id}`, {content : updateComment, date: new Date()})
         .then(()=> {
 
             dispatch(actionCommentError(false));
