@@ -1,4 +1,4 @@
-import {Box, Container} from '@mui/material';
+import {Box, Container, SliderThumb} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
 import './Product.scss';
@@ -19,6 +19,10 @@ import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
 import Button from "../../../../components/Button";
 import ByuButton from "../../../../components/ByuButton";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
@@ -65,9 +69,40 @@ const Product = () => {
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
                         <Box className="product__image-wrapper">
-                            <img
-                                src={product.imageUrls[0]}
-                                alt="laptop" className="product__image"/>
+                        <Swiper 
+                                loop = {true}
+                                spaceBetween = {10}
+                                slidesPerView = {4}
+                                // modules = {[Navigator, SliderThumb]}
+                                className = 'product__image-slide-thumb'
+                            >
+                                {
+                                    product.imageUrls.map((item, index) => (
+                                        <SwiperSlide key={index}>
+                                            <div className='product__image-slide-thumb--wrapper'>
+                                                <img height='50px' width="50px" src={item} alt="laptop"/>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                            <Swiper 
+                                loop = {true}
+                                spaceBetween = {10}
+                                navigation = {true}
+                                // modules = {[Navigator, SliderThumb]}
+                                grabCursor = {true}
+                                className = 'product__image'
+                            >
+                                {
+                                    product.imageUrls.map((item, index) => (
+                                        <SwiperSlide key={index}>
+                                            <img height='300px' src={item} alt="laptop"/>
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                            
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
