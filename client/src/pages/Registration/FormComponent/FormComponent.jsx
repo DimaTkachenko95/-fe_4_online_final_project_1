@@ -11,7 +11,6 @@ import { createCustomerServerApi } from '../../../helpers/createNewCustomer';
 import Button from '../../../components/Button';
 import Preloader from '../../../components/Preloader';
 import ModalSuccessRegistration from './../ModalSuccessRegistration';
-import ServerError from '../../../components/Notifications/ServerError';
 import RegistrationError from '../RegistrationError';
 
 const initialState = {
@@ -217,7 +216,10 @@ const FormComponent = () => {
           }}
         </Formik>
       ) : (
-        <RegistrationError />
+        <>
+          <Preloader open={setLoading} />
+          <RegistrationError />
+        </>
       )}
       {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
     </>
