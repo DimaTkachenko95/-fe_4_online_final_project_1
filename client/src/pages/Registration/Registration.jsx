@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import initialState from '../../reducers/registration.reducer';
-import { actionCreateCustomer } from '../../reducers';
+import { createCustomerServerApi } from '../../reducers';
 /* import FormComponent from './FormComponent/FormComponent'; */
 import FormRegistration from '../../components/FormRegistration';
 
@@ -23,7 +23,7 @@ const Registration = () => {
                   initialValues={initialState} 
                   onSubmit={(values, { resetForm }) => {
                       console.log(values)
-                      dispatch(actionCreateCustomer(values));
+                      dispatch(createCustomerServerApi(values));
                       resetForm();
                   }} 
                   inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "gender", "avatarUrl"]}/>

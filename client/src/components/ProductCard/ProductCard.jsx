@@ -10,7 +10,6 @@ import ByuButton from "../ByuButton";
 
 const ProductCard = ({el, isForOrderedPage}) => {
     const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity} = el;
-    console.log(quantity>0)
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const ProductCard = ({el, isForOrderedPage}) => {
                 <div>
                     <div className="list__item--img">
                         <Link to={`/products/${itemNo}`}>
-                            <img className="list__item--img--laptop" src={imageUrls[0]} alt={name}/>
+                            <img className="list__item--img--laptop" src={imageUrls[0]} alt={name}/> 
                         </Link>
                     </div>
 

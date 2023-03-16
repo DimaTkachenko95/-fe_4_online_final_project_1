@@ -5,21 +5,14 @@ import FormRegistration from "../../../../components/FormRegistration";
 import { actionFetchUserInfo, actionFetchUpdateCustomer } from "../../../../reducers";
 import { useEffect } from "react";
 
-
-
-
-
  const UserData = () => {
-
      const userInfo = useSelector(selectorUserInfo)
      const inputsEditName = useSelector(selectorEditInputs)
      const dispatch = useDispatch()
     
-   
      useEffect(()=>{
       dispatch(actionFetchUserInfo()) 
      },[])
-
 
     return(
       <>

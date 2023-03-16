@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { GET_USER } from "../endpoints";
+import { GET_USER, ORDERS } from "../endpoints";
 
 const initialState = {
     userInfo: null,
@@ -10,6 +10,7 @@ const initialState = {
     },
     changePasswordMessage: '',
     pageLoading: false,
+    allUserOrders: [],
 }
 
 const personalOfficeSlice = createSlice({
@@ -20,11 +21,13 @@ const personalOfficeSlice = createSlice({
             state.userInfo = {...payload}
         },
         actionEditInputs: (state, { payload }) => {
-            state.editInputs = []
-            state.editInputs.push(payload)
+            state.editInputs = [payload]
         },
         actionChangePasswordMessage: (state, { payload }) => {
             state.changePasswordMessage = payload
+        },
+        actionAllUserOrders: (state, {payload}) => {
+            state.allUserOrders = payload
         },
         actionPageLoading: (state, {payload}) => {
             state.pageLoading = payload
@@ -32,7 +35,7 @@ const personalOfficeSlice = createSlice({
     }
 })
 
-export const { actionUserInfo, actionEditInputs, actionChangePasswordMessage, actionPageLoading } = personalOfficeSlice.actions
+export const { actionUserInfo, actionEditInputs, actionChangePasswordMessage, actionPageLoading, actionAllUserOrders } = personalOfficeSlice.actions
 
 export const actionFetchUserInfo = () => (dispatch) => {
     dispatch(actionPageLoading(true))
@@ -70,6 +73,18 @@ export const actionFetchUpdateCustomerPassword = (userPasswordObj) => (dispatch)
             dispatch(actionPageLoading(false))
        })
         .catch(err => console.log(err) )
+}
+
+export const actionFetchAllUserOrders = () => (dispatch) => {
+   return axios
+  .get(ORDERS)
+  .then(orders => {
+    dispatch(actionAllUserOrders(orders.data))
+   console.log(orders.data,'all')
+  })
+  .catch(err => {
+    /*Do something with error, e.g. show error to user*/
+  });
 }
 
 export default personalOfficeSlice.reducer 

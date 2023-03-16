@@ -31,8 +31,9 @@ const App = () => {
                     <Route path="/about" element={<About/>}/>
                     <Route path="/basket" element={ <Basket/> }/>
                     <Route path="/favorites" element={ <Favorites/> }/>
-                    <Route path="/check-out" element={ <CheckOut/> }/>
+                    <Route path="/checkout" element={ <CheckOut/> }/>
                     <Route path="/registration" element={ <Registration/> }/>
+                    <Route path="/comparison" element={<ProductComparison />} />
                     <Route path="/personal-office" element={ <PersonalOffice/> }/>
                     <Route path="/authorization" element={ <Authorization/> }/>
                     <Route path="/*" element={ <NotFound/> }/>

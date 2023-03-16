@@ -7,6 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import {useState} from 'react';
 import { useSelector } from "react-redux";
 import UserData from "./components/UserData";  
+import AllUserOrders from "./components/AllUserOrders";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ChangePassword from "./components/ChangePassword";
 import { selectorPageLoadingPersonalOffice } from "../../selectors";
@@ -46,7 +47,7 @@ const PersonalOffice = () => {
                 </Box>
                 <TabPanel className="tab-panel" value="1"><UserData/></TabPanel>
                 <TabPanel className="tab-panel" value="2"><ChangePassword/></TabPanel>
-                <TabPanel className="tab-panel" value="3">some</TabPanel>
+                <TabPanel className="tab-panel" value="3"><AllUserOrders/></TabPanel>
             </TabContext>
 
         </Container>

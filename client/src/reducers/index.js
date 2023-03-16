@@ -57,6 +57,7 @@ import personalOfficeReducer, {
     actionFetchUpdateCustomer,
     actionFetchUpdateCustomerPassword,
     actionChangePasswordMessage,
+    actionFetchAllUserOrders,
 } from "./personalOffice.reducer";
 
 export {
@@ -109,6 +110,7 @@ export {
   actionFetchUserInfo, 
   actionEditInputs,
   actionFetchUpdateCustomer,
+  actionFetchAllUserOrders,
   actionFetchUpdateCustomerPassword,
   actionChangePasswordMessage,
 };
