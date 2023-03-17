@@ -1,8 +1,6 @@
-import './ProductDetails.scss';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-
 import Product from "./components/Product";
 import { actionFetchOneProduct} from "../../reducers";
 import { selectorServerErrorProductDetails } from "../../selectors";

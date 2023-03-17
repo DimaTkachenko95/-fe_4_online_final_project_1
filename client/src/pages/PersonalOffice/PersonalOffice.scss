@@ -1,3 +1,5 @@
+@use './src/styles/mixins';
+
 @mixin font-ofice {
     font-family: 'Ubuntu';
     font-style: normal;
@@ -13,13 +15,12 @@
 
 
 .header-personal-office {
-    @include font-ofice;
-    color: #60b021;
+  @include mixins.titleStyles;
+  padding-bottom: 30px;
 
-    &__span {
-        @include font-ofice;
-        color: #000000;
-    }
+  .title_contrast {
+    @include mixins.liner-gradient-tile;
+  }
 }
 
  .MuiTabs-flexContainer{
@@ -28,4 +29,4 @@
     align-items: end;
     width: 100%;
 
-} 
+}

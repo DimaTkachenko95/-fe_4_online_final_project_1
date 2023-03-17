@@ -13,7 +13,6 @@ import { validationSchema } from "./validationShema";
 import {letterHtml} from "../Authorization/letterHtml";
 
 const CheckOut = () => {
-
     const productBasket = useSelector(selectorBasketProduct);
     const navigate = useNavigate();
     const isOrdered = useSelector(selectorIsOrdered);
@@ -40,7 +39,7 @@ const CheckOut = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-           
+
             const products = productBasket.map(product => {
                 return {
                     product,
@@ -48,7 +47,7 @@ const CheckOut = () => {
                     cartQuantity: product.cartQuantity,
                 }
             });
-            console.log(products, 'products')
+
             const newOrder = {
                 products: products,
                 customerId: '640b45ecb93d4a3c2cea21c4',
@@ -64,7 +63,7 @@ const CheckOut = () => {
                 letterSubject: "Thank you for order! You are welcome!",
                 letterHtml: letterHtml()
             }
-            
+
             dispatch(actionFetchCreateOrder(newOrder, basketProduct));
 
         },
@@ -72,11 +71,11 @@ const CheckOut = () => {
 
     return (
         <>
-    { !isOrdered ? 
+    { !isOrdered ?
                 <Box className="checkout">
                 <Container maxWidth="lg" className="checkout__container">
                     <BreadCrumbs linksArray={[{link: "/basket", text: "Cart"},{link: "/checkout", text: "Checkout"}]}/>
-                    <h3 className="checkout__title">Checkout</h3>
+                    <h3 className="checkout__title">Check<span className="title_contrast">out</span></h3>
                     <form onSubmit={formik.handleSubmit} className="checkout__form">
 
                         <TextField
@@ -184,7 +183,6 @@ const CheckOut = () => {
                             color="success"
                         />
 
-
                         <TextField
                             className="checkout__input"
                             label="Postal code"
@@ -206,7 +204,7 @@ const CheckOut = () => {
             </Box>
                 :
                 <OrderedSuccessful/>
-             } 
+             }
         </>
     )
 };

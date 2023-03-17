@@ -57,7 +57,7 @@ const BasketItems = () => {
                 <p className="vendor">{item.brand}</p>
             </td>
 
-            <td className="product_price">{item.currentPrice.toLocaleString()} USD</td>
+            <td className="product_price">{item.currentPrice.toLocaleString()} $</td>
 
             <td className="quantity">
                 <div>
@@ -68,7 +68,7 @@ const BasketItems = () => {
                 </div>
             </td>
 
-            <td className="product_total">{(item.cartQuantity * item.currentPrice).toLocaleString()} USD</td>
+            <td className="product_total">{(item.cartQuantity * item.currentPrice).toLocaleString()} $</td>
 
             <td className="delete_box">
                 <Delete className="delete_btn" onClick={() => handlerDeleteFromBasket(item)}/>

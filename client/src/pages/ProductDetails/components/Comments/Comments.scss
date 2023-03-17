@@ -63,26 +63,13 @@
     width: fit-content;
   }
 
-  &__comment-user {
-    font-family: Ubuntu, sans-serif;
-    font-style: normal;
+  &__comment-info {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 16px;
     color: #75758A;
     text-transform: uppercase;
 
-  }
-
-  &__comment-date {
-    font-family: Ubuntu, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: #75758A;
-    text-transform: uppercase;
-    grid-row-start: 2;
   }
 
   &__comment-actions{
@@ -97,10 +84,6 @@
     &:hover {
       color: #4ba123;
     }
-  }
-
-  &__comment-text-input{
-
   }
 
   &__comment-text {
