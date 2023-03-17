@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actionEditInputs } from '../../reducers';
 import Button from '../Button';
+import PasswordInput from './components/PasswordInput';
 
 import EditButton from './components/EditButton';
 
@@ -119,74 +120,19 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                   />
 
                   {!withPassword &&
-                    <FormikControl
-                      sx={[!inputsEditName.includes("password") && {
-                        "& fieldset": { border: 'none' }
-                      }]}
-                      htmlFor="outlined-adornment-password"
-                      label="Password"
-                      variant="outlined"
-                      control="input"
-                      color="success"
-                      className="form-registration__input"
-                      name="password"
-                      placeholder="Enter your password"
-                      id="outlined-adornment-password"
-                      required
-                      type={showPassword ? 'text' : 'password'}
-                      disabled={!inputsEditName.includes("password")}
-                      InputProps={{
-                        endAdornment: (
-                          <>
-                            <InputAdornment position="end">
-                              <IconButton
-                                disabled={!inputsEditName.includes("password")}
-                                aria-label="toggle password visibility"
-                                onClick={()=>setShowPassword(!showPassword)}
-                                onMouseDown={(e)=>e.preventDefault()}
-                                edge="end"
-                              >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                              </IconButton>
-                              {btnEdit &&
-
-                                <EditButton dataName={"password"} onClick={() => dispatch(actionEditInputs("password"))} />
-                              }
-                            </InputAdornment>
-                          </>
-                        ),
-                      }}
-                    />
+                  <PasswordInput name={"password"} 
+                                 placeholder={"Enter your password"} 
+                                 showPassword={showPassword} 
+                                 onClick={()=>setShowPassword(!showPassword)}
+                                 onMouseDown={(e)=>e.preventDefault()} />
                   }
                    {!withPassword &&
-                    <FormikControl
-                      htmlFor="outlined-adornment-password"
-                      label="Confirm password"
-                      variant="outlined"
-                      control="input"
-                      color="success"
-                      className="form-registration__input"
-                      name="confirmPassword"
-                      placeholder="Confirm your password"
-                      id="outlined-adornment-password"
-                      required
-                      type={showRepeatPassword ? 'text' : 'password'}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={()=>setShowRepeatPassword(!showRepeatPassword)}
-                              onMouseDown={(e)=>e.preventDefault()}
-                              edge="end"
-                            >
-                              {showRepeatPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-        }
+                  <PasswordInput name={"confirmPassword"} 
+                                 placeholder={"Confirm password"} 
+                                 showPassword={showRepeatPassword} 
+                                 onClick={()=>setShowRepeatPassword(!showRepeatPassword)}
+                                 onMouseDown={(e)=>e.preventDefault()} />
+                   }
 
                   <FormikControl
                     sx={[!inputsEditName.includes("telephone") && {
