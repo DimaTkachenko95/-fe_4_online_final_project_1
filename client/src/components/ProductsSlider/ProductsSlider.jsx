@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Container } from "@mui/material";
 import ProductCard from "../ProductCard";
@@ -7,8 +7,8 @@ import "./ProductsSlider.scss"
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const ProductsSlider = ({ products }) => {
-  
+const ProductsSlider = ({ products, isForOrderedPage }) => {
+
   const NextArrow = ({ className, onClick }) => {
     return (
       <div className={className} onClick={onClick}>
@@ -17,7 +17,7 @@ const ProductsSlider = ({ products }) => {
     );
   }
 
-  const PrevArrow = ({ className, onClick }) => {
+  const PrevArrow = ({ className, onClick}) => {
     return (
       <div className={className} onClick={onClick}>
         <NavigateBeforeIcon style={{color: 'black'}}/>
@@ -63,8 +63,8 @@ const ProductsSlider = ({ products }) => {
       <Slider {...settings}>
         {products?.map((el, index) => {
           return (
-            <div className="products-slider__slider-item">
-              <ProductCard el={el} index={index} key={index}
+            <div key={index} className="products-slider__slider-item">
+              <ProductCard el={el} index={index} isForOrderedPage={isForOrderedPage}
               />
             </div>
           )

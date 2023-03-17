@@ -41,7 +41,8 @@ export const actionFetchLogin = (userData) => (dispatch) => {
         .then(({ data }) => {
             dispatch(actionError(null))
             dispatch(actionToken(data.token))
-            setAuthToken(data.token)
+            console.log(data.token)
+            setAuthToken(data.token )
         })
         .catch((err) => {
             if (err.response.status === 404) {

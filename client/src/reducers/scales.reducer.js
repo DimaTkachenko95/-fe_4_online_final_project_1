@@ -4,9 +4,9 @@ import { GET_DETAILS_PRODUCT } from '../endpoints';
 
 const initialState = {
   scales: JSON.parse(localStorage.getItem('scales')) || [],
-  productDataComp: [],
+  productDataComparison: [],
   pageLoading: false,
-  serverError: null
+  serverError: null,
 };
 
 const scalesSlice = createSlice({
@@ -22,7 +22,7 @@ const scalesSlice = createSlice({
       localStorage.setItem('scales', JSON.stringify([...state.scales]));
     },
     actionScalesProduct: (state, { payload }) => {
-      state.productDataComp = [...payload];
+      state.productDataComparison = [...payload];
     },
     actionPageLoading: (state, { payload }) => {
       state.pageLoading = payload;
@@ -37,9 +37,8 @@ export const {
   actionDeleteFromScales,
   actionScalesProduct,
   actionPageLoading,
-  actionServerError
-} =
-  scalesSlice.actions;
+  actionServerError,
+} = scalesSlice.actions;
 
 export const toggleScalesProduct = (id) => (dispatch, getState) => {
   const state = getState();

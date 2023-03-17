@@ -45,12 +45,14 @@ import logInReducer, {
 import productDetailsReducer, {
   actionFetchOneProduct,
   actionFetchAddComment,
-  actionFetchAllComments
+  actionFetchAllComments,
+  actionFetchDeleteComment,
+  actionFetchUpdateComment
 } from './productDetails.reducer';
 import registrationReducer, {
   createCustomerServerApi,
-  initialState 
-} from './registration.reducer';
+  actionCreateCustomer,
+  initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
@@ -59,7 +61,17 @@ import checkoutReducer, {
   actionFetchCreateOrder,
   actionIsOrdered
 } from './checkout.reducer';
-export{
+import personalOfficeReducer, {
+    actionUserInfo, 
+    actionFetchUserInfo, 
+    actionEditInputs,
+    actionFetchUpdateCustomer,
+    actionFetchUpdateCustomerPassword,
+    actionChangePasswordMessage,
+    actionFetchAllUserOrders,
+} from "./personalOffice.reducer";
+
+export {
   productsReducer,
   actionFetchAllProducts,
   actionProductsQuantity,
@@ -103,13 +115,24 @@ export{
   actionFetchOneProduct,
   actionFetchAddComment,
   actionFetchAllComments,
-  registrationReducer, 
+  actionFetchDeleteComment,
+  actionFetchUpdateComment,
+  registrationReducer,
   createCustomerServerApi,
+  actionCreateCustomer,
   initialState,
-  discountedProductsReducer, 
+  discountedProductsReducer,
+  personalOfficeReducer,
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
-  checkoutReducer,
+  actionUserInfo, 
+  actionFetchUserInfo, 
+  actionEditInputs,
+  actionFetchUpdateCustomer,
+  actionFetchAllUserOrders,
+  actionFetchUpdateCustomerPassword,
+  actionChangePasswordMessage,
+  checkoutReducer, 
   actionFetchCreateOrder,
   actionIsOrdered
-}
+};

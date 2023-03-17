@@ -10,7 +10,8 @@ import {
     productDetailsReducer,
     registrationReducer,
     discountedProductsReducer,
-    checkoutReducer
+    checkoutReducer,
+    personalOfficeReducer
 } from "../reducers";
 
 
@@ -25,6 +26,7 @@ const store = configureStore({
         registration: registrationReducer,
         discountedProducts: discountedProductsReducer,
         checkout: checkoutReducer,
+        personalOffice: personalOfficeReducer,
     }
     /*  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger,thunk) */
 })

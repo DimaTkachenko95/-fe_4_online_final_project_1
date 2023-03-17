@@ -17,22 +17,22 @@
   margin-top: -1px;
 }
 
-table {
+.comparison-table {
   min-width: 345px;
 
   tr > td,
-  tr > th {
+  tr > .table_th {
     padding-right: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
   }
 
-  th {
+  .table_th {
     border-bottom: 1px solid variables.$light-border;
   }
 
-  th[scope='row'] {
+  .table_th[scope='row'] {
     max-width: 150px;
     color: variables.$border;
     text-align: left;
@@ -64,10 +64,10 @@ table {
     }
   }
 
-  thead {
+  .comparison-table__thead {
     width: 100%;
 
-    th {
+    .table_th {
       color: variables.$black;
       font-weight: 700;
       font-size: 14px;
@@ -78,7 +78,7 @@ table {
   }
 }
 
-.thead-default th {
+.thead-default .table_th {
 }
 
 @media (min-width: 482px) and (max-width: 995.9px) {
@@ -90,11 +90,11 @@ table {
     margin-left: 220px;
   }
 
-  table {
+  .comparison-table {
     min-width: 482px;
 
-    thead {
-      th {
+    .comparison-table__thead {
+      .table_th {
         min-width: 250px;
         min-height: 250px;
       }
@@ -111,11 +111,11 @@ table {
     margin-left: 220px;
   }
 
-  table {
+  .comparison-table {
     min-width: 996px;
 
-    thead {
-      th {
+    .comparison-table__thead {
+      .table_th {
         min-width: 250px;
         min-height: 250px;
       }

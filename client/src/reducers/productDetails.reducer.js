@@ -3,8 +3,8 @@ import axios from "axios";
 import {
     FILTERED_PRODUCTS,
     GET_DETAILS_PRODUCT,
-    PRODUCT_ADD_COMMENTS,
-    PRODUCT_COMMENTS
+    PRODUCT_COMMENTS,
+    GET_PRODUCT_COMMENTS
 } from "../endpoints";
 
 const initialState = {
@@ -66,7 +66,7 @@ export const actionFetchOneProduct = itemNo => dispatch => {
 
 export const actionFetchAllComments = itemNo => dispatch => {
     return axios
-        .get(PRODUCT_COMMENTS.replace(':itemNo', itemNo))
+        .get(GET_PRODUCT_COMMENTS.replace(':itemNo', itemNo))
         .then(({data}) => {
             dispatch(actionProductComments(data));
         })
@@ -76,9 +76,39 @@ export const actionFetchAllComments = itemNo => dispatch => {
 export const actionFetchAddComment = newComment => dispatch => {
     dispatch(actionPageLoading(true));
     return axios
-        .post(PRODUCT_ADD_COMMENTS, newComment)
+        .post(PRODUCT_COMMENTS, newComment)
         .then(({data})=> {
             dispatch(actionAddComment(data));
+            dispatch(actionCommentError(false));
+            dispatch(actionPageLoading(false));
+        })
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionCommentError(true))
+        })
+}
+
+export const actionFetchUpdateComment = (updateComment, id) => dispatch => {
+    dispatch(actionPageLoading(true));
+    return axios
+        .put(`${PRODUCT_COMMENTS}/${id}`, {content : updateComment, date: new Date()})
+        .then(()=> {
+
+            dispatch(actionCommentError(false));
+            dispatch(actionPageLoading(false));
+        })
+        .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionCommentError(true))
+        })
+}
+
+export const actionFetchDeleteComment = (id, itemNo) => dispatch => {
+    dispatch(actionPageLoading(true));
+    return axios
+        .delete(`${PRODUCT_COMMENTS}/${id}`)
+        .then(()=> {
+            dispatch(actionFetchAllComments(itemNo));
             dispatch(actionCommentError(false));
             dispatch(actionPageLoading(false));
         })

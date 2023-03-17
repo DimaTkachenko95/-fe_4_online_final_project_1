@@ -14,6 +14,7 @@ const registrationSlice = createSlice({
     gender: '',
     avatarUrl: '',
     serverError: null,
+    isPassword: true  
   },
   reducers: {
     actionCreateCustomer: (state, action) => {
@@ -38,6 +39,7 @@ export const createCustomerServerApi = (value) => (dispatch) => {
   axios
     .post(REGISTER_USER, value)
     .then((savedCustomer) => {
+      console.log(savedCustomer)
       dispatch(actionCreateCustomer(savedCustomer));
     })
     .catch(() => dispatch(actionServerError(true)));

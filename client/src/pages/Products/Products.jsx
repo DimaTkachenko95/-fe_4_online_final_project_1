@@ -61,7 +61,7 @@ const Products = () => {
                   <>
                     <div className="grid-main-list">
                       {allProducts?.map((el, index) => (
-                        <ProductCard el={el} index={index} />
+                        <ProductCard el={el} key={el._id} index={index} />
                       ))}
                     </div>
                     <Paginate />

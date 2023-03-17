@@ -14,7 +14,6 @@ import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
 import {actionFetchAuthorizationUser} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
-import {getWrappedValue} from "../../helpers/getWrappedValue";
 
 const theme = createTheme({
   components: {
@@ -46,7 +45,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, []);
+  }, );
 
   useEffect(() => {
     setAuthToken(authToken)
@@ -87,7 +86,7 @@ const closeModalAuth = () => {
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list">
+                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"
@@ -158,9 +157,10 @@ const closeModalAuth = () => {
               <Box className="header__user-actions">
                 <Box className="action">
                   { authToken ? (
-                      <Link to="/personal-office" className="action__icon user-name" >
-                        {getWrappedValue(userData.firstName, 10)}
-                        {/*OB*/}
+                      <Link to="/personal-office" className="action__icon" >
+                        <span className="user-name">
+                          {userData.firstName && userData.firstName[0]}
+                        </span>
                       </Link>)
                       : (
                       <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>

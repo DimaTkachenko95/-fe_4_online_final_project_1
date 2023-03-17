@@ -11,7 +11,10 @@ const InputSearch = ({style = "header__input"}) => {
      const navigate = useNavigate(); 
 
     const handleSearch = () => {
-          dispatch(actionFetchSearchProducts(searchInputValue)) 
+        if(searchInputValue.length > 0){
+            dispatch(actionFetchSearchProducts(searchInputValue));
+            dispatch(actionSearchInputValue(''));
+        }
     }
 
     const handleEnterPress = (event) => {
