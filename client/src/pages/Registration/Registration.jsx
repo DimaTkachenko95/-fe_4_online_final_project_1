@@ -1,7 +1,10 @@
 import { Container } from '@mui/material';
-import FormComponent from '../Registration/FormComponent';
+import { useDispatch } from 'react-redux';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
+import FormRegistration from '../../components/FormRegistration';
+
+
 
 const Registration = () => {
   return (
@@ -10,7 +13,8 @@ const Registration = () => {
         <BreadCrumbs linksArray={[{ link: '/registration', text: 'Registration' }]} />
         <div className="registration-container__wrapper">
           <h2 className="registration-container__wrapper-title">Registration</h2>
-          <FormComponent />
+          <FormRegistration
+                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "gender", "avatarUrl"]}/>
         </div>
       </Container>
     </main>

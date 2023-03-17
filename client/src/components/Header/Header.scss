@@ -1,6 +1,8 @@
+@use 'src/styles/variables';
+
 a {
   text-decoration: none;
-  color: black;
+  color: variables.$black;
 }
 
 body {
@@ -25,7 +27,6 @@ body {
       grid-template-columns: 6fr 4fr  1fr 3fr;
       grid-template-rows: 1fr 1fr;
     }
-
   }
 
   &__logo-wrapper {
@@ -48,17 +49,18 @@ body {
     }
   }
 
-  &__input-wrapper{
+  &__input-wrapper {
     margin: 0 auto;
-    width: 100%;
+    width: calc(100% - 12px);
     @media (max-width: 996px) {
       grid-row-start: 2;
       grid-column-start: 1;
       grid-column-end: 5;
+      width: 100%;
     }
   }
 
-  &__input{
+  &__input {
     padding: 0.1vw 1vh;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -90,7 +92,6 @@ body {
         flex-direction: column;
       }
 
-
       &__item {
         font-family: Ubuntu, sans-serif;
         text-transform: uppercase;
@@ -106,7 +107,6 @@ body {
           color: rgb(96 176 33 / 100%);
           border-color: rgb(96 176 33 / 100%);
         }
-
 
         @media (max-width: 996px) {
           padding: 5px 25px;
@@ -125,7 +125,6 @@ body {
     }
   }
 
-
   &__items-actions {
     justify-self: baseline;
     display: grid;
@@ -141,7 +140,7 @@ body {
 
       &:last-child {
         .action__icon {
-          border-right: 1px solid #EFEFEF;
+          border-right: 1px solid variables.$light-border;
 
           @media (max-width: 996px) {
             border-right: none;
@@ -172,7 +171,7 @@ body {
       }
 
       .count-cart {
-        background: linear-gradient(270deg, #8EE901 0%, #4F9C2C 99.06%);
+        background: variables.$linearGradient;
         color: white;
 
         @media (max-width: 996px) {
@@ -181,7 +180,7 @@ body {
       }
 
       &__icon {
-        border-left: 1px solid #EFEFEF;
+        border-left: 1px solid variables.$light-border;
         padding: 2vw;
         border-bottom: 2px solid transparent;
 
@@ -194,11 +193,10 @@ body {
         color: rgb(96 176 33 / 100%);
         fill: rgb(96 176 33 / 100%);
         border-bottom: 2px solid rgb(96 176 33 / 100%);
-
       }
     }
 
-    .active{
+    .active {
       color: rgb(96 176 33 / 100%);
       fill: rgb(96 176 33 / 100%);
     }
@@ -213,18 +211,29 @@ body {
     .action {
       .icon-user {
         border: none;
-        background-color: white;
+        background-color: variables.$white;
+      }
+      .user-name {
+        font-family: Ubuntu, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border: 2px solid #d6e3d1;
+        background-color: #d6e3d1;
+        border-radius: 50%;
+        padding: 5px 5px;
+        color: green;
+        //&:hover {
+        //  background-color: rgb(81, 86, 104);
+        //}
       }
 
       &:first-child {
-        .user-name {
-          font-family: Ubuntu, sans-serif;
-          font-size: 16px;
-          font-weight: bold;
-        }
-
         .action__icon {
-          border-right: 1px solid #EFEFEF;
+          border-right: 1px solid variables.$light-border;
           display: flex;
           align-items: center;
 
@@ -237,7 +246,6 @@ body {
       &__icon {
         padding: 2vw;
         border-bottom: 2px solid transparent;
-
       }
 
       &__icon:hover {
@@ -250,7 +258,7 @@ body {
   .burger-menu-btn {
     //justify-self: end;
     display: none;
-    border-left: 1px solid #EFEFEF;
+    border-left: 1px solid variables.$light-border;
     padding: 1.2vw;
 
     @media (max-width: 996px) {
@@ -262,11 +270,10 @@ body {
 }
 
 .header__menu--active {
-display: block;
+  display: block;
 
   @media (max-width: 996px) {
     background: whitesmoke;
     z-index: 1;
-
   }
 }

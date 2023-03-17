@@ -1,4 +1,4 @@
-import './FormComponent.scss';
+import './FormRegistration.scss';
 import { Formik, Form } from 'formik';
 import validationSchema from './ValidationSchema';
 import FormikControl from './FormikControl';
@@ -26,7 +26,7 @@ const initialState = {
   serverError: null,
 };
 
-const FormComponent = () => {
+const FormRegistration = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -226,4 +226,4 @@ const FormComponent = () => {
   );
 };
 
-export default FormComponent;
+export default FormRegistration;

@@ -29,7 +29,7 @@ export const selectorServerErrorCheckout = state => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
-export const selectorProductComp = (state) => state.scales.productDataComp;
+export const selectorProductComparison = (state) => state.scales.productDataComparison;
 export const selectorIsScalesPageLoading = (state) => state.scales.pageLoading;
 export const selectorServerErrorScalesPage = (state) => state.scales.serverError;
 
@@ -39,6 +39,15 @@ export const selectorFavoritesProduct = (state) => state.favorites.favoritesProd
 export const selectorIsFavoritesPageLoading = (state) => state.favorites.pageLoading;
 export const selectorServerErrorFavoritesPage = (state) => state.favorites.serverError;
 
+// PERSONAL OFFICE
+export const selectorUserInfo = state => state.personalOffice.userInfo
+export const selectorEditInputs = state => state.personalOffice.editInputs
+export const selectorChangePassword = state => state.personalOffice.changePassword
+export const selectorChangePasswordMessage = state => state.personalOffice.changePasswordMessage
+export const selectorPageLoadingPersonalOffice = state => state.personalOffice.pageLoading
+export const selectorAllUserOrders = state => state.personalOffice.allUserOrders
+
+/* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN
 export const selectorAllLoginErrors = (state) => state.logIn.error;
 export const selectorUserData = (state) => state.logIn.userData;

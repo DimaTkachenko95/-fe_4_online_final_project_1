@@ -7,6 +7,7 @@ import "./Basket.scss";
 import {useSelector} from "react-redux";
 import {selectorBasket, selectorBasketProduct, selectorIsBasketLoading} from "../../selectors";
 import Preloader from "../../components/Preloader";
+import { Link, NavLink } from 'react-router-dom';
 
 const ContainerBasket = styled(Container)`
   padding: 25px 0 50px 0;

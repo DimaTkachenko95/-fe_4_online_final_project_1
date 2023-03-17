@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
   selectorScales,
-  selectorProductComp,
-  selectorIsScalesPageLoading
+  selectorProductComparison,
+  selectorIsScalesPageLoading,
 } from '../../../selectors';
 import { actionDeleteFromScales, actionFetchProductScalesByItemNo } from '../../../reducers';
 import './ComparisonTable.scss';
@@ -13,7 +13,7 @@ import EmptyResult from '../../../components/EmptyResult/EmptyResult';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
-  const allProd = useSelector(selectorProductComp);
+  const allProd = useSelector(selectorProductComparison);
   const itemNoArr = useSelector(selectorScales);
   const isLoading = useSelector(selectorIsScalesPageLoading);
 
@@ -21,7 +21,7 @@ const ComparisonTable = () => {
     dispatch(actionFetchProductScalesByItemNo(itemNoArr));
   }, [itemNoArr]);
 
-  const delFromTable = (id) => {
+  const deleteFromTable = (id) => {
     dispatch(actionDeleteFromScales(id));
   };
 
@@ -32,13 +32,17 @@ const ComparisonTable = () => {
         <EmptyResult />
       ) : (
         <table className="comparison-table">
-          <thead>
+          <thead class="comparison-table__thead">
             <tr>
-              <th />
+              <th className="table_th" />
               {allProd.map((product) => (
-                <th key={product.imageUrls} style={{ width: '200px', height: '200px' }}>
+                <th
+                  className="table_th"
+                  key={product.imageUrls}
+                  style={{ width: '200px', height: '200px' }}
+                >
                   <svg
-                    onClick={() => delFromTable(product._id)}
+                    onClick={() => deleteFromTable(product._id)}
                     className="comparison-table__delete"
                     width="12"
                     height="12"
@@ -78,27 +82,35 @@ const ComparisonTable = () => {
             </tr>
 
             <tr className="comparison-table__product-name">
-              <th />
+              <th className="table_th" />
               {allProd.map((product) => (
-                <th key={product.id}>{product.name}</th>
+                <th className="table_th" key={product.id}>
+                  {product.name}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
             <tr className="comparison-table__product-brand">
-              <th scope="row">Brand</th>
+              <th className="table_th" scope="row">
+                Brand
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.brand}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-category">
-              <th scope="row">Category</th>
+              <th className="table_th" scope="row">
+                Category
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.category}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-currentPrice">
-              <th scope="row">Current Price</th>
+              <th className="table_th" scope="row">
+                Current Price
+              </th>
               {allProd.map((product) => (
                 <td key={product.id} className="text-center">
                   {product.currentPrice} $
@@ -106,43 +118,57 @@ const ComparisonTable = () => {
               ))}
             </tr>
             <tr className="comparison-table__product-processorType">
-              <th scope="row">Processor type</th>
+              <th className="table_th" scope="row">
+                Processor type
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.processorType}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-screenSize">
-              <th scope="row">Screen size</th>
+              <th className="table_th" scope="row">
+                Screen size
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.screenSize}"</td>
               ))}
             </tr>
             <tr className="comparison-table__product-videoCard">
-              <th scope="row">Video card</th>
+              <th className="table_th" scope="row">
+                Video card
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.videoCard}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-operatingSystem">
-              <th scope="row">OS</th>
+              <th className="table_th" scope="row">
+                OS
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.operatingSystem}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-ramMemory">
-              <th scope="row">RAM</th>
+              <th className="table_th" scope="row">
+                RAM
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.ramMemory}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-hardDriveCapacity">
-              <th scope="row">SSD</th>
+              <th className="table_th" scope="row">
+                SSD
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.hardDriveCapacity}</td>
               ))}
             </tr>
             <tr className="comparison-table__product-color">
-              <th scope="row">Color</th>
+              <th className="table_th" scope="row">
+                Color
+              </th>
               {allProd.map((product) => (
                 <td key={product.id}>{product.color}</td>
               ))}

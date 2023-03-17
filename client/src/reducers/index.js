@@ -36,7 +36,9 @@ import logInReducer, {
 import productDetailsReducer, {
   actionFetchOneProduct,
   actionFetchAddComment,
-  actionFetchAllComments
+  actionFetchAllComments,
+  actionFetchDeleteComment,
+  actionFetchUpdateComment
 } from './productDetails.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
@@ -46,6 +48,15 @@ import checkoutReducer, {
   actionFetchCreateOrder,
   actionIsOrdered
 } from './checkout.reducer';
+import personalOfficeReducer, {
+    actionUserInfo,
+    actionFetchUserInfo,
+    actionEditInputs,
+    actionFetchUpdateCustomer,
+    actionFetchUpdateCustomerPassword,
+    actionChangePasswordMessage,
+    actionFetchAllUserOrders,
+} from "./personalOffice.reducer";
 
 export {
   productsReducer,
@@ -85,7 +96,17 @@ export {
   actionFetchOneProduct,
   actionFetchAddComment,
   actionFetchAllComments,
+  actionFetchDeleteComment,
+  actionFetchUpdateComment,
   discountedProductsReducer,
+  personalOfficeReducer,
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
+  actionUserInfo,
+  actionFetchUserInfo,
+  actionEditInputs,
+  actionFetchUpdateCustomer,
+  actionFetchAllUserOrders,
+  actionFetchUpdateCustomerPassword,
+  actionChangePasswordMessage,
 };

@@ -5,11 +5,11 @@ import './SimilarProducts.scss';
 import { actionFetchSimilarProducts } from "../../../../reducers/productDetails.reducer";
 import ProductsSlider from "../../../../components/ProductsSlider";
 
-const SimilarProducts = () => {
+const SimilarProducts = ({id}) => {
     const dispatch = useDispatch();
     const product = useSelector(selectorProduct);
     const similarProducts = useSelector(selectorSimilarProducts);
-    const availableDiscountedProducts = similarProducts.filter(product => product.quantity > 0)
+    const availableDiscountedProducts = similarProducts.filter(product => product.quantity > 0 && product._id !== id)
 
     // TODO: Добавить фильтрацию по цене после расширения бд
     const currentPrice = product.currentPrice;

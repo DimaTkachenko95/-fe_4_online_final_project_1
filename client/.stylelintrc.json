@@ -7,7 +7,7 @@
     "scss/double-slash-comment-whitespace-inside": null,
     "property-no-unknown": null,
     "no-empty-source": null,
-    "no-duplicate-selectors": null,
+
     "keyframes-name-pattern": null,
     "property-no-vendor-prefix": null,
     "scss/at-mixin-pattern": null,

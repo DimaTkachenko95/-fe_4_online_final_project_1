@@ -1,0 +1,31 @@
+@mixin font-ofice {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+    text-transform: uppercase;
+  }
+
+.tab-panel{
+    margin-top: 30px
+}
+
+
+.header-personal-office {
+    @include font-ofice;
+    color: #60b021;
+
+    &__span {
+        @include font-ofice;
+        color: #000000;
+    }
+}
+
+ .MuiTabs-flexContainer{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    width: 100%;
+
+} 

@@ -1,22 +1,24 @@
+@use 'src/styles/variables';
+
 @mixin font-list-items {
   font-family: Ubuntu;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-
 }
 
 .list {
   position: relative;
-  border: 1px solid #EFEFEF;
+  border: 1px solid variables.$light-border;
   box-sizing: border-box;
   width: 255px;
   height: 100%;
   transition: 0.3s;
 
   &:hover {
-    box-shadow: rgb(0 0 0 / 7%) 0 1px 2px, rgb(0 0 0 / 7%) 0 2px 4px, rgb(0 0 0 / 7%) 0 4px 8px, rgb(0 0 0 / 7%) 0 8px 16px, rgb(0 0 0 / 7%) 0 16px 32px, rgb(0 0 0 / 7%) 0 32px 64px;
+    box-shadow: rgb(0 0 0 / 7%) 0 1px 2px, rgb(0 0 0 / 7%) 0 2px 4px, rgb(0 0 0 / 7%) 0 4px 8px,
+      rgb(0 0 0 / 7%) 0 8px 16px, rgb(0 0 0 / 7%) 0 16px 32px, rgb(0 0 0 / 7%) 0 32px 64px;
     scale: (1.1);
   }
 
@@ -31,12 +33,12 @@
     &--name {
       @include font-list-items;
 
-      color: #000;
+      color: variables.$black;
       line-height: 16px;
       margin-bottom: 3px;
 
-      &:hover{
-        text-decoration:underline;
+      &:hover {
+        text-decoration: underline;
       }
     }
 
@@ -59,14 +61,13 @@
       transition: 0.3s;
 
       &:hover {
-        fill: green;
+        fill: variables.$green;
         cursor: pointer;
       }
 
       &--curent {
-        fill: green;
+        fill: variables.$green;
       }
-
     }
 
     &--favorite {
@@ -89,7 +90,7 @@
     &--brand {
       @include font-list-items;
 
-      color: #75758A;
+      color: variables.$border;
       font-weight: 400;
       margin-bottom: 5px;
     }
@@ -100,16 +101,16 @@
       margin-bottom: 10px;
 
       &--curent {
-        color: #60B021;
+        color: variables.$light-green;
         font-size: 25px;
       }
 
       &--curent-new {
-        color: #de3c33;
+        color: variables.$red;
       }
 
       &--previous {
-        color: #a5a5a5;
+        color: variables.$border;
         font-size: 18px;
         position: relative;
         bottom: 10px;
@@ -118,4 +119,8 @@
       }
     }
   }
+}
+
+.out-of-stock{
+  opacity: 0.5 !important;
 }
