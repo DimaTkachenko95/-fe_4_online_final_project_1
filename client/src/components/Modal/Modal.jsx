@@ -13,7 +13,7 @@ const ModalWrapper = styled.div `
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2;
+        z-index: 100;
         margin: 0 auto;
     `
 
@@ -23,9 +23,8 @@ const ModalBlock = styled(Box) `
         position: relative;
         background-color: #FFFFFF;
         padding: 45px 35px 30px;
-        box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
-        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
