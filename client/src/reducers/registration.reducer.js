@@ -14,7 +14,6 @@ const registrationSlice = createSlice({
     gender: '',
     avatarUrl: '',
     serverError: null,
-    isPassword: true  
   },
   reducers: {
     actionCreateCustomer: (state, action) => {

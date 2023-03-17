@@ -55,7 +55,8 @@ export const actionFetchUpdateCustomer = (newUserInfoObj) => (dispatch) => {
     dispatch(actionPageLoading(true))
     return axios
         .put("/customers", newUserInfoObj)
-        .then(updatedCustomer => { console.log(updatedCustomer, '111111111') 
+        .then(updatedCustomer => { 
+        dispatch(actionEditInputs(''))
         dispatch(actionPageLoading(false))
     })
         .catch(err => {/*Do something with error, e.g. show error to customer*/ })

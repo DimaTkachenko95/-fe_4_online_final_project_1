@@ -8,13 +8,13 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData } from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser} from "../../reducers";
+import { actionFetchAuthorizationUser } from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
-import {getWrappedValue} from "../../helpers/getWrappedValue";
+import { getWrappedValue } from "../../helpers/getWrappedValue";
 
 const theme = createTheme({
   components: {
@@ -46,7 +46,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, );
+  },);
 
   useEffect(() => {
     setAuthToken(authToken)
@@ -66,11 +66,11 @@ const Header = () => {
   const toggleModalAuth = (event) => {
     event.preventDefault();
     setIsModalAuthOpen(!isModalAuthOpen)
-}
+  }
 
-const closeModalAuth = () => {
+  const closeModalAuth = () => {
     setIsModalAuthOpen(false)
-}
+  }
 
   return (
     <>
@@ -87,7 +87,7 @@ const closeModalAuth = () => {
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
+                <Box className="menu-list" onClick={() => { setIsMenuOpen(false) }}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"
@@ -157,24 +157,24 @@ const closeModalAuth = () => {
 
               <Box className="header__user-actions">
                 <Box className="action">
-                  { authToken ? (
-                      <Link to="/personal-office" className="action__icon user-name" >
-                        {getWrappedValue(userData.firstName, 10)}
-                        {/*OB*/}
-                      </Link>)
-                      : (
+                  {authToken ? (
+                    <Link to="/personal-office" className="action__icon user-name" >
+                      {getWrappedValue(userData.firstName, 10)}
+                      {/*OB*/}
+                    </Link>)
+                    : (
                       <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>
-                        <Person2OutlinedIcon/>
+                        <Person2OutlinedIcon />
                       </button>)
                   }
                 </Box>
               </Box>
 
               <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
+                {isMenuOpen ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
               </Box>
             </Box>
-            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
+            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
           </Container>
         </ThemeProvider>
       </header>

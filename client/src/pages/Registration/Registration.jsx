@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-
+import ValidationSchemaRegistration from './ValidationSchemaRegistration';
 import { useDispatch } from 'react-redux';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
@@ -21,6 +21,7 @@ const Registration = () => {
           <h2 className="registration-container__wrapper-title">Registration</h2>
           < FormRegistration 
                   initialValues={initialState} 
+                  validationSchema={ValidationSchemaRegistration}
                   onSubmit={(values, { resetForm }) => {
                       console.log(values)
                       dispatch(createCustomerServerApi(values));

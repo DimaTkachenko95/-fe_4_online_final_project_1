@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { selectorUserInfo, selectorEditInputs } from "../../../../selectors";
 import FormRegistration from "../../../../components/FormRegistration";
 import { actionFetchUserInfo, actionFetchUpdateCustomer } from "../../../../reducers";
+import validationSchema from "./ValidationSchemaDataUser";
 import { useEffect } from "react";
 
  const UserData = () => {
@@ -18,6 +19,7 @@ import { useEffect } from "react";
       <>
       { userInfo && <FormRegistration 
               inputsEditName={inputsEditName} 
+              validationSchema={validationSchema}
               initialValues={userInfo} 
               btnEdit={true}  
               withPassword={true}
