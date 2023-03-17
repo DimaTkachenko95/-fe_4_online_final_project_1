@@ -63,6 +63,9 @@
       font-size: 17px;
       font-weight: 700;
       vertical-align: middle;
+      @media (max-width: 996px) {
+        display: none;
+      }
     }
 
     .quantity {
@@ -94,7 +97,7 @@
           cursor: pointer;
         }
 
-        .decrease_disabled {
+        .disabled {
           width: 10px;
           height: 10px;
           padding: 10px;
@@ -141,6 +144,7 @@
 }
 
 .basket__footer {
+  padding-top: 30px;
   font-family: 'Ubuntu', sans-serif;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -155,7 +159,7 @@
     align-self: center;
     justify-content: center;
     grid-column: 2 / 3;
-
+    grid-row: 1 / 2;
     @media (max-width: 996px) {
       grid-row: 2 / 3;
     }
@@ -172,6 +176,7 @@
     align-self: flex-end;
     justify-content: space-between;
     grid-column: 3 / 4;
+    grid-row: 1 / 2;
 
     @media (max-width: 996px) {
       grid-column: 2 / 3;
