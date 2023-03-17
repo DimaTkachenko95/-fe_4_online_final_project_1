@@ -52,7 +52,7 @@ const Products = () => {
             <BreadCrumbs linksArray={[{ link: '/products', text: 'Products' }]} />
             <div>
               <p className="count-found-product">
-                Products <span className="count-found-product__span">{productsQuantity} found</span>
+                Products <span className="title_contrast">{productsQuantity} found</span>
               </p>
             </div>
             <section className="main-list__sections">

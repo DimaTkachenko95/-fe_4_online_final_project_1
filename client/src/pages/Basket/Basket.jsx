@@ -7,10 +7,10 @@ import "./Basket.scss";
 import {useSelector} from "react-redux";
 import {selectorBasket, selectorBasketProduct, selectorIsBasketLoading} from "../../selectors";
 import Preloader from "../../components/Preloader";
-import { Link, NavLink } from 'react-router-dom';
+import BreadCrumbs from "../../components/BreadCrumbs";
 
 const ContainerBasket = styled(Container)`
-  padding: 25px 0 50px 0;
+  padding-bottom: 50px;
 `
 
 const Basket = () => {
@@ -23,6 +23,7 @@ const Basket = () => {
 
         <ContainerBasket maxWidth="lg">
             <Preloader open={isLoading}/>
+            <BreadCrumbs linksArray={[{link: "/basket", text: "Shopping Cart"}]}/>
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {basket.length === 0 ?
                 <EmptyResult/> :
@@ -33,7 +34,7 @@ const Basket = () => {
                                 <thead className="table_title">
                                 <tr>
                                     <th>Photo</th>
-                                    <th>Name</th>
+                                    <th className="table_title__name">Name</th>
                                     <th>Price</th>
                                     <th>quantity</th>
                                     <th>total</th>
