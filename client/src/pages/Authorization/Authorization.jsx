@@ -13,9 +13,11 @@ import {selectorAllLoginErrors, selectorUserData} from "../../selectors";
 import {useState} from "react";
 import './Authorization.scss';
 import store from "../../store"
+import {useNavigate} from "react-router-dom";
 
 const Authorization = ({closeModalAuth}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const userData = useSelector(selectorUserData);
     const error = useSelector(selectorAllLoginErrors);
     const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +43,7 @@ const Authorization = ({closeModalAuth}) => {
         if(!error) {
             closeModalAuth();
             dispatch(actionResetLoginError())
+            navigate("/products");
         }
     }
 
@@ -110,7 +113,7 @@ const Authorization = ({closeModalAuth}) => {
                 <Button className="form-block__btn" type="button" to="/registration" text="Registration" variant="white-shadow" onClick={closeModalAuth}/>
                 </div>
             </Form>
-          )}}     
+          )}}
         </Formik>
 
         </Modal>

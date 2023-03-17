@@ -28,7 +28,6 @@ const Products = () => {
   const serverError = useSelector(selectorServerErrorProducts);
   const pageLoading = useSelector(selectorPageLoading);
   const dispatch = useDispatch();
-  console.log(allProducts)
 
   useEffect(() => {
     if (searchInputValue === '') {
@@ -53,7 +52,7 @@ const Products = () => {
             <BreadCrumbs linksArray={[{ link: '/products', text: 'Products' }]} />
             <div>
               <p className="count-found-product">
-                Products <span className="count-found-product__span">{productsQuantity} found</span>
+                Products <span className="title_contrast">{productsQuantity} found</span>
               </p>
             </div>
             <section className="main-list__sections">
@@ -62,7 +61,7 @@ const Products = () => {
                   <>
                     <div className="grid-main-list">
                       {allProducts?.map((el, index) => (
-                        <ProductCard el={el} index={index} />
+                        <ProductCard el={el} key={el._id} index={index} />
                       ))}
                     </div>
                     <Paginate />

@@ -1,21 +1,24 @@
+@use './src/styles/mixins';
+@use 'src/styles/variables';
+
 .basket__title {
-  text-transform: uppercase;
-  font-size: 30px;
-  font-weight: 700;
+  font-family: 'Ubuntu', sans-serif;
+  @include mixins.titleStyles;
 
   .title_contrast {
-    color: #4f9c2c;
+    @include mixins.liner-gradient-tile;
   }
 }
 
 .basket__box {
   margin: 30px 0;
+  font-family: 'Ubuntu', sans-serif;
 
   .basket__table {
     border-collapse: collapse;
     border-top: 1px solid #efefef;
     width: 100%;
-    color: #000;
+    color: variables.$black;
     font-size: 14px;
     font-weight: 700;
     text-align: center;
@@ -24,8 +27,12 @@
       font-weight: 400;
       text-transform: capitalize;
       font-size: 14px;
-      line-height: 20px;
-      color: #75758a;
+      line-height: 30px;
+      color: variables.$border;
+      &__name {
+        text-align: left;
+        width: 400px;
+      }
     }
 
     .product_item {
@@ -34,13 +41,14 @@
 
     .product_name {
       vertical-align: middle;
+      text-align: left;
 
       .vendor {
         font-weight: 400;
         text-transform: capitalize;
         font-size: 14px;
         line-height: 20px;
-        color: #75758a;
+        color: variables.$border;
       }
     }
 
@@ -51,10 +59,13 @@
     }
 
     .product_price {
-      color: #60b021;
-      font-size: 14px;
+      color: variables.$light-green;
+      font-size: 17px;
       font-weight: 700;
       vertical-align: middle;
+      @media (max-width: 996px) {
+        display: none;
+      }
     }
 
     .quantity {
@@ -63,7 +74,7 @@
       div {
         margin: 0 auto;
         width: 120px;
-        background-color: #f5f5f5;
+        background-color: variables.$background-light;
         border: 1px solid #e3e3e3;
         box-shadow: inset 0 1px 3px rgb(0 0 0 / 15%);
         border-radius: 100px;
@@ -81,17 +92,17 @@
           width: 10px;
           height: 10px;
           padding: 10px;
-          background: linear-gradient(180deg, #8ee902 0%, #4f9c2c 100%);
+          background: variables.$linearGradient;
           border-radius: 50px;
           cursor: pointer;
         }
 
-        .decrease_disabled {
+        .disabled {
           width: 10px;
           height: 10px;
           padding: 10px;
           border-radius: 50px;
-          background: #d6e3d1;
+          background: variables.$background-light2;
         }
       }
     }
@@ -99,6 +110,7 @@
     .product_total {
       vertical-align: middle;
       width: 120px;
+      font-size: 17px;
 
       @media (max-width: 600px) {
         width: 80px;
@@ -119,19 +131,21 @@
         cursor: pointer;
 
         &:hover {
-          background: #d6e3d1;
+          background: variables.$background-light2;
         }
       }
     }
   }
 
   th {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid variables.$light-border;
     text-align: center;
   }
 }
 
 .basket__footer {
+  padding-top: 30px;
+  font-family: 'Ubuntu', sans-serif;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
@@ -145,42 +159,24 @@
     align-self: center;
     justify-content: center;
     grid-column: 2 / 3;
-
+    grid-row: 1 / 2;
     @media (max-width: 996px) {
       grid-row: 2 / 3;
-    }
-
-    .checkout_btn {
-      justify-self: flex-end;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 16px;
-      cursor: pointer;
-      width: 240px;
-      height: 50px;
-      box-sizing: border-box;
-      border-radius: 30px;
-      background-image: linear-gradient(#8ee902, #4f9c2c);
-      padding: 17px 20px;
     }
   }
 
   .basket__footer_total {
     border-bottom: 2px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to left, #b2ff59, #00c853);
+    border-image-source: linear-gradient(to left, #8EE901, #4F9C2C);
     padding-bottom: 15px;
 
-    //margin-left: 85px;
     font-size: calc(1rem + 0.8vw);
     display: flex;
     align-self: flex-end;
     justify-content: space-between;
     grid-column: 3 / 4;
+    grid-row: 1 / 2;
 
     @media (max-width: 996px) {
       grid-column: 2 / 3;
