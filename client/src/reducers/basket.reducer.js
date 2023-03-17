@@ -5,8 +5,8 @@ import { GET_ALL_PRODUCTS, SHOPPING_CART, PRODUCT_IN_SHOPPING_CART, CHANGE_PRODU
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
     basketProduct: [],
-    products: JSON.parse(localStorage.getItem("authorizedBasket")) || [],
-   // products: [] // for authorizing users
+   // products: JSON.parse(localStorage.getItem("authorizedBasket")) || [],
+    products: [], // for authorizing users
     serverError: null,
     pageLoading: false
 }
@@ -80,7 +80,7 @@ const basketSlice = createSlice({
                     }
                 })
                 state.products = item;
-                localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]))
+               // localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]))
             },
             actionAddToProducts: (state, { payload }) => {
                 const products = JSON.parse(JSON.stringify([...state.products]));
@@ -91,7 +91,7 @@ const basketSlice = createSlice({
                     const newProduct = { product: payload, cartQuantity: 1 };
                     products.push(newProduct);
                 }
-                localStorage.setItem("authorizedBasket", JSON.stringify(products));
+               // localStorage.setItem("authorizedBasket", JSON.stringify(products));
                 return { ...state, products };
               },
 
@@ -106,13 +106,13 @@ const basketSlice = createSlice({
                     products.push({ product: payload, cartQuantity: 1 });
                   }
               
-                localStorage.setItem("authorizedBasket", JSON.stringify(products));
+                //localStorage.setItem("authorizedBasket", JSON.stringify(products));
                 state.products = products;
 
               },
               actionDeleteAllProducts: (state, {payload}) => {
                 state.products = [...state.products.filter(({product}) => product !== payload)]
-                localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]));
+              //  localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]));
               }
 
     }
@@ -162,8 +162,9 @@ export const actionFetchAddUserCart = (newCart) => async (dispatch) => {
         });
     }
     catch (error) {
-        console.error(error);
-      }
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
+    }
 }
 
 // GET CART
@@ -184,7 +185,8 @@ export const actionGetCart = () => async (dispatch) => {
         })
         dispatch(actionAuthProducts(products));
     } catch (error) {
-        console.error(error);
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     }
 }
 
@@ -200,8 +202,9 @@ export const actionAddToAuthBasket = (productId) => async (dispatch) => {
         });
         dispatch(actionAddToProducts(productId));
     } catch (error) {
-        console.error(error);
-      }
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
+    }
 }
 
 // DELETE/DECREASE PRODUCT IN CART
@@ -216,7 +219,8 @@ export const actionDeleteFromAuthBasket = (productId) => async (dispatch) => {
       });
       dispatch(actionDeleteFromProducts(productId));
     } catch (error) {
-      console.error(error);
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     }
   }
 
@@ -232,8 +236,9 @@ export const actionDeleteAllFromAuthBasket = (productId) => async (dispatch) => 
         });
         dispatch(actionDeleteAllProducts(productId));
     } catch (error) {
-        console.error(error);
-      }
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
+    }
 }
 
 export default basketSlice.reducer;

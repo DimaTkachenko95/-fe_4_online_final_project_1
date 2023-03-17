@@ -61,7 +61,6 @@ const BasketItems = () => {
     }
 
     const decrease = (item) => {
-
     if(item.cartQuantity >= 2) {
 
             if(localStorage.getItem('token')) {
