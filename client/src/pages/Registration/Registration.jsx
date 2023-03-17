@@ -1,10 +1,7 @@
 import { Container } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import FormRegistration from '../../components/FormRegistration';
-
-
 
 const Registration = () => {
   return (

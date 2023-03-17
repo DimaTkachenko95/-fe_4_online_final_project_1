@@ -1,7 +1,7 @@
 import Modal from '../../../components/Modal';
 import Button from '../../../components/Button';
 import { useState } from 'react';
-import Authorization from '../../Authorization';
+import Authorization from '../../../pages/Authorization';
 import { useNavigate } from 'react-router-dom';
 import './ModalSuccessRegistration.scss';
 

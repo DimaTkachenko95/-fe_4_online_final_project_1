@@ -10,130 +10,69 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actionEditInputs } from '../../reducers';
 import Button from '../Button';
-
 import EditButton from './components/EditButton';
+import {createCustomerServerApi} from "../../helpers/createNewCustomer";
+import Preloader from "../Preloader";
+import RegistrationError from "../../components/FormRegistration/RegistrationError";
+import ModalSuccessRegistration from "../../components/FormRegistration/ModalSuccessRegistration";
 
+const initialState = {
+    firstName: '',
+    lastName: '',
+    login: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    telephone: '',
+    gender: '',
+    avatarUrl: '',
+    serverError: null,
+};
 
+const FormRegistration = ({ btnEdit, inputsEditName, withPassword }) => {
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
-
-const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, withPassword }) => {
-
-  const dispatch = useDispatch();
-
-
-  const [showPassword, setShowPassword] = useState(false);
-
-/*   const handleClickShowPassword = () => setShowPassword((show) => !show); */
-
-/*   const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  }; */
-
-
-
-
-
-  /*   const item = [{
-      type: "text",
-      control: "input",
-      label: "First Name",
-      color: "success",
-      className: "form-registration__input",
-      name: "firstName",
-      placeholder: "Enter your first name",
-      variant: "outlined",
-      id: "outlined-multiline-flexible",
-    },
-    {
-      type: "text",
-      control: "input",
-      color: "success",
-      label: "Last Name",
-      className: "form-registration__input",
-      name: "lastName",
-      placeholder: "Enter your last name",
-      variant: "outlined",
-      id: "outlined-multiline-flexible",
-    },
-    {
-      htmlFor:"outlined-adornment-password",
-      label:"Password",
-      variant:"outlined",
-      control:"input",
-      color:"success",
-      className:"form-registration__input",
-      name:"password",
-      placeholder:"Enter your password",
-      id:"outlined-adornment-password",
-      type: showPassword ? 'text' : 'password',
-    },
-    {
-      type:"text",
-      control:"input",
-      color:"success",
-      label:"Login",
-      className:"form-registration__input",
-      name:"login",
-      placeholder:"Enter your login",
-      variant:"outlined",
-      id:"outlined-multiline-flexible",
-    }
-    ] */
-
+    const toggleModal = (event) => {
+        setOpenModal(!openModal);
+    };
+    const closeModal = () => {
+        setOpenModal(false);
+    };
 
   return (
     <>
+        {!loading ? (
       <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
+          initialValues={initialState}
+          validationSchema={validationSchema}
+          onSubmit={(values, { resetForm }) => {
+              delete values.confirmPassword;
+              createCustomerServerApi(values).then((axiosValue) => {
+                  if (axiosValue) {
+                      resetForm();
+                      toggleModal();
+                      setLoading(false);
+                  } else {
+                      setLoading(true);
+                  }
+              });
+              setLoading(true);
+          }}
       >
         {(isValid) => {
           return (
             <>
               <Form className="form-registration" style={{ width: '100%' }}>
                 <div className="form-registration__grid_wrapper">
-                  {/*         {item.map(({ type, control, color, label, className, name, placeholder, variant, id, htmlFor }) => {
-                    return <FormikControl
-                      sx={[!inputsEditName.includes(name) && {
-                        "& fieldset": { border: 'none' }
-                      }]}
-                      htmlFor={htmlFor}
-                      type={type}
-                      control={control}
-                      color={color}
-                      label={label}
-                      classNam={className}
-                      name={name}
-                      placeholder={placeholder}
-                      variant={variant}
-                      id={id}
-                      disabled={!inputsEditName.includes(name)}
-                      required
-                      InputProps={{
-                        endAdornment: (
-                          <>
-                            {(name == 'password' && withPassword == true) && 
-                            <InputAdornment position="end">
-                              <IconButton
-                                disabled={!inputsEditName.includes("password")}
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                              >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                              </IconButton>
-                            </InputAdornment>}
-                            {btnEdit && <EditButton dataName={name} onClick={() => dispatch(actionEditInputs(name))} />}
-                          </>
-                        )
-                      }}
-                    />
-                  })} */}
-
 
                   <FormikControl
                     sx={[!inputsEditName.includes("firstName") && {
@@ -255,6 +194,33 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                       }}
                     />
                   }
+                    <FormikControl
+                        htmlFor="outlined-adornment-password"
+                        label="Confirm password"
+                        variant="outlined"
+                        control="input"
+                        color="success"
+                        className="form-registration__input"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        id="outlined-adornment-password"
+                        required
+                        type={showPassword ? 'text' : 'password'}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
 
                   <FormikControl
                     sx={[!inputsEditName.includes("telephone") && {
@@ -275,26 +241,6 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                     InputProps={btnEdit && {
                       endAdornment: (<EditButton dataName={"telephone"} onClick={() => dispatch(actionEditInputs("telephone"))} />)
                     }}
-                  />
-
-                  <FormikControl
-                    sx={[!inputsEditName.includes("gender") && {
-                      "& fieldset": { border: 'none' }
-                    }]}
-                    type="text"
-                    control="input"
-                    color="success"
-                    label="Gender"
-                    className="form-registration__input"
-                    name="gender"
-                    placeholder="male, female, other"
-                    variant="outlined"
-                    id="outlined-multiline-flexible"
-                    disabled={!inputsEditName.includes("gender")}
-                    InputProps={btnEdit && {
-                      endAdornment: (<EditButton dataName={"gender"} onClick={() => dispatch(actionEditInputs("gender"))} />)
-                    }}
-
                   />
 
                   <FormikControl
@@ -328,6 +274,13 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
           );
         }}
       </Formik>
+        ) : (
+            <>
+                <Preloader open={setLoading} />
+                <RegistrationError />
+            </>
+        )}
+        {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
     </>
   );
 };

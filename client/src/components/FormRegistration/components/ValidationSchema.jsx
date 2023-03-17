@@ -26,14 +26,18 @@ const validationSchema = yup.object().shape({
     .max(30, 'Password is too long - should be 30 chars maximum')
     .matches(/^[a-zA-Z0-9]+$/, 'Allowed characters for password is a-z, A-Z, 0-9'),
   }),
+  confirmPassword: yup.string().when('password', {
+    is: (val) => (val && val.length > 0 ? true : false),
+    then: yup.string().oneOf([yup.ref('password')], 'Both password need to be the same'),
+  }),
   telephone: yup
-    .number()
-    .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(13, 'Telephone is too short - should be 13 chars minimum')
-    .required('A phone number is required'),
-  gender: yup.mixed().oneOf(['male', 'female', 'other']),
+      .string()
+      .typeError("That doesn't look like a phone number")
+      .min(13, 'Phone number should start with +380 and contain 13 chars')
+      .matches(
+          /^\+380\d{3}\d{2}\d{2}\d{2}$/,
+          'Phone number should start with +380 and contain 13 chars',
+      ),
   avatarUrl: yup
     .string()
     .matches(
