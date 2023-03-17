@@ -1,4 +1,4 @@
-import {Box, Container, SliderThumb} from '@mui/material';
+import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
 import './Product.scss';
@@ -72,21 +72,20 @@ const Product = () => {
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
                         <Box className="product__image-wrapper">
-                            <Swiper 
+                            <Swiper
                                 loop={true}
                                 spaceBetween={10}
                                 navigation={true}
                                 thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper2'>
+                                modules={[FreeMode, Navigation, Thumbs]} >
                                 {product.imageUrls.map((item, index) => (
                                     <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
+                                        <img src={item} alt={`laptop${index}`}/>
                                     </SwiperSlide>
                                     ))
                                 }
                             </Swiper>
-                            <Swiper 
+                            <Swiper
                                 onSwiper={setThumbsSwiper}
                                 loop={true}
                                 spaceBetween={10}
@@ -94,10 +93,10 @@ const Product = () => {
                                 freeMode={true}
                                 watchSlidesProgress={true}
                                 modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper'>
+                                className='mySwiper'>
                                 {product.imageUrls.map((item, index) => (
                                     <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
+                                        <img src={item} alt={`laptop${index}`}/>
                                     </SwiperSlide>
                                     ))
                                 }
