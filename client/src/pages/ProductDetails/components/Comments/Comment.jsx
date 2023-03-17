@@ -48,12 +48,24 @@ const Comment = ({comment, className, itemNo}) => {
           </Box>
 
           <Box className="product__comment-text-wrapper">
+              {/*{! isDisabled ?
+                  <textarea type="text"
+                         value={commentValue}
+                         onChange={(e) => {
+                             setCommentValue(e.target.value)
+                         }}
+                         className="product__comment-text"
+                         disabled={isDisabled}/>
+                  :
+                  <p className="product__comment-text">{commentValue}</p>
+              }*/}
               <input type="text"
-                     value={commentValue}
-                     onChange={(e) => { setCommentValue(e.target.value)} }
-                     className="product__comment-text"
-                     disabled={isDisabled} />
-
+                        value={commentValue}
+                        onChange={(e) => {
+                            setCommentValue(e.target.value)
+                        }}
+                        className="product__comment-text"
+                        disabled={isDisabled}/>
           </Box>
       </Box>
   )
