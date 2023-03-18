@@ -4,12 +4,12 @@ import FormikControl from './FormikControl';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const PasswordInput=({name, placeholder, showPassword, onClick, onMouseDown})=>{
+const PasswordInput=({name, placeholder, label, showPassword, onClick, onMouseDown})=>{
 
 return(
     <FormikControl
     htmlFor="outlined-adornment-password"
-    label="Password"
+    label={label}
     variant="outlined"
     control="input"
     color="success"
@@ -22,12 +22,12 @@ return(
     InputProps={{
       endAdornment: (
         <>
-          <InputAdornment position="end">
+          <InputAdornment  position="end" >
             <IconButton
               aria-label="toggle password visibility"
               onClick={onClick}
               onMouseDown={onMouseDown}
-              edge="end"
+             /*  edge="end"  */
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>

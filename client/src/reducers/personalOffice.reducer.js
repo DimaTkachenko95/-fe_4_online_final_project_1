@@ -5,10 +5,7 @@ import { GET_USER, ORDERS } from "../endpoints";
 const initialState = {
     userInfo: null,
     editInputs: [],
-    changePassword: {
-        oldPassword: '',
-    },
-    changePasswordMessage: '',
+    changePasswordMessage: '\xa0',
     pageLoading: false,
     allUserOrders: [],
 }
@@ -70,7 +67,7 @@ export const actionFetchUpdateCustomerPassword = (userPasswordObj) => (dispatch)
             updatedCustomer.data.message ? 
             dispatch(actionChangePasswordMessage(updatedCustomer.data.message))
             :
-            dispatch(actionChangePasswordMessage(updatedCustomer.data.password))
+            dispatch(actionChangePasswordMessage('Enter corect old password'))
             dispatch(actionPageLoading(false))
        })
         .catch(err => console.log(err) )

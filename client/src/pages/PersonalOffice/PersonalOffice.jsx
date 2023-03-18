@@ -4,15 +4,18 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import LogoutIcon from '@mui/icons-material/Logout';
 import {useState} from 'react';
 import { useSelector } from "react-redux";
 import UserData from "./components/UserData";
 import AllUserOrders from "./components/AllUserOrders";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ChangePassword from "./components/ChangePassword";
+import setAuthToken from "../../helpers/setAuthToken";
 import { selectorPageLoadingPersonalOffice } from "../../selectors";
 import './PersonalOffice.scss';
 import Preloader from "../../components/Preloader";
+import { Link } from "react-router-dom";
 
 const PersonalOffice = () => {
 
@@ -28,12 +31,20 @@ const PersonalOffice = () => {
             <Preloader open={ pageLoading } />
             <BreadCrumbs linksArray={[{ link: "/personal-office", text: "Personal office" }]} />
             <p className="header-personal-office">Personal <span className="title_contrast">office</span></p>
+          <Link to='/'> 
+            <Box onClick={()=>{
+                localStorage.removeItem('token')
+                setAuthToken(false)
+                }
+                } className="logout">< LogoutIcon sx={{ color: '#75758a', marginRight: '5px' }}/> <p>Exit</p></Box>
+         </Link>
+           
 
 
             <TabContext  value={value}  >
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList className="tab-list"  onChange={handleChange} TabIndicatorProps={{sx:{backgroundColor:"green", height:"3px"}}}
-          sx={{
+          sx={{ display:'flex', flexDirection:'column',
              // задаем цвет со старта
              "& button": {color:"greey", backgroundColor: "white", transition: '0.7s'},
              "& button.Mui-selected": {color:"green", backgroundColor: "#d6e3d1", borderTopLeftRadius: "10px"/* , fontWeight: "700" */},
@@ -42,7 +53,7 @@ const PersonalOffice = () => {
           }}>
                             <Tab label="My data" value="1" />
                             <Tab label="Change password" value="2" />
-                            <Tab label="History of orders" value="3" />
+                            <Tab label="Orders" value="3" />
                     </TabList>
                 </Box>
                 <TabPanel className="tab-panel" value="1"><UserData/></TabPanel>

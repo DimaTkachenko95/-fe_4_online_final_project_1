@@ -122,13 +122,15 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                   {!withPassword &&
                   <PasswordInput name={"password"} 
                                  placeholder={"Enter your password"} 
+                                 label={"Enter your password"}
                                  showPassword={showPassword} 
                                  onClick={()=>setShowPassword(!showPassword)}
                                  onMouseDown={(e)=>e.preventDefault()} />
                   }
                    {!withPassword &&
                   <PasswordInput name={"confirmPassword"} 
-                                 placeholder={"Confirm password"} 
+                                 placeholder={"Confirm password"}
+                                 label={"Confirm password"} 
                                  showPassword={showRepeatPassword} 
                                  onClick={()=>setShowRepeatPassword(!showRepeatPassword)}
                                  onMouseDown={(e)=>e.preventDefault()} />
