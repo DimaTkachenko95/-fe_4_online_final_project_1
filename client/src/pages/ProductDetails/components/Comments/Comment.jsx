@@ -34,9 +34,9 @@ const Comment = ({comment, className, itemNo}) => {
     return(
       <Box className={`product__comment ${className}`}>
           <Box className="product__comment-user-wrapper">
-              <p className="product__comment-info">{comment.customer.firstName} {comment.customer.lastName}</p>
-              <span className="product__comment-info">&nbsp; / &nbsp;</span>
-              <p className="product__comment-info">{formattingDate}</p>
+              <p className="product__comment-user">{comment.customer.firstName} {comment.customer.lastName}</p>
+              <span>&nbsp; / &nbsp;</span>
+              <p className="product__comment-date">{formattingDate}</p>
           </Box>
 
           <Box className="product__comment-actions">
@@ -48,11 +48,17 @@ const Comment = ({comment, className, itemNo}) => {
           </Box>
 
           <Box className="product__comment-text-wrapper">
-              <input type="text"
-                     value={commentValue}
-                     onChange={(e) => { setCommentValue(e.target.value)} }
-                     className="product__comment-text"
-                     disabled={isDisabled} />
+              {! isDisabled ?
+                  <textarea type="text"
+                         value={commentValue}
+                         onChange={(e) => {
+                             setCommentValue(e.target.value)
+                         }}
+                         className="product__comment-text"
+                         disabled={isDisabled}/>
+                  :
+                  <p className="product__comment-text">{commentValue}</p>
+              }
 
           </Box>
       </Box>
