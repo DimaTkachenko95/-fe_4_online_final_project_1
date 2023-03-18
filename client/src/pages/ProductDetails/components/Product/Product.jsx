@@ -59,7 +59,7 @@ const Product = () => {
                         link: `/products/${product.itemNo}`,
                         text: `${product.name}`
                     }]}/>
-                    <Box className={showAll && isMobile ? "product__wrapper--mobile" : "product__wrapper"}>
+                    <Box className={"product__wrapper"}>
                         <Box className="product__title-wrapper">
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
