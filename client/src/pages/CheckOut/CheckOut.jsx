@@ -3,7 +3,7 @@ import {Box, Container, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import BreadCrumbs from "../../components/BreadCrumbs";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
+import {selectorBasketProduct, selectorIsOrdered, selectorToken, selectorUserData} from "../../selectors";
 import {actionFetchCreateOrder} from "../../reducers";
 import OrderedSuccessful from "./components/OrderedSuccessful";
 import {useEffect} from "react";
@@ -17,6 +17,8 @@ const CheckOut = () => {
     const navigate = useNavigate();
     const isOrdered = useSelector(selectorIsOrdered);
     const basketProduct = useSelector(selectorBasketProduct);
+    const token = useSelector(selectorToken);
+    const user = useSelector(selectorUserData);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,12 +27,15 @@ const CheckOut = () => {
         }
     });
 
+
+
+
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
-            phone: '',
-            email: '',
+            firstName: token ? user.firstName : '',
+            lastName: token ? user.lastName : '',
+            phone: token ? user.telephone : '',
+            email: token ? user.email : '',
             country: '',
             city: '',
             address: '',
