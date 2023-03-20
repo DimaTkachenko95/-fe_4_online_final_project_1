@@ -3,7 +3,13 @@ import {Box, Container, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import BreadCrumbs from "../../components/BreadCrumbs";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorBasketProduct, selectorIsOrdered} from "../../selectors";
+import {
+    selectorBasket,
+    selectorBasketProduct,
+    selectorIsOrdered,
+    selectorToken,
+    selectorUserData
+} from "../../selectors";
 import {actionFetchCreateOrder} from "../../reducers";
 import OrderedSuccessful from "./components/OrderedSuccessful";
 import {useEffect} from "react";
@@ -13,25 +19,30 @@ import { validationSchema } from "./validationShema";
 import {letterHtml} from "../Authorization/letterHtml";
 
 const CheckOut = () => {
-
     const productBasket = useSelector(selectorBasketProduct);
     const navigate = useNavigate();
     const isOrdered = useSelector(selectorIsOrdered);
     const basketProduct = useSelector(selectorBasketProduct);
+    const basket = useSelector(selectorBasket);
+    const token = useSelector(selectorToken);
+    const user = useSelector(selectorUserData);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (basketProduct.length === 0){
+        if (basket.length === 0){
             navigate("/");
         }
     });
 
+
+
+
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
-            phone: '',
-            email: '',
+            firstName: token ? user.firstName : '',
+            lastName: token ? user.lastName : '',
+            phone: token ? user.telephone : '',
+            email: token ? user.email : '',
             country: '',
             city: '',
             address: '',
@@ -40,7 +51,7 @@ const CheckOut = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-           
+
             const products = productBasket.map(product => {
                 return {
                     product,
@@ -48,7 +59,7 @@ const CheckOut = () => {
                     cartQuantity: product.cartQuantity,
                 }
             });
-            console.log(products, 'products')
+
             const newOrder = {
                 products: products,
                 customerId: '640b45ecb93d4a3c2cea21c4',
@@ -64,7 +75,7 @@ const CheckOut = () => {
                 letterSubject: "Thank you for order! You are welcome!",
                 letterHtml: letterHtml()
             }
-            
+
             dispatch(actionFetchCreateOrder(newOrder, basketProduct));
 
         },
@@ -72,11 +83,11 @@ const CheckOut = () => {
 
     return (
         <>
-    { !isOrdered ? 
+    { !isOrdered ?
                 <Box className="checkout">
                 <Container maxWidth="lg" className="checkout__container">
                     <BreadCrumbs linksArray={[{link: "/basket", text: "Cart"},{link: "/checkout", text: "Checkout"}]}/>
-                    <h3 className="checkout__title">Checkout</h3>
+                    <h3 className="checkout__title">Check<span className="title_contrast">out</span></h3>
                     <form onSubmit={formik.handleSubmit} className="checkout__form">
 
                         <TextField
@@ -184,7 +195,6 @@ const CheckOut = () => {
                             color="success"
                         />
 
-
                         <TextField
                             className="checkout__input"
                             label="Postal code"
@@ -206,7 +216,7 @@ const CheckOut = () => {
             </Box>
                 :
                 <OrderedSuccessful/>
-             } 
+             }
         </>
     )
 };

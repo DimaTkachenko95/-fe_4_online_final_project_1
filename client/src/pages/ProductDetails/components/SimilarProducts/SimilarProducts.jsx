@@ -2,14 +2,13 @@ import { useEffect }  from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { selectorProduct, selectorSimilarProducts } from "../../../../selectors";
 import './SimilarProducts.scss';
+import ProductCard from "../../../../components/ProductCard";
 import { actionFetchSimilarProducts } from "../../../../reducers/productDetails.reducer";
-import ProductsSlider from "../../../../components/ProductsSlider";
 
-const SimilarProducts = ({id}) => {
+const SimilarProducts = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectorProduct);
     const similarProducts = useSelector(selectorSimilarProducts);
-    const availableDiscountedProducts = similarProducts.filter(product => product.quantity > 0 && product._id !== id)
 
     // TODO: Добавить фильтрацию по цене после расширения бд
     const currentPrice = product.currentPrice;
@@ -31,7 +30,15 @@ const SimilarProducts = ({id}) => {
             { shownProduct.length > 0 && (
                 <div className="similar-products__container">
                     <h3 className="similar-products__title">Similar items <span>you might like</span></h3>
-                    <ProductsSlider products={availableDiscountedProducts}/>
+                    <div className="similar-products__wrapper">
+                        { shownProduct.map( (item, index) => (
+                            (index < 4) &&
+                                <div key={item._id} className="similar-products__item">
+                                    <ProductCard el={item} />
+                                </div> )
+                            )
+                        }
+                    </div>
                 </div>
             ) }
         </>

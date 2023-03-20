@@ -1,9 +1,7 @@
 import { Field, useField } from 'formik';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import './CustomInput.scss';
-
 
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
@@ -11,7 +9,7 @@ const CustomInput = (props) => {
   return (
     <>
       <Field
-    
+
         onClick={onClick}
         name={name}
         style={{ minWidth: 300 }}
@@ -27,7 +25,7 @@ const CustomInput = (props) => {
         helperText={
           !!meta.error && meta.touched && <span className="error-registration">{meta.error}</span>
         }
-        
+
       />
     </>
   );

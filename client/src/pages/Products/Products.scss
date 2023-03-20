@@ -1,13 +1,6 @@
-@mixin font-list-items {
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-}
+@use './src/styles/mixins';
 
 .main-list {
-  margin: 50px auto;
   position: relative;
 
   &__sections {
@@ -55,17 +48,11 @@
 }
 
 .count-found-product {
-  @include font-list-items;
+  @include mixins.titleStyles;
+  padding-bottom: 30px;
 
-  font-size: 16px;
-  margin-bottom: 26px;
-  color: #000;
-
-  &__span {
-    @include font-list-items;
-
-    font-size: 16px;
-    color: #60b021;
+  .title_contrast {
+    @include mixins.liner-gradient-tile;
   }
 }
 

@@ -44,7 +44,7 @@
   display: flex;
   width: 105px;
   height: 35px;
-  font-family: Ubuntu;
+  font-family: Ubuntu, sans-serif;
   font-style: normal;
   @include mixins.titleStyles;
   color: variables.$black;

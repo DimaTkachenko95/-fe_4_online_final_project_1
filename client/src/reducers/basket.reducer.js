@@ -5,7 +5,6 @@ import { GET_ALL_PRODUCTS, SHOPPING_CART, PRODUCT_IN_SHOPPING_CART, CHANGE_PRODU
 const initialState = {
     basket: JSON.parse(localStorage.getItem("basket")) || [],
     basketProduct: [],
-   // products: JSON.parse(localStorage.getItem("authorizedBasket")) || [],
     products: [], // for authorizing users
     serverError: null,
     pageLoading: false
@@ -80,7 +79,6 @@ const basketSlice = createSlice({
                     }
                 })
                 state.products = item;
-               // localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]))
             },
             actionAddToProducts: (state, { payload }) => {
                 const products = JSON.parse(JSON.stringify([...state.products]));
@@ -91,7 +89,6 @@ const basketSlice = createSlice({
                     const newProduct = { product: payload, cartQuantity: 1 };
                     products.push(newProduct);
                 }
-               // localStorage.setItem("authorizedBasket", JSON.stringify(products));
                 return { ...state, products };
               },
 
@@ -106,13 +103,11 @@ const basketSlice = createSlice({
                     products.push({ product: payload, cartQuantity: 1 });
                   }
               
-                //localStorage.setItem("authorizedBasket", JSON.stringify(products));
                 state.products = products;
 
               },
               actionDeleteAllProducts: (state, {payload}) => {
                 state.products = [...state.products.filter(({product}) => product !== payload)]
-              //  localStorage.setItem("authorizedBasket", JSON.stringify([...state.products]));
               }
 
     }

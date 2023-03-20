@@ -10,10 +10,9 @@ import {selectorBasket, selectorBasketProduct, selectorProducts, selectorToken, 
 import {actionFetchAddUserCart, actionGetCart} from "../../reducers";
 import BreadCrumbs from '../../components/BreadCrumbs';
 import Preloader from "../../components/Preloader";
-import { Link, NavLink } from 'react-router-dom';
 
 const ContainerBasket = styled(Container)`
-  padding: 25px 0 50px 0;
+  padding-bottom: 50px;
 `
 
 const Basket = () => {
@@ -48,7 +47,7 @@ const Basket = () => {
 
         <ContainerBasket maxWidth="lg">
             <Preloader open={isLoading}/>
-            <BreadCrumbs linksArray={[{ link: '/basket', text: 'Shopping Cart' }]} />
+            <BreadCrumbs linksArray={[{link: "/basket", text: "Shopping Cart"}]}/>
             <h1 className="basket__title">Shopping <span className="title_contrast">cart</span></h1>
             {!basketProduct && !basketProduct.length <= 1 ? 
                 <EmptyResult/> :

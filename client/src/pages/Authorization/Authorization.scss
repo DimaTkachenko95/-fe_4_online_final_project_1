@@ -2,6 +2,7 @@
 @use 'src/styles/variables';
 
 .form-block {
+  font-family: 'Ubuntu', sans-serif;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 30px;
@@ -11,6 +12,7 @@
   &__title {
     text-transform: uppercase;
     font-weight: 700;
+    text-align: center;
   }
 
   &__btn {

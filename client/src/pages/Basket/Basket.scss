@@ -2,15 +2,18 @@
 @use 'src/styles/variables';
 
 .basket__title {
+  font-family: 'Ubuntu', sans-serif;
   @include mixins.titleStyles;
 
   .title_contrast {
-    color: variables.$green;
+    @include mixins.liner-gradient-tile;
   }
 }
 
 .basket__box {
   margin: 30px 0;
+  font-family: 'Ubuntu', sans-serif;
+
   .basket__table {
     border-collapse: collapse;
     border-top: 1px solid #efefef;
@@ -24,8 +27,12 @@
       font-weight: 400;
       text-transform: capitalize;
       font-size: 14px;
-      line-height: 20px;
+      line-height: 30px;
       color: variables.$border;
+      &__name {
+        text-align: left;
+        width: 400px;
+      }
     }
 
     .product_item {
@@ -34,6 +41,7 @@
 
     .product_name {
       vertical-align: middle;
+      text-align: left;
 
       .vendor {
         font-weight: 400;
@@ -52,11 +60,10 @@
 
     .product_price {
       color: variables.$light-green;
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 700;
       vertical-align: middle;
-
-      @media (max-width: 600px) {
+      @media (max-width: 996px) {
         display: none;
       }
     }
@@ -90,7 +97,7 @@
           cursor: pointer;
         }
 
-        .decrease_disabled {
+        .disabled {
           width: 10px;
           height: 10px;
           padding: 10px;
@@ -103,6 +110,7 @@
     .product_total {
       vertical-align: middle;
       width: 120px;
+      font-size: 17px;
 
       @media (max-width: 600px) {
         width: 80px;
@@ -129,13 +137,15 @@
     }
   }
 
-  th {
+  .table_title__header {
     border-bottom: 1px solid variables.$light-border;
     text-align: center;
   }
 }
 
 .basket__footer {
+  padding-top: 30px;
+  font-family: 'Ubuntu', sans-serif;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
@@ -149,34 +159,16 @@
     align-self: center;
     justify-content: center;
     grid-column: 2 / 3;
-
+    grid-row: 1 / 2;
     @media (max-width: 996px) {
       grid-row: 2 / 3;
-    }
-
-    .checkout_btn {
-      justify-self: flex-end;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: variables.$white;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 16px;
-      cursor: pointer;
-      width: 240px;
-      height: 50px;
-      box-sizing: border-box;
-      border-radius: 30px;
-      background-image: variables.$linearGradient;
-      padding: 17px 20px;
     }
   }
 
   .basket__footer_total {
     border-bottom: 2px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to left, variables.$linearGradient);
+    border-image-source: linear-gradient(to left, #8EE901, #4F9C2C);
     padding-bottom: 15px;
 
     font-size: calc(1rem + 0.8vw);
@@ -184,6 +176,7 @@
     align-self: flex-end;
     justify-content: space-between;
     grid-column: 3 / 4;
+    grid-row: 1 / 2;
 
     @media (max-width: 996px) {
       grid-column: 2 / 3;

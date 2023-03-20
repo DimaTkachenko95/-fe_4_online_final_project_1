@@ -23,13 +23,6 @@
       flex-direction: column;
     }
 
-    &--mobile {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: 1fr 3fr 3fr;
-      column-gap: 30px;
-      row-gap: 15px;
-    }
   }
 
   &__title-wrapper {
@@ -57,15 +50,14 @@
 
   &__image-wrapper {
     border: 1px solid #efefef;
-    max-width: 480px;
-    max-height: 480px;
+    max-width: 440px;
+    max-height: fit-content;
     position: relative;
     box-sizing: border-box;
     display: flex;
-    height: 100%;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     grid-row-start: 2;
 
     @media (max-width: 550px) {
@@ -77,69 +69,15 @@
     }
 
   }
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    img {
-      display: block;
-      width: 80%;
-      height: 100%;
-    }
-  }
-  .swiper-button-prev{
-    color: #03ba55;
-    opacity: 0.3;
-  }
-  .swiper-button-next{
-    color: #03ba55;
-    opacity: 0.3;
-  }
-  .swiper {
-    width: 100%;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .swiper-slide {
-    background-size: cover;
-    background-position: center;
-  }
 
-  .mySwiper {
-    height: 20%;
-    box-sizing: border-box;
-    padding: 10px 0;
-    .swiper-slide {
-      width: 25%;
-      height: 100%;
-      opacity: 0.4;
-      border: 2px solid #dddbdb;
-      cursor: pointer;
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin: 15px;
-        object-fit: cover;
-      }
-    }
-    .swiper-slide-thumb-active {
-      opacity: 1;
-      border: 2px solid #60b021;
-    }
+  &__image {
+    width: 100%;
   }
 
   &__action {
-    background-color: rgb(255, 255, 255, 0.1);
+    background-color: #fff;
     border-radius: 5px;
     padding: 6px;
-    z-index: 999;
   }
 
   &__desc-wrapper {
