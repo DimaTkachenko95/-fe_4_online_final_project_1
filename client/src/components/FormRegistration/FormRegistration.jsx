@@ -1,11 +1,6 @@
 import './FormRegistration.scss';
 import { Formik, Form } from 'formik';
-
 import FormikControl from './components/FormikControl'
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actionEditInputs } from '../../reducers';

@@ -57,6 +57,8 @@ const CheckOut = () => {
                     address: values.address,
                     postal: values.postalCode,
                 },
+                firstName: values.firstName,
+                lastName: values.lastName,
                 email: values.email,
                 mobile: values.phone,
 

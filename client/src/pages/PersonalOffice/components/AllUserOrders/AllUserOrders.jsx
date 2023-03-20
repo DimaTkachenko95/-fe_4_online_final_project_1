@@ -1,40 +1,76 @@
 import {useDispatch, useSelector} from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { actionFetchAllUserOrders } from "../../../../reducers";
 import { selectorAllUserOrders } from "../../../../selectors";
-import ProductCard from "../../../../components/ProductCard";
-import {Box, Container, TextField} from '@mui/material';
+
 import ProductsSlider from "../../../../components/ProductsSlider";
+import { actionFetchCancelOrder, actionFetchGetOneOrder, actionFetchUpdatedOrder } from "../../../../reducers";
+import FormOrder from "../../../../components/FormOrder";
+import { selectorEditInputsOrder, selectorOrderInfo } from "../../../../selectors";
 
 import './AllUserOrder.scss'
+import { values } from "lodash";
 
 const AllUserOrders = () => {
-    const allUserOrders = useSelector(selectorAllUserOrders)
-    console.log(allUserOrders,'compon')
+    const [openOrderInfo, setOpenOrderInfo] = useState([])
+    const allUserOrders = useSelector(selectorAllUserOrders) 
+    const orderInfo = useSelector(selectorOrderInfo) 
     const dispatch = useDispatch() 
+
+    const editInputsOrder = useSelector(selectorEditInputsOrder)
 
     useEffect(()=>{
         dispatch(actionFetchAllUserOrders())
     },[])
 
-     const blockOrder = allUserOrders.map(({products})=>{
-        const itemOrder = products.map(({product})=>{
-            console.log(product, 'asasa')
-             return product        
+    
 
-/* return  <ProductCard key={product.itemNo} el={product} isForOrderedPage={true}/>   */ 
+     const blockOrder = allUserOrders.map(({products, totalSum, orderNo, date, _id})=>{
+        const itemOrder = products.map(({product})=>{      
+             return product   
         }) 
-    console.log(itemOrder, 'qqqqqqqqq')
         return(
-            <div>
-                <p>{itemOrder.date}</p>
-                <ProductsSlider key={products._id} products={itemOrder}  isForOrderedPage={true}/>     
+            <div className="order-block">
+                <ProductsSlider key={products._id} products={itemOrder}  isForOrderedPage={true}/>
+                <p>Order date: {date.slice(0,10)}</p>
+                <p>Total sum: {totalSum}</p> 
+                <p>Order number: {orderNo}</p> 
+                <button onClick={()=>dispatch(actionFetchCancelOrder(_id))}>Cancel the order</button> 
+                <button onClick={()=>{
+                    
+
+             if(openOrderInfo.includes(orderNo)){
+                    setOpenOrderInfo(openOrderInfo.filter((el)=> el !== orderNo))
+                   
+                     } else {
+                         dispatch(actionFetchGetOneOrder(orderNo)) 
+                        setOpenOrderInfo([...openOrderInfo, orderNo])
+                     }
+        
+               
+                  
+                   
+                    
+                    
+                    }}>Update order</button>  
+                    {openOrderInfo.includes(orderNo) &&  <FormOrder 
+                                                                inputsEditName={editInputsOrder}  
+                                                                initialValues={orderInfo}  
+                                                                btnEdit={true}
+                                                                onSubmit={(values)=>{
+                                                              /*       console.log(values)
+                                                                    console.log(_id) */
+                                                                    dispatch(actionFetchUpdatedOrder())
+                                                                }}/> }
+               
+                
             </div>
                       
-   /*           <div  className="one-block-order">{itemOrder}</div>   */
+   
         )
      
     }) 
+  
     
 
     return(

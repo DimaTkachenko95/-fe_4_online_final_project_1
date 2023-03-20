@@ -29,6 +29,22 @@
     flex-direction: column;
     box-sizing: border-box;
     justify-content: space-between;
+    &--quantity{
+      margin-bottom: 10px;
+      &--multiply{
+        font-size: 12px;
+      }
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 20px;
+      color: #75758a;
+      font-weight: 400;
+      margin-bottom: 20px;
+      display: flex;
+     
+    }
 
     &--name {
       @include font-list-items;
@@ -118,6 +134,7 @@
         left: 10px;
         text-decoration: line-through;
       }
+    
     }
   }
 }

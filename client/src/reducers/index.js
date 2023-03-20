@@ -55,11 +55,15 @@ import checkoutReducer, {
 import personalOfficeReducer, {
     actionUserInfo, 
     actionFetchUserInfo, 
+    actionEditInputsOrder,
     actionEditInputs,
     actionFetchUpdateCustomer,
     actionFetchUpdateCustomerPassword,
     actionChangePasswordMessage,
     actionFetchAllUserOrders,
+    actionFetchCancelOrder,
+    actionFetchGetOneOrder,
+    actionFetchUpdatedOrder,
 } from "./personalOffice.reducer";
 
 export {
@@ -114,7 +118,11 @@ export {
   actionFetchUserInfo, 
   actionEditInputs,
   actionFetchUpdateCustomer,
+  actionEditInputsOrder,
+  actionFetchCancelOrder,
   actionFetchAllUserOrders,
   actionFetchUpdateCustomerPassword,
   actionChangePasswordMessage,
+  actionFetchGetOneOrder,
+  actionFetchUpdatedOrder,
 };

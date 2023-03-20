@@ -38,6 +38,7 @@ const Header = () => {
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
 
+
   const countInBasket = basket.reduce((acc, { cartQuantity }) => acc + cartQuantity, 0);
 
   useEffect(() => {

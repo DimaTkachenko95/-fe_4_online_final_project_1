@@ -9,7 +9,7 @@ import "./ProductCard.scss";
 import ByuButton from "../ByuButton";
 
 const ProductCard = ({el, isForOrderedPage}) => {
-    const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity} = el;
+    const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity, cartQuantity} = el;
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
@@ -34,6 +34,7 @@ const ProductCard = ({el, isForOrderedPage}) => {
                             <img className="list__item--img--laptop" src={imageUrls[0]} alt={name}/> 
                         </Link>
                     </div>
+                    
 
                     { !isForOrderedPage && (<>
                         <span>
@@ -50,9 +51,14 @@ const ProductCard = ({el, isForOrderedPage}) => {
                       </>)
                     }
                 </div>
+                { isForOrderedPage && (
+                    <div className="list__item--quantity"> Quantity: &nbsp; <span className="list__item--quantity--multiply"> &#10008;</span> {cartQuantity}</div>
+                    )}
 
                 <div>
                     <div>
+              
+
                         <Link to={`/products/${itemNo}`}>
                             <p className="list__item--name">{name}</p>
                         </Link>

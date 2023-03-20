@@ -44,7 +44,9 @@ export const selectorUserInfo = state => state.personalOffice.userInfo
 export const selectorEditInputs = state => state.personalOffice.editInputs 
 export const selectorChangePasswordMessage = state => state.personalOffice.changePasswordMessage
 export const selectorPageLoadingPersonalOffice = state => state.personalOffice.pageLoading 
-export const selectorAllUserOrders = state => state.personalOffice.allUserOrders
+export const selectorAllUserOrders = state => state.personalOffice.allUserOrders 
+export const selectorEditInputsOrder = state => state.personalOffice.editInputsOrder
+export const selectorOrderInfo = state => state.personalOffice.orderInfo
 
 /* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN
