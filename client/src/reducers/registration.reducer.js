@@ -1,48 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { REGISTER_USER } from '../endpoints';
+import {createSlice} from '@reduxjs/toolkit';
+import {REGISTER_USER} from '../endpoints';
 import axios from 'axios';
 
 const registrationSlice = createSlice({
-  name: 'registration',
-  initialState: {
-    firstName: '',
-    lastName: '',
-    login: '',
-    email: '',
-    password: '',
-    telephone: '',
-    gender: '',
-    avatarUrl: '',
-    serverError: null,
-    isPassword: true  
-  },
-  reducers: {
-    actionCreateCustomer: (state, action) => {
-      state.firstName = action.payload.firstName;
-      state.lastName = action.payload.lastName;
-      state.login = action.payload.login;
-      state.email = action.payload.email;
-      state.password = action.payload.password;
-      state.telephone = action.payload.telephone;
-      state.gender = action.payload.gender;
-      state.avatarUrl = action.payload.avatarUrl;
+    name: 'registration',
+    initialState: {
+        firstName: '',
+        lastName: '',
+        login: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        telephone: '',
+        avatarUrl: '',
+        serverError: null,
+        pageIsLoading: false,
+        modalIsOpen: false
     },
-    actionServerError: (state, { payload }) => {
-      state.serverError = payload;
+    reducers: {
+        registrationIsLoading: (state, {payload}) => {
+            state.pageIsLoading = payload
+        },
+        registrationServerError: (state, {payload}) => {
+            state.serverError = payload
+        },
     },
-  },
 });
 
-export const { actionCreateCustomer, actionServerError } = registrationSlice.actions;
+export const {
+    registrationIsLoading,
+    registrationServerError,
+} = registrationSlice.actions;
 
-export const createCustomerServerApi = (value) => (dispatch) => {
-  axios
-    .post(REGISTER_USER, value)
-    .then((savedCustomer) => {
-      console.log(savedCustomer)
-      dispatch(actionCreateCustomer(savedCustomer));
-    })
-    .catch(() => dispatch(actionServerError(true)));
+
+export const createCustomerServerApi = (value) => {
+    return axios
+        .post(REGISTER_USER, value)
+        .then((savedCustomer) => {
+            return savedCustomer;
+        })
+        .catch(() => false);
 };
 
 export const initialState = registrationSlice.getInitialState();

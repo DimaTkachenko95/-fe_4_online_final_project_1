@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-/* import logger from "redux-logger"; */
-import thunk from "redux-thunk";
+
 import {
     productsReducer,
     favoritesReducer,
     scalesReducer,
     basketReducer,
+    registrationReducer,
     logInReducer,
     productDetailsReducer,
-    registrationReducer,
     discountedProductsReducer,
     checkoutReducer,
     personalOfficeReducer
@@ -22,13 +21,13 @@ const store = configureStore({
         favorites: favoritesReducer,
         scales: scalesReducer,
         basket: basketReducer,
+        registration:registrationReducer,
         logIn: logInReducer,
-        registration: registrationReducer,
         discountedProducts: discountedProductsReducer,
         checkout: checkoutReducer,
         personalOffice: personalOfficeReducer,
     }
-    /*  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger,thunk) */
+
 })
 
 export default store;

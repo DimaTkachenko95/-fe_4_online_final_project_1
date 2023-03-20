@@ -41,8 +41,9 @@ import productDetailsReducer, {
   actionFetchUpdateComment
 } from './productDetails.reducer';
 import registrationReducer, {
+  registrationIsLoading,
+  registrationServerError,
   createCustomerServerApi,
-  actionCreateCustomer,
   initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
@@ -104,7 +105,8 @@ export {
   actionFetchUpdateComment,
   registrationReducer,
   createCustomerServerApi,
-  actionCreateCustomer,
+  registrationIsLoading,
+  registrationServerError,
   initialState,
   discountedProductsReducer,
   personalOfficeReducer,
