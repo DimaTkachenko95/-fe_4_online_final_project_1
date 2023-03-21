@@ -5,7 +5,7 @@ import Authorization from '../../../Authorization/Authorization';
 import { useNavigate } from 'react-router-dom';
 import './ModalErrorRegistration.scss';
 
-const ModalErrorRegistration = ({ closeModal }) => {
+const ModalErrorRegistration = ({ closeErrorModal }) => {
   const navigate = useNavigate();
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
 
@@ -17,11 +17,13 @@ const ModalErrorRegistration = ({ closeModal }) => {
   const closeModalAuth = () => {
     setIsModalAuthOpen(false);
   };
+
   return (
     <Modal
-      modalAction={closeModal}
+      modalAction={closeErrorModal}
       closeAction={() => {
-        closeModal();
+        closeErrorModal();
+
       }}
     >
       <p className="modal_title"> You entered non-unique data; please try again or login </p>
@@ -35,7 +37,7 @@ const ModalErrorRegistration = ({ closeModal }) => {
         <Authorization
           closeModalAuth={() => {
             closeModalAuth();
-            closeModal();
+            closeErrorModal();
             navigate('/');
           }}
         />

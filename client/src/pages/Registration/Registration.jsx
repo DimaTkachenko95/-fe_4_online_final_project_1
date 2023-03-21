@@ -23,13 +23,17 @@ const initialState = {
 const Registration = () => {
     const [loading, setLoading] = useState(false);
     const [openModal, setOpenModal] = useState(false);
-    const [regError, setRegerror] = useState(false);
+    const [registrationError, setRegistrationError] = useState(false);
 
     const toggleModal = () => {
         setOpenModal(!openModal);
     };
     const closeModal = () => {
         setOpenModal(false);
+    };
+
+    const closeErrorModal = () => {
+        setRegistrationError(false);
     };
 
   return (
@@ -52,7 +56,7 @@ const Registration = () => {
                           setLoading(false);
                       } else {
                           setLoading(false);
-                          setRegerror(true)
+                          setRegistrationError(true);
                       }
                   })
               }}
@@ -61,7 +65,7 @@ const Registration = () => {
           />
             {loading && <Preloader open="true"/>}
             {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
-            {regError && <ModalErrorRegistration/>}
+            {registrationError && <ModalErrorRegistration closeErrorModal={() => closeErrorModal()}/>}
         </div>
       </Container>
     </main>
