@@ -2,18 +2,28 @@ import { Container } from '@mui/material';
 import { useState } from 'react';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
-import {createCustomerServerApi, registrationIsLoading} from '../../reducers';
 import FormRegistration from '../../components/FormRegistration';
 import ValidationSchema from './components/ValidationSchema';
 import ModalSuccessRegistration from './components/ModalSuccessRegistration';
-import Preloader from '../../components/Preloader'
-import {useDispatch} from "react-redux";
-import {initialState} from '../../reducers'
+import Preloader from '../../components/Preloader';
+import {createCustomerServerApi} from '../../api/createCustomerServerApi';
+import ModalErrorRegistration from './components/ModalErrorRegistration'
+
+const initialState = {
+        firstName: '',
+        lastName: '',
+        login: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        telephone: '',
+        avatarUrl: ''
+}
 
 const Registration = () => {
-    const dispatch = useDispatch();
-    //const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [regError, setRegerror] = useState(false);
 
     const toggleModal = () => {
         setOpenModal(!openModal);
@@ -34,18 +44,24 @@ const Registration = () => {
               validationSchema={ValidationSchema}
               onSubmit={(values, { resetForm }) => {
                   delete values.confirmPassword;
-                  dispatch(registrationIsLoading(true))
-                  createCustomerServerApi.then((savedCustomer) => {
-                      if (savedCustomer) {
+                  setLoading(true);
+                  createCustomerServerApi(values).then((axiosValue) => {
+                      if (axiosValue) {
                           resetForm();
-                          toggleModal();}
-                      dispatch(registrationIsLoading(false))
-                  });
+                          toggleModal();
+                          setLoading(false);
+                      } else {
+                          setLoading(false);
+                          setRegerror(true)
+                      }
+                  })
               }}
+
                   inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "gender", "avatarUrl"]}
           />
-
+            {loading && <Preloader open="true"/>}
             {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
+            {regError && <ModalErrorRegistration/>}
         </div>
       </Container>
     </main>

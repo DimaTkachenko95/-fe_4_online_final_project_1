@@ -40,11 +40,6 @@ import productDetailsReducer, {
   actionFetchDeleteComment,
   actionFetchUpdateComment
 } from './productDetails.reducer';
-import registrationReducer, {
-  registrationIsLoading,
-  registrationServerError,
-  createCustomerServerApi,
-  initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
@@ -103,11 +98,6 @@ export {
   actionFetchAllComments,
   actionFetchDeleteComment,
   actionFetchUpdateComment,
-  registrationReducer,
-  createCustomerServerApi,
-  registrationIsLoading,
-  registrationServerError,
-  initialState,
   discountedProductsReducer,
   personalOfficeReducer,
   actionDiscountedProducts,
