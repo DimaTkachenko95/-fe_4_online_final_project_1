@@ -42,11 +42,11 @@ const validationSchemaForOrder = yup.object().shape({
     address: yup
     .string()
     .min(3, 'Min 3 symbols')
-    .max(20, 'Max 20 symbols')
+    .max(200, 'Max 20 symbols')
     .required('A address is required'),
 
     postalCode: yup
-    .number()
+    .string()
     .min(2, 'Min 2 symbols')
     .max(20, 'Max 20 symbols')
 

@@ -13,7 +13,7 @@ const InputSearch = ({style = "header__input"}) => {
     const handleSearch = () => {
         if(searchInputValue.length > 0){
             dispatch(actionFetchSearchProducts(searchInputValue));
-            dispatch(actionSearchInputValue(''));
+           /*  dispatch(actionSearchInputValue('')); */
         }
     }
 

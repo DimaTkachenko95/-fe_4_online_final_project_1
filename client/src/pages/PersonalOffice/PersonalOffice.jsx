@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useState} from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import UserData from "./components/UserData";
 import AllUserOrders from "./components/AllUserOrders";
 import BreadCrumbs from "../../components/BreadCrumbs";
@@ -16,15 +16,25 @@ import { selectorPageLoadingPersonalOffice } from "../../selectors";
 import './PersonalOffice.scss';
 import Preloader from "../../components/Preloader";
 import { Link } from "react-router-dom";
+import { actionToken, actionAuthorizationUser } from "../../reducers";
+
 
 const PersonalOffice = () => {
 
     const [value, setValue] = useState('1');
     const pageLoading = useSelector(selectorPageLoadingPersonalOffice)
+    const dispatch = useDispatch()
 
    const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    const exitFromOffice = () => {
+        localStorage.removeItem('token')
+        setAuthToken(false)
+        dispatch(actionToken('')) 
+        dispatch(actionAuthorizationUser({}))
+        
+    }
 
     return (
         <Container className="main-list" maxWidth="lg">
@@ -32,10 +42,7 @@ const PersonalOffice = () => {
             <BreadCrumbs linksArray={[{ link: "/personal-office", text: "Personal office" }]} />
             <p className="header-personal-office">Personal <span className="title_contrast">office</span></p>
           <Link to='/'> 
-            <Box onClick={()=>{
-                localStorage.removeItem('token')
-                setAuthToken(false)
-                }
+            <Box onClick={()=>exitFromOffice()
                 } className="logout">< LogoutIcon sx={{ color: '#75758a', marginRight: '5px' }}/> <p>Exit</p></Box>
          </Link>
            

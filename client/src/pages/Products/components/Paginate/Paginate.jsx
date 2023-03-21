@@ -11,10 +11,10 @@ const Paginate = () => {
     const dispatch = useDispatch()
 
     const pageCount = Math.ceil(productsQuantity / filterRequestObj.perPage);
+    let newfilterRequestObj = { ...filterRequestObj }
 
     const handleChange = (e, page) => {
-        let newfilterRequestObj = { ...filterRequestObj }
-        newfilterRequestObj.startPage = page
+        newfilterRequestObj.startPage =  page
         dispatch(actionFetchSearchFilterProducts(newfilterRequestObj))
     }
 
@@ -24,7 +24,9 @@ const Paginate = () => {
             <Pagination
                 size="medium"
                 count={pageCount}
-                onChange={handleChange}>
+                onChange={handleChange}
+                page={ newfilterRequestObj.startPage}>
+                   
             </Pagination>
         </div>
 

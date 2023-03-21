@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { GET_USER, ORDERS } from "../endpoints";
+import { letterHtml } from "../pages/Authorization/letterHtml";
 
 const initialState = {
     userInfo: null,
@@ -136,7 +137,8 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
 export const actionFetchUpdatedOrder = (_id , updatedOrder) => (dispatch) => {
     console.log(updatedOrder, 'dsvzdvs')
     return axios
-    .put(`/orders/641792ad91fc3f004164cc50`, {country: 'Engl'})
+    .put(`/orders/641792ad91fc3f004164cc50`, {country: 'Engl',   letterSubject: "Thank you for order! You are welcome!",
+    letterHtml: letterHtml()})
     .then(updatedOrder => {
         console.log(updatedOrder, 'qwqwqw')
       /*Do something with updatedOrder*/

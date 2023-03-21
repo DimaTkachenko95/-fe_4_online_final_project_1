@@ -19,7 +19,7 @@ const logInSlice = createSlice({
         },
         actionAuthorizationUser: (state, {payload}) => {
             state.userData = payload
-        },
+        }, 
         actionError: (state, {payload}) => {
             state.error = payload;
         },

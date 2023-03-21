@@ -1,10 +1,11 @@
 import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectorFilterRequest } from '../../../../selectors';
-import { actionFetchSearchFilterProducts } from '../../../../reducers';
+import { actionFetchSearchFilterProducts, actionFetchAllProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
@@ -61,7 +62,7 @@ const FilterMainList = () => {
         }
         return true
     }
-
+console.log(filterRequestObj,'tyyytytyty')
     const checked = (key, name) => {
         return filterRequestObj[key].includes(name)
     }

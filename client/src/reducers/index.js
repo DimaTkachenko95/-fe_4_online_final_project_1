@@ -32,6 +32,7 @@ import logInReducer, {
   actionToken,
   actionFetchAuthorizationUser,
   actionResetLoginError,
+  actionAuthorizationUser,
 } from './logIn.reducer';
 import productDetailsReducer, {
   actionFetchOneProduct,
@@ -99,6 +100,7 @@ export {
   actionFetchLogin,
   actionResetLoginError,
   actionFetchAuthorizationUser,
+  actionAuthorizationUser,
   actionToken,
   productDetailsReducer,
   actionFetchOneProduct,
