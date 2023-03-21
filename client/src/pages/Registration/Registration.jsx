@@ -28,6 +28,7 @@ const Registration = () => {
     const toggleModal = () => {
         setOpenModal(!openModal);
     };
+
     const closeModal = () => {
         setOpenModal(false);
     };
