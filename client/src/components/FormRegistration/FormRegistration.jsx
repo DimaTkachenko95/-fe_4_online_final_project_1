@@ -148,6 +148,47 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         }}
                                     />
 
+                                    <FormikControl
+                                        sx={[!inputsEditName.includes("city") && {
+                                            "& fieldset": {border: 'none'}
+                                        }]}
+                                        type="text"
+                                        control="input"
+                                        label="City"
+                                        color="success"
+                                        className="form-registration__input"
+                                        name="city"
+                                        placeholder="Enter your city"
+                                        variant="outlined"
+                                        id="outlined-multiline-flexible"
+                                        disabled={!inputsEditName.includes("city")}
+                                        InputProps={btnEdit && {
+                                            endAdornment: (<EditButton dataName={"city"}
+                                                                       onClick={() => dispatch(actionEditInputs("city"))}/>)
+                                        }}
+
+                                    />
+                                    <FormikControl
+                                        sx={[!inputsEditName.includes("country") && {
+                                            "& fieldset": {border: 'none'}
+                                        }]}
+                                        type="text"
+                                        control="input"
+                                        label="Country"
+                                        color="success"
+                                        className="form-registration__input"
+                                        name="country"
+                                        placeholder="Enter your country"
+                                        variant="outlined"
+                                        id="outlined-multiline-flexible"
+                                        disabled={!inputsEditName.includes("country")}
+                                        InputProps={btnEdit && {
+                                            endAdornment: (<EditButton dataName={"country"}
+                                                                       onClick={() => dispatch(actionEditInputs("country"))}/>)
+                                        }}
+
+                                    />
+
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("avatarUrl") && {

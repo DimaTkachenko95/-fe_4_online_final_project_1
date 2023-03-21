@@ -17,6 +17,8 @@ const initialState = {
         password: '',
         confirmPassword: '',
         telephone: '',
+        city:'',
+        country:'',
         avatarUrl: ''
 }
 
@@ -62,7 +64,7 @@ const Registration = () => {
                   })
               }}
 
-                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "gender", "avatarUrl"]}
+                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "city", "country", "avatarUrl"]}
           />
             {loading && <Preloader open="true"/>}
             {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
