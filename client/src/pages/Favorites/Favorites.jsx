@@ -33,7 +33,7 @@ export default function Favorites() {
           <EmptyResult />
         ) : (
           <div>
-            <Grid container spacing={12}>
+            <Grid container spacing={10}>
               {productFavorites.map((el, index) => (
                 <Grid className="grid-main-list" item xs="12" sm="6" md="4" key={el._id}>
                   <ProductCard el={el} index={index} />
