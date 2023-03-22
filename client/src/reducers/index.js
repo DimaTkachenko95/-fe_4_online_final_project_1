@@ -40,10 +40,6 @@ import productDetailsReducer, {
   actionFetchDeleteComment,
   actionFetchUpdateComment
 } from './productDetails.reducer';
-import registrationReducer, {
-  createCustomerServerApi,
-  actionCreateCustomer,
-  initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
@@ -102,10 +98,6 @@ export {
   actionFetchAllComments,
   actionFetchDeleteComment,
   actionFetchUpdateComment,
-  registrationReducer,
-  createCustomerServerApi,
-  actionCreateCustomer,
-  initialState,
   discountedProductsReducer,
   personalOfficeReducer,
   actionDiscountedProducts,
