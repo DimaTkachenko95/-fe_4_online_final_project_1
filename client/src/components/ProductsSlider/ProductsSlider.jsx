@@ -30,7 +30,7 @@ const ProductsSlider = ({ products, isForOrderedPage, productsLimit }) => {
   const settings = {
     className: "discounted-products__slider",
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
