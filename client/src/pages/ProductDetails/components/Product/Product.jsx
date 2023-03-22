@@ -1,4 +1,4 @@
-import {Box, Container, SliderThumb} from '@mui/material';
+import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
 import './Product.scss';
@@ -17,92 +17,88 @@ import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
-import Button from "../../../../components/Button";
 import ByuButton from "../../../../components/ByuButton";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { FreeMode, Navigation, Thumbs } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Product = () => {
-    const [showAll, setShowAll] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 970);
+}, []);
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth <= 970);
-    }, []);
+const product = useSelector(selectorProduct);
+const favorites = useSelector(selectorFavorites);
+const scales = useSelector(selectorScales);
+const isLoading = useSelector(selectorIsDetailsProductLoading);
 
-    const product = useSelector(selectorProduct);
-    const favorites = useSelector(selectorFavorites);
-    const scales = useSelector(selectorScales);
-    const isLoading = useSelector(selectorIsDetailsProductLoading);
+const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+const toggleShowAll = () => {
+    setShowAll(!showAll);
+};
 
-    const toggleShowAll = () => {
-        setShowAll(!showAll);
-    };
+const toggleFavorites = id => {
+    dispatch(toggleFavoriteProduct(id));
+}
 
-    const toggleFavorites = id => {
-        dispatch(toggleFavoriteProduct(id));
-    }
+const toggleScales = id => {
+    dispatch(toggleScalesProduct(id));
+}
 
-    const toggleScales = id => {
-        dispatch(toggleScalesProduct(id));
-    }
-    const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
+const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
 
-    return (
-        <>
+return (
+    <>
 
-            {Object.keys(product).length > 0 && <Box className="product">
-                <Container maxWidth="lg" className="product__container">
-                    <Preloader open={ isLoading } />
+        {Object.keys(product).length > 0 && <Box className="product">
+            <Container maxWidth="lg" className="product__container">
+                <Preloader open={ isLoading } />
 
-                    <BreadCrumbs linksArray={[{link: "/products", text: "Products"}, {
-                        link: `/products/${product.itemNo}`,
-                        text: `${product.name}`
-                    }]}/>
-                    <Box className={showAll && isMobile ? "product__wrapper--mobile" : "product__wrapper"}>
-                        <Box className="product__title-wrapper">
-                            <h3 className="product__title">{product.name}</h3>
-                        </Box>
-                        <Box className="product__image-wrapper">
-                            <Swiper 
-                                loop={true}
-                                spaceBetween={10}
-                                navigation={true}
-                                thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper2'>
-                                {product.imageUrls.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
-                                    </SwiperSlide>
-                                    ))
-                                }
-                            </Swiper>
-                            <Swiper 
-                                onSwiper={setThumbsSwiper}
-                                loop={true}
-                                spaceBetween={10}
-                                slidesPerView={4}
-                                freeMode={true}
-                                watchSlidesProgress={true}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper'>
-                                {product.imageUrls.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
-                                    </SwiperSlide>
-                                    ))
-                                }
-                            </Swiper>
-                            <Box className="product__action-wrapper">
+                <BreadCrumbs linksArray={[{link: "/products", text: "Products"}, {
+                    link: `/products/${product.itemNo}`,
+                    text: `${product.name}`
+                }]}/>
+                <Box className={"product__wrapper"}>
+                    <Box className="product__title-wrapper">
+                        <h3 className="product__title">{product.name}</h3>
+                    </Box>
+                    <Box className="product__image-wrapper">
+                          <Swiper
+                            loop={true}
+                            spaceBetween={5}
+                            navigation={true}
+                            thumbs={{ swiper: thumbsSwiper }}
+                            modules={[FreeMode, Navigation, Thumbs]}
+                            className="product__image">
+                            {product.imageUrls.map((item, index) => (
+                              <SwiperSlide key={index}>
+                                <img height="300px" src={item} alt={`laptop${index}`} />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
+                          <Swiper
+                            onSwiper={setThumbsSwiper}
+                            spaceBetween={5}
+                            slidesPerView={4}
+                            freeMode={true}
+                            watchSlidesProgress={true}
+                            modules={[FreeMode, Navigation, Thumbs]}
+                            className="product__thumbs">
+                            {product.imageUrls.map((item, index) => (
+                              <SwiperSlide key={index}>
+                                <img src={item} alt={`laptop${index}`} />
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
+                          <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
                                              className={cx("list__item--scales product__action", {"list__item--scales--curent": checkProduct(scales)})}/>
@@ -123,14 +119,12 @@ const Product = () => {
                                     { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
                                 </p>
                                 {isMobile &&  (
-                                    <Button onClick={toggleShowAll} className="product__desc-button">
+                                    <button onClick={toggleShowAll} className="product__desc-button">
                                         {showAll ? 'Show Less' : 'Show More'}
-                                    </Button>
+                                    </button>
                                 )}
                             </Box>
                         </Box>
-
-
                         <Box className="product__info-wrapper">
                             <Box className="product__info-title-wrapper">
                                 <h5 className="product__info-title">Information</h5>
