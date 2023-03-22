@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Delete } from '../icons/003-delete.svg';
@@ -10,16 +10,13 @@ import {
   selectorBasket,
   selectorBasketProduct,
   selectorToken,
-  selectorProducts,
 } from '../../../selectors';
 import {
-  actionDeleteFromBasket,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
-  actionDeleteFromAuthBasket,
-  actionAddToAuthBasket,
-  actionDeleteAllFromAuthBasket,
+  actionDeleteProductFromBasket,
+  actionAddProductToBasket,
+  actionDeleteAllFromBasket,
+  actionCheckCart,
+  getProductsCart
 } from '../../../reducers';
 
 import '../Basket.scss';
@@ -28,49 +25,34 @@ const BasketItems = () => {
   const dispatch = useDispatch();
   const basket = useSelector(selectorBasket);
   const productBasket = useSelector(selectorBasketProduct);
-  const products = useSelector(selectorProducts);
-
-  const userProducts = localStorage.getItem('token') ? products : basket;
-
-  const itemNos = userProducts.map((item) => {
-    return item.product;
-  });
-
-  const quantity = userProducts.map((item) => {
-    return item.cartQuantity;
-  });
+  const authToken = useSelector(selectorToken);
 
   useEffect(() => {
-    dispatch(actionFetchProductByItemNo({ itemNos, quantity }));
-  }, [products, basket]);
+    dispatch(actionCheckCart());
+  }, [authToken]);
+
+  useEffect(() => {
+       dispatch(getProductsCart());
+  }, [basket]);
 
   const handlerDeleteFromBasket = (item) => {
-    if (localStorage.getItem('token')) {
-      dispatch(actionDeleteAllFromAuthBasket(item._id));
-    }
-    dispatch(actionDeleteFromBasket(item));
+    dispatch(actionDeleteAllFromBasket(item));
   };
 
   const increase = (item) => {
-    const cartItem = userProducts.find((elem) => elem.product === item._id);
+    const cartItem = basket.find((elem) => elem.product === item._id);
     if (!cartItem || cartItem.cartQuantity <= item.quantity - 1) {
-      if (localStorage.getItem('token')) {
-        dispatch(actionAddToAuthBasket(item._id));
-      }
-      dispatch(actionIncrease(item));
+      dispatch(actionAddProductToBasket(item));
     } else return null;
   };
 
   const decrease = (item) => {
-    if (item.cartQuantity >= 2) {
-      if (localStorage.getItem('token')) {
-        dispatch(actionDeleteFromAuthBasket(item._id));
-      } else {
-        dispatch(actionDecraese(item));
-      }
+    if (item.cartQuantity > 1) {
+        dispatch(actionDeleteProductFromBasket(item));
     } else return null;
   };
-
+console.log(productBasket);
+console.log(basket);
   const item = productBasket.map((item) => (
     <tr className="product_item" id={item._id} key={item._id}>
       <td className="product_img">
@@ -91,11 +73,14 @@ const BasketItems = () => {
       <td className="quantity">
         <div>
           <Minus
-            className={item.cartQuantity >= 2 ? 'decrease' : 'decrease_disabled'}
+            className={item.cartQuantity >= 2 ? 'decrease' : 'disabled'}
             onClick={() => decrease(item)}
           />
           <span>{item.cartQuantity}</span>
-          <Plus className="increase" onClick={() => increase(item)} />
+          <Plus
+            className={item.cartQuantity != item.quantity ? 'increase' : 'disabled'}
+            onClick={() => increase(item)}
+          />
         </div>
       </td>
 

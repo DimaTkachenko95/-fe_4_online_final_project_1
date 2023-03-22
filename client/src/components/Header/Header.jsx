@@ -8,7 +8,7 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import {selectorBasket, selectorProducts, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import {selectorBasket, selectorProducts, selectorBasketProduct, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
@@ -33,13 +33,14 @@ const Header = () => {
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
   const products = useSelector(selectorProducts); 
   const basket = useSelector(selectorBasket);
+  const productBasket = useSelector(selectorBasketProduct);
   const userData = useSelector(selectorUserData);
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
-  const userProducts = localStorage.getItem("token") ? products : basket;
-  const countInBasket = userProducts.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
-
+  const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
+  
+ 
   useEffect(() => {
     document.addEventListener('mousedown', handleBurgerMenu);
     return () => {

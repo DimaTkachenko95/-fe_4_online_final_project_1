@@ -2,27 +2,21 @@ import React from 'react';
 import {ReactComponent as CheckMark} from "../ProductCard/icons/check_mark.svg";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {useSelector, useDispatch} from "react-redux";
-import {selectorBasket, selectorProducts} from "../../selectors";
-import {actionAddToBasket, actionAddToAuthBasket} from "../../reducers";
+import {selectorBasket, selectorBasketProduct} from "../../selectors";
+import {actionAddProductToBasket} from "../../reducers";
 import Button from "../Button";
 import './ByeButton.scss'
 import PropTypes from "prop-types";
 
 const ByuButton = ({product}) => {
-    const basket = useSelector(selectorBasket);
-    const products = useSelector(selectorProducts);
-    const userProducts = localStorage.getItem("token") ? products : basket;
+    const productBasket = useSelector(selectorBasketProduct);
     const productQuantity = product.quantity;
     const dispatch = useDispatch();
     
     const addToBasket = item => {
-        if(!localStorage.getItem("token")) {
-          if (!userProducts.find((elem) => elem.product === item._id)) {  
-            dispatch(actionAddToBasket(item));
-              } else return null
-        } else {
-          dispatch(actionAddToAuthBasket(item._id))
-        }
+       dispatch(actionAddProductToBasket(item)); 
+       console.log(productBasket);
+       console.log(item);
       }
     return (
         <>
@@ -34,7 +28,7 @@ const ByuButton = ({product}) => {
                         width="100%"
                         text="out of stock"/>
                     : (<>
-                        {userProducts.some(item => item.product === product._id) ?
+                        {productBasket.some(item => item._id === product._id) ?
                             <Button
                                 to="/basket"
                                 className="bue-button__in-basket"

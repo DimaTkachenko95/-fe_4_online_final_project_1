@@ -1,239 +1,275 @@
-import {createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-import { GET_ALL_PRODUCTS, SHOPPING_CART, PRODUCT_IN_SHOPPING_CART, CHANGE_PRODUCT_QUANTITY_SHOPPING_CART} from "../endpoints";
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+import {
+  SHOPPING_CART,
+  PRODUCT_IN_SHOPPING_CART,
+  CHANGE_PRODUCT_QUANTITY_SHOPPING_CART,
+  GET_DETAILS_PRODUCT,
+} from '../endpoints';
 
 const initialState = {
-    basket: JSON.parse(localStorage.getItem("basket")) || [],
-    basketProduct: [],
-    products: [], // for authorizing users
-    serverError: null,
-    pageLoading: false
-}
+  basket: JSON.parse(localStorage.getItem('basket')) || [],
+  basketProduct: [],
+  serverError: null,
+  pageLoading: false,
+};
 
 const basketSlice = createSlice({
-    name: "basket",
-    initialState,
-    reducers: {
+  name: 'basket',
+  initialState,
+  reducers: {
+    actionAddToBasket: (state, { payload }) => { // left
+      const id = Object.values(payload._id).join('');
+      const itemIndex = state.basket.findIndex((item) => item.product === id);
 
-        actionAddToBasket: (state, {payload}) => {
-            const id = Object.values(payload._id).join('');
-            const item = {product: id, cartQuantity: 1}
-            state.basket = [...state.basket, item]
-            localStorage.setItem("basket", JSON.stringify([...state.basket]))
-        },
+      if (itemIndex !== -1) {
+        state.basket[itemIndex].cartQuantity += 1;
+      } else {
+        const newItem = { product: id, cartQuantity: 1 };
+        state.basket = [...state.basket, newItem];
+      }
 
-        actionDeleteFromBasket: (state, {payload}) => {
-            state.basket = [...state.basket.filter(({product}) => product !== payload._id)];
-            localStorage.setItem("basket", JSON.stringify([...state.basket]));
-        },
+      localStorage.setItem('basket', JSON.stringify([...state.basket]));
+    },
 
-        actionBasketProduct: (state, {payload}) => {
+    actionUpdateBasket: (state, { payload }) => {
+      // left
+      const newItems = payload.map((item) => {
+        return {
+          product: item._id,
+          cartQuantity: item.cartQuantity,
+        };
+      });
+      state.basket = newItems;
+    },
 
-            state.basketProduct = payload;
-        },
+    actionDeleteFromBasket: (state, { payload }) => {
+      // left
+      console.log(payload);
+      state.basket = [...state.basket.filter(({ product }) => product !== payload._id)];
+      localStorage.setItem('basket', JSON.stringify([...state.basket]));
+    },
 
-        actionIncrease: (state, {payload}) => {
-            const basket = JSON.parse(JSON.stringify([...state.basket]))
-            const update = basket.map((item) => {
-                if (item.product === payload._id) {
-                    return  {
-                        ...item,
-                        cartQuantity: item.cartQuantity + 1,
-                    }
-                }
-                return item;
-            })
-            localStorage.setItem('basket', JSON.stringify(update));
-            return {...state, basket: update}
-        },
+    actionBasketProductNew: (state, { payload }) => {
+      // left
+      state.basketProduct = payload;
+    },
 
-        actionDecraese: (state, {payload}) => {
-            const basket = JSON.parse(JSON.stringify([...state.basket]))
-            const update = basket.map((item) => {
-                if (item.product === payload._id) {
-                    if (item.cartQuantity > 1) 
-                    return  {
-                        ...item,
-                        cartQuantity: item.cartQuantity - 1,
-                    }
-                }
-                return item;
-            })
-            localStorage.setItem('basket', JSON.stringify(update));
-            return { ...state, basket: update }
-        },
+    actionDecraese: (state, { payload }) => { // left
+      const basket = JSON.parse(JSON.stringify([...state.basket]));
+      const update = basket.map((item) => {
+        if (item.product === payload._id) {
+          if (item.cartQuantity > 1)
+            return {
+              ...item,
+              cartQuantity: item.cartQuantity - 1,
+            };
+        }
+        return item;
+      });
+      localStorage.setItem('basket', JSON.stringify(update));
+      return { ...state, basket: update };
+    },
 
-        actionPageLoading: (state, { payload }) => {
-            state.pageLoading = payload;
-        },
-        actionServerError: (state, { payload }) => {
-            state.serverError = payload;
-        },
-
-            //for authorized user
-            actionAuthProducts: (state, {payload}) => {
-                const item = payload.map(elem => {
-                    return {
-                        product: elem._id,
-                        cartQuantity: elem.cartQuantity
-                    }
-                })
-                state.products = item;
-            },
-            actionAddToProducts: (state, { payload }) => {
-                const products = JSON.parse(JSON.stringify([...state.products]));
-                const existingProduct = products.find((item) => item.product === payload);
-                if (existingProduct) {
-                    existingProduct.cartQuantity += 1;
-                } else {
-                    const newProduct = { product: payload, cartQuantity: 1 };
-                    products.push(newProduct);
-                }
-                return { ...state, products };
-              },
-
-            actionDeleteFromProducts: (state, { payload }) => {
-                
-                const products = [...state.products];
-                const productIndex = products.findIndex((item) => item.product === payload);
-              
-                if (productIndex !== -1) {
-                    products[productIndex].cartQuantity -= 1;
-                  } else {
-                    products.push({ product: payload, cartQuantity: 1 });
-                  }
-              
-                state.products = products;
-
-              },
-              actionDeleteAllProducts: (state, {payload}) => {
-                state.products = [...state.products.filter(({product}) => product !== payload)]
-              }
-
-    }
-})
+    actionPageLoading: (state, { payload }) => {
+      // left
+      state.pageLoading = payload;
+    },
+    actionServerError: (state, { payload }) => {
+      // left
+      state.serverError = payload;
+    },
+  },
+});
 
 export const {
-    actionAddToBasket,
-    actionDeleteFromBasket,
-    actionBasketProduct,
-    actionIncrease,
-    actionDecraese,
-    actionAddToProducts,
-    actionDeleteFromProducts,
-    actionAuthProducts,
-    actionDeleteAllProducts,
-    actionPageLoading,
-    actionServerError
+  actionAddToBasket,
+  actionDeleteFromBasket,
+  actionBasketProductNew,
+  actionDecraese,
+  actionPageLoading,
+  actionServerError,
+  actionUpdateBasket,
 } = basketSlice.actions;
-
-export const actionFetchProductByItemNo = ({itemNos, quantity}) => async (dispatch) => {
-    try {
-      dispatch(actionPageLoading(true));
-      dispatch(actionServerError(false));
-      const products = [];
-      for (let i = 0; i < itemNos.length; i++) {
-        const { data } = await axios.get(`${GET_ALL_PRODUCTS}/${itemNos[i]}`);
-        const prodWithQuantity = {...data, cartQuantity: quantity[i]};
-        products.push(prodWithQuantity);
-      }
-      dispatch(actionBasketProduct(products));
-      dispatch(actionPageLoading(false));
-    } catch (error) {
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
-    }
-}
 
 // ADD NEW CART
 
-export const actionFetchAddUserCart = (newCart) => async (dispatch) => {
-    try {
-        const token = JSON.parse(JSON.stringify(localStorage.getItem("token")))
-        await axios.post(SHOPPING_CART, newCart, {
-            headers: {
-                Authorization: token
-            }
+export const actionFetchAddUserCart = (newCart) => async (dispatch) => { // left
+  try {
+    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+    await axios.post(SHOPPING_CART, newCart, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  } catch (error) {
+    dispatch(actionPageLoading(false));
+    dispatch(actionServerError(true));
+  }
+};
+
+// C H E C K   C A R T
+
+export const actionCheckCart = () => (dispatch) => {
+  const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
+  const basket = initialState.basket;
+  if (token) {
+    axios.get(SHOPPING_CART, { headers: { Authorization: token } }).then(({ data }) => {
+      if (data === null) {
+        if (basket.length > 0) {
+          const newCart = {
+            products: basket.map((item) => {
+              return {
+                product: item.product,
+                cartQuantity: item.cartQuantity,
+              };
+            }),
+          };
+          dispatch(actionFetchAddUserCart(newCart));
+          console.log(basket);
+          localStorage.removeItem('basket');
+        } else {
+          return null;
+        }
+      } else {
+        const newData = data.products.map((item) => {
+          return {
+            ...item.product,
+            cartQuantity: item.cartQuantity,
+          };
         });
-    }
-    catch (error) {
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
-    }
-}
+        dispatch(actionBasketProductNew(newData)); 
+        dispatch(actionUpdateBasket(newData)); 
+        localStorage.removeItem('basket');
+      }
+    });
+  }
+};
 
-// GET CART
+////////////////
+// G E T   P R O D U C T
 
-export const actionGetCart = () => async (dispatch) => {
-    try {
-        const token = JSON.parse(JSON.stringify(localStorage.getItem("token")))
-        const {data} = await axios.get(SHOPPING_CART, {
-            headers: {
-                Authorization: token
-            }
-        });
-        const products = data.products.map((item) => {
-            return {
-                ...item.product,
-                cartQuantity: item.cartQuantity
-            }
-        })
-        dispatch(actionAuthProducts(products));
-    } catch (error) {
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
-    }
-}
-
-// ADD/INCREASE PRODUCT TO CART
-
-export const actionAddToAuthBasket = (productId) => async (dispatch) => {
-    try {
-        const token = localStorage.getItem("token");
-        await axios.put(PRODUCT_IN_SHOPPING_CART.replace(':productId', productId), null, {
-            headers: {
-                Authorization: token
-            }
-        });
-        dispatch(actionAddToProducts(productId));
-    } catch (error) {
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
-    }
-}
-
-// DELETE/DECREASE PRODUCT IN CART
-
-export const actionDeleteFromAuthBasket = (productId) => async (dispatch) => {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(CHANGE_PRODUCT_QUANTITY_SHOPPING_CART.replace(':productId', productId), {
+export const getProductsCart = () => async (dispatch) => {
+  const token = localStorage.getItem('token');
+  console.log(token);
+  if (token !== null && token !== undefined) {
+    console.log('токен есть');
+    console.log(token);
+    await axios
+      .get(SHOPPING_CART, {
         headers: {
-          Authorization: token
+          Authorization: token,
+        },
+      })
+      .then(({ data }) => {
+        
+        if(data) {
+            const newData = data.products?.map((item) => {
+          return {
+            ...item.product,
+            cartQuantity: item.cartQuantity,
+          };
+        });
+        dispatch(actionBasketProductNew(newData));
+        } else {
+            return null;
         }
       });
-      dispatch(actionDeleteFromProducts(productId));
-    } catch (error) {
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
+  } else {
+    console.log('токен отсутствует');
+    console.log(token);
+    const basketProducts = JSON.parse(localStorage.getItem('basket')) || [];
+    console.log(basketProducts);
+    if (basketProducts.length > 0) {
+      const promises = basketProducts.map(async (item, i) => {
+        const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', item.product));
+        console.log(item.cartQuantity);
+        return { ...data, cartQuantity: item.cartQuantity };
+      });
+      Promise.all(promises)
+        .then((data) => {
+          console.log(data);
+          dispatch(actionBasketProductNew(data));
+        })
+        .catch((error) => {
+          console.log(error);
+          dispatch(actionPageLoading(false));
+          dispatch(actionServerError(true));
+        });
     }
   }
+};
 
-// DELETE PRODUCTS FROM CART
+// A D D / I N C R E A S E   P R O D U C T   T O   C A R T
 
-export const actionDeleteAllFromAuthBasket = (productId) => async (dispatch) => {
-    try {
-        const token = localStorage.getItem("token");
-        await axios.delete(PRODUCT_IN_SHOPPING_CART.replace(':productId', productId), {
-            headers: {
-                Authorization: token
-            }
-        });
-        dispatch(actionDeleteAllProducts(productId));
-    } catch (error) {
+export const actionAddProductToBasket = (item) => async (dispatch) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    await axios
+      .put(PRODUCT_IN_SHOPPING_CART.replace(':productId', item._id), null, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        dispatch(actionUpdateBasket(data.products)); // в каком виде добавляется - хз
+      })
+      .catch(() => {
         dispatch(actionPageLoading(false));
         dispatch(actionServerError(true));
+      });
+  } else {
+    dispatch(actionAddToBasket(item));
+  }
+};
+
+// D E C R E A S E   P R O D U C T   I N   C A R T
+
+export const actionDeleteProductFromBasket = (item) => async (dispatch) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    await axios
+      .delete(CHANGE_PRODUCT_QUANTITY_SHOPPING_CART.replace(':productId', item._id), {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data.products);
+        dispatch(actionUpdateBasket(data.products));
+      })
+      .catch(() => {
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
+      });
+  } else {
+    dispatch(actionDecraese(item));
+  }
+};
+
+// D E L E T E   P R O D U C T S   F R O M  C A R T
+
+export const actionDeleteAllFromBasket = (item) => async (dispatch) => {
+    const token = localStorage.getItem('token');
+    if(token) {
+        await axios.delete(PRODUCT_IN_SHOPPING_CART.replace(':productId', item._id), {
+            headers: {
+              Authorization: token,
+            },
+          })
+          .then(({ data }) => {
+            console.log(data.products);
+            dispatch(actionUpdateBasket(data.products)); 
+          })
+          .catch(() => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionServerError(true));
+          });
+    } else {
+        dispatch(actionDeleteFromBasket(item))
     }
-}
+};
 
 export default basketSlice.reducer;
