@@ -18,10 +18,17 @@ import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
 import ByuButton from "../../../../components/ByuButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     useEffect(() => {
         setIsMobile(window.innerWidth <= 970);
@@ -64,9 +71,32 @@ const Product = () => {
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
                         <Box className="product__image-wrapper">
-                            <img
-                                src={product.imageUrls[0]}
-                                alt="laptop" className="product__image"/>
+                            <Swiper loop = {true}
+                                    spaceBetween= {5}
+                                    navigation={true}
+                                    thumbs={{swiper: thumbsSwiper}}
+                                    modules={[FreeMode, Navigation,Thumbs]}
+                                    className = "mySwiper">
+                                {product.imageUrls.map((item, index) => (
+                                <SwiperSlide key={index}>
+                                    <img height="300px" src={item} alt={`laptop${index}`} />
+                                </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <Swiper onSwiper={setThumbsSwiper}
+                                    spaceBetween={5}
+                                    slidesPerView={4}
+                                    freeMode={true}
+                                    watchSlidesProgress={true}
+                                    modules={[FreeMode, Navigation, Thumbs]}
+                                    className="product__thumbs">
+                                {product.imageUrls.map((item, index) => (
+                                <SwiperSlide key={index}>
+                                    <img src={item} alt={`laptop${index}`} />
+                                </SwiperSlide>
+                                ))}
+                          </Swiper>
+                                
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
