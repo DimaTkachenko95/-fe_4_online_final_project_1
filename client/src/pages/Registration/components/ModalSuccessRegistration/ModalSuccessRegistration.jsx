@@ -24,7 +24,7 @@ const ModalSuccessRegistration = ({ closeModal }) => {
         closeModal();
       }}
     >
-      <p className="modal_title"> Successful authorization </p>
+      <p className="modal_title"> Successful registration ! </p>
       <Button
         className="form-block__btn"
         type="button"
