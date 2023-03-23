@@ -1,11 +1,11 @@
 import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorFilterRequest } from '../../../../selectors';
-import { actionFetchSearchFilterProducts, actionFetchAllProducts } from '../../../../reducers';
+import { selectorFilterRequest} from '../../../../selectors';
+import { actionFetchSearchFilterProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
 
@@ -14,12 +14,21 @@ import Button from "../../../../components/Button";
 
 
 const FilterMainList = () => {
+   
+
+   
+
+    
     const filterRequestObj = useSelector(selectorFilterRequest)
     const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
     const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
     const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
+
+ /*    useEffect(()=>{
+        dispatch(actionFetchSearchFilterProducts(filterRequestObj))
+    }, [filterRequestObj]) */
 
     const handleChange = (e, data) => {
         if (data[0] > data[1] - 500) {
@@ -62,7 +71,7 @@ const FilterMainList = () => {
         }
         return true
     }
-console.log(filterRequestObj,'tyyytytyty')
+
     const checked = (key, name) => {
         return filterRequestObj[key].includes(name)
     }

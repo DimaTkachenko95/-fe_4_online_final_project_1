@@ -43,7 +43,7 @@ const PersonalOffice = () => {
             <p className="header-personal-office">Personal <span className="title_contrast">office</span></p>
           <Link to='/'> 
             <Box onClick={()=>exitFromOffice()
-                } className="logout">< LogoutIcon sx={{ color: '#75758a', marginRight: '5px' }}/> <p>Exit</p></Box>
+                } className="logout">< LogoutIcon sx={{ color: '#75758a',/*  "&:hover": {color: 'green'}, */ marginRight: '5px' }}/> <p>Exit</p></Box>
          </Link>
            
 

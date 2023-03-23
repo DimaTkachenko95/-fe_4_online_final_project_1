@@ -69,7 +69,7 @@ const ChangePassword = () => {
                                     type="submit"
                                     disabled={!isValid}
                                     text="submit"
-                                    style={{ display: 'block', margin: '0 auto', marginTop: 30, marginBottom: 150 }}
+                                    style={{ display: 'block', margin: '0 auto', marginTop: 30, marginBottom: 40 }}
                                 />
                             </Form>
                         </>

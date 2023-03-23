@@ -12,6 +12,7 @@ import './AllUserOrder.scss'
 import { values } from "lodash";
 
 const AllUserOrders = () => {
+    const [update, setUpdate] = useState(false)
     const [openOrderInfo, setOpenOrderInfo] = useState([])
     const allUserOrders = useSelector(selectorAllUserOrders) 
     const orderInfo = useSelector(selectorOrderInfo) 
@@ -21,7 +22,7 @@ const AllUserOrders = () => {
 
     useEffect(()=>{
         dispatch(actionFetchAllUserOrders())
-    },[])
+    },[update])
 
     
 
@@ -32,10 +33,13 @@ const AllUserOrders = () => {
         return(
             <div className="order-block">
                 <ProductsSlider key={products._id} products={itemOrder}  isForOrderedPage={true}/>
-                <p>Order date: {date.slice(0,10)}</p>
-                <p>Total sum: {totalSum}</p> 
-                <p>Order number: {orderNo}</p> 
-                <button onClick={()=>dispatch(actionFetchCancelOrder(_id))}>Cancel the order</button> 
+                <p className="order-info">Order date: &nbsp;  <span className="order-info-description">{date.slice(0,10)}</span></p>
+                <p className="order-info">Total sum: &nbsp;  <span className="order-info-description">{totalSum} $</span></p> 
+                <p className="order-info">Order number:  &nbsp; <span className="order-info-description">{orderNo}</span></p> 
+                <button onClick={()=>{
+                    dispatch(actionFetchCancelOrder(_id))
+                    setUpdate(!update)
+                    }}>Cancel the order</button> 
                 <button onClick={()=>{
                     
 

@@ -7,11 +7,13 @@ import productsReducer, {
   actionSearchInputValue,
   actionAllProducts,
   actionFetchSearchProducts,
+  actionUrlAddress,
+  actionFilterRequest,
 } from './products.reducer';
 import favoritesReducer, {
     actionAddToFavorites,
     actionDeleteFromFavorites,
-    toggleFavoriteProduct
+    toggleFavoriteProduct,
 } from './favorites.reducer';
 import scalesReducer, {
   actionAddToScales,
@@ -69,12 +71,14 @@ import personalOfficeReducer, {
 
 export {
   productsReducer,
+  actionFilterRequest,
   actionFetchAllProducts,
   actionAllProducts,
   actionProductsQuantity,
   actionSortByPrise,
   actionSearchInputValue,
   actionPageLoading,
+  actionUrlAddress,
   actionFetchSearchProducts,
   actionFetchSearchFilterProducts,
   favoritesReducer,

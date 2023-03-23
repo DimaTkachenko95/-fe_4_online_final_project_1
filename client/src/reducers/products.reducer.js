@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS } from '../endpoints';
+import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS, GET_ALL_PRODUCTS_URL } from '../endpoints';
+
 
 const initialState = {
   allProducts: [],
@@ -9,6 +10,7 @@ const initialState = {
   searchInputValue: JSON.parse(sessionStorage.getItem('searchInputValue')) || '',
   pageLoading: false,
   serverError: null,
+  urlAddress: '',
   filterRequest: JSON.parse(sessionStorage.getItem('filterRequest')) || {
     brand: '',
     category: '',
@@ -35,6 +37,9 @@ const productsSlice = createSlice({
     actionProductsQuantity: (state, { payload }) => {
       state.productsQuantity = payload;
     },
+    actionUrlAddress: (state, { payload }) => {
+      state.urlAddress = payload;
+    },
     actionSortByPrise: (state, { payload }) => {
       state.sortByPrise = payload;
     },
@@ -50,7 +55,8 @@ const productsSlice = createSlice({
     },
     actionFilterRequest: (state, { payload }) => {
       state.filterRequest = payload;
-      sessionStorage.setItem('filterRequest', JSON.stringify(payload));
+      console.log(state.filterRequest)
+     sessionStorage.setItem('filterRequest', JSON.stringify(payload)); 
     },
   },
 });
@@ -63,20 +69,22 @@ export const {
   actionSortByPrise,
   actionFilterRequest,
   actionProductComments,
+  actionUrlAddress,
 } = productsSlice.actions;
 
-export const actionFetchAllProducts = () => (dispatch) => {
+export const actionFetchAllProducts = (aaa) => (dispatch) => {
   dispatch(actionPageLoading(true));
   return axios
-    .get(GET_ALL_PRODUCTS_PAGINATION)
+    .get(`${GET_ALL_PRODUCTS_URL}${aaa}`)
     .then(({ data }) => {
+      console.log(data, '2323232332')
       dispatch(actionProductsQuantity(data.productsQuantity));
       dispatch(actionAllProducts(data.products));
       dispatch(actionPageLoading(false));
     })
     .catch(() => {
       dispatch(actionPageLoading(false));
-      dispatch(actionServerError(true));
+       dispatch(actionServerError(true)); 
     });
 };
 
@@ -90,6 +98,8 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
     }
   }
   let filter = new URLSearchParams(arrRequest).toString();
+  console.log(filter, 'oooooo')
+   dispatch(actionUrlAddress(filter)) 
   return axios
     .get(`${FILTERED_PRODUCTS}${filter}`)
     .then(({ data }) => {

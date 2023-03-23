@@ -6,6 +6,7 @@ export const selectorSortByPrise = (state) => state.products.sortByPrise;
 export const selectorFilterRequest = (state) => state.products.filterRequest;
 export const selectorProductsQuantity = (state) => state.products.productsQuantity;
 export const selectorPageLoading = (state) => state.products.pageLoading;
+export const selectorUrlAddress = (state) => state.products.urlAddress;
 
 // PRODUCT DETAILS
 export const selectorProduct = (state) => state.productsDetails.productData;
