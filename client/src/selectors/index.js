@@ -14,21 +14,19 @@ export const selectorServerErrorProductDetails = (state) => state.productsDetail
 export const selectorIsDetailsProductLoading = (state) => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
-export const selectorProductComments = state => state.productsDetails.productComments;
-export const selectorCommentError = state => state.productsDetails.commentError;
+export const selectorProductComments = (state) => state.productsDetails.productComments;
+export const selectorCommentError = (state) => state.productsDetails.commentError;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
-export const selectorBasketAuth = state => state.basket.basketAuth;
-export const selectorProducts = state => state.basket.products;
-export const selectorAuthBasketProducts = state => state.basket.authBasketProducts;
+export const selectorBasketAuth = (state) => state.basket.basketAuth;
 export const selectorServerErrorBasket = (state) => state.basket.serverError;
 export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
 
 // CHECKOUT
-export const selectorIsOrdered = state => state.checkout.isOrdered;
-export const selectorServerErrorCheckout = state => state.checkout.serverError;
+export const selectorIsOrdered = (state) => state.checkout.isOrdered;
+export const selectorServerErrorCheckout = (state) => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
@@ -43,12 +41,12 @@ export const selectorIsFavoritesPageLoading = (state) => state.favorites.pageLoa
 export const selectorServerErrorFavoritesPage = (state) => state.favorites.serverError;
 
 // PERSONAL OFFICE
-export const selectorUserInfo = state => state.personalOffice.userInfo
-export const selectorEditInputs = state => state.personalOffice.editInputs 
-export const selectorChangePassword = state => state.personalOffice.changePassword 
-export const selectorChangePasswordMessage = state => state.personalOffice.changePasswordMessage
-export const selectorPageLoadingPersonalOffice = state => state.personalOffice.pageLoading 
-export const selectorAllUserOrders = state => state.personalOffice.allUserOrders
+export const selectorUserInfo = (state) => state.personalOffice.userInfo;
+export const selectorEditInputs = (state) => state.personalOffice.editInputs;
+export const selectorChangePassword = (state) => state.personalOffice.changePassword;
+export const selectorChangePasswordMessage = (state) => state.personalOffice.changePasswordMessage;
+export const selectorPageLoadingPersonalOffice = (state) => state.personalOffice.pageLoading;
+export const selectorAllUserOrders = (state) => state.personalOffice.allUserOrders;
 
 /* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN

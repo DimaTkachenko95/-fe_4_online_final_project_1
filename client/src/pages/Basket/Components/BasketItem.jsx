@@ -6,17 +6,13 @@ import { ReactComponent as Plus } from '../icons/plus.svg';
 import { ReactComponent as Minus } from '../icons/minus.svg';
 
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectorBasket,
-  selectorBasketProduct,
-  selectorToken,
-} from '../../../selectors';
+import { selectorBasket, selectorBasketProduct, selectorToken } from '../../../selectors';
 import {
   actionDeleteProductFromBasket,
   actionAddProductToBasket,
   actionDeleteAllFromBasket,
-  actionCheckCart,
-  getProductsCart
+  //actionCheckCart,
+  getProductsCart,
 } from '../../../reducers';
 
 import '../Basket.scss';
@@ -25,14 +21,9 @@ const BasketItems = () => {
   const dispatch = useDispatch();
   const basket = useSelector(selectorBasket);
   const productBasket = useSelector(selectorBasketProduct);
-  const authToken = useSelector(selectorToken);
 
   useEffect(() => {
-    dispatch(actionCheckCart());
-  }, [authToken]);
-
-  useEffect(() => {
-       dispatch(getProductsCart());
+    dispatch(getProductsCart());
   }, [basket]);
 
   const handlerDeleteFromBasket = (item) => {
@@ -48,11 +39,10 @@ const BasketItems = () => {
 
   const decrease = (item) => {
     if (item.cartQuantity > 1) {
-        dispatch(actionDeleteProductFromBasket(item));
+      dispatch(actionDeleteProductFromBasket(item));
     } else return null;
   };
-console.log(productBasket);
-console.log(basket);
+
   const item = productBasket.map((item) => (
     <tr className="product_item" id={item._id} key={item._id}>
       <td className="product_img">

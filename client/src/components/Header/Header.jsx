@@ -8,7 +8,7 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import {selectorBasket, selectorProducts, selectorBasketProduct, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
@@ -31,9 +31,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
-  const products = useSelector(selectorProducts); 
   const basket = useSelector(selectorBasket);
-  const productBasket = useSelector(selectorBasketProduct);
   const userData = useSelector(selectorUserData);
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
