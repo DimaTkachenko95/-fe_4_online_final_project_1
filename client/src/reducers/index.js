@@ -9,9 +9,9 @@ import productsReducer, {
   actionFetchSearchProducts,
 } from './products.reducer';
 import favoritesReducer, {
-    actionAddToFavorites,
-    actionDeleteFromFavorites,
-    toggleFavoriteProduct
+  actionAddToFavorites,
+  actionDeleteFromFavorites,
+  toggleFavoriteProduct
 } from './favorites.reducer';
 import scalesReducer, {
   actionAddToScales,
@@ -22,11 +22,16 @@ import scalesReducer, {
 import basketReducer, {
   actionAddToBasket,
   actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
+  actionBasketProductNew,
   actionDecraese,
-  actionFetchProductByItemNo,
-} from './basket.reducer';
+  actionFetchAddUserCart,
+  actionAddProductToBasket,
+  actionDeleteProductFromBasket,
+  actionDeleteAllFromBasket,
+  actionUpdateBasket,
+  actionCheckCart,
+  getProductsCart
+} from "./basket.reducer";
 import logInReducer, {
   actionFetchLogin,
   actionToken,
@@ -61,13 +66,13 @@ import personalOfficeReducer, {
 export {
   productsReducer,
   actionFetchAllProducts,
-  actionAllProducts,
   actionProductsQuantity,
   actionSortByPrise,
-  actionSearchInputValue,
   actionPageLoading,
-  actionFetchSearchProducts,
   actionFetchSearchFilterProducts,
+  actionSearchInputValue,
+  actionAllProducts,
+  actionFetchSearchProducts,
   favoritesReducer,
   actionAddToFavorites,
   actionDeleteFromFavorites,
@@ -75,13 +80,15 @@ export {
   basketReducer,
   actionAddToBasket,
   actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
+  actionBasketProductNew,
   actionDecraese,
-  actionFetchProductByItemNo,
-  checkoutReducer,
-  actionFetchCreateOrder,
-  actionIsOrdered,
+  actionFetchAddUserCart,
+  actionAddProductToBasket,
+  actionDeleteProductFromBasket,
+  actionDeleteAllFromBasket,
+  actionUpdateBasket,
+  getProductsCart,
+  actionCheckCart,
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,
@@ -89,9 +96,9 @@ export {
   actionFetchProductScalesByItemNo,
   logInReducer,
   actionFetchLogin,
-  actionResetLoginError,
-  actionFetchAuthorizationUser,
   actionToken,
+  actionFetchAuthorizationUser,
+  actionResetLoginError,
   productDetailsReducer,
   actionFetchOneProduct,
   actionFetchAddComment,
@@ -109,4 +116,7 @@ export {
   actionFetchAllUserOrders,
   actionFetchUpdateCustomerPassword,
   actionChangePasswordMessage,
+  checkoutReducer, 
+  actionFetchCreateOrder,
+  actionIsOrdered
 };
