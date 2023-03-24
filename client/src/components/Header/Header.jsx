@@ -37,8 +37,7 @@ const Header = () => {
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
   const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
-  
- 
+
   useEffect(() => {
     document.addEventListener('mousedown', handleBurgerMenu);
     return () => {
@@ -47,16 +46,13 @@ const Header = () => {
   }, );
 
   useEffect(() => {
-    setAuthToken(authToken)
+    setAuthToken(authToken);
     if (authToken) {
-      dispatch(actionFetchAuthorizationUser())
+      dispatch(actionFetchAuthorizationUser());
+      dispatch(actionCheckCart());
+      dispatch(getProductsCart());
     }
   }, [authToken]);
-
-  useEffect(() => {
-    dispatch(actionCheckCart());
-    dispatch(getProductsCart());
-  }, [])
 
   const burgerMenuRef = useRef();
 
@@ -68,11 +64,11 @@ const Header = () => {
 
   const toggleModalAuth = (event) => {
     event.preventDefault();
-    setIsModalAuthOpen(!isModalAuthOpen)
+    setIsModalAuthOpen(!isModalAuthOpen);
 }
 
 const closeModalAuth = () => {
-    setIsModalAuthOpen(false)
+    setIsModalAuthOpen(false);
 }
 
   return (
