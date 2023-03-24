@@ -20,7 +20,6 @@ export const selectorCommentError = (state) => state.productsDetails.commentErro
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
 export const selectorBasketProduct = (state) => state.basket.basketProduct;
-export const selectorBasketAuth = (state) => state.basket.basketAuth;
 export const selectorServerErrorBasket = (state) => state.basket.serverError;
 export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
 

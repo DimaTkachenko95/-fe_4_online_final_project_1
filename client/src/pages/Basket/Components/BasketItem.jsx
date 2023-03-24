@@ -6,12 +6,11 @@ import { ReactComponent as Plus } from '../icons/plus.svg';
 import { ReactComponent as Minus } from '../icons/minus.svg';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { selectorBasket, selectorBasketProduct, selectorToken } from '../../../selectors';
+import { selectorBasket, selectorBasketProduct } from '../../../selectors';
 import {
   actionDeleteProductFromBasket,
   actionAddProductToBasket,
   actionDeleteAllFromBasket,
-  //actionCheckCart,
   getProductsCart,
 } from '../../../reducers';
 
