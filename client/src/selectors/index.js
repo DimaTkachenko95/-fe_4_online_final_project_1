@@ -56,3 +56,13 @@ export const selectorToken = (state) => state.logIn.token;
 
 // DISCOUNTED PRODUCTS
 export const selectorDiscountedProducts = (state) => state.discountedProducts.discountedProducts;
+
+//
+// //REGISTRATION
+//
+// export const selectorRegistrationIsLoading = (state) => state.registration.pageIsLoading;
+// export const selectorRegistrationServerError = (state) => state.registration.serverError;
+// // export const selectorRegistrationModal = (state) => state.registration.modalIsOpen;
+
+
+

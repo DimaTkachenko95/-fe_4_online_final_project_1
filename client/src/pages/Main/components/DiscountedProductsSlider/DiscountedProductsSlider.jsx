@@ -20,7 +20,8 @@ const DiscountedProductsSlider = () => {
       (
       <Container maxWidth="lg" className="discounted-products">
         <h2 className="discounted-products__title"><span className="discounted-products__title-colored">DISCOUNTED</span> PRODUCTS</h2>
-      <ProductsSlider products={availableDiscountedProducts}/>
+      <ProductsSlider products={availableDiscountedProducts}
+                      productsLimit={10} />
             </Container>
       )
       }
