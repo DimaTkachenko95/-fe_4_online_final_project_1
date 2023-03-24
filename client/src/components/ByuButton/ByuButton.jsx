@@ -15,7 +15,6 @@ const ByuButton = ({ product }) => {
 
   const addToBasket = (item) => {
     dispatch(actionAddProductToBasket(item));
-    dispatch(getProductsCart())
   };
   return (
     <>

@@ -38,9 +38,7 @@ const basketSlice = createSlice({
 
     actionUpdateBasket: (state, { payload }) => {
       // left
-      console.log(payload);
       const newItems = payload.map((item) => {
-        console.log(item.product._id);
         return {
           product: item.product._id,
           cartQuantity: item.cartQuantity,
