@@ -3,7 +3,7 @@ import { ReactComponent as CheckMark } from '../ProductCard/icons/check_mark.svg
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectorBasket } from '../../selectors';
-import { actionAddProductToBasket } from '../../reducers';
+import { actionAddProductToBasket, getProductsCart } from '../../reducers';
 import Button from '../Button';
 import './ByeButton.scss';
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ const ByuButton = ({ product }) => {
 
   const addToBasket = (item) => {
     dispatch(actionAddProductToBasket(item));
+    dispatch(getProductsCart())
   };
   return (
     <>

@@ -38,9 +38,11 @@ const basketSlice = createSlice({
 
     actionUpdateBasket: (state, { payload }) => {
       // left
+      console.log(payload);
       const newItems = payload.map((item) => {
+        console.log(item.product._id);
         return {
-          product: item._id,
+          product: item.product._id,
           cartQuantity: item.cartQuantity,
         };
       });
@@ -144,7 +146,7 @@ export const actionCheckCart = () => (dispatch) => {
           };
         });
         dispatch(actionBasketProductNew(newData));
-        dispatch(actionUpdateBasket(newData));
+        dispatch(actionUpdateBasket(data.products));
         localStorage.removeItem('basket');
       }
     });
@@ -207,7 +209,7 @@ export const actionAddProductToBasket = (item) => async (dispatch) => {
     await axios
       .put(PRODUCT_IN_SHOPPING_CART.replace(':productId', item._id), null)
       .then(({ data }) => {
-        dispatch(actionUpdateBasket(data.products)); // в каком виде добавляется - хз
+        dispatch(actionUpdateBasket(data.products)); 
       })
       .catch(() => {
         dispatch(actionPageLoading(false));

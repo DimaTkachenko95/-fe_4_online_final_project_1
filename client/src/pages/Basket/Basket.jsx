@@ -29,6 +29,9 @@ const Basket = () => {
     dispatch(actionCheckCart());
     dispatch(getProductsCart());
   }, []);
+  useEffect(() => {
+    dispatch(getProductsCart());
+  }, [basket]);
   return (
     <ContainerBasket maxWidth="lg">
       <Preloader open={isLoading} />
