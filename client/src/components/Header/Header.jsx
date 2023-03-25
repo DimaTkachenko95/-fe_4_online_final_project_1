@@ -12,7 +12,7 @@ import {selectorBasket, selectorFavorites, selectorScales, selectorToken, select
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser} from "../../reducers";
+import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 
 const theme = createTheme({
@@ -31,14 +31,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
-
   const basket = useSelector(selectorBasket);
   const userData = useSelector(selectorUserData);
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
-
-  const countInBasket = basket.reduce((acc, { cartQuantity }) => acc + cartQuantity, 0);
+  const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleBurgerMenu);
@@ -48,9 +46,11 @@ const Header = () => {
   }, );
 
   useEffect(() => {
-    setAuthToken(authToken)
+    setAuthToken(authToken);
     if (authToken) {
-      dispatch(actionFetchAuthorizationUser())
+      dispatch(actionFetchAuthorizationUser());
+      dispatch(actionCheckCart());
+      dispatch(getProductsCart());
     }
   }, [authToken]);
 
@@ -64,11 +64,11 @@ const Header = () => {
 
   const toggleModalAuth = (event) => {
     event.preventDefault();
-    setIsModalAuthOpen(!isModalAuthOpen)
+    setIsModalAuthOpen(!isModalAuthOpen);
 }
 
 const closeModalAuth = () => {
-    setIsModalAuthOpen(false)
+    setIsModalAuthOpen(false);
 }
 
   return (

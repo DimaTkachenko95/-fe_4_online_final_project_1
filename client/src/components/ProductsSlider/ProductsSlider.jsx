@@ -7,7 +7,7 @@ import "./ProductsSlider.scss"
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const ProductsSlider = ({ products, isForOrderedPage }) => {
+const ProductsSlider = ({ products, isForOrderedPage, productsLimit }) => {
 
   const NextArrow = ({ className, onClick }) => {
     return (
@@ -25,10 +25,12 @@ const ProductsSlider = ({ products, isForOrderedPage }) => {
     );
   }
 
+  const productsSlice = products.slice(0, productsLimit);
+
   const settings = {
     className: "discounted-products__slider",
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -61,11 +63,10 @@ const ProductsSlider = ({ products, isForOrderedPage }) => {
   return(
     <Container className="products-slider" maxWidth="lg">
       <Slider {...settings}>
-        {products?.map((el, index) => {
+        {productsSlice?.map((el, index) => {
           return (
             <div key={index} className="products-slider__slider-item">
-              <ProductCard el={el} index={index} isForOrderedPage={isForOrderedPage}
-              />
+              <ProductCard el={el} isForOrderedPage={isForOrderedPage}/>
             </div>
           )
         })}
