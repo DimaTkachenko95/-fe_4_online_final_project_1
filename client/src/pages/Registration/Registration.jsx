@@ -22,6 +22,7 @@ const Registration = () => {
           < FormRegistration 
                   initialValues={initialState} 
                   validationSchema={ValidationSchemaRegistration}
+                  btnText='submit'
                   onSubmit={(values, { resetForm }) => {
                       console.log(values)
                       dispatch(createCustomerServerApi(values));

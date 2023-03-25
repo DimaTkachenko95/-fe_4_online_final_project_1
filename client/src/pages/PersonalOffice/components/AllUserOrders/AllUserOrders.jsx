@@ -6,25 +6,32 @@ import { selectorAllUserOrders } from "../../../../selectors";
 import ProductsSlider from "../../../../components/ProductsSlider";
 import { actionFetchCancelOrder, actionFetchGetOneOrder, actionFetchUpdatedOrder } from "../../../../reducers";
 import FormOrder from "../../../../components/FormOrder";
-import { selectorEditInputsOrder, selectorOrderInfo } from "../../../../selectors";
+import { selectorEditInputsOrder, selectorOrderInfo, selectorPageLoadingPersonalOffice } from "../../../../selectors";
 
 import './AllUserOrder.scss'
 import { values } from "lodash";
 
 const AllUserOrders = () => {
-    const [update, setUpdate] = useState(false)
+   
+
     const [openOrderInfo, setOpenOrderInfo] = useState([])
+
     const allUserOrders = useSelector(selectorAllUserOrders) 
+
     const orderInfo = useSelector(selectorOrderInfo) 
+   
+    
+
+    const pageLoading = useSelector(selectorPageLoadingPersonalOffice)
     const dispatch = useDispatch() 
 
     const editInputsOrder = useSelector(selectorEditInputsOrder)
 
     useEffect(()=>{
         dispatch(actionFetchAllUserOrders())
-    },[update])
+    },[allUserOrders])
 
-    
+
 
      const blockOrder = allUserOrders.map(({products, totalSum, orderNo, date, _id})=>{
         const itemOrder = products.map(({product})=>{      
@@ -38,7 +45,7 @@ const AllUserOrders = () => {
                 <p className="order-info">Order number:  &nbsp; <span className="order-info-description">{orderNo}</span></p> 
                 <button onClick={()=>{
                     dispatch(actionFetchCancelOrder(_id))
-                    setUpdate(!update)
+               
                     }}>Cancel the order</button> 
                 <button onClick={()=>{
                     
@@ -47,24 +54,18 @@ const AllUserOrders = () => {
                     setOpenOrderInfo(openOrderInfo.filter((el)=> el !== orderNo))
                    
                      } else {
-                         dispatch(actionFetchGetOneOrder(orderNo)) 
-                        setOpenOrderInfo([...openOrderInfo, orderNo])
+                        dispatch(actionFetchGetOneOrder(orderNo)) 
+                        setOpenOrderInfo([/* ...openOrderInfo, */ orderNo])
                      }
-        
-               
-                  
-                   
-                    
-                    
                     }}>Update order</button>  
-                    {openOrderInfo.includes(orderNo) &&  <FormOrder 
+                    {openOrderInfo.includes(orderNo) && !pageLoading &&  <FormOrder 
                                                                 inputsEditName={editInputsOrder}  
                                                                 initialValues={orderInfo}  
                                                                 btnEdit={true}
                                                                 onSubmit={(values)=>{
-                                                              /*       console.log(values)
+                                                                    /* console.log(values)
                                                                     console.log(_id) */
-                                                                    dispatch(actionFetchUpdatedOrder())
+                                                                    dispatch(actionFetchUpdatedOrder(_id))
                                                                 }}/> }
                
                 

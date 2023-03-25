@@ -1,10 +1,10 @@
 import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,  useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorFilterRequest} from '../../../../selectors';
+import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitToCorectFilter, selectorUrlAddress} from '../../../../selectors';
 import { actionFetchSearchFilterProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
@@ -14,21 +14,24 @@ import Button from "../../../../components/Button";
 
 
 const FilterMainList = () => {
-   
 
-   
+
+ 
 
     
-    const filterRequestObj = useSelector(selectorFilterRequest)
+  
+    const aaa = useSelector( selectorUrlAddress)
+    const pageLoading = useSelector(selectorPageLoading)
+    const firstVisitToCorectFilter = useSelector(selectorFirstVisitToCorectFilter)
+    const filterRequestObj = useSelector(selectorFilterRequest) 
+    console.log(filterRequestObj, 'df')
     const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
     const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
     const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
 
- /*    useEffect(()=>{
-        dispatch(actionFetchSearchFilterProducts(filterRequestObj))
-    }, [filterRequestObj]) */
+
 
     const handleChange = (e, data) => {
         if (data[0] > data[1] - 500) {
@@ -71,14 +74,16 @@ const FilterMainList = () => {
         }
         return true
     }
-
-    const checked = (key, name) => {
-        return filterRequestObj[key].includes(name)
+  const checked = (key, name) => {
+     return  filterRequestObj[key].includes(name)
+     
     }
+  
+
 
     return (
         <>
-            <section className='main-filter-block'>
+           {firstVisitToCorectFilter && <section className='main-filter-block'>
                 <FormControl>
                     <div className='header-filter'> Sort by  </div>
                     <Select value={filterRequestObj.sort} color="success" sx={{
@@ -94,7 +99,7 @@ const FilterMainList = () => {
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Brand</FormLabel>
-                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request} />
+                      <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'}   checked={checked}  request={request} /> 
                 </FormGroup>
 
                 <FormGroup>
@@ -183,7 +188,7 @@ const FilterMainList = () => {
                             setShowMoreFilters(true);
                             sessionStorage.setItem("showMoreFilters", true)}} />
                 }
-            </section>
+            </section> }
         </>
     )
 }

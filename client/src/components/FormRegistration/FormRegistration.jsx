@@ -14,7 +14,7 @@ import EditButton from './components/EditButton';
 
 
 
-const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, withPassword, validationSchema }) => {
+const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, withPassword, validationSchema, btnText }) => {
 
   const dispatch = useDispatch();
   
@@ -176,7 +176,7 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                 <Button
                   type="submit"
                   disabled={!isValid}
-                  text="submit"
+                  text={btnText}
                   style={{ display: 'block', margin: '0 auto',  marginTop: 60, marginBottom: 50   }}
                 />
               </Form>

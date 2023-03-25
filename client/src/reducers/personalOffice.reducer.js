@@ -112,6 +112,7 @@ export const actionFetchCancelOrder = (_id) => (dispatch) => {
 }
 
 export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
+    dispatch(actionPageLoading(true))
     return axios
     .get(`/orders/${orderNo}`)
     .then(result => {
@@ -127,6 +128,7 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
             postalCode: result.data.deliveryAddress.postal,   
       }
       dispatch( actionOrderInfo( createOrderInfo))
+      dispatch(actionPageLoading(false))
     })
     .catch(err => {
       /*Do something with error, e.g. show error to user*/
@@ -134,11 +136,15 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
 }
 
 
-export const actionFetchUpdatedOrder = (_id , updatedOrder) => (dispatch) => {
-    console.log(updatedOrder, 'dsvzdvs')
+export const actionFetchUpdatedOrder = ( _id /* , updatedOrder */ ) => (dispatch) => {
+    console.log(_id, 'ddddddddd')
     return axios
-    .put(`/orders/641792ad91fc3f004164cc50`, {country: 'Engl',   letterSubject: "Thank you for order! You are welcome!",
-    letterHtml: letterHtml()})
+    .put(`/orders/641eb6a7a2ca7f004068a1c1`, {firstName: "AAAAA", 
+    letterSubject:
+    "Thank you for order! You are welcome!",
+    letterHtml:
+    "<h1>Dear customer,</h1>"
+        })
     .then(updatedOrder => {
         console.log(updatedOrder, 'qwqwqw')
       /*Do something with updatedOrder*/

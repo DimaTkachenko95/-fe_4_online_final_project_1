@@ -8,12 +8,15 @@ import {
   selectorPageLoading,
   selectorFilterRequest,
   selectorUrlAddress,
+  selectorShowPaginaton,
 } from '../../selectors';
 import {
   actionFetchAllProducts,
   actionFetchSearchFilterProducts,
   actionFetchSearchProducts,
   actionFilterRequest,
+
+  actionFirstVisitToCorectFilter,
 } from '../../reducers';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,88 +28,123 @@ import './Products.scss';
 import Preloader from '../../components/Preloader';
 import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import { forEach } from 'lodash';
+import Button from '../../components/Button';
 
 const Products = () => {
   const dispatch = useDispatch();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   let urlString = location.search
   let newFilterRequestObj = useSelector(selectorFilterRequest)
-  let requestObj = {...newFilterRequestObj}
+  let requestObj = { ...newFilterRequestObj }
 
   const urlAddress = useSelector(selectorUrlAddress) || urlString
 
 
-let getLinkObj = {}
-let stringToarr = urlString.substring(1)
-stringToarr = stringToarr.replaceAll(/%2C/ig, ',')
-let arr = stringToarr.split('&')
-let a =  arr.map((el)=>{
-  return el.split('=')
-})
+  let getLinkObj = {}
+  let stringToarr = urlString.substring(1)
+  stringToarr = stringToarr.replaceAll(/%2C/ig, ',')
+  stringToarr = stringToarr.replaceAll(/\+/g, " ")
 
-a.forEach((e)=>{
-  getLinkObj[e[0]] = e[1]
-})
-console.log( getLinkObj, '======')
+  let arr = stringToarr.split('&')
+  let a = arr.map((el) => {
+    return el.split('=')
+  })
 
-for(let key in requestObj){
-  for(let keyLink in  getLinkObj){
-    if(key == keyLink){
-      console.log(requestObj[key], getLinkObj[keyLink])
-      if(key == 'perPage' || key == 'startPage'){
-        requestObj[key] = Number(getLinkObj[keyLink]) 
-      }else{
-        requestObj[key] = getLinkObj[keyLink] 
+  a.forEach((e) => {
+    getLinkObj[e[0]] = e[1]
+  })
+
+
+  for (let key in requestObj) {
+    for (let keyLink in getLinkObj) {
+      if (key == keyLink) {
+        if (key == 'perPage' || key == 'startPage') {
+          requestObj[key] = Number(getLinkObj[keyLink])
+        } else {
+          requestObj[key] = getLinkObj[keyLink]
+        }
+
       }
-   
     }
   }
-}
-console.log( requestObj, 'sdc')
+  console.log(requestObj, 'sdc')
+
+
+
+  useEffect(() => {
+    sessionStorage.removeItem('filterRequest')
+    dispatch(actionFilterRequest(requestObj))
+  }, [])
+
+  useEffect(() => {
+    setSearchParams(urlAddress)
+  }, [urlAddress])
 
 
 
 
-useEffect(()=>{
-  dispatch(actionFilterRequest(requestObj))   
-  setSearchParams(urlAddress) 
-},[urlAddress])
 
 
 
 
-console.log(newFilterRequestObj, '787878')
-    
 
-  
-   
-
-/*   let string = urlString.replaceAll(/%3D/ig, '=')
-  string = string.replaceAll(/%26/ig, '&') */
-  console.log(urlString, 'asasas');
 
   const allProducts = useSelector(selectorAllProducts);
   const productsQuantity = useSelector(selectorProductsQuantity);
   const searchInputValue = useSelector(selectorSearchInputValue);
   const serverError = useSelector(selectorServerErrorProducts);
   const pageLoading = useSelector(selectorPageLoading);
+  const showPagination = useSelector(selectorShowPaginaton)
+
+  const resetFilters = () => {
+   /*  sessionStorage.removeItem('filterRequest') */
+    dispatch(actionFilterRequest({
+      brand: '',
+      category: '',
+      processorBrand: '',
+      screenSize: '',
+      color: '',
+      ramMemory: '',
+      hardDriveCapacity: '',
+      perPage: 3,
+      startPage: 1,
+      minPrice: '',
+      maxPrice: '',
+      sort: '',
+    })) 
+/*  dispatch(actionFetchSearchFilterProducts({
+      brand: '',
+      category: '',
+      processorBrand: '',
+      screenSize: '',
+      color: '',
+      ramMemory: '',
+      hardDriveCapacity: '',
+      perPage: 3,
+      startPage: 1,
+      minPrice: '',
+      maxPrice: '',
+      sort: '',
+    }))  */
+
+  }
 
 
- useEffect(() => {
+  useEffect(() => {
     if (searchInputValue === '') {
       let obj = JSON.parse(sessionStorage.getItem('filterRequest'));
       if (obj) {
         dispatch(actionFetchSearchFilterProducts(obj));
-      }  
+      }
       else {
         dispatch(actionFetchAllProducts(urlString));
       }
     } else {
       dispatch(actionFetchSearchProducts(searchInputValue));
     }
-  }, []); 
+  }, []);
 
   return (
     <main>
@@ -116,10 +154,12 @@ console.log(newFilterRequestObj, '787878')
         {!serverError && (
           <>
             <BreadCrumbs linksArray={[{ link: '/products', text: 'Products' }]} />
-            <div>
+            <div className='products-header'>
               <p className="count-found-product">
                 Products <span className="title_contrast">{productsQuantity} found</span>
               </p>
+              <Button type={"button"} text="Reset filters" onClick={() => resetFilters()} className="btn-reset-filter" />
+
             </div>
             <section className="main-list__sections">
               <div className="main-list__sections--products">
@@ -130,7 +170,7 @@ console.log(newFilterRequestObj, '787878')
                         <ProductCard el={el} key={el._id} index={index} />
                       ))}
                     </div>
-                    <Paginate />
+                    {showPagination && <Paginate />}
                   </>
                 ) : (
                   <p className="text-product__not-found">

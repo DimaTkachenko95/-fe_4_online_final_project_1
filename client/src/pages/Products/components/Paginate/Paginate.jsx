@@ -26,7 +26,6 @@ const Paginate = () => {
                 count={pageCount}
                 onChange={handleChange}
                 page={ newfilterRequestObj.startPage}>
-                   
             </Pagination>
         </div>
 

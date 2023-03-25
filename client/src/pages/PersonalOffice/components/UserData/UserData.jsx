@@ -22,6 +22,7 @@ import { useEffect } from "react";
               validationSchema={validationSchema}
               initialValues={userInfo} 
               btnEdit={true}  
+              btnText='update data'
               withPassword={true}
               onSubmit={(values)=>{
                 console.log(values)

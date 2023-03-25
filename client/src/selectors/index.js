@@ -1,4 +1,4 @@
-// ALL PRODUCTS
+// ALL PRODUCTSsortByPrise
 export const selectorAllProducts = (state) => state.products.allProducts;
 export const selectorSearchInputValue = (state) => state.products.searchInputValue;
 export const selectorServerErrorProducts = (state) => state.products.serverError;
@@ -7,6 +7,8 @@ export const selectorFilterRequest = (state) => state.products.filterRequest;
 export const selectorProductsQuantity = (state) => state.products.productsQuantity;
 export const selectorPageLoading = (state) => state.products.pageLoading;
 export const selectorUrlAddress = (state) => state.products.urlAddress;
+export const selectorFirstVisitToCorectFilter = (state) => state.products.firstVisitToCorectFilter
+export const selectorShowPaginaton = (state) => state.products.showPaginaton
 
 // PRODUCT DETAILS
 export const selectorProduct = (state) => state.productsDetails.productData;

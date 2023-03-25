@@ -6,12 +6,14 @@ import { GET_ALL_PRODUCTS_PAGINATION, SEARCH_PRODUCTS, FILTERED_PRODUCTS, GET_AL
 const initialState = {
   allProducts: [],
   productsQuantity: 0,
+  firstVisitToCorectFilter: false, 
+  showPaginaton: true, 
   sortByPrise: 'Popular',
   searchInputValue: JSON.parse(sessionStorage.getItem('searchInputValue')) || '',
   pageLoading: false,
   serverError: null,
   urlAddress: '',
-  filterRequest: JSON.parse(sessionStorage.getItem('filterRequest')) || {
+  filterRequest:  JSON.parse(sessionStorage.getItem('filterRequest')) || {
     brand: '',
     category: '',
     processorBrand: '',
@@ -34,6 +36,12 @@ const productsSlice = createSlice({
     actionAllProducts: (state, { payload }) => {
       state.allProducts = [...payload];
     },
+    actionFirstVisitToCorectFilter: (state, { payload }) => {
+      state.firstVisitToCorectFilter = payload;
+    },
+    actionShowPaginaton: (state, { payload }) => {
+      state.showPaginaton = payload;
+    },
     actionProductsQuantity: (state, { payload }) => {
       state.productsQuantity = payload;
     },
@@ -55,8 +63,8 @@ const productsSlice = createSlice({
     },
     actionFilterRequest: (state, { payload }) => {
       state.filterRequest = payload;
-      console.log(state.filterRequest)
-     sessionStorage.setItem('filterRequest', JSON.stringify(payload)); 
+      console.log(state.filterRequest, '566968')
+      sessionStorage.setItem('filterRequest', JSON.stringify(payload)); 
     },
   },
 });
@@ -64,23 +72,26 @@ export const {
   actionAllProducts,
   actionProductsQuantity,
   actionPageLoading,
+  actionShowPaginaton,
   actionSearchInputValue,
   actionServerError,
   actionSortByPrise,
   actionFilterRequest,
   actionProductComments,
   actionUrlAddress,
+  actionFirstVisitToCorectFilter,
 } = productsSlice.actions;
 
 export const actionFetchAllProducts = (aaa) => (dispatch) => {
   dispatch(actionPageLoading(true));
+  dispatch(actionShowPaginaton(true))
   return axios
     .get(`${GET_ALL_PRODUCTS_URL}${aaa}`)
     .then(({ data }) => {
-      console.log(data, '2323232332')
       dispatch(actionProductsQuantity(data.productsQuantity));
       dispatch(actionAllProducts(data.products));
       dispatch(actionPageLoading(false));
+     
     })
     .catch(() => {
       dispatch(actionPageLoading(false));
@@ -90,6 +101,7 @@ export const actionFetchAllProducts = (aaa) => (dispatch) => {
 
 export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatch) => {
   dispatch(actionPageLoading(true));
+  dispatch(actionShowPaginaton(true))
   dispatch(actionFilterRequest(newFilterRequestObj));
   let arrRequest = [];
   for (let key in newFilterRequestObj) {
@@ -98,7 +110,6 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
     }
   }
   let filter = new URLSearchParams(arrRequest).toString();
-  console.log(filter, 'oooooo')
    dispatch(actionUrlAddress(filter)) 
   return axios
     .get(`${FILTERED_PRODUCTS}${filter}`)
@@ -107,6 +118,7 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
       dispatch(actionAllProducts(data.products));
       dispatch(actionSearchInputValue(''));
       dispatch(actionPageLoading(false));
+      dispatch(actionFirstVisitToCorectFilter(true)) 
     })
     .catch(() => {
       dispatch(actionPageLoading(false));
@@ -116,8 +128,9 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
   dispatch(actionPageLoading(true));
+  dispatch(actionShowPaginaton(false))
   return axios
-    .post(SEARCH_PRODUCTS, { query: inputValue })
+    .post(SEARCH_PRODUCTS, { query: inputValue, perPage: 1, startPage: 1, })
     .then(({ data }) => {
       dispatch(actionProductsQuantity(data.length));
       dispatch(actionAllProducts(data));
