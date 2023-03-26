@@ -68,7 +68,7 @@ const ChangePassword = () => {
                                 <Button
                                     type="submit"
                                     disabled={!isValid}
-                                    text="submit"
+                                    text="Change password"
                                     style={{ display: 'block', margin: '0 auto', marginTop: 30, marginBottom: 40 }}
                                 />
                             </Form>

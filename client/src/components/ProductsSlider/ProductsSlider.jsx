@@ -51,7 +51,7 @@ const ProductsSlider = ({ products, isForOrderedPage }) => {
         }
       },
       {
-        breakpoint: 630,
+        breakpoint: 715,
         settings: {
           slidesToShow: 1,
           arrows: false,

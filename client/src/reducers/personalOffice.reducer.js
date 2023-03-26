@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { GET_USER, ORDERS } from "../endpoints";
 import { letterHtml } from "../pages/Authorization/letterHtml";
+import { selectorAllUserOrders } from "../selectors";
 
 const initialState = {
     userInfo: null,
@@ -100,12 +102,17 @@ export const actionFetchAllUserOrders = () => (dispatch) => {
   });
 }
 
-export const actionFetchCancelOrder = (_id) => (dispatch) => {
+export const actionFetchCancelOrder = (_idd) => (dispatch, getState) => {
     return axios
-    .delete(`/orders/${_id}`)
+    .delete(`/orders/${_idd}`)
     .then(result => {
-      /*Do something with result*/
+        const state = getState();
+        let orders = state.personalOffice.allUserOrders
+        orders = orders.filter(({_id}) => _id !== _idd)
+        dispatch(actionAllUserOrders(orders))
+        console.log(orders, '8888888')
     })
+
     .catch(err => {
       /*Do something with error, e.g. show error to user*/
     });

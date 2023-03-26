@@ -6,6 +6,8 @@ import { actionFetchUserInfo, actionFetchUpdateCustomer } from "../../../../redu
 import validationSchema from "./ValidationSchemaDataUser";
 import { useEffect } from "react";
 
+import './UserData.scss'
+
  const UserData = () => {
      const userInfo = useSelector(selectorUserInfo)
      const inputsEditName = useSelector(selectorEditInputs)

@@ -30,6 +30,14 @@ import { useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
 
 const Products = () => {
+  const allProducts = useSelector(selectorAllProducts);
+  const productsQuantity = useSelector(selectorProductsQuantity);
+  const searchInputValue = useSelector(selectorSearchInputValue);
+  const serverError = useSelector(selectorServerErrorProducts);
+  const pageLoading = useSelector(selectorPageLoading);
+  const showPagination = useSelector(selectorShowPaginaton)
+
+
   const dispatch = useDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,18 +48,17 @@ const Products = () => {
 
   const urlAddress = useSelector(selectorUrlAddress) || urlString
 
-
   let getLinkObj = {}
   let stringToarr = urlString.substring(1)
   stringToarr = stringToarr.replaceAll(/%2C/ig, ',')
   stringToarr = stringToarr.replaceAll(/\+/g, " ")
 
   let arr = stringToarr.split('&')
-  let a = arr.map((el) => {
+  let arrKeyValue = arr.map((el) => {
     return el.split('=')
   })
 
-  a.forEach((e) => {
+  arrKeyValue.forEach((e) => {
     getLinkObj[e[0]] = e[1]
   })
 
@@ -69,37 +76,13 @@ const Products = () => {
     }
   }
 
-
-
-
-  useEffect(() => {
- /*    sessionStorage.removeItem('filterRequest')
-    dispatch(actionFilterRequest(requestObj)) */
-  }, [])
-
   useEffect(() => {
     setSearchParams(urlAddress)
   }, [urlAddress])
 
-
-
-
-
-
-
-
-
-
-  const allProducts = useSelector(selectorAllProducts);
-  const productsQuantity = useSelector(selectorProductsQuantity);
-  const searchInputValue = useSelector(selectorSearchInputValue);
-  const serverError = useSelector(selectorServerErrorProducts);
-  const pageLoading = useSelector(selectorPageLoading);
-  const showPagination = useSelector(selectorShowPaginaton)
-
   const resetFilters = () => {
     dispatch(actionFirstVisitAndResetToCorectFilter(false))
- dispatch(actionFetchSearchFilterProducts({
+    dispatch(actionFetchSearchFilterProducts({
       brand: '',
       category: '',
       processorBrand: '',
@@ -116,22 +99,18 @@ const Products = () => {
 
   }
 
-
   useEffect(() => {
     if (searchInputValue === '') {
       let obj = JSON.parse(sessionStorage.getItem('filterRequest'));
       if (obj) {
-        console.log('1')
         dispatch(actionFetchSearchFilterProducts(obj));
       }
       else {
-        console.log('2')
         dispatch(actionFilterRequest(requestObj))
         dispatch(actionFetchAllProducts(urlString));
    
       }
     } else {
-      console.log('3')
       dispatch(actionFetchSearchProducts(searchInputValue));
     }
   }, []);

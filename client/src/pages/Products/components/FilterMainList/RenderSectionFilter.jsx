@@ -1,22 +1,9 @@
 import FilterCheckBox from "../../../../components/FilterCheckBox"
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState,  useCallback} from 'react';
-import { actionFetchSearchFilterProducts } from "../../../../reducers";
-import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitAndResetToCorectFilter } from '../../../../selectors';
-
-
-
-
+import { useSelector } from 'react-redux'
+import {  selectorFirstVisitAndResetToCorectFilter } from '../../../../selectors';
 
 const RenderSectionFilter = ({arrFilters, blockNameFilters, checked, request}) => {
-    const dispatch = useDispatch()
-    const filterRequestObj = useSelector(selectorFilterRequest)
-    const pageLoading = useSelector(selectorPageLoading)
     const firstVisitAndResetToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
-    
-    
-
-
 
     const item = arrFilters.map((el)=>{
         return  <FilterCheckBox key={el}
@@ -31,9 +18,7 @@ const RenderSectionFilter = ({arrFilters, blockNameFilters, checked, request}) =
         <>
 {  firstVisitAndResetToCorectFilter && item }
         </>
-
      )
-
 }
 
 export default RenderSectionFilter

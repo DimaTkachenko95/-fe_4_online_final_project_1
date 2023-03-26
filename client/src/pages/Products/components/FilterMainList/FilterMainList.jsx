@@ -19,29 +19,30 @@ const FilterMainList = () => {
  
 
     
-  
-    const aaa = useSelector( selectorUrlAddress)
-    const pageLoading = useSelector(selectorPageLoading)
-    const firstVisitToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
+    const firstVisitAndResetToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
     const filterRequestObj = useSelector(selectorFilterRequest) 
     const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
     const [minimalInputPrice, setMinimalInputPrice] = useState( filterRequestObj.minPrice || '')
     const [maximalInputPrice, setMaximalInputPrice] = useState( filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
-
+    let newFilterRequestObj = { ...filterRequestObj }
+    
+    useEffect(()=>{
+       
+    }, [filterRequestObj])
 
     const handleChange = (e, data) => {
         if (data[0] > data[1] - 500) {
             return null
         }
-        setPrice(data)
+        {firstVisitAndResetToCorectFilter && setPrice(data) }
         setMinimalInputPrice(data[0])
         setMaximalInputPrice(data[1] - 500)
     };
-
+   
     const request = (key, name) => {
-        let newFilterRequestObj = { ...filterRequestObj }
+        newFilterRequestObj.perPage = 3 
         newFilterRequestObj.startPage = 1
         newFilterRequestObj[key].includes(name) ?
             newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
@@ -51,9 +52,12 @@ const FilterMainList = () => {
     }
 
     const filterWithCurentPrice = (e) => {
-        let newFilterRequestObj = { ...filterRequestObj }
+       
         newFilterRequestObj.minPrice = minimalInputPrice
         newFilterRequestObj.maxPrice = maximalInputPrice
+        newFilterRequestObj.startPage = 1
+        newFilterRequestObj.perPage = 3 
+        
         if (e) {
             newFilterRequestObj.sort = e
         }
@@ -73,9 +77,9 @@ const FilterMainList = () => {
         return true
     }
   const checked = (key, name) => {
-    if(!pageLoading){
+ 
         return  filterRequestObj[key].includes(name)
-    }
+
        
     }
   
@@ -115,12 +119,12 @@ const FilterMainList = () => {
                             justifyContent: 'center',
                         }}
                     >
-                        <TextField
+                      <TextField
                             color="success"
                             height="20px"
                             maxRows="6"
                             size="small"
-                            value={minimalInputPrice}
+                            value={ minimalInputPrice}
                             onChange={(e) => setMinimalInputPrice(e.target.value)}
                         />
                         <span className='line'> </span>
@@ -130,11 +134,11 @@ const FilterMainList = () => {
                             size="small"
                             value={maximalInputPrice}
                             onChange={(e) => setMaximalInputPrice(e.target.value)}
-                        />
+                        /> 
 
                     </Box>
-                    <Box className="price-box">
-                        <Slider className="price-box__line" color="success"
+                    {firstVisitAndResetToCorectFilter &&   <Box className="price-box">
+                      <Slider className="price-box__line" color="success"
                             value={price}
                             onChange={handleChange}
                             max={3700}
@@ -145,7 +149,7 @@ const FilterMainList = () => {
                             className={cx("btn-send-request", { "btn-send-request-disabled": !comparePrice() })}
                             onClick={() => filterWithCurentPrice()}>OK
                         </button>
-                    </Box>
+                    </Box> }
                 </div>
                 <FormGroup>
                     <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>

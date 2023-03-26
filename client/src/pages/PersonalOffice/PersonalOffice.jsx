@@ -58,8 +58,8 @@ const PersonalOffice = () => {
              // Задаем цвет активной вкладке
              "& button:focus": {color:"green" },
           }}>
-                            <Tab label="My data" value="1" />
-                            <Tab label="Change password" value="2" />
+                            <Tab label="Data" value="1" />
+                            <Tab label="Password" value="2" />
                             <Tab label="Orders" value="3" />
                     </TabList>
                 </Box>

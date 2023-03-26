@@ -82,11 +82,14 @@ export const {
   actionFirstVisitAndResetToCorectFilter,
 } = productsSlice.actions;
 
-export const actionFetchAllProducts = (aaa) => (dispatch) => {
+export const actionFetchAllProducts = (link) => (dispatch) => {
+  if(link == ''){
+    link = '?perPage=3&startPage=1'
+  }
   dispatch(actionPageLoading(true));
   dispatch(actionShowPaginaton(true))
   return axios
-    .get(`${GET_ALL_PRODUCTS_URL}${aaa}`)
+    .get(`${GET_ALL_PRODUCTS_URL}${link}`)
     .then(({ data }) => {
       dispatch(actionProductsQuantity(data.productsQuantity));
       dispatch(actionAllProducts(data.products));

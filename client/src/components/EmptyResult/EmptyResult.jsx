@@ -7,6 +7,7 @@ const Title = styled(Typography)`
     margin-top: 50px;
     font-size: 32px;
     font-weight: 500;
+    margin-bottom: 50px;
   }
 `;
 
