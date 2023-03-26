@@ -62,6 +62,14 @@ import personalOfficeReducer, {
     actionChangePasswordMessage,
     actionFetchAllUserOrders,
 } from "./personalOffice.reducer";
+import registrationReducer, {
+  createCustomerServerApi,
+  actionRegistrationSuccess,
+  actionPageIsLoading,
+  actionRegistrationError,
+  initialState,
+  actionMessageError
+} from './registration.reducer';
 
 export {
   productsReducer,
@@ -118,5 +126,12 @@ export {
   actionChangePasswordMessage,
   checkoutReducer, 
   actionFetchCreateOrder,
-  actionIsOrdered
+  actionIsOrdered,
+  registrationReducer,
+  createCustomerServerApi,
+  actionRegistrationSuccess,
+  actionPageIsLoading,
+  actionRegistrationError,
+  initialState,
+  actionMessageError
 };

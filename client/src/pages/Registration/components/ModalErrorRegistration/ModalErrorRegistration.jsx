@@ -4,8 +4,11 @@ import { useState } from 'react';
 import Authorization from '../../../Authorization/Authorization';
 import { useNavigate } from 'react-router-dom';
 import './ModalErrorRegistration.scss';
+import {useSelector} from "react-redux";
+import {selectorRegistrationMessageError} from "../../../../selectors";
 
 const ModalErrorRegistration = ({ closeErrorModal }) => {
+  const closeModalError = useSelector(selectorRegistrationMessageError);
   const navigate = useNavigate();
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
 
@@ -23,10 +26,10 @@ const ModalErrorRegistration = ({ closeErrorModal }) => {
       modalAction={closeErrorModal}
       closeAction={() => {
         closeErrorModal();
-
       }}
     >
-      <p className="modal_title"> You entered non-unique data; please try again or login </p>
+      <p className="modal_title"> {closeModalError && closeModalError } </p>
+      <p className="modal_title__login">please try again or login</p>
       <Button
         className="form-block__btn"
         type="button"
