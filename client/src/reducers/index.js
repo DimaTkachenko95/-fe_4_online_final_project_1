@@ -30,7 +30,8 @@ import basketReducer, {
   actionDeleteAllFromBasket,
   actionUpdateBasket,
   actionCheckCart,
-  getProductsCart
+  getProductsCart,
+  deleteUserCart
 } from "./basket.reducer";
 import logInReducer, {
   actionFetchLogin,
@@ -89,6 +90,7 @@ export {
   actionUpdateBasket,
   getProductsCart,
   actionCheckCart,
+  deleteUserCart,
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,

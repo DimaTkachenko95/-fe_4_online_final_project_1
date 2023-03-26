@@ -10,7 +10,7 @@ import {
   selectorToken,
   selectorUserData,
 } from '../../selectors';
-import { actionFetchCreateOrder, actionDeleteAllFromBasket } from '../../reducers';
+import { actionFetchCreateOrder, deleteUserCart } from '../../reducers';
 import OrderedSuccessful from './components/OrderedSuccessful';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,10 +34,9 @@ const CheckOut = () => {
     }
   });
 
-  const handlerClearBasket = (newOrder) => {
-    const items = newOrder.products;
-    items.forEach((item) => dispatch(actionDeleteAllFromBasket(item)));
-  };
+  const deleteBasket = () => {
+    dispatch(deleteUserCart())
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +62,7 @@ const CheckOut = () => {
 
       const newOrder = {
         products: products,
-        customerId: '640b45ecb93d4a3c2cea21c4',
+        customerId: user._id,
         deliveryAddress: {
           country: values.country,
           city: values.city,
@@ -78,7 +77,7 @@ const CheckOut = () => {
       };
 
       dispatch(actionFetchCreateOrder(newOrder, basketProduct));
-      handlerClearBasket(newOrder);
+      deleteBasket();
     },
   });
 
