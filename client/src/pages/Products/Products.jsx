@@ -15,8 +15,7 @@ import {
   actionFetchSearchFilterProducts,
   actionFetchSearchProducts,
   actionFilterRequest,
-
-  actionFirstVisitToCorectFilter,
+  actionFirstVisitAndResetToCorectFilter,
 } from '../../reducers';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -69,13 +68,13 @@ const Products = () => {
       }
     }
   }
-  console.log(requestObj, 'sdc')
+
 
 
 
   useEffect(() => {
-    sessionStorage.removeItem('filterRequest')
-    dispatch(actionFilterRequest(requestObj))
+ /*    sessionStorage.removeItem('filterRequest')
+    dispatch(actionFilterRequest(requestObj)) */
   }, [])
 
   useEffect(() => {
@@ -99,8 +98,8 @@ const Products = () => {
   const showPagination = useSelector(selectorShowPaginaton)
 
   const resetFilters = () => {
-   /*  sessionStorage.removeItem('filterRequest') */
-    dispatch(actionFilterRequest({
+    dispatch(actionFirstVisitAndResetToCorectFilter(false))
+ dispatch(actionFetchSearchFilterProducts({
       brand: '',
       category: '',
       processorBrand: '',
@@ -113,21 +112,7 @@ const Products = () => {
       minPrice: '',
       maxPrice: '',
       sort: '',
-    })) 
-/*  dispatch(actionFetchSearchFilterProducts({
-      brand: '',
-      category: '',
-      processorBrand: '',
-      screenSize: '',
-      color: '',
-      ramMemory: '',
-      hardDriveCapacity: '',
-      perPage: 3,
-      startPage: 1,
-      minPrice: '',
-      maxPrice: '',
-      sort: '',
-    }))  */
+    }))  
 
   }
 
@@ -136,12 +121,17 @@ const Products = () => {
     if (searchInputValue === '') {
       let obj = JSON.parse(sessionStorage.getItem('filterRequest'));
       if (obj) {
+        console.log('1')
         dispatch(actionFetchSearchFilterProducts(obj));
       }
       else {
+        console.log('2')
+        dispatch(actionFilterRequest(requestObj))
         dispatch(actionFetchAllProducts(urlString));
+   
       }
     } else {
+      console.log('3')
       dispatch(actionFetchSearchProducts(searchInputValue));
     }
   }, []);

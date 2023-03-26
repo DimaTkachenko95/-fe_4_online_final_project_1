@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitToCorectFilter, selectorUrlAddress} from '../../../../selectors';
+import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitAndResetToCorectFilter, selectorUrlAddress} from '../../../../selectors';
 import { actionFetchSearchFilterProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
@@ -22,15 +22,13 @@ const FilterMainList = () => {
   
     const aaa = useSelector( selectorUrlAddress)
     const pageLoading = useSelector(selectorPageLoading)
-    const firstVisitToCorectFilter = useSelector(selectorFirstVisitToCorectFilter)
+    const firstVisitToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
     const filterRequestObj = useSelector(selectorFilterRequest) 
-    console.log(filterRequestObj, 'df')
     const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
-    const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '')
-    const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
+    const [minimalInputPrice, setMinimalInputPrice] = useState( filterRequestObj.minPrice || '')
+    const [maximalInputPrice, setMaximalInputPrice] = useState( filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
-
 
 
     const handleChange = (e, data) => {
@@ -75,15 +73,17 @@ const FilterMainList = () => {
         return true
     }
   const checked = (key, name) => {
-     return  filterRequestObj[key].includes(name)
-     
+    if(!pageLoading){
+        return  filterRequestObj[key].includes(name)
+    }
+       
     }
   
 
 
     return (
         <>
-           {firstVisitToCorectFilter && <section className='main-filter-block'>
+          <section className='main-filter-block'>
                 <FormControl>
                     <div className='header-filter'> Sort by  </div>
                     <Select value={filterRequestObj.sort} color="success" sx={{
@@ -188,7 +188,7 @@ const FilterMainList = () => {
                             setShowMoreFilters(true);
                             sessionStorage.setItem("showMoreFilters", true)}} />
                 }
-            </section> }
+            </section> 
         </>
     )
 }

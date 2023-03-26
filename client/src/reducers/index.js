@@ -9,6 +9,7 @@ import productsReducer, {
   actionFetchSearchProducts,
   actionUrlAddress,
   actionFilterRequest,
+  actionFirstVisitAndResetToCorectFilter
 } from './products.reducer';
 import favoritesReducer, {
     actionAddToFavorites,
@@ -78,6 +79,7 @@ export {
   actionSortByPrise,
   actionSearchInputValue,
   actionPageLoading,
+  actionFirstVisitAndResetToCorectFilter,
   actionUrlAddress,
   actionFetchSearchProducts,
   actionFetchSearchFilterProducts,

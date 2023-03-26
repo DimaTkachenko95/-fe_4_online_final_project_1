@@ -7,7 +7,7 @@ export const selectorFilterRequest = (state) => state.products.filterRequest;
 export const selectorProductsQuantity = (state) => state.products.productsQuantity;
 export const selectorPageLoading = (state) => state.products.pageLoading;
 export const selectorUrlAddress = (state) => state.products.urlAddress;
-export const selectorFirstVisitToCorectFilter = (state) => state.products.firstVisitToCorectFilter
+export const selectorFirstVisitAndResetToCorectFilter = (state) => state.products.firstVisitAndResetToCorectFilter
 export const selectorShowPaginaton = (state) => state.products.showPaginaton
 
 // PRODUCT DETAILS

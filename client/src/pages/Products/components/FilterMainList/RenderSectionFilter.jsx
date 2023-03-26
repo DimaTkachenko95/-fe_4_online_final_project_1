@@ -2,7 +2,7 @@ import FilterCheckBox from "../../../../components/FilterCheckBox"
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState,  useCallback} from 'react';
 import { actionFetchSearchFilterProducts } from "../../../../reducers";
-import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitToCorectFilter } from '../../../../selectors';
+import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitAndResetToCorectFilter } from '../../../../selectors';
 
 
 
@@ -11,12 +11,11 @@ import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitToCorectF
 const RenderSectionFilter = ({arrFilters, blockNameFilters, checked, request}) => {
     const dispatch = useDispatch()
     const filterRequestObj = useSelector(selectorFilterRequest)
+    const pageLoading = useSelector(selectorPageLoading)
+    const firstVisitAndResetToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
     
     
-    useEffect(()=>{
-        sessionStorage.removeItem('filterRequest')
-        dispatch(actionFetchSearchFilterProducts(filterRequestObj))
-    },[ filterRequestObj])
+
 
 
     const item = arrFilters.map((el)=>{
@@ -30,7 +29,7 @@ const RenderSectionFilter = ({arrFilters, blockNameFilters, checked, request}) =
     })
      return(
         <>
-       { item }
+{  firstVisitAndResetToCorectFilter && item }
         </>
 
      )
