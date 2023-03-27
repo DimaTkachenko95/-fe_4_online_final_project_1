@@ -56,12 +56,13 @@ export const selectorToken = (state) => state.logIn.token;
 // DISCOUNTED PRODUCTS
 export const selectorDiscountedProducts = (state) => state.discountedProducts.discountedProducts;
 
-//
 // //REGISTRATION
-//
-// export const selectorRegistrationIsLoading = (state) => state.registration.pageIsLoading;
-// export const selectorRegistrationServerError = (state) => state.registration.serverError;
-// // export const selectorRegistrationModal = (state) => state.registration.modalIsOpen;
+export const selectorRegistrationIsLoading = (state) => state.registration.pageIsLoading;
+export const selectorRegistrationModalSuccess = (state) => state.registration.modalSuccess;
+export const selectorRegistrationModalError = (state) => state.registration.modalError;
+export const selectorRegistrationInitialState = (state) => state.registration.formData;
+export const selectorRegistrationMessageError = (state) => state.registration.messageError;
+
 
 
 

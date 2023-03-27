@@ -9,7 +9,8 @@ import {
     productDetailsReducer,
     discountedProductsReducer,
     checkoutReducer,
-    personalOfficeReducer
+    personalOfficeReducer,
+    registrationReducer
 } from "../reducers";
 
 
@@ -24,6 +25,7 @@ const store = configureStore({
         discountedProducts: discountedProductsReducer,
         checkout: checkoutReducer,
         personalOffice: personalOfficeReducer,
+        registration: registrationReducer,
     }
 
 })
