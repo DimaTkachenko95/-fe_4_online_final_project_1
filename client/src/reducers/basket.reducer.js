@@ -251,4 +251,16 @@ export const actionDeleteAllFromBasket = (item) => (dispatch) => {
   }
 };
 
+/// D E L E T E    C A R T 
+
+export const deleteUserCart = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  setAuthToken(token);
+  axios.delete(SHOPPING_CART)
+  .catch(() => {
+    dispatch(actionPageLoading(false));
+    dispatch(actionServerError(true));
+  });
+} 
+
 export default basketSlice.reducer;
