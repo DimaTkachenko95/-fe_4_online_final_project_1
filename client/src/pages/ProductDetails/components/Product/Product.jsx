@@ -30,6 +30,7 @@ const Product = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+
     useEffect(() => {
         setIsMobile(window.innerWidth <= 970);
     }, []);
@@ -52,7 +53,6 @@ const Product = () => {
     const toggleScales = id => {
         dispatch(toggleScalesProduct(id));
     }
-    
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
     return (
         <>
@@ -95,7 +95,7 @@ const Product = () => {
                                 </SwiperSlide>
                                 ))}
                           </Swiper>
-                                
+                
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
