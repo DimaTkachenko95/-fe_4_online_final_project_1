@@ -31,7 +31,7 @@ const Paginate = () => {
         <div className='pagination'>
             <Button variant={'white-shadow'}  className={cx( { "disabled-btn": pageCount == 1})} disabled={pageCount == 1} text='Show 3 more' onClick={()=>{showMoreProducts()}}></Button>
             <Pagination className='pagination-block'
-                size="medium"
+                size= "medium"
                 count={pageCount}
                 onChange={handleChange}
                 page={ newFilterRequestObj.startPage}>

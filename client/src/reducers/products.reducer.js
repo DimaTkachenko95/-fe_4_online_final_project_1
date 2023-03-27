@@ -63,7 +63,6 @@ const productsSlice = createSlice({
     },
     actionFilterRequest: (state, { payload }) => {
       state.filterRequest = payload;
-      console.log(state.filterRequest, '566968')
       sessionStorage.setItem('filterRequest', JSON.stringify(payload)); 
     },
   },
@@ -132,9 +131,10 @@ export const actionFetchSearchFilterProducts = (newFilterRequestObj) => (dispatc
 
 export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
   dispatch(actionPageLoading(true));
+  dispatch(actionFirstVisitAndResetToCorectFilter(false)) 
   dispatch(actionFilterRequest({
     brand: '',
-    category: '',
+    category: '', 
     processorBrand: '',
     screenSize: '',
     color: '',

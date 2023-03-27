@@ -1,10 +1,10 @@
 import { TextField, FormLabel, FormGroup, Slider, FormControl, Select, MenuItem } from '@mui/material';
-import { useEffect, useState,  useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cx from "classnames";
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitAndResetToCorectFilter, selectorUrlAddress} from '../../../../selectors';
+import { selectorFilterRequest, selectorPageLoading, selectorFirstVisitAndResetToCorectFilter, selectorUrlAddress } from '../../../../selectors';
 import { actionFetchSearchFilterProducts } from '../../../../reducers';
 import RenderSectionFilter from './RenderSectionFilter';
 import { brand, category, processorBrand, screenSize, color, ramMemory, hardDriveCapacity } from './configFilters';
@@ -15,34 +15,36 @@ import Button from "../../../../components/Button";
 
 const FilterMainList = () => {
 
-
- 
-
-    
     const firstVisitAndResetToCorectFilter = useSelector(selectorFirstVisitAndResetToCorectFilter)
-    const filterRequestObj = useSelector(selectorFilterRequest) 
+    const filterRequestObj = useSelector(selectorFilterRequest)
     const [showMoreFilters, setShowMoreFilters] = useState(JSON.parse(sessionStorage.getItem("showMoreFilters")) || false)
-    const [minimalInputPrice, setMinimalInputPrice] = useState( filterRequestObj.minPrice || '')
-    const [maximalInputPrice, setMaximalInputPrice] = useState( filterRequestObj.maxPrice || '')
+    const [minimalInputPrice, setMinimalInputPrice] = useState(filterRequestObj.minPrice || '') 
+    const [maximalInputPrice, setMaximalInputPrice] = useState(filterRequestObj.maxPrice || '')
     const [price, setPrice] = useState([800, 2700]);
     const dispatch = useDispatch()
     let newFilterRequestObj = { ...filterRequestObj }
-    
-    useEffect(()=>{
-       
+
+    console.log(minimalInputPrice, '11111')
+    console.log(filterRequestObj.minPrice, '22222')
+
+
+
+    useEffect(() => {
+        setMinimalInputPrice(filterRequestObj.minPrice)
+        setMaximalInputPrice(filterRequestObj.maxPrice)
     }, [filterRequestObj])
 
     const handleChange = (e, data) => {
         if (data[0] > data[1] - 500) {
             return null
         }
-        {firstVisitAndResetToCorectFilter && setPrice(data) }
+        setPrice(data) 
         setMinimalInputPrice(data[0])
         setMaximalInputPrice(data[1] - 500)
     };
-   
+
     const request = (key, name) => {
-        newFilterRequestObj.perPage = 3 
+        newFilterRequestObj.perPage = 3
         newFilterRequestObj.startPage = 1
         newFilterRequestObj[key].includes(name) ?
             newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
@@ -52,12 +54,12 @@ const FilterMainList = () => {
     }
 
     const filterWithCurentPrice = (e) => {
-       
+
         newFilterRequestObj.minPrice = minimalInputPrice
         newFilterRequestObj.maxPrice = maximalInputPrice
         newFilterRequestObj.startPage = 1
-        newFilterRequestObj.perPage = 3 
-        
+        newFilterRequestObj.perPage = 3
+
         if (e) {
             newFilterRequestObj.sort = e
         }
@@ -76,18 +78,16 @@ const FilterMainList = () => {
         }
         return true
     }
-  const checked = (key, name) => {
- 
-        return  filterRequestObj[key].includes(name)
+    const checked = (key, name) => {
 
-       
+        return filterRequestObj[key].includes(name)
+
+
     }
-  
-
 
     return (
         <>
-          <section className='main-filter-block'>
+            <section className='main-filter-block'>
                 <FormControl>
                     <div className='header-filter'> Sort by  </div>
                     <Select value={filterRequestObj.sort} color="success" sx={{
@@ -103,7 +103,7 @@ const FilterMainList = () => {
 
                 <FormGroup>
                     <FormLabel class='header-filter'>Brand</FormLabel>
-                      <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'}   checked={checked}  request={request} /> 
+                    <RenderSectionFilter arrFilters={brand} blockNameFilters={'brand'} checked={checked} request={request} />
                 </FormGroup>
 
                 <FormGroup>
@@ -119,12 +119,12 @@ const FilterMainList = () => {
                             justifyContent: 'center',
                         }}
                     >
-                      <TextField
+                        <TextField
                             color="success"
                             height="20px"
                             maxRows="6"
                             size="small"
-                            value={ minimalInputPrice}
+                            value={minimalInputPrice}
                             onChange={(e) => setMinimalInputPrice(e.target.value)}
                         />
                         <span className='line'> </span>
@@ -134,11 +134,11 @@ const FilterMainList = () => {
                             size="small"
                             value={maximalInputPrice}
                             onChange={(e) => setMaximalInputPrice(e.target.value)}
-                        /> 
+                        />
 
                     </Box>
-                    {firstVisitAndResetToCorectFilter &&   <Box className="price-box">
-                      <Slider className="price-box__line" color="success"
+                    {firstVisitAndResetToCorectFilter && <Box className="price-box">
+                        <Slider className="price-box__line" color="success"
                             value={price}
                             onChange={handleChange}
                             max={3700}
@@ -149,7 +149,7 @@ const FilterMainList = () => {
                             className={cx("btn-send-request", { "btn-send-request-disabled": !comparePrice() })}
                             onClick={() => filterWithCurentPrice()}>OK
                         </button>
-                    </Box> }
+                    </Box>}
                 </div>
                 <FormGroup>
                     <FormLabel class='header-filter header-filter__name'>Procesor</FormLabel>
@@ -182,17 +182,21 @@ const FilterMainList = () => {
                             variant='white-shadow'
                             onClick={() => {
                                 setShowMoreFilters(false)
-                                sessionStorage.setItem("showMoreFilters", false)}} />
+                                sessionStorage.setItem("showMoreFilters", false)
+                            }} />
                     </>
                     :
-                    <Button
-                        text="Show more filters"
-                        variant='white-shadow'
-                        onClick={() => {
-                            setShowMoreFilters(true);
-                            sessionStorage.setItem("showMoreFilters", true)}} />
+                    <div className='show-more-filters'>
+                        <Button
+                            text="Show more filters"
+                            variant='white-shadow'
+                            onClick={() => {
+                                setShowMoreFilters(true);
+                                sessionStorage.setItem("showMoreFilters", true)
+                            }} />
+                    </div>
                 }
-            </section> 
+            </section>
         </>
     )
 }
