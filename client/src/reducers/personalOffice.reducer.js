@@ -8,6 +8,7 @@ import { selectorAllUserOrders } from "../selectors";
 const initialState = {
     userInfo: null,
     editInputs: [],
+    serverError: null,
     changePasswordMessage: '\xa0',
     pageLoading: false,
     allUserOrders: [],
@@ -40,6 +41,9 @@ const personalOfficeSlice = createSlice({
         actionOrderInfo: (state, {payload}) => {
             state.orderInfo = payload
         },
+        actionServerError: (state, { payload }) => {
+            state.serverError = payload;
+          },
     }
 })
 
@@ -49,6 +53,7 @@ export const { actionUserInfo,
                actionPageLoading, 
                actionAllUserOrders,
                actionEditInputsOrder,
+               actionServerError,
                actionOrderInfo } = personalOfficeSlice.actions
 
 export const actionFetchUserInfo = () => (dispatch) => {
@@ -56,12 +61,13 @@ export const actionFetchUserInfo = () => (dispatch) => {
     return axios
         .get(GET_USER)
         .then(loggedInCustomer => {
-                const {firstName, lastName, login, email , telephone, gender, avatarUrl} = loggedInCustomer.data
-                dispatch(actionUserInfo({ firstName,  lastName, login, email , telephone, gender, avatarUrl}))
+                const {firstName, lastName, login, email , telephone, city, country, avatarUrl} = loggedInCustomer.data
+                dispatch(actionUserInfo({ firstName,  lastName, login, email , telephone, city, country , avatarUrl}))
                 dispatch(actionPageLoading(false))
               }) 
               .catch( err => {
-                 /*Что-то сделать с ошибкой */
+                dispatch(actionPageLoading(false));
+                dispatch(actionServerError(true));
         });
 }
 
@@ -73,7 +79,10 @@ export const actionFetchUpdateCustomer = (newUserInfoObj) => (dispatch) => {
         dispatch(actionEditInputs(''))
         dispatch(actionPageLoading(false))
     })
-        .catch(err => {/*Do something with error, e.g. show error to customer*/ })
+        .catch(err => {
+            dispatch(actionPageLoading(false));
+            dispatch(actionServerError(true));
+        })
 }
 
 export const actionFetchUpdateCustomerPassword = (userPasswordObj) => (dispatch) => {
@@ -87,22 +96,28 @@ export const actionFetchUpdateCustomerPassword = (userPasswordObj) => (dispatch)
             dispatch(actionChangePasswordMessage('Enter corect old password'))
             dispatch(actionPageLoading(false))
        })
-        .catch(err => console.log(err) )
+        .catch(err =>{
+            dispatch(actionPageLoading(false));
+            dispatch(actionServerError(true));
+        })
 }
 
 export const actionFetchAllUserOrders = () => (dispatch) => {
+    dispatch(actionPageLoading(true))
    return axios
   .get(ORDERS)
   .then(orders => {
     dispatch(actionAllUserOrders(orders.data.reverse()))
-   console.log(orders.data,'all')
+    dispatch(actionPageLoading(false))
   })
   .catch(err => {
-    /*Do something with error, e.g. show error to user*/
+    dispatch(actionPageLoading(false));
+    dispatch(actionServerError(true));
   });
 }
 
 export const actionFetchCancelOrder = (_idd) => (dispatch, getState) => {
+    dispatch(actionPageLoading(true))
     return axios
     .delete(`/orders/${_idd}`)
     .then(result => {
@@ -110,11 +125,12 @@ export const actionFetchCancelOrder = (_idd) => (dispatch, getState) => {
         let orders = state.personalOffice.allUserOrders
         orders = orders.filter(({_id}) => _id !== _idd)
         dispatch(actionAllUserOrders(orders))
-        console.log(orders, '8888888')
+        dispatch(actionPageLoading(false))
     })
 
     .catch(err => {
-      /*Do something with error, e.g. show error to user*/
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     });
 }
 
@@ -138,7 +154,8 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
       dispatch(actionPageLoading(false))
     })
     .catch(err => {
-      /*Do something with error, e.g. show error to user*/
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
     });
 }
 

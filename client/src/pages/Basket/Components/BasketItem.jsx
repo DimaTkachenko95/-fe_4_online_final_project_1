@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Delete } from '../icons/003-delete.svg';
@@ -8,10 +8,10 @@ import { ReactComponent as Minus } from '../icons/minus.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectorBasket, selectorBasketProduct } from '../../../selectors';
 import {
-  actionDeleteFromBasket,
-  actionIncrease,
-  actionDecraese,
-  actionFetchProductByItemNo,
+  actionDeleteProductFromBasket,
+  actionAddProductToBasket,
+  actionDeleteAllFromBasket,
+  getProductsCart,
 } from '../../../reducers';
 
 import '../Basket.scss';
@@ -20,31 +20,26 @@ const BasketItems = () => {
   const dispatch = useDispatch();
   const basket = useSelector(selectorBasket);
   const productBasket = useSelector(selectorBasketProduct);
-  const [increaseStyle, setIncreaseStyle] = useState("increase");
-  const itemNos = basket.map((item) => {
-    return item.id;
-  });
-  const quantity = basket.map((item) => {
-    return item.cartQuantity;
-  });
 
   useEffect(() => {
-    dispatch(actionFetchProductByItemNo({ itemNos, quantity }));
+    dispatch(getProductsCart());
   }, [basket]);
 
   const handlerDeleteFromBasket = (item) => {
-    dispatch(actionDeleteFromBasket(item));
+    dispatch(actionDeleteAllFromBasket(item));
   };
 
   const increase = (item) => {
-    const cartItem = basket.find((elem) => elem.id === item._id);
-    if (!cartItem || cartItem.cartQuantity < item.quantity) {
-      dispatch(actionIncrease(item));
+    const cartItem = basket.find((elem) => elem.product === item._id);
+    if (!cartItem || cartItem.cartQuantity <= item.quantity - 1) {
+      dispatch(actionAddProductToBasket(item));
     } else return null;
   };
 
   const decrease = (item) => {
-    dispatch(actionDecraese(item));
+    if (item.cartQuantity > 1) {
+      dispatch(actionDeleteProductFromBasket(item));
+    } else return null;
   };
 
   const item = productBasket.map((item) => (
@@ -62,7 +57,7 @@ const BasketItems = () => {
         <p className="vendor">{item.brand}</p>
       </td>
 
-      <td className="product_price">{item.currentPrice.toLocaleString()} $</td>
+      <td className="product_price">{item.currentPrice.toLocaleString()} USD</td>
 
       <td className="quantity">
         <div>
@@ -71,12 +66,15 @@ const BasketItems = () => {
             onClick={() => decrease(item)}
           />
           <span>{item.cartQuantity}</span>
-          <Plus className={item.cartQuantity >= item.quantity ? 'disabled' : 'increase'} onClick={() => increase(item)} />
+          <Plus
+            className={item.cartQuantity != item.quantity ? 'increase' : 'disabled'}
+            onClick={() => increase(item)}
+          />
         </div>
       </td>
 
       <td className="product_total">
-        {(item.cartQuantity * item.currentPrice).toLocaleString()} $
+        {(item.cartQuantity * item.currentPrice).toLocaleString()} USD
       </td>
 
       <td className="delete_box">
@@ -85,11 +83,7 @@ const BasketItems = () => {
     </tr>
   ));
 
-  return (
-    <>
-      {item}
-    </>
-  );
+  return <>{item}</>;
 };
 
 export default BasketItems;

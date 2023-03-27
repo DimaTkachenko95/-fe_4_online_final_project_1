@@ -2,7 +2,7 @@ import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import {ReactComponent as Scales } from "./icons/scales.svg"
 import { Link } from "react-router-dom";
 import cx from "classnames";
-import { selectorFavorites, selectorScales } from "../../selectors";
+import { selectorBasket, selectorProducts, selectorFavorites, selectorScales } from "../../selectors";
 import { toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss";
@@ -17,9 +17,10 @@ const ProductCard = ({el, isForOrderedPage}) => {
 
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === _id);
 
-    const toggleFavorites = id => {
-        dispatch(toggleFavoriteProduct(id));
-    }
+
+  const toggleFavorites = id => {
+    dispatch(toggleFavoriteProduct(id));
+}
 
     const toggleScales = id => {
         dispatch(toggleScalesProduct(id));
@@ -87,4 +88,4 @@ ProductCard.defaultProps = {
   isForOrderedPage: false,
 }
 
-export default ProductCard
+export default ProductCard;

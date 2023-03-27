@@ -6,9 +6,11 @@ import { selectorAllUserOrders } from "../../../../selectors";
 import ProductsSlider from "../../../../components/ProductsSlider";
 import { actionFetchCancelOrder, actionFetchGetOneOrder, actionFetchUpdatedOrder } from "../../../../reducers";
 import FormOrder from "../../../../components/FormOrder";
-import { selectorEditInputsOrder, selectorOrderInfo, selectorPageLoadingPersonalOffice } from "../../../../selectors";
+import { selectorEditInputsOrder, selectorOrderInfo, selectorPageLoadingPersonalOffice, selectorServerErrorPersonalOffice } from "../../../../selectors";
 import EmptyResult from "../../../../components/EmptyResult/EmptyResult";
 import Button from "../../../../components/Button";
+import Preloader from "../../../../components/Preloader";
+import ServerError from "../../../../components/Notifications/ServerError";
 
 import './AllUserOrder.scss'
 import { values } from "lodash";
@@ -29,6 +31,7 @@ const AllUserOrders = () => {
 
 
     const pageLoading = useSelector(selectorPageLoadingPersonalOffice)
+    const serverError = useSelector(selectorServerErrorPersonalOffice)
     const dispatch = useDispatch()
 
     const editInputsOrder = useSelector(selectorEditInputsOrder)
@@ -108,7 +111,13 @@ const AllUserOrders = () => {
 
     return (
         <>
+         <Preloader open={pageLoading} />
+         {serverError && <ServerError />}
+         {!serverError && (
+            <>
             {allUserOrders.length > 0 ? blockOrder : <EmptyResult />}
+            </>
+         )}
         </>
 
     )

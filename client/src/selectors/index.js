@@ -17,8 +17,8 @@ export const selectorServerErrorProductDetails = (state) => state.productsDetail
 export const selectorIsDetailsProductLoading = (state) => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
-export const selectorProductComments = state => state.productsDetails.productComments;
-export const selectorCommentError = state => state.productsDetails.commentError;
+export const selectorProductComments = (state) => state.productsDetails.productComments;
+export const selectorCommentError = (state) => state.productsDetails.commentError;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
@@ -27,8 +27,8 @@ export const selectorServerErrorBasket = (state) => state.basket.serverError;
 export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
 
 // CHECKOUT
-export const selectorIsOrdered = state => state.checkout.isOrdered;
-export const selectorServerErrorCheckout = state => state.checkout.serverError;
+export const selectorIsOrdered = (state) => state.checkout.isOrdered;
+export const selectorServerErrorCheckout = (state) => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
@@ -50,6 +50,7 @@ export const selectorPageLoadingPersonalOffice = state => state.personalOffice.p
 export const selectorAllUserOrders = state => state.personalOffice.allUserOrders 
 export const selectorEditInputsOrder = state => state.personalOffice.editInputsOrder
 export const selectorOrderInfo = state => state.personalOffice.orderInfo
+export const selectorServerErrorPersonalOffice = state => state.personalOffice.serverError
 
 /* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN
@@ -59,3 +60,13 @@ export const selectorToken = (state) => state.logIn.token;
 
 // DISCOUNTED PRODUCTS
 export const selectorDiscountedProducts = (state) => state.discountedProducts.discountedProducts;
+
+//
+// //REGISTRATION
+//
+// export const selectorRegistrationIsLoading = (state) => state.registration.pageIsLoading;
+// export const selectorRegistrationServerError = (state) => state.registration.serverError;
+// // export const selectorRegistrationModal = (state) => state.registration.modalIsOpen;
+
+
+

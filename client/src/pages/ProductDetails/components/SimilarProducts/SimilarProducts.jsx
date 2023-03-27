@@ -31,7 +31,7 @@ const SimilarProducts = ({id}) => {
             { shownProduct.length > 0 && (
                 <div className="similar-products__container">
                     <h3 className="similar-products__title">Similar items <span>you might like</span></h3>
-                    <ProductsSlider products={availableDiscountedProducts}/>
+                    <ProductsSlider products={availableDiscountedProducts} productsLimit={10}/>
                 </div>
             ) }
         </>

@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { Formik, Form } from "formik";
 import {validationSchema} from "./validation";
 import Button from "../../components/Button";
-import {actionFetchLogin, actionResetLoginError} from "../../reducers"
+import {actionFetchLogin, actionResetLoginError, actionCheckCart, getProductsCart} from "../../reducers"
 import { useDispatch, useSelector } from "react-redux";
 import {selectorAllLoginErrors, selectorUserData} from "../../selectors";
 import {useState} from "react";
@@ -42,7 +42,9 @@ const Authorization = ({closeModalAuth}) => {
 
         if(!error) {
             closeModalAuth();
-            dispatch(actionResetLoginError())
+            dispatch(actionResetLoginError());
+            dispatch(actionCheckCart());
+            dispatch(getProductsCart())
             navigate("/products");
         }
     }

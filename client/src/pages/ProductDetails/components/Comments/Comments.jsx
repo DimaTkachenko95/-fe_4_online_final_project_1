@@ -20,7 +20,9 @@ const Comments = () => {
 
     const [isMoreComments, setIsMoreComments] = useState(false);
     const handleReviewChange = (event) => {
-        setReview(event.target.value);
+        if (event.target.value.length <= 48){
+            setReview(event.target.value);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -60,6 +62,7 @@ const Comments = () => {
                             fullWidth
                             color="success"
                             onKeyDown={handleKeyDown}
+                            helperText={`${review.length}/${48} characters`}
                         />
                          <Button type="submit" width="180px" className="product__form-button" text="Send" />
                     </form>
