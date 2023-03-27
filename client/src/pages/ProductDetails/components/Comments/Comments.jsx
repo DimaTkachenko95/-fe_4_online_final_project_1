@@ -6,7 +6,6 @@ import './Comments.scss';
 import {actionFetchAddComment, actionFetchAllComments} from "../../../../reducers";
 import Comment from "./Comment";
 import Button from "../../../../components/Button";
-
 const Comments = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectorProduct);
@@ -19,8 +18,11 @@ const Comments = () => {
         dispatch(actionFetchAllComments(product.itemNo));
     }, [product]);
 
+    const [isMoreComments, setIsMoreComments] = useState(false);
     const handleReviewChange = (event) => {
-        setReview(event.target.value);
+        if (event.target.value.length <= 48){
+            setReview(event.target.value);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -28,6 +30,7 @@ const Comments = () => {
         const data = {
             product: product.itemNo,
             content: review,
+            date: new Date()
         }
         dispatch(actionFetchAddComment(data));
         setReview('');
@@ -39,6 +42,7 @@ const Comments = () => {
             handleSubmit(event);
         }
     }
+
 
     return (
         <>
@@ -58,8 +62,9 @@ const Comments = () => {
                             fullWidth
                             color="success"
                             onKeyDown={handleKeyDown}
+                            helperText={`${review.length}/${48} characters`}
                         />
-                         <Button type="submit" width="120px" className="product__form-button" text="Send" />
+                         <Button type="submit" width="180px" className="product__form-button" text="Send" />
                     </form>
 
                     {commentError && <p className="product__comment-error">Failed to add comment, please try again!</p>}
@@ -70,14 +75,18 @@ const Comments = () => {
 
                     <Box className="comments">
                         {comments?.map((comment, index) => {
-                            const dateString = comment.customer.date;
-                            const formattedDate = new Date(dateString).toLocaleString('en-us',{month:'long', year:'numeric', day:'numeric'})
-
-                            return (<Comment comment={comment} formattedDate={formattedDate} key={index}/>)
+                            return (<Comment comment={comment} key={index} className={isMoreComments && "more-active"} itemNo={product._id}/>)
                         })}
 
                         {comments.length === 0 && <p>There are currently no reviews for this product.</p>}
+
                     </Box>
+                    {comments.length > 4 && <Button
+                        type="button"
+                        width="180px"
+                        className="comments__show-more-btn"
+                        text={isMoreComments ? "Show less" : "Show more"}
+                        onClick={() => setIsMoreComments(!isMoreComments)} />}
                 </Box>
             </Box>
         </>

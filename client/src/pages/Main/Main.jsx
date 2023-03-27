@@ -1,12 +1,12 @@
 import './Main.scss';
 import Hero from "./components/Hero";
 import SearchBlock from "./components/SearchBlock";
-import DiscountedProductsSlider from '../../components/DiscountedProductsSlider';
+import DiscountedProductsSlider from './components/DiscountedProductsSlider';
 
 const Main = () => {
   return(
   <main>
-      <Hero />    
+      <Hero />
       <DiscountedProductsSlider />
       <SearchBlock/>
 

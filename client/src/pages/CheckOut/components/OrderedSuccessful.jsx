@@ -5,7 +5,7 @@ import {selectorBasketProduct} from "../../../selectors";
 import './OrderedSuccesseful.scss';
 import ProductCard from "../../../components/ProductCard";
 import {useEffect} from "react";
-import {actionBasketProduct, actionDeleteFromBasket, actionIsOrdered} from "../../../reducers";
+import {actionBasketProductNew, actionDeleteFromBasket, actionIsOrdered} from "../../../reducers";
 import Button from "../../../components/Button";
 
 const OrderedSuccessful = () => {
@@ -19,7 +19,7 @@ const OrderedSuccessful = () => {
 
 
         return(() => {
-            dispatch(actionBasketProduct([]));
+            dispatch(actionBasketProductNew([]));
             dispatch(actionIsOrdered(false));
         })
     }, [])

@@ -1,9 +1,11 @@
-.footer{
-  &__subscribe-container{
+@use 'src/styles/variables';
+
+.footer {
+  &__subscribe-container {
     background-color: rgb(81 86 104 / 100%);
   }
 
-  &__subscribe-wrapper{
+  &__subscribe-wrapper {
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
@@ -11,8 +13,8 @@
 
     @media (max-width: 996px) {
       justify-content: center;
-      padding-top: 6vh;
-      padding-bottom: 6vh;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
     }
 
     .subscribe__content {
@@ -57,7 +59,7 @@
       padding: 1vh 6.5vw 1vh 1.4vw;
 
       @media (max-width: 996px) {
-        padding: 4vh 6.5vw 4vh 1.4vw;
+        padding: 2vh 6.5vw 2vh 1.4vw;
         width: 100%;
       }
     }
@@ -66,7 +68,7 @@
       padding: 1vh 1.4vw;
       border: none;
       background-color: rgb(79 156 44 / 100%);
-      color: white;
+      color: variables.$white;
       font-family: Ubuntu, sans-serif;
       font-style: normal;
       font-weight: 700;
@@ -76,7 +78,7 @@
       text-transform: uppercase;
       cursor: pointer;
       &:hover {
-        background-color: #478c3e;;
+        background-color: variables.$green;
       }
     }
 
@@ -101,11 +103,11 @@
     }
   }
 
-  &__info-container{
+  &__info-container {
     background-color: rgb(245 245 245);
   }
 
-  &__info-wrapper{
+  &__info-wrapper {
     padding-top: 2vh;
     padding-bottom: 2vh;
     display: flex;
@@ -116,13 +118,11 @@
       justify-content: center;
     }
 
-    .social-media-wrapper{
-      //padding-left: 7vw;
-      .footer__logo-wrapper{
+    .social-media-wrapper {
+      .footer__logo-wrapper {
         margin-bottom: 1vh;
       }
 
-      //margin-right: 52vw;
       @media (max-width: 996px) {
         margin: 0;
         padding: 0;
@@ -135,7 +135,6 @@
     .payments-wrapper {
       display: flex;
       gap: 1vw;
-
       @media (max-width: 996px) {
         display: none;
       }
@@ -143,7 +142,7 @@
   }
 
   &__desc {
-    color: rgb(117 117 138 / 100%);
+    color: variables.$border;
     font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 400;

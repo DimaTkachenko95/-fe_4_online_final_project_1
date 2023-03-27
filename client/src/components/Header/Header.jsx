@@ -12,9 +12,8 @@ import {selectorBasket, selectorFavorites, selectorScales, selectorToken, select
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser} from "../../reducers";
+import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
-import {getWrappedValue} from "../../helpers/getWrappedValue";
 
 const theme = createTheme({
   components: {
@@ -32,26 +31,26 @@ const Header = () => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalAuthOpen, setIsModalAuthOpen] = useState(false);
-
   const basket = useSelector(selectorBasket);
   const userData = useSelector(selectorUserData);
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
-
-  const countInBasket = basket.reduce((acc, { cartQuantity }) => acc + cartQuantity, 0);
+  const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleBurgerMenu);
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, []);
+  }, );
 
   useEffect(() => {
-    setAuthToken(authToken)
+    setAuthToken(authToken);
     if (authToken) {
-      dispatch(actionFetchAuthorizationUser())
+      dispatch(actionFetchAuthorizationUser());
+      dispatch(actionCheckCart());
+      dispatch(getProductsCart());
     }
   }, [authToken]);
 
@@ -65,11 +64,11 @@ const Header = () => {
 
   const toggleModalAuth = (event) => {
     event.preventDefault();
-    setIsModalAuthOpen(!isModalAuthOpen)
+    setIsModalAuthOpen(!isModalAuthOpen);
 }
 
 const closeModalAuth = () => {
-    setIsModalAuthOpen(false)
+    setIsModalAuthOpen(false);
 }
 
   return (
@@ -87,7 +86,7 @@ const closeModalAuth = () => {
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list">
+                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"
@@ -158,9 +157,10 @@ const closeModalAuth = () => {
               <Box className="header__user-actions">
                 <Box className="action">
                   { authToken ? (
-                      <Link to="/personal-office" className="action__icon user-name" >
-                        {getWrappedValue(userData.firstName, 10)}
-                        {/*OB*/}
+                      <Link to="/personal-office" className="action__icon" >
+                        <span className="user-name">
+                          {userData.firstName && userData.firstName[0]}
+                        </span>
                       </Link>)
                       : (
                       <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>

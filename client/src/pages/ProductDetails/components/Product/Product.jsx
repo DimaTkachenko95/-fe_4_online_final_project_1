@@ -1,4 +1,4 @@
-import {Box, Container, SliderThumb} from '@mui/material';
+import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
 import './Product.scss';
@@ -17,20 +17,18 @@ import {useEffect, useState} from "react";
 import Specification from "../Specification";
 import SimilarProducts from "../SimilarProducts";
 import Preloader from "../../../../components/Preloader";
-import Button from "../../../../components/Button";
 import ByuButton from "../../../../components/ByuButton";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 const Product = () => {
     const [showAll, setShowAll] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
 
     useEffect(() => {
         setIsMobile(window.innerWidth <= 970);
@@ -54,8 +52,8 @@ const Product = () => {
     const toggleScales = id => {
         dispatch(toggleScalesProduct(id));
     }
+    
     const checkProduct = arrayProducts => arrayProducts.some(itemId => itemId === product._id);
-
     return (
         <>
 
@@ -67,41 +65,37 @@ const Product = () => {
                         link: `/products/${product.itemNo}`,
                         text: `${product.name}`
                     }]}/>
-                    <Box className={showAll && isMobile ? "product__wrapper--mobile" : "product__wrapper"}>
+                    <Box className={"product__wrapper"}>
                         <Box className="product__title-wrapper">
                             <h3 className="product__title">{product.name}</h3>
                         </Box>
                         <Box className="product__image-wrapper">
-                            <Swiper 
-                                loop={true}
-                                spaceBetween={10}
-                                navigation={true}
-                                thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper2'>
+                            <Swiper loop = {true}
+                                    spaceBetween = {1}
+                                    navigation={true}
+                                    thumbs={{swiper: thumbsSwiper}}
+                                    modules={[FreeMode, Navigation,Thumbs]}
+                                    className = "product__image">
                                 {product.imageUrls.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
-                                    </SwiperSlide>
-                                    ))
-                                }
+                                <SwiperSlide key={index}>
+                                    <img src={item} alt={`laptop${index}`} />
+                                </SwiperSlide>
+                                ))}
                             </Swiper>
-                            <Swiper 
-                                onSwiper={setThumbsSwiper}
-                                loop={true}
-                                spaceBetween={10}
-                                slidesPerView={4}
-                                freeMode={true}
-                                watchSlidesProgress={true}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className = 'mySwiper'>
+                            <Swiper onSwiper={setThumbsSwiper}
+                                    spaceBetween={5}
+                                    slidesPerView={4}
+                                    freeMode={true}
+                                    watchSlidesProgress={true}
+                                    modules={[FreeMode, Navigation, Thumbs]}
+                                    className="product__thumbs">
                                 {product.imageUrls.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={item} alt="laptop"/>
-                                    </SwiperSlide>
-                                    ))
-                                }
-                            </Swiper>
+                                <SwiperSlide key={index}>
+                                    <img src={item} alt={`laptop${index}`} />
+                                </SwiperSlide>
+                                ))}
+                          </Swiper>
+                                
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
@@ -123,11 +117,12 @@ const Product = () => {
                                     { !isMobile || showAll ? product.description : `${product.description.slice(0, 225)}...`}
                                 </p>
                                 {isMobile &&  (
-                                    <Button onClick={toggleShowAll} className="product__desc-button">
+                                    <button onClick={toggleShowAll} className="product__desc-button">
                                         {showAll ? 'Show Less' : 'Show More'}
-                                    </Button>
+                                    </button>
                                 )}
                             </Box>
+                            
                         </Box>
 
 
@@ -146,9 +141,7 @@ const Product = () => {
                                 <Specification property="HDR" value={product.hardDriveCapacity} isBackGround={true}/>
                                 <Specification property="Color" value={product.color}/>
                             </Box>
-                        </Box>
-
-                        <Box className="product__button-wrapper">
+                            <Box className="product__button-wrapper">
                             <Box className="product__price-wrapper">
                                 <span className="product__price-text">PRICE</span>
                                 <Box className="product__item--price">
@@ -158,8 +151,11 @@ const Product = () => {
                                 </Box>
                             </Box>
 
-                            <ByuButton product={product}/>
+                            <ByuButton className="product__buy-button" product={product}/>
                         </Box>
+                        </Box>
+
+                        
                     </Box>
 
                     <Comments/>

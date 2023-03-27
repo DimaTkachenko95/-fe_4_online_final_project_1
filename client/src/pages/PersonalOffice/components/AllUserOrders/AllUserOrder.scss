@@ -1,0 +1,7 @@
+.one-block-order{
+    max-width: 1200px;
+    margin: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 4px solid black;
+}

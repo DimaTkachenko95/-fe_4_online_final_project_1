@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import EmptyResult from '../../components/EmptyResult/EmptyResult';
 import { Container } from '@mui/material';
 import Preloader from "../../components/Preloader";
+import BreadCrumbs from "../../components/BreadCrumbs";
 
 export default function Favorites() {
   const favorites = useSelector(selectorFavorites);
@@ -24,6 +25,7 @@ export default function Favorites() {
     <div className="sector_favorites">
       <Preloader open={isLoading} />
       <Container maxWidth="lg">
+        <BreadCrumbs linksArray={[{link: "/favorites", text: "Favorite Products"}]}/>
         <h1 className="favorites__title">
           Favorite <span className="title_contrast">Products</span>
         </h1>

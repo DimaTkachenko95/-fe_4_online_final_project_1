@@ -14,8 +14,8 @@ export const selectorServerErrorProductDetails = (state) => state.productsDetail
 export const selectorIsDetailsProductLoading = (state) => state.productsDetails.pageLoading;
 
 // ALL COMMENTS
-export const selectorProductComments = state => state.productsDetails.productComments;
-export const selectorCommentError = state => state.productsDetails.commentError;
+export const selectorProductComments = (state) => state.productsDetails.productComments;
+export const selectorCommentError = (state) => state.productsDetails.commentError;
 
 // PRODUCTS IN BASKET
 export const selectorBasket = (state) => state.basket.basket;
@@ -24,12 +24,12 @@ export const selectorServerErrorBasket = (state) => state.basket.serverError;
 export const selectorIsBasketLoading = (state) => state.basket.pageLoading;
 
 // CHECKOUT
-export const selectorIsOrdered = state => state.checkout.isOrdered;
-export const selectorServerErrorCheckout = state => state.checkout.serverError;
+export const selectorIsOrdered = (state) => state.checkout.isOrdered;
+export const selectorServerErrorCheckout = (state) => state.checkout.serverError;
 
 // PRODUCTS IN SCALES
 export const selectorScales = (state) => state.scales.scales;
-export const selectorProductComp = (state) => state.scales.productDataComp;
+export const selectorProductComparison = (state) => state.scales.productDataComparison;
 export const selectorIsScalesPageLoading = (state) => state.scales.pageLoading;
 export const selectorServerErrorScalesPage = (state) => state.scales.serverError;
 
@@ -39,10 +39,29 @@ export const selectorFavoritesProduct = (state) => state.favorites.favoritesProd
 export const selectorIsFavoritesPageLoading = (state) => state.favorites.pageLoading;
 export const selectorServerErrorFavoritesPage = (state) => state.favorites.serverError;
 
+// PERSONAL OFFICE
+export const selectorUserInfo = (state) => state.personalOffice.userInfo;
+export const selectorEditInputs = (state) => state.personalOffice.editInputs;
+export const selectorChangePassword = (state) => state.personalOffice.changePassword;
+export const selectorChangePasswordMessage = (state) => state.personalOffice.changePasswordMessage;
+export const selectorPageLoadingPersonalOffice = (state) => state.personalOffice.pageLoading;
+export const selectorAllUserOrders = (state) => state.personalOffice.allUserOrders;
+
+/* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN
 export const selectorAllLoginErrors = (state) => state.logIn.error;
 export const selectorUserData = (state) => state.logIn.userData;
 export const selectorToken = (state) => state.logIn.token;
 
 // DISCOUNTED PRODUCTS
-export const selectorDiscountedProducts = state => state.discountedProducts.discountedProducts;
+export const selectorDiscountedProducts = (state) => state.discountedProducts.discountedProducts;
+
+//
+// //REGISTRATION
+//
+// export const selectorRegistrationIsLoading = (state) => state.registration.pageIsLoading;
+// export const selectorRegistrationServerError = (state) => state.registration.serverError;
+// // export const selectorRegistrationModal = (state) => state.registration.modalIsOpen;
+
+
+

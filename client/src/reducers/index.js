@@ -9,9 +9,9 @@ import productsReducer, {
   actionFetchSearchProducts,
 } from './products.reducer';
 import favoritesReducer, {
-    actionAddToFavorites,
-    actionDeleteFromFavorites,
-    toggleFavoriteProduct
+  actionAddToFavorites,
+  actionDeleteFromFavorites,
+  toggleFavoriteProduct
 } from './favorites.reducer';
 import scalesReducer, {
   actionAddToScales,
@@ -22,11 +22,17 @@ import scalesReducer, {
 import basketReducer, {
   actionAddToBasket,
   actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
+  actionBasketProductNew,
   actionDecraese,
-  actionFetchProductByItemNo,
-} from './basket.reducer';
+  actionFetchAddUserCart,
+  actionAddProductToBasket,
+  actionDeleteProductFromBasket,
+  actionDeleteAllFromBasket,
+  actionUpdateBasket,
+  actionCheckCart,
+  getProductsCart,
+  deleteUserCart
+} from "./basket.reducer";
 import logInReducer, {
   actionFetchLogin,
   actionToken,
@@ -36,11 +42,10 @@ import logInReducer, {
 import productDetailsReducer, {
   actionFetchOneProduct,
   actionFetchAddComment,
-  actionFetchAllComments
+  actionFetchAllComments,
+  actionFetchDeleteComment,
+  actionFetchUpdateComment
 } from './productDetails.reducer';
-import registrationReducer, {
-  createCustomerServerApi,
-  initialState } from './registration.reducer';
 import discountedProductsReducer, {
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
@@ -49,17 +54,26 @@ import checkoutReducer, {
   actionFetchCreateOrder,
   actionIsOrdered
 } from './checkout.reducer';
+import personalOfficeReducer, {
+    actionUserInfo, 
+    actionFetchUserInfo, 
+    actionEditInputs,
+    actionFetchUpdateCustomer,
+    actionFetchUpdateCustomerPassword,
+    actionChangePasswordMessage,
+    actionFetchAllUserOrders,
+} from "./personalOffice.reducer";
 
 export {
   productsReducer,
   actionFetchAllProducts,
-  actionAllProducts,
   actionProductsQuantity,
   actionSortByPrise,
-  actionSearchInputValue,
   actionPageLoading,
-  actionFetchSearchProducts,
   actionFetchSearchFilterProducts,
+  actionSearchInputValue,
+  actionAllProducts,
+  actionFetchSearchProducts,
   favoritesReducer,
   actionAddToFavorites,
   actionDeleteFromFavorites,
@@ -67,13 +81,16 @@ export {
   basketReducer,
   actionAddToBasket,
   actionDeleteFromBasket,
-  actionBasketProduct,
-  actionIncrease,
+  actionBasketProductNew,
   actionDecraese,
-  actionFetchProductByItemNo,
-  checkoutReducer,
-  actionFetchCreateOrder,
-  actionIsOrdered,
+  actionFetchAddUserCart,
+  actionAddProductToBasket,
+  actionDeleteProductFromBasket,
+  actionDeleteAllFromBasket,
+  actionUpdateBasket,
+  getProductsCart,
+  actionCheckCart,
+  deleteUserCart,
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,
@@ -81,17 +98,27 @@ export {
   actionFetchProductScalesByItemNo,
   logInReducer,
   actionFetchLogin,
-  actionResetLoginError,
-  actionFetchAuthorizationUser,
   actionToken,
+  actionFetchAuthorizationUser,
+  actionResetLoginError,
   productDetailsReducer,
   actionFetchOneProduct,
   actionFetchAddComment,
   actionFetchAllComments,
-  registrationReducer,
-  createCustomerServerApi,
-  initialState,
+  actionFetchDeleteComment,
+  actionFetchUpdateComment,
   discountedProductsReducer,
+  personalOfficeReducer,
   actionDiscountedProducts,
   actionFetchDiscountedProducts,
+  actionUserInfo, 
+  actionFetchUserInfo, 
+  actionEditInputs,
+  actionFetchUpdateCustomer,
+  actionFetchAllUserOrders,
+  actionFetchUpdateCustomerPassword,
+  actionChangePasswordMessage,
+  checkoutReducer, 
+  actionFetchCreateOrder,
+  actionIsOrdered
 };

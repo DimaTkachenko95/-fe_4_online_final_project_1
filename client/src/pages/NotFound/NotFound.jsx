@@ -1,6 +1,6 @@
 import {Box, Container} from '@mui/material';
-import {Link} from 'react-router-dom';
 import './NotFound.scss';
+import Button from "../../components/Button";
 
 const NotFound = () => {
   return(
@@ -10,7 +10,7 @@ const NotFound = () => {
                   <h4 className="not-found__error">Error 404</h4>
                   <h2 className="not-found__text">Page not found</h2>
                   <p className="not-found__desc">The address is entered incorrectly or such a page no longer exists on the site.</p>
-                  <Link to="/" className="not-found__back-btn">Back to main page</Link>
+                  <Button to="/" text="Back to main page" className="not-found__back-btn"/>
               </Box>
           </Container>
       </Box>
