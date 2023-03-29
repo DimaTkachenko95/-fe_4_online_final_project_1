@@ -1,4 +1,4 @@
-// ALL PRODUCTS
+// ALL PRODUCTSsortByPrise
 export const selectorAllProducts = (state) => state.products.allProducts;
 export const selectorSearchInputValue = (state) => state.products.searchInputValue;
 export const selectorServerErrorProducts = (state) => state.products.serverError;
@@ -6,6 +6,9 @@ export const selectorSortByPrise = (state) => state.products.sortByPrise;
 export const selectorFilterRequest = (state) => state.products.filterRequest;
 export const selectorProductsQuantity = (state) => state.products.productsQuantity;
 export const selectorPageLoading = (state) => state.products.pageLoading;
+export const selectorUrlAddress = (state) => state.products.urlAddress;
+export const selectorFirstVisitAndResetToCorectFilter = (state) => state.products.firstVisitAndResetToCorectFilter
+export const selectorShowPaginaton = (state) => state.products.showPaginaton
 
 // PRODUCT DETAILS
 export const selectorProduct = (state) => state.productsDetails.productData;
@@ -40,12 +43,14 @@ export const selectorIsFavoritesPageLoading = (state) => state.favorites.pageLoa
 export const selectorServerErrorFavoritesPage = (state) => state.favorites.serverError;
 
 // PERSONAL OFFICE
-export const selectorUserInfo = (state) => state.personalOffice.userInfo;
-export const selectorEditInputs = (state) => state.personalOffice.editInputs;
-export const selectorChangePassword = (state) => state.personalOffice.changePassword;
-export const selectorChangePasswordMessage = (state) => state.personalOffice.changePasswordMessage;
-export const selectorPageLoadingPersonalOffice = (state) => state.personalOffice.pageLoading;
-export const selectorAllUserOrders = (state) => state.personalOffice.allUserOrders;
+export const selectorUserInfo = state => state.personalOffice.userInfo
+export const selectorEditInputs = state => state.personalOffice.editInputs 
+export const selectorChangePasswordMessage = state => state.personalOffice.changePasswordMessage
+export const selectorPageLoadingPersonalOffice = state => state.personalOffice.pageLoading 
+export const selectorAllUserOrders = state => state.personalOffice.allUserOrders 
+export const selectorEditInputsOrder = state => state.personalOffice.editInputsOrder
+export const selectorOrderInfo = state => state.personalOffice.orderInfo
+export const selectorServerErrorPersonalOffice = state => state.personalOffice.serverError
 
 /* export const selectoRequestObj = state => state.app.requestObj */
 // LOGIN

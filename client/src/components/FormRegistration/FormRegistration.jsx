@@ -215,7 +215,7 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                     type="submit"
                                     disabled={!isValid}
                                     text="submit"
-                                    style={{display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150}}
+                                    style={{display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 50}}
                                 />
                             </Form>
                         </>

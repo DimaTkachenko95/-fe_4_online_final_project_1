@@ -28,5 +28,14 @@
     justify-content: end;
     align-items: end;
     width: 100%;
-
 }
+
+.logout{
+  @include mixins.comparisonStyle;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: #75758a;
+}
+
