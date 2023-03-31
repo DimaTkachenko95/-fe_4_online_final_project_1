@@ -3,7 +3,7 @@ import './Favorites.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {selectorFavorites, selectorFavoritesProduct, selectorIsFavoritesPageLoading} from '../../selectors';
 import { useEffect } from 'react';
-import { actionFetchProductFavoritesByItemNo } from '../../reducers/favorites.reducer';
+import { actionFetchProductFavoritesByItemNo, actionCheckFavorites, getProductsFavorites } from '../../reducers/favorites.reducer';
 import ProductCard from '../../components/ProductCard';
 import Grid from '@mui/material/Grid';
 import EmptyResult from '../../components/EmptyResult/EmptyResult';
@@ -18,8 +18,16 @@ export default function Favorites() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(actionCheckFavorites());
+    // dispatch(getProductsFavorites())
+  }, []);
+
+  useEffect(() => {
     dispatch(actionFetchProductFavoritesByItemNo(favorites));
   }, [favorites]);
+
+  console.log(favorites);
+
 
   return (
     <div className="sector_favorites">

@@ -26,3 +26,5 @@ export const PRODUCT_IN_SHOPPING_CART = `/cart/:productId`;
 export const CHANGE_PRODUCT_QUANTITY_SHOPPING_CART = `/cart/product/:productId`;
 export const ORDERS = `/orders`;
 
+// export const FAVORITES = `/favorites`;
+
