@@ -8,7 +8,7 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData } from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
@@ -43,7 +43,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, );
+  },);
 
   useEffect(() => {
     setAuthToken(authToken);
@@ -86,7 +86,7 @@ const closeModalAuth = () => {
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
+                <Box className="menu-list" onClick={() => { setIsMenuOpen(false) }}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"
@@ -164,17 +164,17 @@ const closeModalAuth = () => {
                       </Link>)
                       : (
                       <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>
-                        <Person2OutlinedIcon/>
+                        <Person2OutlinedIcon />
                       </button>)
                   }
                 </Box>
               </Box>
 
               <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
+                {isMenuOpen ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
               </Box>
             </Box>
-            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
+            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
           </Container>
         </ThemeProvider>
       </header>

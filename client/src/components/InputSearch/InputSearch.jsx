@@ -13,8 +13,8 @@ const InputSearch = ({style = "header__input"}) => {
     const handleSearch = () => {
         if(searchInputValue !== ''){
             dispatch(actionFetchSearchProducts(searchInputValue));
-            dispatch(actionSearchInputValue(''));
-            navigate(`/products`);
+           /*  dispatch(actionSearchInputValue('')); */
+           navigate(`/products`);
         }
     }
 

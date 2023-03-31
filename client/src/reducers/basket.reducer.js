@@ -95,11 +95,11 @@ export const actionFetchAddUserCart = (newCart) => (dispatch) => {
    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
    setAuthToken(token);
    axios.post(SHOPPING_CART, newCart)
-    .catch((error) => {
-        console.log(error);
-        dispatch(actionPageLoading(false));
-        dispatch(actionServerError(true));
-      });
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });
+
 };
 
 // C H E C K   C A R T
@@ -136,7 +136,11 @@ export const actionCheckCart = () => (dispatch) => {
         dispatch(actionUpdateBasket(data.products));
         localStorage.removeItem('basket');
       }
-    });
+    })
+    .catch(() => {
+      dispatch(actionPageLoading(false));
+      dispatch(actionServerError(true));
+    });;
   }
 };
 
@@ -144,6 +148,7 @@ export const actionCheckCart = () => (dispatch) => {
 // G E T   P R O D U C T
 
 export const getProductsCart = () => (dispatch) => {
+
   const token = localStorage.getItem('token');
   if (token !== null && token !== undefined) {
     setAuthToken(token);
@@ -160,6 +165,10 @@ export const getProductsCart = () => (dispatch) => {
         } else {
           return null;
         }
+      })
+      .catch(() => {
+        dispatch(actionPageLoading(false));
+        dispatch(actionServerError(true));
       });
   } else {
     const basketProducts = JSON.parse(localStorage.getItem('basket')) || [];
@@ -174,8 +183,7 @@ export const getProductsCart = () => (dispatch) => {
         .then((data) => {
           dispatch(actionBasketProductNew(data));
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
           dispatch(actionPageLoading(false));
           dispatch(actionServerError(true));
         });
@@ -242,5 +250,17 @@ export const actionDeleteAllFromBasket = (item) => (dispatch) => {
     dispatch(actionDeleteFromBasket(item));
   }
 };
+
+/// D E L E T E    C A R T 
+
+export const deleteUserCart = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  setAuthToken(token);
+  axios.delete(SHOPPING_CART)
+  .catch(() => {
+    dispatch(actionPageLoading(false));
+    dispatch(actionServerError(true));
+  });
+} 
 
 export default basketSlice.reducer;

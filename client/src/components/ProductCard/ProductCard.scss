@@ -20,6 +20,9 @@
     box-shadow: rgb(0 0 0 / 7%) 0 1px 2px, rgb(0 0 0 / 7%) 0 2px 4px, rgb(0 0 0 / 7%) 0 4px 8px,
       rgb(0 0 0 / 7%) 0 8px 16px, rgb(0 0 0 / 7%) 0 16px 32px, rgb(0 0 0 / 7%) 0 32px 64px;
     scale: (1.1);
+    @media (max-width: 600px) {
+      scale: none;
+    }
   }
 
   &__item {
@@ -29,6 +32,22 @@
     flex-direction: column;
     box-sizing: border-box;
     justify-content: space-between;
+    &--quantity{
+      margin-bottom: 10px;
+      &--multiply{
+        font-size: 12px;
+      }
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 20px;
+      color: #75758a;
+      font-weight: 400;
+      margin-bottom: 20px;
+      display: flex;
+     
+    }
 
     &--name {
       @include font-list-items;
@@ -118,6 +137,7 @@
         left: 10px;
         text-decoration: line-through;
       }
+    
     }
   }
 }

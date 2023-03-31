@@ -7,6 +7,9 @@ import productsReducer, {
   actionSearchInputValue,
   actionAllProducts,
   actionFetchSearchProducts,
+  actionUrlAddress,
+  actionFilterRequest,
+  actionFirstVisitAndResetToCorectFilter
 } from './products.reducer';
 import favoritesReducer, {
   actionAddToFavorites,
@@ -30,13 +33,15 @@ import basketReducer, {
   actionDeleteAllFromBasket,
   actionUpdateBasket,
   actionCheckCart,
-  getProductsCart
+  getProductsCart,
+  deleteUserCart
 } from "./basket.reducer";
 import logInReducer, {
   actionFetchLogin,
   actionToken,
   actionFetchAuthorizationUser,
   actionResetLoginError,
+  actionAuthorizationUser,
 } from './logIn.reducer';
 import productDetailsReducer, {
   actionFetchOneProduct,
@@ -56,24 +61,39 @@ import checkoutReducer, {
 import personalOfficeReducer, {
     actionUserInfo, 
     actionFetchUserInfo, 
+    actionEditInputsOrder,
     actionEditInputs,
     actionFetchUpdateCustomer,
     actionFetchUpdateCustomerPassword,
     actionChangePasswordMessage,
     actionFetchAllUserOrders,
+    actionFetchCancelOrder,
+    actionFetchGetOneOrder,
+    actionFetchUpdatedOrder,
 } from "./personalOffice.reducer";
+import registrationReducer, {
+  createCustomerServerApi,
+  actionRegistrationSuccess,
+  actionPageIsLoading,
+  actionRegistrationError,
+  initialState,
+  actionMessageError
+} from './registration.reducer';
 
 export {
   productsReducer,
+  actionFilterRequest,
   actionFetchAllProducts,
   actionProductsQuantity,
   actionSortByPrise,
   actionPageLoading,
+  actionFirstVisitAndResetToCorectFilter,
+  actionUrlAddress,
+  actionFetchSearchProducts,
   actionFetchSearchFilterProducts,
   actionSearchInputValue,
   actionAllProducts,
-  actionFetchSearchProducts,
-  favoritesReducer,
+  favoritesReducer, 
   actionAddToFavorites,
   actionDeleteFromFavorites,
   toggleFavoriteProduct,
@@ -89,6 +109,7 @@ export {
   actionUpdateBasket,
   getProductsCart,
   actionCheckCart,
+  deleteUserCart, 
   scalesReducer,
   actionAddToScales,
   actionDeleteFromScales,
@@ -96,9 +117,10 @@ export {
   actionFetchProductScalesByItemNo,
   logInReducer,
   actionFetchLogin,
-  actionToken,
-  actionFetchAuthorizationUser,
   actionResetLoginError,
+  actionFetchAuthorizationUser,
+  actionAuthorizationUser,
+  actionToken,
   productDetailsReducer,
   actionFetchOneProduct,
   actionFetchAddComment,
@@ -113,10 +135,21 @@ export {
   actionFetchUserInfo, 
   actionEditInputs,
   actionFetchUpdateCustomer,
+  actionEditInputsOrder,
+  actionFetchCancelOrder,
   actionFetchAllUserOrders,
   actionFetchUpdateCustomerPassword,
   actionChangePasswordMessage,
+  actionFetchGetOneOrder,
+  actionFetchUpdatedOrder,
   checkoutReducer, 
   actionFetchCreateOrder,
-  actionIsOrdered
+  actionIsOrdered,
+  registrationReducer,
+  createCustomerServerApi,
+  actionRegistrationSuccess,
+  actionPageIsLoading,
+  actionRegistrationError,
+  initialState,
+  actionMessageError
 };
