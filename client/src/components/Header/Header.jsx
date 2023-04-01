@@ -109,11 +109,11 @@ const closeModalAuth = () => {
                     Rules
                   </NavLink>
                   <NavLink
-                    to="/news"
+                    to="/why-us"
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
                   >
-                    News
+                    Why us 
                   </NavLink>
                   <NavLink
                     to="/contacts"
