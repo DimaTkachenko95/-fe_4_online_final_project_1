@@ -10,7 +10,9 @@ import ByuButton from "../ByuButton";
 
 const ProductCard = ({el, isForOrderedPage}) => {
     const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity, cartQuantity} = el;
+    console.log(itemNo);
     const favorites = useSelector(selectorFavorites);
+    console.log(favorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
 

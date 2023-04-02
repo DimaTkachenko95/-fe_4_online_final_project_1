@@ -31,10 +31,15 @@ const favoritesSlice = createSlice({
             state.favoritesProduct = [...payload];
         },
         actionFavoritesProductNew: (state, { payload }) => {
-            state.favoritesProduct = payload;
+            state.favoritesProduct = [...payload];
         },
         actionUpdateFavorites: (state, { payload }) => {
-            state.favoritesProduct = payload;
+          const newItems = payload.map((item) => {
+            return (
+              item._id            
+              );
+          });
+            state.favorites = newItems;
 
         },
         actionPageLoading: (state, { payload }) => {
@@ -118,6 +123,7 @@ export const actionCheckFavorites = () => (dispatch) => {
             })
           ;
           dispatch(actionFetchAddUserFavorites(newFavorites));
+          console.log(newFavorites);
           localStorage.removeItem('favorites');
         } else {
           return null;
@@ -125,12 +131,13 @@ export const actionCheckFavorites = () => (dispatch) => {
       } 
       else {
         const newData = [ data.products.map((item) => {
-          return (
-            item._id
-          );
+          return {
+            ...item
+        };
         })];
-        dispatch(actionFavoritesProductNew(newData));
-        dispatch(actionUpdateFavorites(newData));
+        dispatch(actionFavoritesProductNew(newData[0]));
+        console.log(newData);
+        dispatch(actionUpdateFavorites(data.products));
         localStorage.removeItem('favorites');
       }
     });
@@ -139,44 +146,48 @@ export const actionCheckFavorites = () => (dispatch) => {
 
 // G E T   P R O D U C T
 
-// export const getProductsFavorites = () => (dispatch) => {
-//   const token = localStorage.getItem('token');
-//   if (token !== null && token !== undefined) {
-//     setAuthToken(token);
-//     axios
-//       .get(WISHLIST).then(({ data }) => {
-//         if (data) {
-//           const newData = data.products?.map((item) => {
-//            return (
-//               item._id
-//             );
-//           });
-//           dispatch(actionFavoritesProductNew(newData));
-//         } else {
-//           return null;
-//         }
-//       });
-//   } else {
-//     const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
+export const getProductsFavorites = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  if (token !== null && token !== undefined) {
+    setAuthToken(token);
+    axios
+      .get(WISHLIST).then(({ data }) => {
+        if (data) {
+          const newData = [data.products?.map((item) => {
+           return (
+              item
+           );
+          })];
+          console.log(newData);
+          dispatch(actionFavoritesProductNew(newData[0]));
+        } else {
+          return null;
+        }
+      });
+  } else {
+    const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
 
-//     if (favoriteProducts.length > 0) {
-//       const promises = favoriteProducts.map(async (item) => {
-//         const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', item));
+    if (favoriteProducts.length > 0) {
+      // const promises = favoriteProducts.map(async (item) => {
+      //   const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', item));
 
-//         return [ ...data ];
-//       });
-//       Promise.all(promises)
-//         .then((data) => {
-//           dispatch(actionFavoritesProductNew(data));
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//           dispatch(actionPageLoading(false));
-//           dispatch(actionServerError(true));
-//         });
-//     }
-//   }
-// };
+      //   return [ ...data ];
+      // });
+      // Promise.all(promises)
+      //   .then((data) => {
+      //     dispatch(actionFavoritesProductNew(data));
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     dispatch(actionPageLoading(false));
+      //     dispatch(actionServerError(true));
+      //   });
+
+      dispatch(actionFetchProductFavoritesByItemNo(favoriteProducts))
+
+    }
+  }
+};
 
 export const actionAddProductToFavorites = (item) => (dispatch) => {
     console.log(item);
@@ -187,13 +198,16 @@ export const actionAddProductToFavorites = (item) => (dispatch) => {
       .put(PRODUCT_IN_WISHLIST.replace(':productId', item ))
       .then(({ data }) => {
         if(data){
-            const newData = data.products?.map((item) => {
-            return (
-              item._id
-            );
-          });
-          dispatch(actionUpdateFavorites(newData));
-          console.log(newData);
+          //   const newData = data.products?.map((item) => {
+          //  return (
+          //     item
+          //  );
+          // });
+          dispatch(actionAddToFavorites(item))
+        localStorage.removeItem('favorites');
+          console.log(item);
+          console.log(data.products);
+          dispatch(actionUpdateFavorites(data.products));
         }
       })
       .catch(() => {
@@ -213,13 +227,15 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
       .delete(PRODUCT_IN_WISHLIST.replace(':productId', item))
       .then(({ data }) => {
         if(data){
-            const newData = data.products?.map((item) => {
-            return (
-              item._id
-            );
-          });
-          dispatch(actionUpdateFavorites(newData));
-          console.log(newData);
+          //   const newData = data.products?.map((item) => {
+          //  return (
+          //     item
+          //  );
+          // });
+          dispatch(actionDeleteFromFavorites(item))
+        localStorage.removeItem('favorites');
+          dispatch(actionUpdateFavorites(data.products));
+          console.log(data.products);
         }
       })
       .catch(() => {
@@ -230,6 +246,17 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
     dispatch(actionDeleteFromFavorites(item));
   }
 };
+
+
+export const deleteUserWishlist = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  setAuthToken(token);
+  axios.delete(WISHLIST)
+  .catch(() => {
+    dispatch(actionPageLoading(false));
+    dispatch(actionServerError(true));
+  });
+} 
 
 
 export default favoritesSlice.reducer;
