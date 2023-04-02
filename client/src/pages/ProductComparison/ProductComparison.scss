@@ -3,6 +3,7 @@
 
 .comparison-container__wrapper-title {
   @include mixins.titleStyles;
+
   color: variables.$black;
   margin-bottom: 45px;
 }
