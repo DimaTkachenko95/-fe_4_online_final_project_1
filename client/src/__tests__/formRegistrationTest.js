@@ -1,83 +1,74 @@
-// // describe('Should check test for eslint', () => {
-// //   test('sss', () => {
-// //     expect(123).toBe(123);
-// //   });
-// // });
-//
 // import React from 'react';
-// import { mount, shallow } from 'enzyme';
+// import { mount } from 'enzyme';
 // import { Formik } from 'formik';
-// import FormRegistration from './../components/FormRegistration';
-// import * as yup from 'yup';
+// import { Provider } from 'react-redux';
+// import configureStore from 'redux-mock-store';
+// import * as Yup from 'yup';
+// import FormRegistration from '../components/FormRegistration';
 //
+// const mockStore = configureStore([]);
 //
 // describe('FormRegistration', () => {
-//   const initialValues = {
-//     firstName: '',
-//     lastName: '',
-//     login: '',
-//     email: '',
-//     password: '',
-//     confirmPassword: '',
-//     telephone: '',
-//     city: '',
-//     country: '',
-//   };
-//   const onSubmit = jest.fn();
-//   const validationSchema = null;
+//     let store;
 //
-//   it('should render the component without errors', () => {
-//     const wrapper = mount(
-//         <FormRegistration
-//             onSubmit={onSubmit}
-//             initialValues={initialValues}
-//             validationSchema={validationSchema}
-//             btnEdit
-//             inputsEditName={['firstName']}
-//             withPassword
-//         />
-//     );
-//     expect(wrapper.exists()).toBeTruthy();
-//   });
+//     beforeEach(() => {
+//         store = mockStore({});
+//     });
 //
-//   it('should submit the form when the submit button is clicked', () => {
-//     const wrapper = mount (
-//         <FormRegistration
-//             onSubmit={onSubmit}
-//             initialValues={initialValues}
-//             validationSchema={validationSchema}
-//             btnEdit
-//             inputsEditName={['firstName']}
-//             withPassword
-//         />
-//     );
-//     wrapper.find(Formik).simulate('submit');
-//     expect(onSubmit).toHaveBeenCalled();
-//   });
+//     it('renders without crashing', () => {
+//         mount(
+//             <Provider store={store}>
+//                 <FormRegistration onSubmit={() => {}} />
+//             </Provider>
+//         );
+//     });
 //
-//   it('should not allow the form to be submitted when there are validation errors', () => {
-//     const validationSchema = {
-//       firstName: yup.string().required('Required'),
-//       lastName: yup.string().required('Required'),
-//       login: yup.string().required('Required'),
-//       email: yup.string().email('Invalid email').required('Required'),
-//       password: yup.string().required('Required'),
-//       confirmPassword: yup.string().oneOf([yup.ref('password')], 'Passwords do not match').required('Required'),
-//       telephone: yup.string().required('Required'),
-//       city: yup.string().required('Required'),
-//       country: yup.string().required('Required'),
-//     };
-//     const wrapper = mount (
-//         <FormRegistration
-//             onSubmit={onSubmit}
-//             initialValues={initialValues}
-//             validationSchema={validationSchema}
-//             btnEdit
-//             inputsEditName={['firstName']}
-//             withPassword
-//         />
-//     );
-//     wrapper.find(Formik).simulate('submit');
-//     expect(onSubmit).not.toHaveBeenCalled();
-//   });
+//     it('submits the form when the submit button is clicked', () => {
+//         const handleSubmit = jest.fn();
+//         const initialValues = {
+//             firstName: '',
+//             lastName: '',
+//             login: '',
+//             email: '',
+//             password: '',
+//             confirmPassword: '',
+//             telephone: '',
+//             city: '',
+//             country: '',
+//         };
+//         const validationSchema = Yup.object().shape({
+//             firstName: Yup.string().required('First name is required'),
+//             lastName: Yup.string().required('Last name is required'),
+//             login: Yup.string().required('Login is required'),
+//             email: Yup.string().email('Invalid email address').required('Email is required'),
+//             password: Yup.string()
+//                 .min(8, 'Password must be at least 8 characters')
+//                 .required('Password is required'),
+//             confirmPassword: Yup.string()
+//                 .oneOf([Yup.ref('password')], 'Passwords do not match')
+//                 .required('Confirm password is required'),
+//             telephone: Yup.string().required('Telephone is required'),
+//             city: Yup.string().required('City is required'),
+//             country: Yup.string().required('Country is required'),
+//         });
+//         const wrapper = mount(
+//             <Provider store={store}>
+//                 <Formik
+//                     initialValues={initialValues}
+//                     validationSchema={validationSchema}
+//                     onSubmit={handleSubmit}
+//                 >
+//                     {(isValid) => (
+//                         <FormRegistration
+//                             onSubmit={handleSubmit}
+//                             initialValues={initialValues}
+//                             validationSchema={validationSchema}
+//                         />
+//                     )}
+//                 </Formik>
+//             </Provider>
+//         );
+//         wrapper.find('button[type="submit"]').simulate('submit');
+//         expect(handleSubmit).toHaveBeenCalledTimes(1);
+//     });
 // });
