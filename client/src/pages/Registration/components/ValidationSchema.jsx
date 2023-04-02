@@ -1,4 +1,6 @@
 import * as yup from 'yup';
+const dateToday = new Date();
+const moment = require('moment');
 
 const validationSchema = yup.object().shape({
   firstName: yup
@@ -42,6 +44,11 @@ const validationSchema = yup.object().shape({
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       'Enter correct url',
     ),
+  birthdate: yup.date()
+    .transform(value => {
+      return value ? moment(value).toDate() : value;
+    })
+    .max(dateToday, "Future date not allowed")
 });
 
 export default validationSchema;

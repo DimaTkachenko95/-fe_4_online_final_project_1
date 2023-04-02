@@ -136,7 +136,6 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         label="Telephone"
                                         className="form-registration__input"
                                         name="telephone"
-                                        // placeholder="Enter your telephone"
                                         variant="outlined"
                                         id="outlined-multiline-flexible"
                                         required
@@ -189,24 +188,23 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
 
                                     />
 
-
                                     <FormikControl
-                                        sx={[!inputsEditName.includes("avatarUrl") && {
+                                        sx={[!inputsEditName.includes("birthdate") && {
                                             "& fieldset": {border: 'none'}
                                         }]}
-                                        type="url"
+                                        id="outlined-multiline-flexible"
+                                        name="birthdate"
+                                        placeholder="dd.mm.yyyy"
+                                        label="Birth date"
+                                        type="text"
                                         control="input"
                                         color="success"
-                                        label="Avatar"
                                         className="form-registration__input"
-                                        name="avatarUrl"
-                                        placeholder="Enter avatar url"
                                         variant="outlined"
-                                        id="outlined-multiline-flexible"
-                                        disabled={!inputsEditName.includes("avatarUrl")}
+                                        disabled={!inputsEditName.includes("birthdate")}
                                         InputProps={btnEdit && {
-                                            endAdornment: (<EditButton dataName={"avatarUrl"}
-                                                                       onClick={() => dispatch(actionEditInputs("avatarUrl"))}/>)
+                                            endAdornment: (<EditButton dataName={"birthdate"}
+                                                                       onClick={() => dispatch(actionEditInputs("birthdate"))}/>)
                                         }}
                                     />
 
