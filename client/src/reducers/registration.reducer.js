@@ -14,7 +14,7 @@ const registrationSlice = createSlice({
         telephone: '',
         city:'',
         country:'',
-        avatarUrl: '',
+        birthdate: '',
         },
         modalError: null,
         modalSuccess: null,
