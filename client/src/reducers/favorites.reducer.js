@@ -135,9 +135,11 @@ export const actionCheckFavorites = () => (dispatch) => {
             ...item
         };
         })];
+
         dispatch(actionFavoritesProductNew(newData[0]));
         console.log(newData);
         dispatch(actionUpdateFavorites(data.products));
+        console.log(data.products);
         localStorage.removeItem('favorites');
       }
     });
@@ -160,6 +162,7 @@ export const getProductsFavorites = () => (dispatch) => {
           })];
           console.log(newData);
           dispatch(actionFavoritesProductNew(newData[0]));
+          
         } else {
           return null;
         }
@@ -168,23 +171,7 @@ export const getProductsFavorites = () => (dispatch) => {
     const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (favoriteProducts.length > 0) {
-      // const promises = favoriteProducts.map(async (item) => {
-      //   const { data } = await axios.get(GET_DETAILS_PRODUCT.replace(':itemNo', item));
-
-      //   return [ ...data ];
-      // });
-      // Promise.all(promises)
-      //   .then((data) => {
-      //     dispatch(actionFavoritesProductNew(data));
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     dispatch(actionPageLoading(false));
-      //     dispatch(actionServerError(true));
-      //   });
-
       dispatch(actionFetchProductFavoritesByItemNo(favoriteProducts))
-
     }
   }
 };
@@ -198,11 +185,6 @@ export const actionAddProductToFavorites = (item) => (dispatch) => {
       .put(PRODUCT_IN_WISHLIST.replace(':productId', item ))
       .then(({ data }) => {
         if(data){
-          //   const newData = data.products?.map((item) => {
-          //  return (
-          //     item
-          //  );
-          // });
           dispatch(actionAddToFavorites(item))
         localStorage.removeItem('favorites');
           console.log(item);
@@ -227,11 +209,6 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
       .delete(PRODUCT_IN_WISHLIST.replace(':productId', item))
       .then(({ data }) => {
         if(data){
-          //   const newData = data.products?.map((item) => {
-          //  return (
-          //     item
-          //  );
-          // });
           dispatch(actionDeleteFromFavorites(item))
         localStorage.removeItem('favorites');
           dispatch(actionUpdateFavorites(data.products));

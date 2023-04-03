@@ -3,7 +3,7 @@ import './Favorites.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {selectorFavorites, selectorFavoritesProduct, selectorIsFavoritesPageLoading} from '../../selectors';
 import { useEffect } from 'react';
-import { actionFetchProductFavoritesByItemNo, actionCheckFavorites, getProductsFavorites, deleteUserWishlist } from '../../reducers/favorites.reducer';
+import { actionCheckFavorites, getProductsFavorites } from '../../reducers';
 import ProductCard from '../../components/ProductCard';
 import Grid from '@mui/material/Grid';
 import EmptyResult from '../../components/EmptyResult/EmptyResult';
@@ -16,7 +16,6 @@ export default function Favorites() {
   console.log(favorites);
   const productFavorites = useSelector(selectorFavoritesProduct);
   console.log(productFavorites);
-  console.log(productFavorites[0]);
 
   const isLoading = useSelector(selectorIsFavoritesPageLoading);
   const dispatch = useDispatch();
@@ -32,10 +31,6 @@ export default function Favorites() {
 
   console.log(favorites);
 
-  const deleteWishlist = () => {
-    dispatch(deleteUserWishlist())
-  }
-
 
   return (
     <div className="sector_favorites">
@@ -46,10 +41,7 @@ export default function Favorites() {
           Favorite <span className="title_contrast">Products</span>
         </h1>
         {favorites.length <= 0 ? (
-          <>
           <EmptyResult />
-          <button onClick={deleteWishlist}>DELETE</button>
-          </>
         ) : (
           <div>
             <Grid container spacing={10}>

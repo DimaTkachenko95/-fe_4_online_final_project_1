@@ -12,7 +12,7 @@ import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selec
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart} from "../../reducers";
+import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart, actionCheckFavorites, getProductsFavorites} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 
 const theme = createTheme({
@@ -51,6 +51,8 @@ const Header = () => {
       dispatch(actionFetchAuthorizationUser());
       dispatch(actionCheckCart());
       dispatch(getProductsCart());
+      dispatch(actionCheckFavorites());
+      dispatch(getProductsFavorites())
     }
   }, [authToken]);
 

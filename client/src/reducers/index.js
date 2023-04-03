@@ -14,7 +14,14 @@ import productsReducer, {
 import favoritesReducer, {
   actionAddToFavorites,
   actionDeleteFromFavorites,
-  toggleFavoriteProduct
+  toggleFavoriteProduct,
+  actionUpdateFavorites,
+  actionFavoritesProductNew,
+  actionFetchAddUserFavorites,
+  actionCheckFavorites,
+  getProductsFavorites,
+  actionAddProductToFavorites,
+  actionDeleteProductFromFavorites,
 } from './favorites.reducer';
 import scalesReducer, {
   actionAddToScales,
@@ -97,6 +104,13 @@ export {
   actionAddToFavorites,
   actionDeleteFromFavorites,
   toggleFavoriteProduct,
+  actionUpdateFavorites,
+  actionFavoritesProductNew,
+  actionFetchAddUserFavorites,
+  actionCheckFavorites,
+  getProductsFavorites,
+  actionAddProductToFavorites,
+  actionDeleteProductFromFavorites,
   basketReducer,
   actionAddToBasket,
   actionDeleteFromBasket,
