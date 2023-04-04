@@ -43,7 +43,7 @@ const Registration = () => {
                   })
               }}
 
-                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "city", "country", "avatarUrl"]}
+                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "city", "country", "birthdate"]}
           />
             {loading && <Preloader open="true"/>}
             {openModal && <ModalSuccessRegistration closeModal={() => dispatch(actionRegistrationSuccess(false)) } />}

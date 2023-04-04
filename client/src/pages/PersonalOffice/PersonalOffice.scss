@@ -1,7 +1,7 @@
 @use './src/styles/mixins';
 
 @mixin font-ofice {
-    font-family: 'Ubuntu';
+    font-family: Ubuntu;
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -16,6 +16,7 @@
 
 .header-personal-office {
   @include mixins.titleStyles;
+
   padding-bottom: 30px;
 
   .title_contrast {
@@ -32,6 +33,7 @@
 
 .logout{
   @include mixins.comparisonStyle;
+
   display: inline-flex;
   align-items: center;
   cursor: pointer;

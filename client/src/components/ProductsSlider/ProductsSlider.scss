@@ -5,6 +5,7 @@
   padding-bottom: 25px;
   height: 320px;
   margin: 10px 0;
+
   &-orders{
     height: 120px;
   }
@@ -25,6 +26,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
+
   &:hover {
     background-color: #d6e3d1;
   }
@@ -35,10 +37,10 @@
   display: none;
 }
 
-.slick-dots li button:before {
+.slick-dots li button::before {
   color: #4ba123;
 }
 
-.slick-dots li.slick-active button:before {
+.slick-dots li.slick-active button::before {
   color: #4ba123;
 }

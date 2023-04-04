@@ -2,7 +2,8 @@
 @use 'src/styles/variables';
 
 .basket__title {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: Ubuntu, sans-serif;
+
   @include mixins.titleStyles;
 
   .title_contrast {
@@ -12,7 +13,7 @@
 
 .basket__box {
   margin: 30px 0;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: Ubuntu, sans-serif;
 
   .basket__table {
     border-collapse: collapse;
@@ -29,6 +30,7 @@
       font-size: 14px;
       line-height: 30px;
       color: variables.$border;
+
       &__name {
         text-align: left;
         width: 400px;
@@ -63,6 +65,7 @@
       font-size: 17px;
       font-weight: 700;
       vertical-align: middle;
+
       @media (max-width: 996px) {
         display: none;
       }
@@ -145,7 +148,7 @@
 
 .basket__footer {
   padding-top: 30px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: Ubuntu, sans-serif;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
@@ -160,6 +163,7 @@
     justify-content: center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+
     @media (max-width: 996px) {
       grid-row: 2 / 3;
     }
@@ -170,7 +174,6 @@
     border-image-slice: 1;
     border-image-source: linear-gradient(to left, #8EE901, #4F9C2C);
     padding-bottom: 15px;
-
     font-size: calc(1rem + 0.8vw);
     display: flex;
     align-self: flex-end;
