@@ -13,9 +13,7 @@ import BreadCrumbs from "../../components/BreadCrumbs";
 
 export default function Favorites() {
   const favorites = useSelector(selectorFavorites);
-  console.log(favorites);
   const productFavorites = useSelector(selectorFavoritesProduct);
-  console.log(productFavorites);
 
   const isLoading = useSelector(selectorIsFavoritesPageLoading);
   const dispatch = useDispatch();
@@ -28,9 +26,6 @@ export default function Favorites() {
   useEffect(() => {
     dispatch(getProductsFavorites())
   }, [favorites]);
-
-  console.log(favorites);
-
 
   return (
     <div className="sector_favorites">

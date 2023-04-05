@@ -71,13 +71,10 @@ export const toggleFavoriteProduct = id => (dispatch, getState) => {
         ? dispatch(actionDeleteProductFromFavorites(id))
         : dispatch(actionAddProductToFavorites(id))
   } else{
-
     isFavoriteProduct
         ? dispatch(actionDeleteFromFavorites(id))
         : dispatch(actionAddToFavorites(id))
-}
-    
-
+  }
 }
 
 
@@ -123,30 +120,25 @@ export const actionCheckFavorites = () => (dispatch) => {
             })
           ;
           dispatch(actionFetchAddUserFavorites(newFavorites));
-          console.log(newFavorites);
           localStorage.removeItem('favorites');
         } else {
           return null;
         }
       } 
       else {
-        const newData = [ data.products.map((item) => {
+        const newData = data.products.map((item) => {
           return {
             ...item
         };
-        })];
+        });
 
-        dispatch(actionFavoritesProductNew(newData[0]));
-        console.log(newData);
+        dispatch(actionFavoritesProductNew(newData));
         dispatch(actionUpdateFavorites(data.products));
-        console.log(data.products);
         localStorage.removeItem('favorites');
       }
     });
   }
 };
-
-// G E T   P R O D U C T
 
 export const getProductsFavorites = () => (dispatch) => {
   const token = localStorage.getItem('token');
@@ -155,20 +147,19 @@ export const getProductsFavorites = () => (dispatch) => {
     axios
       .get(WISHLIST).then(({ data }) => {
         if (data) {
-          const newData = [data.products?.map((item) => {
+          const newData = data.products?.map((item) => {
            return (
               item
            );
-          })];
-          console.log(newData);
-          dispatch(actionFavoritesProductNew(newData[0]));
+          });
+          dispatch(actionFavoritesProductNew(newData));
           
         } else {
           return null;
         }
       });
   } else {
-    const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
+      const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (favoriteProducts.length > 0) {
       dispatch(actionFetchProductFavoritesByItemNo(favoriteProducts))
@@ -177,7 +168,6 @@ export const getProductsFavorites = () => (dispatch) => {
 };
 
 export const actionAddProductToFavorites = (item) => (dispatch) => {
-    console.log(item);
   const token = localStorage.getItem('token');
   setAuthToken(token);
   if (token) {
@@ -187,8 +177,6 @@ export const actionAddProductToFavorites = (item) => (dispatch) => {
         if(data){
           dispatch(actionAddToFavorites(item))
         localStorage.removeItem('favorites');
-          console.log(item);
-          console.log(data.products);
           dispatch(actionUpdateFavorites(data.products));
         }
       })
@@ -210,9 +198,8 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
       .then(({ data }) => {
         if(data){
           dispatch(actionDeleteFromFavorites(item))
-        localStorage.removeItem('favorites');
+          localStorage.removeItem('favorites');
           dispatch(actionUpdateFavorites(data.products));
-          console.log(data.products);
         }
       })
       .catch(() => {
