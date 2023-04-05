@@ -17,7 +17,7 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
         <>
             <Formik
                 initialValues={initialValues}
-
+                validationSchema={validationSchema}
                 onSubmit={onSubmit}
             >
                 {(isValid) => {
