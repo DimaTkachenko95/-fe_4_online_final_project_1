@@ -39,7 +39,7 @@ const FilterMainList = () => {
     };
 
     const request = (key, name) => {
-        newFilterRequestObj.perPage = 3
+        newFilterRequestObj.perPage = 6
         newFilterRequestObj.startPage = 1
         newFilterRequestObj[key].includes(name) ?
             newFilterRequestObj[key] = newFilterRequestObj[key].split(',').filter(item => item !== name).join(',')
@@ -53,7 +53,7 @@ const FilterMainList = () => {
         newFilterRequestObj.minPrice = minimalInputPrice
         newFilterRequestObj.maxPrice = maximalInputPrice
         newFilterRequestObj.startPage = 1
-        newFilterRequestObj.perPage = 3
+        newFilterRequestObj.perPage = 6
 
         if (e) {
             newFilterRequestObj.sort = e

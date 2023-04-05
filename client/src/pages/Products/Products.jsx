@@ -90,7 +90,7 @@ const Products = () => {
       color: '',
       ramMemory: '',
       hardDriveCapacity: '',
-      perPage: 3,
+      perPage: 6,
       startPage: 1,
       minPrice: '',
       maxPrice: '',
