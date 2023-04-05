@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { GET_USER, ORDERS } from "../endpoints";
-import { letterHtml } from "../pages/Authorization/letterHtml";
-import { selectorAllUserOrders } from "../selectors";
 
 const initialState = {
     userInfo: null,
@@ -61,8 +58,8 @@ export const actionFetchUserInfo = () => (dispatch) => {
     return axios
         .get(GET_USER)
         .then(loggedInCustomer => {
-                const {firstName, lastName, login, email , telephone, city, country, avatarUrl} = loggedInCustomer.data
-                dispatch(actionUserInfo({ firstName,  lastName, login, email , telephone, city, country , avatarUrl}))
+                const {firstName, lastName, login, email , telephone, city, country, birthdate} = loggedInCustomer.data
+                dispatch(actionUserInfo({ firstName,  lastName, login, email , telephone, city, country , birthdate}))
                 dispatch(actionPageLoading(false))
               }) 
               .catch( err => {
@@ -139,10 +136,9 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
     return axios
     .get(`/orders/${orderNo}`)
     .then(result => {
-        console.log(result, result.data.mobile)
       const createOrderInfo = {
-            firstName: result.data.firstName,
-            lastName: result.data.lastName,
+            firstName: result.data.customerId.firstName,
+            lastName: result.data.customerId.lastName,
             telephone: result.data.mobile,
             email: result.data.email,
             country:  result.data.deliveryAddress.country,
@@ -161,7 +157,6 @@ export const actionFetchGetOneOrder = (orderNo) => (dispatch) => {
 
 
 export const actionFetchUpdatedOrder = ( _id /* , updatedOrder */ ) => (dispatch) => {
-    console.log(_id, 'ddddddddd')
     return axios
     .put(`/orders/641eb6a7a2ca7f004068a1c1`, {firstName: "AAAAA", 
     letterSubject:
@@ -170,7 +165,6 @@ export const actionFetchUpdatedOrder = ( _id /* , updatedOrder */ ) => (dispatch
     "<h1>Dear customer,</h1>"
         })
     .then(updatedOrder => {
-        console.log(updatedOrder, 'qwqwqw')
       /*Do something with updatedOrder*/
     })
     .catch(err => {

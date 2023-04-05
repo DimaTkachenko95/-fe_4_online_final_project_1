@@ -46,8 +46,6 @@ const PersonalOffice = () => {
                 } className="logout">< LogoutIcon sx={{ color: '#75758a',/*  "&:hover": {color: 'green'}, */ marginRight: '5px' }}/> <p>Exit</p></Box>
          </Link>
            
-
-
             <TabContext  value={value}  >
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList className="tab-list"  onChange={handleChange} TabIndicatorProps={{sx:{backgroundColor:"green", height:"3px"}}}

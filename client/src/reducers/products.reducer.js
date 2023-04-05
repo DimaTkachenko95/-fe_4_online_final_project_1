@@ -21,7 +21,7 @@ const initialState = {
     color: '',
     ramMemory: '',
     hardDriveCapacity: '',
-    perPage: 3,
+    perPage: 6,
     startPage: 1,
     minPrice: '',
     maxPrice: '',
@@ -83,7 +83,7 @@ export const {
 
 export const actionFetchAllProducts = (link) => (dispatch) => {
   if(link == ''){
-    link = '?perPage=3&startPage=1'
+    link = '?perPage=6&startPage=1'
   }
   dispatch(actionPageLoading(true));
   dispatch(actionShowPaginaton(true))
@@ -140,7 +140,7 @@ export const actionFetchSearchProducts = (inputValue) => (dispatch) => {
     color: '',
     ramMemory: '',
     hardDriveCapacity: '',
-    perPage: 3,
+    perPage: 6,
     startPage: 1,
     minPrice: '',
     maxPrice: '',

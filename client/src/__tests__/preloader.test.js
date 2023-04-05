@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Preloader from '../components/Preloader';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Preloader component', () => {
     it('should render Backdrop and CircularProgress', () => {

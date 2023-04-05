@@ -1,4 +1,6 @@
 import * as yup from 'yup';
+const dateToday = new Date();
+const moment = require('moment');
 
 const validationSchema = yup.object().shape({
   firstName: yup
@@ -26,12 +28,11 @@ const validationSchema = yup.object().shape({
     .integer("A phone number can't include a decimal point")
     .min(13, 'Telephone is too short - should be 13 chars minimum')
     .required('A phone number is required'),
-  avatarUrl: yup
-    .string()
-    .matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      'Enter correct url',
-    ),
+    birthdate: yup.date()
+    .transform(value => {
+      return value ? moment(value).toDate() : value;
+    })
+    .max(dateToday, "Future date not allowed")
 })
 
 

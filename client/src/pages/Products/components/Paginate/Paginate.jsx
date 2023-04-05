@@ -22,14 +22,14 @@ const Paginate = () => {
     }
 
     const showMoreProducts = () =>{
-        newFilterRequestObj.perPage +=3 
+        newFilterRequestObj.perPage +=6 
         newFilterRequestObj.startPage = 1
         dispatch(actionFetchSearchFilterProducts(newFilterRequestObj)) 
     }
 
     return (
         <div className='pagination'>
-            <Button variant={'white-shadow'}  className={cx( { "disabled-btn": pageCount == 1})} disabled={pageCount == 1} text='Show 3 more' onClick={()=>{showMoreProducts()}}></Button>
+            <Button variant={'white-shadow'}  className={cx( { "disabled-btn": pageCount == 1})} disabled={pageCount == 1} text='Show 6 more' onClick={()=>{showMoreProducts()}}></Button>
             <Pagination className='pagination-block'
                 size= "medium"
                 count={pageCount}
