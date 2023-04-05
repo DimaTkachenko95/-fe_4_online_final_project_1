@@ -16,7 +16,7 @@ import { selectorPageLoadingPersonalOffice } from "../../selectors";
 import './PersonalOffice.scss';
 import Preloader from "../../components/Preloader";
 import { Link } from "react-router-dom";
-import { actionToken, actionAuthorizationUser } from "../../reducers";
+import { actionToken, actionAuthorizationUser, actionFavoritesProductNew, actionUpdateFavorites, actionUpdateBasket, actionBasketProductNew} from "../../reducers";
 
 
 const PersonalOffice = () => {
@@ -33,7 +33,10 @@ const PersonalOffice = () => {
         setAuthToken(false)
         dispatch(actionToken('')) 
         dispatch(actionAuthorizationUser({}))
-        
+        dispatch(actionFavoritesProductNew([]))
+        dispatch(actionUpdateFavorites([]))
+        dispatch(actionUpdateBasket([]))
+        dispatch(actionBasketProductNew([]))
     }
 
     return (

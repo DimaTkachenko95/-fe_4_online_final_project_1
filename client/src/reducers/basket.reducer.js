@@ -150,7 +150,7 @@ export const actionCheckCart = () => (dispatch) => {
 export const getProductsCart = () => (dispatch) => {
 
   const token = localStorage.getItem('token');
-  if (token !== null && token !== undefined) {
+  if (token !== null && token !== undefined && token !== '') {
     setAuthToken(token);
     axios
       .get(SHOPPING_CART).then(({ data }) => {

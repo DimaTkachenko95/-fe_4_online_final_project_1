@@ -27,9 +27,6 @@ const favoritesSlice = createSlice({
             state.favorites = [...state.favorites.filter(itemId => itemId !== payload)];
             localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
         },
-        actionFavoritesProduct: (state, {payload}) => {
-            state.favoritesProduct = [...payload];
-        },
         actionFavoritesProductNew: (state, { payload }) => {
             state.favoritesProduct = [...payload];
         },
@@ -53,7 +50,6 @@ const favoritesSlice = createSlice({
 export const {
     actionAddToFavorites,
     actionDeleteFromFavorites,
-    actionFavoritesProduct,
     actionFavoritesProductNew,
     actionUpdateFavorites,
     actionPageLoading,
@@ -85,7 +81,7 @@ export const actionFetchProductFavoritesByItemNo = (itemNos) =>  (dispatch) => {
         return data;
     }))
         .then( data => {
-            dispatch(actionFavoritesProduct(data));
+            dispatch(actionFavoritesProductNew(data));
             dispatch(actionPageLoading(false));
         })
         .catch(() => {
@@ -142,7 +138,7 @@ export const actionCheckFavorites = () => (dispatch) => {
 
 export const getProductsFavorites = () => (dispatch) => {
   const token = localStorage.getItem('token');
-  if (token !== null && token !== undefined) {
+  if (token !== null && token !== undefined && token !== '') {
     setAuthToken(token);
     axios
       .get(WISHLIST).then(({ data }) => {
@@ -160,7 +156,6 @@ export const getProductsFavorites = () => (dispatch) => {
       });
   } else {
       const favoriteProducts = JSON.parse(localStorage.getItem('favorites')) || [];
-
     if (favoriteProducts.length > 0) {
       dispatch(actionFetchProductFavoritesByItemNo(favoriteProducts))
     }
