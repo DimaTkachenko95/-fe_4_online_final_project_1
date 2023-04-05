@@ -27,6 +27,8 @@ const ProductCard = ({el, isForOrderedPage}) => {
     }
 
     return (
+        <>
+        {typeof imageUrls !== 'undefined' && 
         <div className="list" id={_id} key={_id}>
             <div className={cx("list__item", {'out-of-stock': quantity<=0})}>
                 <div>
@@ -40,8 +42,10 @@ const ProductCard = ({el, isForOrderedPage}) => {
                     { !isForOrderedPage && (<>
                         <span>
                             <Scales
+                                data-testid="scales"
                                 onClick={() => toggleScales(el._id)}
-                                className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})}
+                                className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})} 
+                                
                             />
                         </span>
                         <span>
@@ -80,12 +84,14 @@ const ProductCard = ({el, isForOrderedPage}) => {
 
                 </div>
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 
 ProductCard.defaultProps = {
   isForOrderedPage: false,
+  el:{},
 }
 
 export default ProductCard;

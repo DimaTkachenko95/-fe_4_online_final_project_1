@@ -24,11 +24,6 @@ const FilterMainList = () => {
     const dispatch = useDispatch()
     let newFilterRequestObj = { ...filterRequestObj }
 
-    console.log(minimalInputPrice, '11111')
-    console.log(filterRequestObj.minPrice, '22222')
-
-
-
     useEffect(() => {
         setMinimalInputPrice(filterRequestObj.minPrice)
         setMaximalInputPrice(filterRequestObj.maxPrice)

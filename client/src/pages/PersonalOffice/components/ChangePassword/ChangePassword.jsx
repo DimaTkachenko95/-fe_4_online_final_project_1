@@ -28,7 +28,6 @@ const ChangePassword = () => {
                 validationSchema={validationSchemaPassword}
                 onSubmit={(values)=>{
                     delete values.confirmNewPassword
-                    console.log(values)
                      dispatch(actionFetchUpdateCustomerPassword(values)) }  
                 } 
             >
