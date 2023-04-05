@@ -67,7 +67,7 @@ Object {
               </span>
             </p>
             <button
-              class="MuiButtonBase-root sc-bcXHqe ewStJL btn-reset-filter css-10d1a0h-MuiButtonBase-root"
+              class="MuiButtonBase-root sc-beqWaB eeHUGz btn-reset-filter css-10d1a0h-MuiButtonBase-root"
               tabindex="0"
               type="button"
             >
@@ -257,7 +257,7 @@ Object {
                   class="show-more-filters"
                 >
                   <button
-                    class="MuiButtonBase-root sc-bcXHqe jewEHD white-shadow css-10d1a0h-MuiButtonBase-root"
+                    class="MuiButtonBase-root sc-beqWaB kPxoob white-shadow css-10d1a0h-MuiButtonBase-root"
                     tabindex="0"
                     type="button"
                     variant="white-shadow"
@@ -344,7 +344,7 @@ Object {
             </span>
           </p>
           <button
-            class="MuiButtonBase-root sc-bcXHqe ewStJL btn-reset-filter css-10d1a0h-MuiButtonBase-root"
+            class="MuiButtonBase-root sc-beqWaB eeHUGz btn-reset-filter css-10d1a0h-MuiButtonBase-root"
             tabindex="0"
             type="button"
           >
@@ -534,7 +534,7 @@ Object {
                 class="show-more-filters"
               >
                 <button
-                  class="MuiButtonBase-root sc-bcXHqe jewEHD white-shadow css-10d1a0h-MuiButtonBase-root"
+                  class="MuiButtonBase-root sc-beqWaB kPxoob white-shadow css-10d1a0h-MuiButtonBase-root"
                   tabindex="0"
                   type="button"
                   variant="white-shadow"
