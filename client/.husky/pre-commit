@@ -8,3 +8,4 @@ npx eslint src/**/*.js
 npm test
 
 
+npm test
