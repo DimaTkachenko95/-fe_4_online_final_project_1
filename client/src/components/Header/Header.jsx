@@ -15,17 +15,6 @@ import Authorization from "../../pages/Authorization";
 import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart, actionCheckFavorites, getProductsFavorites} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 
-const theme = createTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          maxWidth: '1800px', // Set your custom maxWidth value here
-        },
-      },
-    },
-  },
-});
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -76,7 +65,6 @@ const closeModalAuth = () => {
   return (
     <>
       <header className="header">
-        <ThemeProvider theme={theme}>
           <Container maxWidth="xl">
             <Box className="header__wrapper">
               <Box className="header__logo-wrapper">
@@ -115,7 +103,7 @@ const closeModalAuth = () => {
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
                   >
-                    Why us 
+                    Why us
                   </NavLink>
                   <NavLink
                     to="/contacts"
@@ -178,7 +166,6 @@ const closeModalAuth = () => {
             </Box>
             {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
           </Container>
-        </ThemeProvider>
       </header>
     </>
   );
