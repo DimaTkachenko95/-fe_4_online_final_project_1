@@ -201,9 +201,6 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                                         color="success"
                                         className="form-registration__input"
                                         variant="outlined"
-                                        touchend={(e) => (e.target.type = "date")} 
-                                        onClick={(e) => (e.target.type = "date")} 
-                                        onBlur={(e) => (e.target.type = "text")}
                                         disabled={!inputsEditName.includes("birthdate")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"birthdate"}
