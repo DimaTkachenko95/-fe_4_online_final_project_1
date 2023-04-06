@@ -201,7 +201,8 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                                         color="success"
                                         className="form-registration__input"
                                         variant="outlined"
-                                        onClick={(e) => (e.target.type = "date")}
+                                        touchend={(e) => (e.target.type = "date")} 
+                                        onClick={(e) => (e.target.type = "date")} 
                                         onBlur={(e) => (e.target.type = "text")}
                                         disabled={!inputsEditName.includes("birthdate")}
                                         InputProps={btnEdit && {
@@ -209,7 +210,6 @@ const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, wi
                                                 onClick={() => dispatch(actionEditInputs("birthdate"))} />)
                                         }}
                                     />
-
                                 </div>
                                 <Button
                                     type="submit"
