@@ -33,7 +33,7 @@ const favoritesSlice = createSlice({
         actionUpdateFavorites: (state, { payload }) => {
           const newItems = payload.map((item) => {
             return (
-              item._id            
+              item._id
               );
           });
             state.favorites = newItems;
@@ -59,7 +59,7 @@ export const {
 export const toggleFavoriteProduct = id => (dispatch, getState) => {
     const state = getState();
     const favoriteProducts = state.favorites.favorites;
-    const isFavoriteProduct = favoriteProducts.some(itemId => itemId === id); 
+    const isFavoriteProduct = favoriteProducts.some(itemId => itemId === id);
 
   const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
   if (token) {
@@ -94,8 +94,7 @@ export const actionFetchAddUserFavorites = (newFavorites) => (dispatch) => {
    const token = JSON.parse(JSON.stringify(localStorage.getItem('token')));
    setAuthToken(token);
    axios.post(WISHLIST, newFavorites)
-    .catch((error) => {
-        console.log(error);
+    .catch(() => {
         dispatch(actionPageLoading(false));
         dispatch(actionServerError(true));
       });
@@ -120,7 +119,7 @@ export const actionCheckFavorites = () => (dispatch) => {
         } else {
           return null;
         }
-      } 
+      }
       else {
         const newData = data.products.map((item) => {
           return {
@@ -139,6 +138,7 @@ export const actionCheckFavorites = () => (dispatch) => {
 export const getProductsFavorites = () => (dispatch) => {
   const token = localStorage.getItem('token');
   if (token !== null && token !== undefined && token !== '') {
+    dispatch(actionPageLoading(true));
     setAuthToken(token);
     axios
       .get(WISHLIST).then(({ data }) => {
@@ -149,8 +149,9 @@ export const getProductsFavorites = () => (dispatch) => {
            );
           });
           dispatch(actionFavoritesProductNew(newData));
-          
+          dispatch(actionPageLoading(false));
         } else {
+          dispatch(actionPageLoading(false));
           return null;
         }
       });
@@ -188,6 +189,7 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
   const token = localStorage.getItem('token');
   setAuthToken(token);
   if (token) {
+    dispatch(actionPageLoading(true));
     axios
       .delete(PRODUCT_IN_WISHLIST.replace(':productId', item))
       .then(({ data }) => {
@@ -195,6 +197,7 @@ export const actionDeleteProductFromFavorites = (item) => (dispatch) => {
           dispatch(actionDeleteFromFavorites(item))
           localStorage.removeItem('favorites');
           dispatch(actionUpdateFavorites(data.products));
+          dispatch(actionPageLoading(false));
         }
       })
       .catch(() => {
@@ -215,7 +218,7 @@ export const deleteUserWishlist = () => (dispatch) => {
     dispatch(actionPageLoading(false));
     dispatch(actionServerError(true));
   });
-} 
+}
 
 
 export default favoritesSlice.reducer;
