@@ -1,6 +1,6 @@
 import * as yup from 'yup';
+import moment from "moment";
 const dateToday = new Date();
-const moment = require('moment');
 
 const validationSchema = yup.object().shape({
   firstName: yup
