@@ -42,7 +42,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +52,6 @@
     ],
     "env": {
       "jest": true,
-      "enzyme": true,
       "browser": true,
       "node": true
     },
@@ -90,8 +90,6 @@
   },
   "devDependencies": {
     "@mui/icons-material": "^5.11.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.7",
     "eslint-config-react-app": "^7.0.1",
     "husky": "^8.0.3",
     "prettier": "2.8.4",

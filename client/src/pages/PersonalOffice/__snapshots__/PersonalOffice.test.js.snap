@@ -99,10 +99,10 @@ Object {
                 role="tablist"
               >
                 <button
-                  aria-controls="mui-p-67422-P-1"
+                  aria-controls="mui-p-74737-P-1"
                   aria-selected="true"
                   class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                  id="mui-p-67422-T-1"
+                  id="mui-p-74737-T-1"
                   role="tab"
                   tabindex="0"
                   type="button"
@@ -113,10 +113,10 @@ Object {
                   />
                 </button>
                 <button
-                  aria-controls="mui-p-67422-P-2"
+                  aria-controls="mui-p-74737-P-2"
                   aria-selected="false"
                   class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                  id="mui-p-67422-T-2"
+                  id="mui-p-74737-T-2"
                   role="tab"
                   tabindex="-1"
                   type="button"
@@ -127,10 +127,10 @@ Object {
                   />
                 </button>
                 <button
-                  aria-controls="mui-p-67422-P-3"
+                  aria-controls="mui-p-74737-P-3"
                   aria-selected="false"
                   class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                  id="mui-p-67422-T-3"
+                  id="mui-p-74737-T-3"
                   role="tab"
                   tabindex="-1"
                   type="button"
@@ -149,25 +149,25 @@ Object {
           </div>
         </div>
         <div
-          aria-labelledby="mui-p-67422-T-1"
+          aria-labelledby="mui-p-74737-T-1"
           class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
-          id="mui-p-67422-P-1"
+          id="mui-p-74737-P-1"
           role="tabpanel"
         >
            
         </div>
         <div
-          aria-labelledby="mui-p-67422-T-2"
+          aria-labelledby="mui-p-74737-T-2"
           class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
           hidden=""
-          id="mui-p-67422-P-2"
+          id="mui-p-74737-P-2"
           role="tabpanel"
         />
         <div
-          aria-labelledby="mui-p-67422-T-3"
+          aria-labelledby="mui-p-74737-T-3"
           class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
           hidden=""
-          id="mui-p-67422-P-3"
+          id="mui-p-74737-P-3"
           role="tabpanel"
         />
       </div>
@@ -268,10 +268,10 @@ Object {
               role="tablist"
             >
               <button
-                aria-controls="mui-p-67422-P-1"
+                aria-controls="mui-p-74737-P-1"
                 aria-selected="true"
                 class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                id="mui-p-67422-T-1"
+                id="mui-p-74737-T-1"
                 role="tab"
                 tabindex="0"
                 type="button"
@@ -282,10 +282,10 @@ Object {
                 />
               </button>
               <button
-                aria-controls="mui-p-67422-P-2"
+                aria-controls="mui-p-74737-P-2"
                 aria-selected="false"
                 class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                id="mui-p-67422-T-2"
+                id="mui-p-74737-T-2"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -296,10 +296,10 @@ Object {
                 />
               </button>
               <button
-                aria-controls="mui-p-67422-P-3"
+                aria-controls="mui-p-74737-P-3"
                 aria-selected="false"
                 class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
-                id="mui-p-67422-T-3"
+                id="mui-p-74737-T-3"
                 role="tab"
                 tabindex="-1"
                 type="button"
@@ -318,25 +318,25 @@ Object {
         </div>
       </div>
       <div
-        aria-labelledby="mui-p-67422-T-1"
+        aria-labelledby="mui-p-74737-T-1"
         class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
-        id="mui-p-67422-P-1"
+        id="mui-p-74737-P-1"
         role="tabpanel"
       >
          
       </div>
       <div
-        aria-labelledby="mui-p-67422-T-2"
+        aria-labelledby="mui-p-74737-T-2"
         class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
         hidden=""
-        id="mui-p-67422-P-2"
+        id="mui-p-74737-P-2"
         role="tabpanel"
       />
       <div
-        aria-labelledby="mui-p-67422-T-3"
+        aria-labelledby="mui-p-74737-T-3"
         class="MuiTabPanel-root tab-panel css-13xfq8m-MuiTabPanel-root"
         hidden=""
-        id="mui-p-67422-P-3"
+        id="mui-p-74737-P-3"
         role="tabpanel"
       />
     </div>

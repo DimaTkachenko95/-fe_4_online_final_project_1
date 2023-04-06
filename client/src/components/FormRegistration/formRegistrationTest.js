@@ -2,8 +2,8 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import * as Yup from 'yup';
-import FormRegistration from '../components/FormRegistration';
+import * as yup from 'yup';
+import FormRegistration from '../FormRegistration';
 
 const mockStore = configureStore([]);
 
@@ -35,20 +35,20 @@ describe('FormRegistration', () => {
             city: '',
             country: '',
         };
-        const validationSchema = Yup.object().shape({
-            firstName: Yup.string().required('First name is required'),
-            lastName: Yup.string().required('Last name is required'),
-            login: Yup.string().required('Login is required'),
-            email: Yup.string().email('Invalid email address').required('Email is required'),
-            password: Yup.string()
+        const validationSchema = yup.object().shape({
+            firstName: yup.string().required('First name is required'),
+            lastName: yup.string().required('Last name is required'),
+            login: yup.string().required('Login is required'),
+            email: yup.string().email('Invalid email address').required('Email is required'),
+            password: yup.string()
                 .min(8, 'Password must be at least 8 characters')
                 .required('Password is required'),
-            confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password')], 'Passwords do not match')
+            confirmPassword: yup.string()
+                .oneOf([yup.ref('password')], 'Passwords do not match')
                 .required('Confirm password is required'),
-            telephone: Yup.string().required('Telephone is required'),
-            city: Yup.string().required('City is required'),
-            country: Yup.string().required('Country is required'),
+            telephone: yup.string().required('Telephone is required'),
+            city: yup.string().required('City is required'),
+            country: yup.string().required('Country is required'),
         });
        expect(
             <Provider store={store}>
