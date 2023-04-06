@@ -1,4 +1,4 @@
-import {Box, Container, createTheme, ThemeProvider} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {ReactComponent as SubscribeSvg} from "./icons/subscribeSvg.svg";
 import {ReactComponent as CallSvg} from "./icons/phone-call.svg";
 import {ReactComponent as VisaSvg} from "./icons/visa.svg";
@@ -13,18 +13,6 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 
 
-const theme = createTheme({
-    components: {
-        MuiContainer: {
-            styleOverrides: {
-                root: {
-                    maxWidth: '1800px', // Set your custom maxWidth value here
-                },
-            },
-        },
-    },
-});
-
 const Footer = () => {
     const [emailInputValue, setEmailInputValue] = useState('');
 
@@ -36,7 +24,6 @@ const Footer = () => {
     return (
         <>
             <footer className="footer">
-                <ThemeProvider theme={theme}>
                     <Box className="footer__subscribe-container">
                         <Container maxWidth="xl">
                             <Box className="footer__subscribe-wrapper">
@@ -99,7 +86,6 @@ const Footer = () => {
                             </Box>
                         </Container>
                     </Box>
-                </ThemeProvider>
             </footer>
         </>
     )

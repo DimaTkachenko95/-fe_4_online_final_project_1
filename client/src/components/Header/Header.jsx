@@ -12,20 +12,9 @@ import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selec
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart} from "../../reducers";
+import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart, actionCheckFavorites, getProductsFavorites} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 
-const theme = createTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          maxWidth: '1800px', // Set your custom maxWidth value here
-        },
-      },
-    },
-  },
-});
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -51,6 +40,8 @@ const Header = () => {
       dispatch(actionFetchAuthorizationUser());
       dispatch(actionCheckCart());
       dispatch(getProductsCart());
+      dispatch(actionCheckFavorites());
+      dispatch(getProductsFavorites())
     }
   }, [authToken]);
 
@@ -74,12 +65,11 @@ const closeModalAuth = () => {
   return (
     <>
       <header className="header">
-        <ThemeProvider theme={theme}>
           <Container maxWidth="xl">
             <Box className="header__wrapper">
               <Box className="header__logo-wrapper">
                 <Link to="/" className="logo">
-                  {window.innerWidth > 996 ? 'BestLaptops' : 'BL'}
+                  {window.innerWidth > 1180 ? 'BestLaptops' : 'BL'}
                   <span className="colored">24</span>
                 </Link>
               </Box>
@@ -113,7 +103,7 @@ const closeModalAuth = () => {
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
                   >
-                    Why us 
+                    Why us
                   </NavLink>
                   <NavLink
                     to="/contacts"
@@ -176,7 +166,6 @@ const closeModalAuth = () => {
             </Box>
             {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
           </Container>
-        </ThemeProvider>
       </header>
     </>
   );

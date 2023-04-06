@@ -140,7 +140,7 @@ export const actionCheckCart = () => (dispatch) => {
     .catch(() => {
       dispatch(actionPageLoading(false));
       dispatch(actionServerError(true));
-    });;
+    });
   }
 };
 
@@ -148,9 +148,9 @@ export const actionCheckCart = () => (dispatch) => {
 // G E T   P R O D U C T
 
 export const getProductsCart = () => (dispatch) => {
-
+  dispatch(actionPageLoading(true))
   const token = localStorage.getItem('token');
-  if (token !== null && token !== undefined) {
+  if (token !== null && token !== undefined && token !== '') {
     setAuthToken(token);
     axios
       .get(SHOPPING_CART).then(({ data }) => {
@@ -162,7 +162,9 @@ export const getProductsCart = () => (dispatch) => {
             };
           });
           dispatch(actionBasketProductNew(newData));
+          dispatch(actionPageLoading(false))
         } else {
+          dispatch(actionPageLoading(false))
           return null;
         }
       })
@@ -182,11 +184,14 @@ export const getProductsCart = () => (dispatch) => {
       Promise.all(promises)
         .then((data) => {
           dispatch(actionBasketProductNew(data));
+          dispatch(actionPageLoading(false))
         })
         .catch(() => {
           dispatch(actionPageLoading(false));
           dispatch(actionServerError(true));
         });
+    } else {
+      dispatch(actionPageLoading(false))
     }
   }
 };
@@ -194,6 +199,7 @@ export const getProductsCart = () => (dispatch) => {
 // A D D / I N C R E A S E   P R O D U C T   T O   C A R T
 
 export const actionAddProductToBasket = (item) => (dispatch) => {
+  dispatch(actionPageLoading(true))
   const token = localStorage.getItem('token');
   setAuthToken(token);
   if (token) {
@@ -201,6 +207,7 @@ export const actionAddProductToBasket = (item) => (dispatch) => {
       .put(PRODUCT_IN_SHOPPING_CART.replace(':productId', item._id), null)
       .then(({ data }) => {
         dispatch(actionUpdateBasket(data.products));
+        dispatch(actionPageLoading(false))
       })
       .catch(() => {
         dispatch(actionPageLoading(false));
@@ -208,12 +215,14 @@ export const actionAddProductToBasket = (item) => (dispatch) => {
       });
   } else {
     dispatch(actionAddToBasket(item));
+    dispatch(actionPageLoading(false))
   }
 };
 
 // D E C R E A S E   P R O D U C T   I N   C A R T
 
 export const actionDeleteProductFromBasket = (item) => (dispatch) => {
+  dispatch(actionPageLoading(true))
   const token = localStorage.getItem('token');
   setAuthToken(token);
   if (token) {
@@ -221,6 +230,7 @@ export const actionDeleteProductFromBasket = (item) => (dispatch) => {
       .delete(CHANGE_PRODUCT_QUANTITY_SHOPPING_CART.replace(':productId', item._id))
       .then(({ data }) => {
         dispatch(actionUpdateBasket(data.products));
+        dispatch(actionPageLoading(false))
       })
       .catch(() => {
         dispatch(actionPageLoading(false));
@@ -228,6 +238,7 @@ export const actionDeleteProductFromBasket = (item) => (dispatch) => {
       });
   } else {
     dispatch(actionDecraese(item));
+    dispatch(actionPageLoading(false))
   }
 };
 
@@ -237,10 +248,12 @@ export const actionDeleteAllFromBasket = (item) => (dispatch) => {
   const token = localStorage.getItem('token');
   setAuthToken(token);
   if (token) {
+    dispatch(actionPageLoading(true))
     axios
       .delete(PRODUCT_IN_SHOPPING_CART.replace(':productId', item._id))
       .then(({ data }) => {
         dispatch(actionUpdateBasket(data.products));
+        dispatch(actionPageLoading(false))
       })
       .catch(() => {
         dispatch(actionPageLoading(false));
@@ -251,7 +264,7 @@ export const actionDeleteAllFromBasket = (item) => (dispatch) => {
   }
 };
 
-/// D E L E T E    C A R T 
+/// D E L E T E    C A R T
 
 export const deleteUserCart = () => (dispatch) => {
   const token = localStorage.getItem('token');
@@ -261,6 +274,6 @@ export const deleteUserCart = () => (dispatch) => {
     dispatch(actionPageLoading(false));
     dispatch(actionServerError(true));
   });
-} 
+}
 
 export default basketSlice.reducer;

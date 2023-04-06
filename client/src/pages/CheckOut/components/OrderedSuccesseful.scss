@@ -25,11 +25,15 @@
   }
 
   &__items{
-    display: flex;
+    display: grid;
+    grid-auto-rows: 325px;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
     margin-bottom: 40px;
+    
+    @media (max-width: 620px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__title{

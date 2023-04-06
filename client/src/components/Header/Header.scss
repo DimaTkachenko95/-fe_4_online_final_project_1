@@ -101,7 +101,7 @@ body {
         line-height: 18px;
         padding-bottom: 38px;
         padding-top: 38px;
-        border-bottom: 2px solid transparent;
+        border-bottom: 2px solid transparent; 
 
         &:hover {
           color: rgb(96 176 33 / 100%);
@@ -182,7 +182,7 @@ body {
       &__icon {
         border-left: 1px solid variables.$light-border;
         padding: 2vw;
-        border-bottom: 2px solid transparent;
+        border-bottom: 2px solid transparent; 
 
         @media (max-width: 996px) {
           border-left: none;
@@ -192,7 +192,7 @@ body {
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
         fill: rgb(96 176 33 / 100%);
-        border-bottom: 2px solid rgb(96 176 33 / 100%);
+       border-bottom: 2px solid rgb(96 176 33 / 100%);  
       }
     }
 
@@ -256,7 +256,7 @@ body {
 
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
-        border-bottom: 2px solid rgb(96 176 33 / 100%);
+       /*  border-bottom: 2px solid rgb(96 176 33 / 100%); */
       }
     }
   }
@@ -266,18 +266,19 @@ body {
     display: none;
     border-left: 1px solid variables.$light-border;
     padding: 1.2vw;
+    cursor: pointer;
 
     @media (max-width: 996px) {
       display: block;
       border: none;
       justify-self: end;
+      cursor: pointer;
     }
   }
 }
 
 .header__menu--active {
   display: block;
-
   @media (max-width: 996px) {
     background: whitesmoke;
     z-index: 1;

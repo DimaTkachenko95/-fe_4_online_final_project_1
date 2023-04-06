@@ -172,6 +172,7 @@ const FilterMainList = () => {
                             <FormLabel class='header-filter header-filter__name'>Hard drive</FormLabel>
                             <RenderSectionFilter arrFilters={hardDriveCapacity} blockNameFilters={'hardDriveCapacity'} checked={checked} request={request} />
                         </FormGroup>
+                        <div className='show-more-filters'>
                         <Button
                             text="Hide filters"
                             variant='white-shadow'
@@ -179,6 +180,7 @@ const FilterMainList = () => {
                                 setShowMoreFilters(false)
                                 sessionStorage.setItem("showMoreFilters", false)
                             }} />
+                        </div>
                     </>
                     :
                     <div className='show-more-filters'>

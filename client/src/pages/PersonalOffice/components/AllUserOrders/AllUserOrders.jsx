@@ -63,8 +63,7 @@ const AllUserOrders = () => {
                         dispatch(actionFetchCancelOrder(_id))
 
                     }}/>
-                  <Button type={"button"} text="More info" onClick={() => {
-
+                  <Button type={"button"} text={openOrderInfo.includes(orderNo)? "Сlose info" : "More info"} onClick={() => {
 
                         if (openOrderInfo.includes(orderNo)) {
                             setOpenOrderInfo(openOrderInfo.filter((el) => el !== orderNo))
