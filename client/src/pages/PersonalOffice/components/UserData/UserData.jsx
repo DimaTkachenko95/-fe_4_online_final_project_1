@@ -27,7 +27,6 @@ import './UserData.scss'
               btnText='update data'
               withPassword={true}
               onSubmit={(values)=>{
-                console.log(values)
                 dispatch(actionFetchUpdateCustomer(values))}}/> } </>
     )
 }

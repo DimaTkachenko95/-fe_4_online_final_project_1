@@ -8,6 +8,7 @@
 
 .favorites__title {
   @include mixins.titleStyles;
+
   padding-bottom: 30px;
 
   .title_contrast {

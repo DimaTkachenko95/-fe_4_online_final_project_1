@@ -12,6 +12,7 @@ import Button from "../../../../components/Button";
 import Preloader from "../../../../components/Preloader";
 import ServerError from "../../../../components/Notifications/ServerError";
 
+
 import './AllUserOrder.scss'
 import { values } from "lodash";
 
@@ -21,7 +22,6 @@ const AllUserOrders = () => {
     const [openOrderInfo, setOpenOrderInfo] = useState([])
 
     const allUserOrders = useSelector(selectorAllUserOrders)
-
     const orderInfo = useSelector(selectorOrderInfo)
 
 
@@ -51,7 +51,6 @@ const AllUserOrders = () => {
         })
         return (
             <div className="order">
-
                 <ProductsSlider key={products._id} products={itemOrder} isForOrderedPage={true} />
                 <div className="order-block">
                     <div>

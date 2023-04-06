@@ -90,7 +90,7 @@ const Products = () => {
       color: '',
       ramMemory: '',
       hardDriveCapacity: '',
-      perPage: 3,
+      perPage: 6,
       startPage: 1,
       minPrice: '',
       maxPrice: '',
@@ -143,7 +143,7 @@ const Products = () => {
                   </>
                 ) : (
                   <p className="text-product__not-found">
-                    Nothing to find, please enter correct name or change your filter
+                   {!pageLoading && 'Nothing to find, please enter correct name or change your filter'}
                   </p>
                 )}
               </div>

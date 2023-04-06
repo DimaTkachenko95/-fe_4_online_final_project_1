@@ -16,7 +16,7 @@ import { selectorPageLoadingPersonalOffice } from "../../selectors";
 import './PersonalOffice.scss';
 import Preloader from "../../components/Preloader";
 import { Link } from "react-router-dom";
-import { actionToken, actionAuthorizationUser } from "../../reducers";
+import { actionToken, actionAuthorizationUser, actionFavoritesProductNew, actionUpdateFavorites, actionUpdateBasket, actionBasketProductNew} from "../../reducers";
 
 
 const PersonalOffice = () => {
@@ -33,7 +33,10 @@ const PersonalOffice = () => {
         setAuthToken(false)
         dispatch(actionToken('')) 
         dispatch(actionAuthorizationUser({}))
-        
+        dispatch(actionFavoritesProductNew([]))
+        dispatch(actionUpdateFavorites([]))
+        dispatch(actionUpdateBasket([]))
+        dispatch(actionBasketProductNew([]))
     }
 
     return (
@@ -46,8 +49,6 @@ const PersonalOffice = () => {
                 } className="logout">< LogoutIcon sx={{ color: '#75758a',/*  "&:hover": {color: 'green'}, */ marginRight: '5px' }}/> <p>Exit</p></Box>
          </Link>
            
-
-
             <TabContext  value={value}  >
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList className="tab-list"  onChange={handleChange} TabIndicatorProps={{sx:{backgroundColor:"green", height:"3px"}}}

@@ -9,7 +9,6 @@ const CustomInput = (props) => {
   return (
     <>
       <Field
-
         onClick={onClick}
         name={name}
         style={{ minWidth: 300 }}

@@ -3,14 +3,17 @@
 
 .checkout {
   margin-bottom: 30px;
+
   &__title {
     @include mixins.titleStyles;
+
     padding-bottom: 30px;
 
     .title_contrast {
       @include mixins.liner-gradient-tile;
     }
   }
+
   &__form {
     display: grid;
     grid-template-columns: 1fr 1fr;
