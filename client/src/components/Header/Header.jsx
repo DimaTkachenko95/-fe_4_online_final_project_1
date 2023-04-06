@@ -81,7 +81,7 @@ const closeModalAuth = () => {
             <Box className="header__wrapper">
               <Box className="header__logo-wrapper">
                 <Link to="/" className="logo">
-                  {window.innerWidth > 996 ? 'BestLaptops' : 'BL'}
+                  {window.innerWidth > 1180 ? 'BestLaptops' : 'BL'}
                   <span className="colored">24</span>
                 </Link>
               </Box>

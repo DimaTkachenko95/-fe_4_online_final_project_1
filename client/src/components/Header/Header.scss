@@ -266,11 +266,13 @@ body {
     display: none;
     border-left: 1px solid variables.$light-border;
     padding: 1.2vw;
+    cursor: pointer;
 
     @media (max-width: 996px) {
       display: block;
       border: none;
       justify-self: end;
+      cursor: pointer;
     }
   }
 }

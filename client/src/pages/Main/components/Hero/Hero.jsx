@@ -61,7 +61,7 @@ function Hero() {
                                 </Box>
                                 <Box className="advantage__text">
                                     <p>
-                                        Accepts any cryptocurrency payments
+                                        Any cryptocurrency payments
                                     </p>
                                 </Box>
                             </Box>

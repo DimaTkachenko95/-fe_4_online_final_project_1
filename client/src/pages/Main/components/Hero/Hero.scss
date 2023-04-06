@@ -38,6 +38,10 @@
     align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr ;
+    @media (max-width: 400px) {
+      grid-template-columns: 1fr;
+      gap: 0
+    }
   }
 
   .advantage{
@@ -61,7 +65,6 @@
       font-size: 14px;
       line-height: 20px;
       width: 180px;
-
       @media (max-width: 996px) {
         text-align: center;
       }
