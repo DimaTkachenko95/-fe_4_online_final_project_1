@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import * as yup from 'yup';
-import FormRegistration from '../components/FormRegistration';
+import FormRegistration from '../FormRegistration';
 
 const mockStore = configureStore([]);
 
