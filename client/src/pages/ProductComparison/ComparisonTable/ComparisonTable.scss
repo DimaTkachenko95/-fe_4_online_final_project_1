@@ -13,7 +13,7 @@
   cursor: pointer;
   position: absolute;
   top: 1px;
-  margin-left: 120px;
+  margin-left: 140px;
   margin-top: -1px;
 }
 
@@ -33,17 +33,15 @@
   }
 
   .table_th[scope='row'] {
-    max-width: 150px;
+    max-width: 170px;
     color: variables.$border;
     text-align: left;
     padding-left: 20px;
-
     @include mixins.comparisonStyle;
   }
 
   tr {
     @include mixins.comparisonStyle;
-
     border-bottom: 1px solid variables.$light-border;
     color: variables.$black;
     position: relative;
@@ -74,7 +72,7 @@
       font-weight: 700;
       font-size: 14px;
       line-height: 20px;
-      min-width: 150px;
+      min-width: 170px;
       min-height: 150px;
     }
   }
