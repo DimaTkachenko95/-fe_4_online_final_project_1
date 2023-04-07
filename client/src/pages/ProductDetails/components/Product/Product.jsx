@@ -78,7 +78,7 @@ const Product = () => {
                                     className = "product__image">
                                 {product.imageUrls.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={item} alt={`laptop${index}`} />
+                                    <img width={500} height={350} src={item} alt={`laptop${index}`} />
                                 </SwiperSlide>
                                 ))}
                             </Swiper>
@@ -91,7 +91,7 @@ const Product = () => {
                                     className="product__thumbs">
                                 {product.imageUrls.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={item} alt={`laptop${index}`} />
+                                    <img width={80} height={80} src={item} alt={`laptop${index}`} />
                                 </SwiperSlide>
                                 ))}
                           </Swiper>
