@@ -17,6 +17,11 @@
   margin-top: -1px;
 }
 
+.laptopImg {
+  width: 100%;
+  height: 100px;
+}
+
 .comparison-table {
   min-width: 345px;
 
@@ -87,6 +92,10 @@
     margin-left: 220px;
   }
 
+  .laptopImg {
+    height:150px;
+  }
+
   .comparison-table {
     min-width: 482px;
 
@@ -106,6 +115,10 @@
 
   .comparison-table__delete {
     margin-left: 220px;
+  }
+
+  .laptopImg {
+    height: 160px;
   }
 
   .comparison-table {
