@@ -72,8 +72,8 @@ const ComparisonTable = () => {
                       </clipPath>
                     </defs>
                   </svg>
-                  <img
-                    style={{ maxWidth: '100%', height: '150px' }}
+                  <img className='img-scalle'
+                   /*  style={{ maxWidth: '100%', height: '150px',  media (max-width: 880px) {  }} */
                     src={product.imageUrls[0]}
                     alt="laptop"
                   />
