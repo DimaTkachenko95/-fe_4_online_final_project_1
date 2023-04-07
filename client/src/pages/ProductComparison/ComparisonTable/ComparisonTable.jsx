@@ -10,6 +10,7 @@ import { actionDeleteFromScales, actionFetchProductScalesByItemNo } from '../../
 import './ComparisonTable.scss';
 import Preloader from '../../../components/Preloader';
 import EmptyResult from '../../../components/EmptyResult/EmptyResult';
+import { height } from '@mui/system';
 
 const ComparisonTable = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const ComparisonTable = () => {
                     </defs>
                   </svg>
                   <img
-                    style={{ width: '100%' }}
+                    style={{ maxWidth: '100%', height: '150px' }}
                     src={product.imageUrls[0]}
                     alt="laptop"
                   />
