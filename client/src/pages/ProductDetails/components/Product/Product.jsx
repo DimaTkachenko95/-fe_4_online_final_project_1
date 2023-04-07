@@ -78,7 +78,9 @@ const Product = () => {
                                     className = "product__image">
                                 {product.imageUrls.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <img width={500} height={350} src={item} alt={`laptop${index}`} />
+                                    <div className='image-block'>
+                                        <img src={item} alt={`laptop${index}`} />
+                                    </div>
                                 </SwiperSlide>
                                 ))}
                             </Swiper>
@@ -95,7 +97,7 @@ const Product = () => {
                                 </SwiperSlide>
                                 ))}
                           </Swiper>
-                
+
                             <Box className="product__action-wrapper">
                                  <span>
                                      <Scales onClick={() => toggleScales(product._id)}
@@ -106,7 +108,7 @@ const Product = () => {
                                                className={cx("list__item--favorite product__action", {"list__item--favorite--curent": checkProduct(favorites)})}/>
                                 </span>
                             </Box>
-                        </Box> 
+                        </Box>
                         <Box className="product__desc-wrapper">
                             <Box className="product__desc-title-wrapper">
                                 <h5 className="product__desc-title">Product description</h5>
@@ -122,7 +124,7 @@ const Product = () => {
                                     </button>
                                 )}
                             </Box>
-                            
+
                         </Box>
 
 
@@ -155,7 +157,7 @@ const Product = () => {
                         </Box>
                         </Box>
 
-                        
+
                     </Box>
 
                     <Comments/>
@@ -163,7 +165,7 @@ const Product = () => {
                 </Container>
             </Box>}
         </>
-    ) 
+    )
 }
 
 export default Product;

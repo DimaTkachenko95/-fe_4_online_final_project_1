@@ -72,7 +72,13 @@
      max-width: 100%;
      margin: 0 auto;
     }
-  
+    &__image-block {
+      width: 500px;
+      height: 350px;
+      img {
+        width: 100%;
+      }
+    }
   }
 
   &__action {
