@@ -11,6 +11,7 @@ import './ComparisonTable.scss';
 import Preloader from '../../../components/Preloader';
 import EmptyResult from '../../../components/EmptyResult/EmptyResult';
 
+
 const ComparisonTable = () => {
   const dispatch = useDispatch();
   const allProd = useSelector(selectorProductComparison);
