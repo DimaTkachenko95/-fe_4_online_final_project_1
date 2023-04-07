@@ -1,4 +1,4 @@
-import {Box, Container} from '@mui/material';
+ import {Box, Container} from '@mui/material';
 import {ReactComponent as Scales} from "./icons/scales.svg"
 import {ReactComponent as Favorites} from "../../../../components/ProductCard/icons/favorite.svg";
 import './Product.scss';
@@ -106,7 +106,7 @@ const Product = () => {
                                                className={cx("list__item--favorite product__action", {"list__item--favorite--curent": checkProduct(favorites)})}/>
                                 </span>
                             </Box>
-                        </Box>
+                        </Box> 
                         <Box className="product__desc-wrapper">
                             <Box className="product__desc-title-wrapper">
                                 <h5 className="product__desc-title">Product description</h5>
@@ -163,7 +163,8 @@ const Product = () => {
                 </Container>
             </Box>}
         </>
-    )
+    ) 
 }
 
 export default Product;
+

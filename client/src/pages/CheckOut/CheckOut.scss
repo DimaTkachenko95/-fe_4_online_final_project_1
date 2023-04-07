@@ -3,18 +3,24 @@
 
 .checkout {
   margin-bottom: 30px;
+
   &__title {
     @include mixins.titleStyles;
+
     padding-bottom: 30px;
 
     .title_contrast {
       @include mixins.liner-gradient-tile;
     }
   }
+
   &__form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 
 
@@ -22,7 +28,9 @@
     justify-self: end;
     grid-column-start: 2;
     max-width: 250px;
-    background: variables.$linearGradient;
-    border-radius: 100px !important;
+    @media (max-width: 600px) {
+      grid-column-start: 1;
+      justify-self: center;
+    }
   }
 }

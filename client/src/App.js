@@ -14,8 +14,11 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import PersonalOffice from './pages/PersonalOffice';
 import Authorization from './pages/Authorization';
-import './reset.css';
+import WhyUs from './pages/WhyUs';
 import ProductComparison from './pages/ProductComparison/ProductComparison';
+import Rules from './pages/Rules/Rules';
+import './reset.css'; 
+
 
 const App = () => {
 
@@ -36,6 +39,8 @@ const App = () => {
                     <Route path="/comparison" element={<ProductComparison />} />
                     <Route path="/personal-office" element={ <PersonalOffice/> }/>
                     <Route path="/authorization" element={ <Authorization/> }/>
+                    <Route path="/why-us" element={ <WhyUs/> }/>
+                    <Route path="/rules" element={ <Rules/> }/>
                     <Route path="/*" element={ <NotFound/> }/>
                 </Routes>
             </div>

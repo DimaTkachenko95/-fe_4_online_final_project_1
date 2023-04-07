@@ -52,10 +52,10 @@ body {
   &__input-wrapper {
     margin: 0 auto;
     width: calc(100% - 12px);
+
     @media (max-width: 996px) {
       grid-row-start: 2;
-      grid-column-start: 1;
-      grid-column-end: 5;
+      grid-column: 1 / 5;
       width: 100%;
     }
   }
@@ -101,7 +101,7 @@ body {
         line-height: 18px;
         padding-bottom: 38px;
         padding-top: 38px;
-        border-bottom: 2px solid transparent;
+        border-bottom: 2px solid transparent; 
 
         &:hover {
           color: rgb(96 176 33 / 100%);
@@ -182,7 +182,7 @@ body {
       &__icon {
         border-left: 1px solid variables.$light-border;
         padding: 2vw;
-        border-bottom: 2px solid transparent;
+        border-bottom: 2px solid transparent; 
 
         @media (max-width: 996px) {
           border-left: none;
@@ -192,7 +192,7 @@ body {
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
         fill: rgb(96 176 33 / 100%);
-        border-bottom: 2px solid rgb(96 176 33 / 100%);
+       border-bottom: 2px solid rgb(96 176 33 / 100%);  
       }
     }
 
@@ -212,10 +212,12 @@ body {
       .icon-user {
         border: none;
         background-color: variables.$white;
+
         &:hover {
           cursor: pointer;
         };
       }
+
       .user-name {
         font-family: Ubuntu, sans-serif;
         font-size: 16px;
@@ -227,8 +229,9 @@ body {
         border: 2px solid #d6e3d1;
         background-color: #d6e3d1;
         border-radius: 50%;
-        padding: 5px 5px;
+        padding: 5px;
         color: green;
+
         //&:hover {
         //  background-color: rgb(81, 86, 104);
         //}
@@ -253,7 +256,7 @@ body {
 
       &__icon:hover {
         color: rgb(96 176 33 / 100%);
-        border-bottom: 2px solid rgb(96 176 33 / 100%);
+       /*  border-bottom: 2px solid rgb(96 176 33 / 100%); */
       }
     }
   }
@@ -263,18 +266,19 @@ body {
     display: none;
     border-left: 1px solid variables.$light-border;
     padding: 1.2vw;
+    cursor: pointer;
 
     @media (max-width: 996px) {
       display: block;
       border: none;
       justify-self: end;
+      cursor: pointer;
     }
   }
 }
 
 .header__menu--active {
   display: block;
-
   @media (max-width: 996px) {
     background: whitesmoke;
     z-index: 1;

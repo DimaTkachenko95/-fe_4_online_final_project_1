@@ -6,6 +6,7 @@ import ProductCard from "../ProductCard";
 import "./ProductsSlider.scss"
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import cx from "classnames";
 
 const ProductsSlider = ({ products, isForOrderedPage, productsLimit }) => {
 
@@ -52,7 +53,7 @@ const ProductsSlider = ({ products, isForOrderedPage, productsLimit }) => {
         }
       },
       {
-        breakpoint: 630,
+        breakpoint: 715,
         settings: {
           slidesToShow: 1,
           arrows: false,

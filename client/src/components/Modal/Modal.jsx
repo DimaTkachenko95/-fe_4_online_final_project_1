@@ -33,8 +33,8 @@ const ModalBlock = styled(Box) `
 
 const CloseBtn = styled(Close) `
         position: absolute;
-        top: -10px;
-        right: -10px;
+        top: -5px;
+        right: -5px;
         width: 24px;
         height: 24px;
         cursor: pointer;

@@ -1,14 +1,14 @@
 import './FormRegistration.scss';
-import {Formik, Form} from 'formik';
+import { Formik, Form } from 'formik';
 import FormikControl from './components/FormikControl'
-import {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {actionEditInputs} from '../../reducers';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { actionEditInputs } from '../../reducers';
 import Button from '../Button';
 import PasswordInput from './components/PasswordInput';
 import EditButton from './components/EditButton';
 
-const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, withPassword, validationSchema}) => {
+const FormRegistration = ({ onSubmit, initialValues, btnEdit, inputsEditName, withPassword, validationSchema }) => {
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -23,11 +23,11 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                 {(isValid) => {
                     return (
                         <>
-                            <Form className="form-registration" style={{width: '100%'}}>
+                            <Form className="form-registration" style={{ width: '100%' }}>
                                 <div className="form-registration__grid_wrapper">
                                     <FormikControl
                                         sx={[!inputsEditName.includes("firstName") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -41,14 +41,14 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("firstName")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"firstName"}
-                                                                       onClick={() => dispatch(actionEditInputs("firstName"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("firstName"))} />)
                                         }}
                                         required
                                     />
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("lastName") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -62,14 +62,14 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("lastName")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"lastName"}
-                                                                       onClick={() => dispatch(actionEditInputs("lastName"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("lastName"))} />)
                                         }}
                                         required
                                     />
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("login") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -83,14 +83,14 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("login")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"login"}
-                                                                       onClick={() => dispatch(actionEditInputs("login"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("login"))} />)
                                         }}
                                         required
                                     />
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("email") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -104,31 +104,31 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("email")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"email"}
-                                                                       onClick={() => dispatch(actionEditInputs("email"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("email"))} />)
                                         }}
                                         required
                                     />
 
                                     {!withPassword &&
                                         <PasswordInput name={"password"}
-                                                       placeholder={"Enter your password"}
-                                                       label={"Enter your password"}
-                                                       showPassword={showPassword}
-                                                       onClick={() => setShowPassword(!showPassword)}
-                                                       onMouseDown={(e) => e.preventDefault()}/>
+                                            placeholder={"Enter your password"}
+                                            label={"Enter your password"}
+                                            showPassword={showPassword}
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            onMouseDown={(e) => e.preventDefault()} />
                                     }
                                     {!withPassword &&
                                         <PasswordInput name={"confirmPassword"}
-                                                       placeholder={"Confirm password"}
-                                                       label={"Confirm password"}
-                                                       showPassword={showRepeatPassword}
-                                                       onClick={() => setShowRepeatPassword(!showRepeatPassword)}
-                                                       onMouseDown={(e) => e.preventDefault()}/>
+                                            placeholder={"Confirm password"}
+                                            label={"Confirm password"}
+                                            showPassword={showRepeatPassword}
+                                            onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                                            onMouseDown={(e) => e.preventDefault()} />
                                     }
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("telephone") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -136,7 +136,6 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         label="Telephone"
                                         className="form-registration__input"
                                         name="telephone"
-                                        // placeholder="Enter your telephone"
                                         variant="outlined"
                                         id="outlined-multiline-flexible"
                                         required
@@ -144,13 +143,13 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("telephone")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"telephone"}
-                                                                       onClick={() => dispatch(actionEditInputs("telephone"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("telephone"))} />)
                                         }}
                                     />
 
                                     <FormikControl
                                         sx={[!inputsEditName.includes("city") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -164,13 +163,13 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("city")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"city"}
-                                                                       onClick={() => dispatch(actionEditInputs("city"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("city"))} />)
                                         }}
 
                                     />
                                     <FormikControl
                                         sx={[!inputsEditName.includes("country") && {
-                                            "& fieldset": {border: 'none'}
+                                            "& fieldset": { border: 'none' }
                                         }]}
                                         type="text"
                                         control="input"
@@ -184,38 +183,36 @@ const FormRegistration = ({onSubmit, initialValues, btnEdit, inputsEditName, wit
                                         disabled={!inputsEditName.includes("country")}
                                         InputProps={btnEdit && {
                                             endAdornment: (<EditButton dataName={"country"}
-                                                                       onClick={() => dispatch(actionEditInputs("country"))}/>)
+                                                onClick={() => dispatch(actionEditInputs("country"))} />)
                                         }}
 
                                     />
-
 
                                     <FormikControl
-                                        sx={[!inputsEditName.includes("avatarUrl") && {
-                                            "& fieldset": {border: 'none'}
+                                        sx={[!inputsEditName.includes("birthdate") && {
+                                            "& fieldset": { border: 'none' }
                                         }]}
-                                        type="url"
+                                        id="outlined-multiline-flexible"
+                                        name="birthdate"
+                                        placeholder="dd.mm.yyyy"
+                                        label="Birth date"
+                                        type="text"
                                         control="input"
                                         color="success"
-                                        label="Avatar"
                                         className="form-registration__input"
-                                        name="avatarUrl"
-                                        placeholder="Enter avatar url"
                                         variant="outlined"
-                                        id="outlined-multiline-flexible"
-                                        disabled={!inputsEditName.includes("avatarUrl")}
+                                        disabled={!inputsEditName.includes("birthdate")}
                                         InputProps={btnEdit && {
-                                            endAdornment: (<EditButton dataName={"avatarUrl"}
-                                                                       onClick={() => dispatch(actionEditInputs("avatarUrl"))}/>)
+                                            endAdornment: (<EditButton dataName={"birthdate"}
+                                                onClick={() => dispatch(actionEditInputs("birthdate"))} />)
                                         }}
                                     />
-
                                 </div>
                                 <Button
                                     type="submit"
                                     disabled={!isValid}
                                     text="submit"
-                                    style={{display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 150}}
+                                    style={{ display: 'block', margin: '0 auto', marginTop: 60, marginBottom: 50 }}
                                 />
                             </Form>
                         </>

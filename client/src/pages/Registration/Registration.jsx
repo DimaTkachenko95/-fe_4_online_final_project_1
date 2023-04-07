@@ -1,43 +1,28 @@
 import { Container } from '@mui/material';
-import { useState } from 'react';
 import './Registration.scss';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import FormRegistration from '../../components/FormRegistration';
 import ValidationSchema from './components/ValidationSchema';
 import ModalSuccessRegistration from './components/ModalSuccessRegistration';
 import Preloader from '../../components/Preloader';
-import {createCustomerServerApi} from '../../api/createCustomerServerApi';
+import {createCustomerServerApi, actionRegistrationSuccess, actionRegistrationError} from '../../reducers';
 import ModalErrorRegistration from './components/ModalErrorRegistration'
+import {useDispatch, useSelector} from "react-redux";
+import {
+    selectorRegistrationInitialState,
+    selectorRegistrationIsLoading,
+    selectorRegistrationModalError,
+    selectorRegistrationModalSuccess
+} from "../../selectors";
 
-const initialState = {
-        firstName: '',
-        lastName: '',
-        login: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        telephone: '',
-        city:'',
-        country:'',
-        avatarUrl: ''
-}
+
 
 const Registration = () => {
-    const [loading, setLoading] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
-    const [registrationError, setRegistrationError] = useState(false);
-
-    const toggleModal = () => {
-        setOpenModal(!openModal);
-    };
-
-    const closeModal = () => {
-        setOpenModal(false);
-    };
-
-    const closeErrorModal = () => {
-        setRegistrationError(false);
-    };
+    const dispatch = useDispatch();
+    const initialFormData = useSelector(selectorRegistrationInitialState);
+    const modalError = useSelector(selectorRegistrationModalError);
+    const loading = useSelector(selectorRegistrationIsLoading);
+    const openModal = useSelector(selectorRegistrationModalSuccess);
 
   return (
     <main>
@@ -47,28 +32,22 @@ const Registration = () => {
           <h2 className="registration-container__wrapper-title">Registration</h2>
 
           <FormRegistration
-              initialValues={initialState}
+              initialValues={initialFormData}
               validationSchema={ValidationSchema}
               onSubmit={(values, { resetForm }) => {
                   delete values.confirmPassword;
-                  setLoading(true);
-                  createCustomerServerApi(values).then((axiosValue) => {
+                  dispatch(createCustomerServerApi(values)).then((axiosValue) => {
                       if (axiosValue) {
                           resetForm();
-                          toggleModal();
-                          setLoading(false);
-                      } else {
-                          setLoading(false);
-                          setRegistrationError(true);
                       }
                   })
               }}
 
-                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "city", "country", "avatarUrl"]}
+                  inputsEditName={["firstName", "lastName", "login", "email", "password", "telephone", "city", "country", "birthdate"]}
           />
             {loading && <Preloader open="true"/>}
-            {openModal && <ModalSuccessRegistration closeModal={() => closeModal()} />}
-            {registrationError && <ModalErrorRegistration closeErrorModal={() => closeErrorModal()}/>}
+            {openModal && <ModalSuccessRegistration closeModal={() => dispatch(actionRegistrationSuccess(false)) } />}
+            {modalError && <ModalErrorRegistration closeErrorModal={() => dispatch(actionRegistrationError(false))}/>}
         </div>
       </Container>
     </main>

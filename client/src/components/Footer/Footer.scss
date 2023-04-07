@@ -77,6 +77,7 @@
       text-align: center;
       text-transform: uppercase;
       cursor: pointer;
+
       &:hover {
         background-color: variables.$green;
       }
@@ -135,6 +136,7 @@
     .payments-wrapper {
       display: flex;
       gap: 1vw;
+
       @media (max-width: 996px) {
         display: none;
       }

@@ -8,24 +8,13 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import {selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData} from '../../selectors';
+import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData } from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
-import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart} from "../../reducers";
+import {actionFetchAuthorizationUser, actionCheckCart, getProductsCart, actionCheckFavorites, getProductsFavorites} from "../../reducers";
 import setAuthToken from "../../helpers/setAuthToken";
 
-const theme = createTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          maxWidth: '1800px', // Set your custom maxWidth value here
-        },
-      },
-    },
-  },
-});
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -43,7 +32,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleBurgerMenu);
     };
-  }, );
+  },);
 
   useEffect(() => {
     setAuthToken(authToken);
@@ -51,6 +40,8 @@ const Header = () => {
       dispatch(actionFetchAuthorizationUser());
       dispatch(actionCheckCart());
       dispatch(getProductsCart());
+      dispatch(actionCheckFavorites());
+      dispatch(getProductsFavorites())
     }
   }, [authToken]);
 
@@ -74,19 +65,18 @@ const closeModalAuth = () => {
   return (
     <>
       <header className="header">
-        <ThemeProvider theme={theme}>
           <Container maxWidth="xl">
             <Box className="header__wrapper">
               <Box className="header__logo-wrapper">
                 <Link to="/" className="logo">
-                  {window.innerWidth > 996 ? 'BestLaptops' : 'BL'}
+                  {window.innerWidth > 1180 ? 'BestLaptops' : 'BL'}
                   <span className="colored">24</span>
                 </Link>
               </Box>
 
 
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
-                <Box className="menu-list" onClick={() => {setIsMenuOpen(false)}}>
+                <Box className="menu-list" onClick={() => { setIsMenuOpen(false) }}>
                   <NavLink
                     to="/products"
                     className="menu-list__item"
@@ -109,11 +99,11 @@ const closeModalAuth = () => {
                     Rules
                   </NavLink>
                   <NavLink
-                    to="/news"
+                    to="/why-us"
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
                   >
-                    News
+                    Why us
                   </NavLink>
                   <NavLink
                     to="/contacts"
@@ -164,19 +154,18 @@ const closeModalAuth = () => {
                       </Link>)
                       : (
                       <button className="action__icon icon-user" onClick={(event) => toggleModalAuth(event)}>
-                        <Person2OutlinedIcon/>
+                        <Person2OutlinedIcon />
                       </button>)
                   }
                 </Box>
               </Box>
 
               <Box className="burger-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <CloseOutlinedIcon/> : <MenuOutlinedIcon/>}
+                {isMenuOpen ? <CloseOutlinedIcon /> : <MenuOutlinedIcon />}
               </Box>
             </Box>
-            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()}/>}
+            {isModalAuthOpen && <Authorization closeModalAuth={() => closeModalAuth()} />}
           </Container>
-        </ThemeProvider>
       </header>
     </>
   );

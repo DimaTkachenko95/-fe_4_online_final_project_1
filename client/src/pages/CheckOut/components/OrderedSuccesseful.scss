@@ -1,5 +1,6 @@
 .ordered{
-  font-family: 'Ubuntu', sans-serif;
+  font-family: Ubuntu, sans-serif;
+
   &__wrapper{
     display: flex;
     flex-direction: column;
@@ -14,7 +15,7 @@
   }
 
   &__text{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -24,15 +25,19 @@
   }
 
   &__items{
-    display: flex;
+    display: grid;
+    grid-auto-rows: 325px;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
     margin-bottom: 40px;
+    
+    @media (max-width: 620px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__title{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;

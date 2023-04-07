@@ -2,14 +2,14 @@ import { ReactComponent as Favorites } from "./icons/favorite.svg"
 import {ReactComponent as Scales } from "./icons/scales.svg"
 import { Link } from "react-router-dom";
 import cx from "classnames";
-import { selectorBasket, selectorProducts, selectorFavorites, selectorScales } from "../../selectors";
+import { selectorFavorites, selectorScales } from "../../selectors";
 import { toggleScalesProduct, toggleFavoriteProduct } from "../../reducers";
 import { useSelector, useDispatch } from 'react-redux'
 import "./ProductCard.scss";
 import ByuButton from "../ByuButton";
 
 const ProductCard = ({el, isForOrderedPage}) => {
-    const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity} = el;
+    const {name, itemNo, _id, currentPrice, imageUrls, brand, previousPrice, quantity, cartQuantity} = el;
     const favorites = useSelector(selectorFavorites);
     const scales = useSelector(selectorScales);
     const dispatch = useDispatch();
@@ -27,6 +27,8 @@ const ProductCard = ({el, isForOrderedPage}) => {
     }
 
     return (
+        <>
+        {typeof imageUrls !== 'undefined' && 
         <div className="list" id={_id} key={_id}>
             <div className={cx("list__item", {'out-of-stock': quantity<=0})}>
                 <div>
@@ -35,12 +37,15 @@ const ProductCard = ({el, isForOrderedPage}) => {
                             <img className="list__item--img--laptop" src={imageUrls[0]} alt={name}/> 
                         </Link>
                     </div>
+                    
 
                     { !isForOrderedPage && (<>
                         <span>
                             <Scales
+                                data-testid="scales"
                                 onClick={() => toggleScales(el._id)}
-                                className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})}
+                                className={cx("list__item--scales", {"list__item--scales--curent": checkProduct(scales)})} 
+                                
                             />
                         </span>
                         <span>
@@ -51,9 +56,14 @@ const ProductCard = ({el, isForOrderedPage}) => {
                       </>)
                     }
                 </div>
+                { isForOrderedPage && (
+                    <div className="list__item--quantity"> Quantity: &nbsp; <span className="list__item--quantity--multiply"> &#10008;</span> {cartQuantity}</div>
+                    )}
 
                 <div>
                     <div>
+              
+
                         <Link to={`/products/${itemNo}`}>
                             <p className="list__item--name">{name}</p>
                         </Link>
@@ -74,12 +84,14 @@ const ProductCard = ({el, isForOrderedPage}) => {
 
                 </div>
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 
 ProductCard.defaultProps = {
   isForOrderedPage: false,
+  el:{},
 }
 
 export default ProductCard;

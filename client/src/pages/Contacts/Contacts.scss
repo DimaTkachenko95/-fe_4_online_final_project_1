@@ -46,7 +46,9 @@
   height: 35px;
   font-family: Ubuntu, sans-serif;
   font-style: normal;
+
   @include mixins.titleStyles;
+
   color: variables.$black;
 
   .point_span {

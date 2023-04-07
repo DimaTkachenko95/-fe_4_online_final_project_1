@@ -32,7 +32,7 @@ const CheckOut = () => {
     if (basket.length === 0) {
       navigate('/');
     }
-  });
+  },[]);
 
   const deleteBasket = () => {
     dispatch(deleteUserCart())
