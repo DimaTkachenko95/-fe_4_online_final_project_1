@@ -39,7 +39,6 @@ const ComparisonTable = () => {
                 <th
                   className="table_th"
                   key={product.imageUrls}
-                  style={{ width: '200px', height: '200px' }}
                 >
                   <svg
                     onClick={() => deleteFromTable(product._id)}
@@ -73,7 +72,7 @@ const ComparisonTable = () => {
                     </defs>
                   </svg>
                   <img
-                    style={{ width: '100%', height: '75%' }}
+                    style={{ width: '100%' }}
                     src={product.imageUrls[0]}
                     alt="laptop"
                   />
