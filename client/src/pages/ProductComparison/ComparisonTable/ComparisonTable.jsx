@@ -74,7 +74,7 @@ const ComparisonTable = () => {
                   </svg>
                   <img
                     style={{ maxWidth: '100%', height: '150px' }}
-                    src={product.imageUrls[0]}
+                    src={product.imageUrls[1]}
                     alt="laptop"
                   />
                 </th>
