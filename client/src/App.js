@@ -17,7 +17,7 @@ import Authorization from './pages/Authorization';
 import WhyUs from './pages/WhyUs';
 import ProductComparison from './pages/ProductComparison/ProductComparison';
 import Rules from './pages/Rules/Rules';
-import './reset.css'; 
+
 
 
 const App = () => {
