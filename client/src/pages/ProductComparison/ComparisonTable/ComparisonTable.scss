@@ -9,6 +9,14 @@
   padding-bottom: 80px;
 }
 
+.img-scalle{
+  max-width: 100%;
+  height: 150px;
+  @media (max-width: 880px) {
+    height: 100px;
+  }
+}
+
 .comparison-table__delete {
   cursor: pointer;
   position: absolute;
