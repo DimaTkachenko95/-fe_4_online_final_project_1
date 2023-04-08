@@ -8,7 +8,14 @@ import { ReactComponent as ScaleSvg } from './icons/scales-of-justice-svgrepo-co
 import './Header.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { selectorBasket, selectorFavorites, selectorScales, selectorToken, selectorUserData } from '../../selectors';
+import {
+  selectorBasket,
+  selectorFavorites,
+  selectorScales,
+  selectorToken,
+  selectorUrlAddress,
+  selectorUserData
+} from '../../selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import InputSearch from '../InputSearch';
 import Authorization from "../../pages/Authorization";
@@ -25,6 +32,7 @@ const Header = () => {
   const favorites = useSelector(selectorFavorites);
   const scales = useSelector(selectorScales);
   const authToken = useSelector(selectorToken);
+  const urlAddress = useSelector(selectorUrlAddress) || "perPage=6&startPage=1";
   const countInBasket = basket.reduce((acc, {cartQuantity}) => acc + cartQuantity, 0);
 
   useEffect(() => {
@@ -78,7 +86,7 @@ const closeModalAuth = () => {
               <nav className={isMenuOpen ? 'header__menu header__menu--active' : 'header__menu'} ref={burgerMenuRef}>
                 <Box className="menu-list" onClick={() => { setIsMenuOpen(false) }}>
                   <NavLink
-                    to="/products"
+                    to={`/products?${urlAddress}`}
                     className="menu-list__item"
                     activeclassname="menu-list__item active-item"
                   >

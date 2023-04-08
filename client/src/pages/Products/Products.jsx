@@ -28,6 +28,7 @@ import Preloader from '../../components/Preloader';
 import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
+import {actionResetSearch} from "../../reducers/products.reducer";
 
 const Products = () => {
   const allProducts = useSelector(selectorAllProducts);
@@ -99,6 +100,8 @@ const Products = () => {
 
   }
 
+
+
   useEffect(() => {
     if (searchInputValue === '') {
       let obj = JSON.parse(sessionStorage.getItem('filterRequest'));
@@ -113,7 +116,11 @@ const Products = () => {
     } else {
       dispatch(actionFetchSearchProducts(searchInputValue));
     }
-  }, []);
+    return () => {
+
+      dispatch(actionResetSearch());
+    }
+  }, [location]);
 
   return (
     <main>
