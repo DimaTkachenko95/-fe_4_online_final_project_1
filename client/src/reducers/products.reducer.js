@@ -56,7 +56,10 @@ const productsSlice = createSlice({
     },
     actionSearchInputValue: (state, { payload }) => {
       state.searchInputValue = payload;
-      sessionStorage.setItem('searchInputValue', JSON.stringify(payload));
+    },
+    actionResetSearch: (state) => {
+      state.allProducts = initialState.allProducts;
+      state.searchInputValue = '';
     },
     actionServerError: (state, { payload }) => {
       state.serverError = payload;
@@ -73,6 +76,7 @@ export const {
   actionPageLoading,
   actionShowPaginaton,
   actionSearchInputValue,
+  actionResetSearch,
   actionServerError,
   actionSortByPrise,
   actionFilterRequest,
@@ -82,7 +86,7 @@ export const {
 } = productsSlice.actions;
 
 export const actionFetchAllProducts = (link) => (dispatch) => {
-  if(link == ''){
+  if(link === ''){
     link = '?perPage=6&startPage=1'
   }
   dispatch(actionPageLoading(true));
